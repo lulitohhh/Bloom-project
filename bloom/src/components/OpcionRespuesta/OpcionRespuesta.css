@@ -1,31 +1,58 @@
 .respuesta {
-    padding: 12px;
-    font-weight: bold;
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: filter 0.2s;
-  }
+  padding: 30px 30px;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+  position: relative;
+}
   
   .respuesta:hover {
     filter: brightness(1.1);
   }
   
   .verde {
-    background-color: #86efac;
+    background-color: #B5DF71;
+    color: #484800;
+    box-shadow: 0 6px 0 #8EBA47;
+  }
+
+  .verde:active {
+    box-shadow: 0 2px 0 #8EBA47;
+    transform: translateY(4px);
   }
   
   .rojo {
-    background-color: #fca5a5;
+    background-color: #F29B5E;
+    color: #622C07;
+    box-shadow: 0 6px 0 #FF7544;
+  }
+  .rojo:active {
+    box-shadow: 0 2px 0 #FF7544;
+    transform: translateY(4px);
   }
   
   .amarillo {
-    background-color: #fde68a;
+    background-color: #FFD578;
+    color: #544013;
+    box-shadow: 0 6px 0 #E9B647;
+    
+  }
+  .amarillo:active {
+    box-shadow: 0 2px 0 #E9B647;
+    transform: translateY(4px);
   }
   
   .azul {
-    background-color: #93c5fd;
+    background-color: #9EE6F4;
+    color: #124F5B;
+    box-shadow: 0 6px 0 #73CDDF;
+  }
+  .azul:active {
+    box-shadow: 0 2px 0 #73CDDF;
+    transform: translateY(4px);
   }
   
   .correcta {

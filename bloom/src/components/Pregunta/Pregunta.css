@@ -22,7 +22,10 @@
   .pregunta-opciones {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    gap: 0.75rem; /* antes 1rem */
     margin-bottom: 1.5rem;
+    max-width: 800px; /* limita el ancho total */
+    margin-left: auto;
+    margin-right: auto;
   }
   

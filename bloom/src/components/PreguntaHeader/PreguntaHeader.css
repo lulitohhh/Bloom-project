@@ -15,7 +15,7 @@
     background-color: #f3f4f6;
     border-radius: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 1rem;
+    margin-bottom: 20px;
   }
 
 .pregunta-subtitulo {
@@ -28,6 +28,6 @@
     font-size: 24px;
     font-weight: bold;
     color: #CF5B32;
-    margin-bottom: 24px;
+    margin-bottom: 15px;
   }
   
