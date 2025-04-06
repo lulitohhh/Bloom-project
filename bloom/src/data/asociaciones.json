@@ -1,36 +1,35 @@
 [
-    {
-      "id": 1,
-      "title": "Match the animal to its habitat",
-      "type": "animal-habitat",
-      "pairs": [
-        { "item": "Polar Bear", "match": "Arctic" },
-        { "item": "Camel", "match": "Desert" },
-        { "item": "Frog", "match": "Pond" },
-        { "item": "Monkey", "match": "Rainforest" }
-      ]
-    },
-    {
-      "id": 2,
-      "title": "Match the plant to where it grows",
-      "type": "plant-habitat",
-      "pairs": [
-        { "item": "Cactus", "match": "Desert" },
-        { "item": "Water Lily", "match": "Pond" },
-        { "item": "Pine Tree", "match": "Mountain" },
-        { "item": "Mangrove", "match": "Swamp" }
-      ]
-    },
-    {
-      "id": 3,
-      "title": "Match the object to how it should be disposed",
-      "type": "waste-disposal",
-      "pairs": [
-        { "item": "Plastic Bottle", "match": "Recycle Bin" },
-        { "item": "Banana Peel", "match": "Compost Bin" },
-        { "item": "Old Toy", "match": "Donation Box" },
-        { "item": "Broken Glass", "match": "Trash Bin" }
-      ]
-    }
-  ]
-  
+  {
+    "id": 1,
+    "title": "Match the animal to its habitat",
+    "type": "animal-habitat",
+    "pairs": [
+      { "item": "polar-bear", "match": "arctic" },
+      { "item": "camel", "match": "desert" },
+      { "item": "frog", "match": "pond" },
+      { "item": "monkey", "match": "rainforest" }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Match the plant to where it grows",
+    "type": "plant-habitat",
+    "pairs": [
+      { "item": "cactus", "match": "desert" },
+      { "item": "water-lily", "match": "pond" },
+      { "item": "pine-tree", "match": "mountain" },
+      { "item": "mangrove", "match": "swamp" }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Match the object to how it should be disposed",
+    "type": "waste-disposal",
+    "pairs": [
+      { "item": "plastic-bottle", "match": "recycle-bin" },
+      { "item": "banana-peel", "match": "compost-bin" },
+      { "item": "old-toy", "match": "donation-box" },
+      { "item": "broken-glass", "match": "trash-bin" }
+    ]
+  }
+]
