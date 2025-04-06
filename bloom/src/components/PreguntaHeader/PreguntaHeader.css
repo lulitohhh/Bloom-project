@@ -1,3 +1,23 @@
+.subtitulo-container {
+  border-radius: 50px;
+  padding: 2px;
+  background-color: #f3f4f6;
+  box-shadow: 0 2px 4px rgba(77, 79, 82, 0.37);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 16px auto; /* Centrado horizontal + separación inferior */
+  width: 300px;
+}
+  .pregunta-header {
+    padding: 10px;
+    border: 1px solid #d85e25;
+    background-color: #f3f4f6;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+  }
+
 .pregunta-subtitulo {
     font-size: 14px;
     color: #6b7280;
@@ -7,7 +27,7 @@
   .pregunta-titulo {
     font-size: 24px;
     font-weight: bold;
-    color: #dc2626;
+    color: #CF5B32;
     margin-bottom: 24px;
   }
   

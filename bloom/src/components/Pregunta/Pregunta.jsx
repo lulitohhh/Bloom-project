@@ -21,10 +21,12 @@ const Pregunta = ({ id, onSuccess }) => {
   };
 
   return (
-    <div className="pregunta-container">
-      <div className="pregunta-box">
+    <section className="pregunta-container">
+      <section className="pregunta-box">
+        <section className="pregunta-header">
         <PreguntaHeader texto={pregunta.question} />
-        <div className="pregunta-opciones">
+        </section>
+        <section className="pregunta-opciones">
           {pregunta.options.map((opcion, index) => (
             <OpcionRespuesta
               key={index}
@@ -35,11 +37,11 @@ const Pregunta = ({ id, onSuccess }) => {
               onSelect={() => manejarRespuesta(opcion)}
             />
           ))}
-        </div>
+        </section>
         {seleccion && correcta && <BotonSiguiente onClick={onSuccess} />}
-      </div>
+      </section>
       
-    </div>
+    </section>
   );
 };
 
