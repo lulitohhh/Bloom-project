@@ -1,0 +1,40 @@
+.respuesta {
+    padding: 12px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: filter 0.2s;
+  }
+  
+  .respuesta:hover {
+    filter: brightness(1.1);
+  }
+  
+  .verde {
+    background-color: #86efac;
+  }
+  
+  .rojo {
+    background-color: #fca5a5;
+  }
+  
+  .amarillo {
+    background-color: #fde68a;
+  }
+  
+  .azul {
+    background-color: #93c5fd;
+  }
+  
+  .correcta {
+    background-color: #22c55e;
+    color: white;
+  }
+  
+  .incorrecta {
+    background-color: #ef4444;
+    color: white;
+  }
+  

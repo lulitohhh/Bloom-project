@@ -1,0 +1,15 @@
+.boton-siguiente {
+    background-color: #16a34a;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 999px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .boton-siguiente:hover {
+    background-color: #15803d;
+  }
+  
