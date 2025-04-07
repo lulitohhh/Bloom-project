@@ -12,11 +12,12 @@
 
 .pregunta-header {
   padding: 10px;
+  width: 900px;
   border: 1px solid #d85e25;
   background-color: #f3f4f6;
   border-radius: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .pregunta-subtitulo {
