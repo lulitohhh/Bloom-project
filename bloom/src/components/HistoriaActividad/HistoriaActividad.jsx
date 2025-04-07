@@ -59,7 +59,7 @@ function HistoriaActividad({ onFinish }) {
         <BotonSiguiente
           onClick={handleSiguiente}
           disabled={false}
-          label={esUltima ? 'Test completed' : 'Next'}
+          label={esUltima ? 'Test completed' : 'Continuar'}
         />
       </div>
     </div>
