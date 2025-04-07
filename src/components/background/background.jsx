@@ -1,11 +1,11 @@
-import './Card.css';
 
-const Card = () => {
+
+const Background = () => {
   return (
-    <div>
+    <div className='bg'>
       
     </div>
   );
 };
 
-export default Card;
+export default Background;
