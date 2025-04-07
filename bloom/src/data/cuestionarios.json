@@ -1,63 +1,39 @@
 [
     {
       "id": 1,
-      "question": "What should you do with an empty plastic bottle?",
+      "type": "Think and answer!",
+      "title": "What should you do with an empty plastic bottle?",
       "options": ["Throw it in the trash", "Leave it on the ground", "Recycle it", "Burn it"],
       "correctAnswer": "Recycle it"
     },
     {
       "id": 2,
-      "question": "Which of these items can be composted?",
+      "type": "Think and answer!",
+      "title": "Which of these items can be composted?",
       "options": ["Apple core", "Plastic spoon", "Glass bottle", "Aluminum can"],
       "correctAnswer": "Apple core"
     },
     {
       "id": 3,
-      "question": "What helps plants grow?",
+      "type": "Think and answer!",
+      "title": "What helps plants grow?",
       "options": ["Oil", "Sunlight", "Soda", "Smoke"],
       "correctAnswer": "Sunlight"
     },
     {
       "id": 4,
-      "question": "Why is it important to turn off the lights when you leave a room?",
+      "type": "Think and answer!",
+      "title": "Why is it important to turn off the lights when you leave a room?",
       "options": ["To make the room dark", "To save electricity", "To scare others", "To play hide and seek"],
       "correctAnswer": "To save electricity"
     },
     {
       "id": 5,
-      "question": "Which one is a clean energy source?",
+      "type": "Think and answer!",
+      "title": "Which one is a clean energy source?",
       "options": ["Coal", "Wind", "Gasoline", "Plastic"],
       "correctAnswer": "Wind"
-    },
-    {
-      "id": 6,
-      "question": "Where should you put paper when you're done with it?",
-      "options": ["In the ocean", "In the recycling bin", "Under your bed", "In the sink"],
-      "correctAnswer": "In the recycling bin"
-    },
-    {
-      "id": 7,
-      "question": "Which animal lives in the ocean?",
-      "options": ["Bear", "Eagle", "Shark", "Cow"],
-      "correctAnswer": "Shark"
-    },
-    {
-      "id": 8,
-      "question": "What can you do to save water?",
-      "options": ["Leave the faucet running", "Take long showers", "Turn off the tap while brushing your teeth", "Wash your car every day"],
-      "correctAnswer": "Turn off the tap while brushing your teeth"
-    },
-    {
-      "id": 9,
-      "question": "Which of these helps keep the Earth clean?",
-      "options": ["Littering", "Planting trees", "Burning trash", "Using plastic bags"],
-      "correctAnswer": "Planting trees"
-    },
-    {
-      "id": 10,
-      "question": "What should you do if you see trash on the ground in the park?",
-      "options": ["Ignore it", "Pick it up and throw it away", "Kick it", "Hide it under leaves"],
-      "correctAnswer": "Pick it up and throw it away"
     }
+   
   ]
   

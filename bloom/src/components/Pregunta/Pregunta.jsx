@@ -6,7 +6,6 @@ import PreguntaHeader from '../PreguntaHeader/PreguntaHeader';
 import OpcionRespuesta from '../OpcionRespuesta/OpcionRespuesta';
 import BotonSiguiente from '../BotonSiguiente/BotonSiguiente';
 
-
 const Pregunta = ({ id, onSuccess }) => {
   const pregunta = cuestionarios.find((p) => p.id === id);
   const [seleccion, setSeleccion] = useState(null);
@@ -15,19 +14,17 @@ const Pregunta = ({ id, onSuccess }) => {
   if (!pregunta) return <p>Pregunta no encontrada.</p>;
 
   const manejarRespuesta = (respuesta) => {
-    // Solo evitar selección si ya fue respondida correctamente
     if (correcta) return;
-  
+
     setSeleccion(respuesta);
     const esCorrecta = respuesta === pregunta.correctAnswer;
     setCorrecta(esCorrecta);
   };
+
   return (
     <section className="pregunta-container">
       <section className="pregunta-box">
-        <section className="pregunta-header">
-        <PreguntaHeader texto={pregunta.question} />
-        </section>
+        <PreguntaHeader tipo={pregunta.type} titulo={pregunta.title} />
         <section className="pregunta-opciones">
           {pregunta.options.map((opcion, index) => (
             <OpcionRespuesta
@@ -42,9 +39,9 @@ const Pregunta = ({ id, onSuccess }) => {
         </section>
         <BotonSiguiente onClick={onSuccess} disabled={!correcta} />
       </section>
-      
     </section>
   );
 };
 
 export default Pregunta;
+

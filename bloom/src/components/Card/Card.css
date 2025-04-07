@@ -1,0 +1,28 @@
+.card {
+    border: 2px solid transparent;
+    border-radius: 16px;
+    padding: 10px;
+    background-color: #fff;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .card img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+  }
+  
+  .card.seleccionada {
+    border-color: #fbbf24; /* amarillo */
+  }
+  
+  .card.correcta {
+    border-color: #4ade80; /* verde */
+  }
+  
+  .card.incorrecta {
+    border-color: #f87171; /* rojo */
+  }
+  

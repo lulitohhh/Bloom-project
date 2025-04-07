@@ -1,15 +1,13 @@
+// src/components/PreguntaHeader/PreguntaHeader.jsx
 import './PreguntaHeader.css';
 
-const PreguntaHeader = ({ texto }) => (
-  <>
-  <section className="subtitulo-container">
-
-    <p className="pregunta-subtitulo">Think and answer!</p>
-    
+const PreguntaHeader = ({ tipo, titulo }) => (
+  <section className="pregunta-header">
+    <section className="subtitulo-container">
+      <p className="pregunta-subtitulo">{tipo}</p>
+    </section>
+    <h2 className="pregunta-titulo">{titulo}</h2>
   </section>
-
-    <h2 className="pregunta-titulo">{texto}</h2>
-  </>
 );
 
 export default PreguntaHeader;
