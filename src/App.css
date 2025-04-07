@@ -1,5 +1,14 @@
-#root{
-  background-color: aqua;
-  height: 1000px;
-  width: 1000px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #B8F2FE;
+}
+
+/* Asegura que html y body ocupen toda la pantalla */
+html, body, #root {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden; /* Opcional: evita scroll horizontal */
+  background-color: #B8F2FE
 }
