@@ -2,7 +2,7 @@
 import './Pregunta.css';
 import { useState } from 'react';
 import cuestionarios from '../../data/cuestionarios.json';
-import PreguntaHeader from '../PreguntaHeader/PreguntaHeader';
+import Header from '../Header/Header';
 import OpcionRespuesta from '../OpcionRespuesta/OpcionRespuesta';
 import BotonSiguiente from '../BotonSiguiente/BotonSiguiente';
 
@@ -24,7 +24,7 @@ const Pregunta = ({ id, onSuccess }) => {
   return (
     <section className="pregunta-container">
       <section className="pregunta-box">
-        <PreguntaHeader tipo={pregunta.type} titulo={pregunta.title} />
+        <Header tipo={pregunta.type} titulo={pregunta.title} />
         <section className="pregunta-opciones">
           {pregunta.options.map((opcion, index) => (
             <OpcionRespuesta

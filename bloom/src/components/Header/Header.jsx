@@ -1,7 +1,7 @@
-// src/components/PreguntaHeader/PreguntaHeader.jsx
-import './PreguntaHeader.css';
 
-const PreguntaHeader = ({ tipo, titulo }) => (
+import './Header.css';
+
+const Header = ({ tipo, titulo }) => (
   <section className="pregunta-header">
     <section className="subtitulo-container">
       <p className="pregunta-subtitulo">{tipo}</p>
@@ -10,4 +10,4 @@ const PreguntaHeader = ({ tipo, titulo }) => (
   </section>
 );
 
-export default PreguntaHeader;
+export default Header;

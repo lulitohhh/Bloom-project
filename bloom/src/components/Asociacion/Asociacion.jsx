@@ -1,6 +1,6 @@
 import { useEffect, useState, useMemo } from 'react';
 import CardGroup from '../CardGroup/CardGroup';
-import PreguntaHeader from '../PreguntaHeader/PreguntaHeader';
+import Header from '../Header/Header';
 import BotonSiguiente from '../BotonSiguiente/BotonSiguiente';
 import './Asociacion.css';
 
@@ -74,7 +74,7 @@ const Asociacion = ({ id, onSuccess }) => {
 
   return (
     <div className="asociacion-container">
-      <PreguntaHeader tipo={actividad.type} titulo={actividad.title} />
+      <Header tipo={actividad.type} titulo={actividad.title} />
       <CardGroup cards={cards} onCardClick={handleCardClick} />
       <BotonSiguiente
         onClick={onSuccess}
