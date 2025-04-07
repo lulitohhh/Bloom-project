@@ -14,12 +14,14 @@ const Pregunta = ({ id, onSuccess }) => {
 
   if (!pregunta) return <p>Pregunta no encontrada.</p>;
 
-  const manejarRespuesta = (opcion) => {
-    setSeleccion(opcion);
-    const esCorrecta = opcion === pregunta.correctAnswer;
+  const manejarRespuesta = (respuesta) => {
+    // Solo evitar selección si ya fue respondida correctamente
+    if (correcta) return;
+  
+    setSeleccion(respuesta);
+    const esCorrecta = respuesta === pregunta.correctAnswer;
     setCorrecta(esCorrecta);
   };
-
   return (
     <section className="pregunta-container">
       <section className="pregunta-box">
@@ -38,7 +40,7 @@ const Pregunta = ({ id, onSuccess }) => {
             />
           ))}
         </section>
-        {seleccion && correcta && <BotonSiguiente onClick={onSuccess} />}
+        <BotonSiguiente onClick={onSuccess} disabled={!correcta} />
       </section>
       
     </section>

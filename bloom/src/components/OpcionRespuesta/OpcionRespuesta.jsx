@@ -2,7 +2,7 @@ import './OpcionRespuesta.css';
 
 const colores = ['verde', 'rojo', 'amarillo', 'azul'];
 
-const OpcionRespuesta = ({ texto, index, seleccion, correcta, onSelect }) => {
+const OpcionRespuesta = ({ texto, index, seleccion, correcta, onSelect, fueRespondidaCorrectamente }) => {
   const esSeleccionada = seleccion === texto;
   const esCorrecta = texto === correcta;
 
@@ -13,10 +13,13 @@ const OpcionRespuesta = ({ texto, index, seleccion, correcta, onSelect }) => {
     : `respuesta ${colores[index]}`;
 
   return (
-    <button className={clases} onClick={onSelect} disabled={!!seleccion}>
+    <button 
+      className={clases} 
+      onClick={onSelect} 
+      disabled={fueRespondidaCorrectamente} // solo se bloquea si ya acertaste
+    >
       {texto}
     </button>
   );
 };
-
 export default OpcionRespuesta;
