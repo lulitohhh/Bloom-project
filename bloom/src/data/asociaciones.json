@@ -1,35 +1,23 @@
 [
+  
   {
     "id": 1,
-    "title": "Match the animal to its habitat",
-    "type": "animal-habitat",
-    "pairs": [
-      { "item": "polar-bear", "match": "arctic" },
-      { "item": "camel", "match": "desert" },
-      { "item": "frog", "match": "pond" },
-      { "item": "monkey", "match": "rainforest" }
-    ]
-  },
-  {
-    "id": 2,
     "title": "Match the plant to where it grows",
     "type": "plant-habitat",
     "pairs": [
       { "item": "cactus", "match": "desert" },
-      { "item": "water-lily", "match": "pond" },
-      { "item": "pine-tree", "match": "mountain" },
-      { "item": "mangrove", "match": "swamp" }
+      { "item": "apple", "match": "apple-trees" },
+      { "item": "tree", "match": "forest" }
     ]
   },
   {
-    "id": 3,
+    "id": 2,
     "title": "Match the object to how it should be disposed",
     "type": "waste-disposal",
     "pairs": [
       { "item": "plastic-bottle", "match": "recycle-bin" },
       { "item": "banana-peel", "match": "compost-bin" },
-      { "item": "old-toy", "match": "donation-box" },
-      { "item": "broken-glass", "match": "trash-bin" }
+      { "item": "carton-box", "match": "paper-recycle-bin" }
     ]
   }
 ]
