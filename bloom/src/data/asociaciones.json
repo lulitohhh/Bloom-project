@@ -17,7 +17,7 @@
     "pairs": [
       { "item": "plastic-bottle", "match": "recycle-bin" },
       { "item": "banana-peel", "match": "compost-bin" },
-      { "item": "carton-box", "match": "paper-recycle-bin" }
+      { "item": "carton-box", "match": "paper-bin" }
     ]
   }
 ]

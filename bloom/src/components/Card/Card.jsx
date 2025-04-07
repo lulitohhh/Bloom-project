@@ -1,12 +1,16 @@
+// src/components/Card/Card.jsx
 import './Card.css';
 
-const Card = ({ data, onClick }) => {
+const Card = ({ card, onClick, isSelected }) => {
+  let className = 'card';
+
+  if (card.correct === true) className += ' correcta';
+  else if (card.correct === false) className += ' incorrecta';
+  else if (isSelected) className += ' seleccionada';
+
   return (
-    <div
-      className={`card ${data.selected ? 'selected' : ''} ${data.correct === true ? 'correct' : ''} ${data.correct === false ? 'incorrect' : ''}`}
-      onClick={onClick}
-    >
-      <img src={data.image} alt={data.id} className="card-image" />
+    <div className={className} onClick={() => onClick(card.id)}>
+      <img src={card.image} alt={card.id} />
     </div>
   );
 };

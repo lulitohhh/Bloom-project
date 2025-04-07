@@ -75,7 +75,11 @@ const Asociacion = ({ id, onSuccess }) => {
   return (
     <div className="asociacion-container">
       <Header tipo={actividad.type} titulo={actividad.title} />
-      <CardGroup cards={cards} onCardClick={handleCardClick} />
+      <CardGroup
+  cards={cards}
+  onCardClick={handleCardClick}
+  selected={selected}
+/>
       <BotonSiguiente
         onClick={onSuccess}
         disabled={resueltos.length !== cards.length}
