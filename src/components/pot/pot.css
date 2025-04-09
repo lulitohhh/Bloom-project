@@ -6,4 +6,5 @@
     background-position: center;
     width: 150px; /* Tamaño fijo recomendado */
     height: 150px;
+    flex-shrink: 0;
 }

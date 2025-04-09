@@ -1,10 +1,19 @@
 .dashboard{
     margin: 0;
     padding: 0;
+    display: block;
+    width: 100vw;
+    height: 100vh;
 }
 
-.pots{
-    width: auto;
- display: flex;
- flex-direction: row;
+.pots-container{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    gap: 15px;
+    padding: 10px;
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center;
+    gap: 200px;
 }
+
