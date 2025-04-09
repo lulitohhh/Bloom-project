@@ -4,7 +4,7 @@
     background-clip: content-box;
     background-size: contain;
     background-position: center;
-    width: 150px; /* Tamaño fijo recomendado */
-    height: 150px;
+    width: 247px; /* Tamaño fijo recomendado */
+    height: 250px;
     flex-shrink: 0;
 }
