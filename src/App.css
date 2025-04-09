@@ -10,5 +10,7 @@ html, body, #root {
   width: 100%;
   min-height: 100vh;
   overflow-x: hidden; /* Opcional: evita scroll horizontal */
-  background-color: #B8F2FE
+  background-color: #B8F2FE;
+  margin: 0;
+  padding: 0;
 }

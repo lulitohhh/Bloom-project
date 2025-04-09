@@ -1,0 +1,9 @@
+.pot{
+    background-image: url('../../assets/images/pot.png');
+    background-repeat: no-repeat;
+    background-clip: content-box;
+    background-size: contain;
+    background-position: center;
+    width: 150px; /* Tamaño fijo recomendado */
+    height: 150px;
+}

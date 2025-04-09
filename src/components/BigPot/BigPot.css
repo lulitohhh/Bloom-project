@@ -1,0 +1,10 @@
+.big-pot{
+    background-image: url('../../assets/images/bigpot.png');
+    background-repeat: no-repeat;
+    background-clip: content-box;
+    background-size: contain;
+    background-position: center;
+    width: 160px; /* Tamaño fijo recomendado */
+    height: 160px;
+    
+}
