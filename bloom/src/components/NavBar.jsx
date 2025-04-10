@@ -7,22 +7,30 @@ import "../styles/NavBar.css"
 
 const NavBar = () => {
   return (
-    <nav className="navbar">
-      <div className="navbar-buttons">
-        <Link to="/home">
-          <img src={homeIcon} alt="Home" className="nav-icon" />
-        </Link>
-        <Link to="/about">
-          <img src={aboutIcon} alt="About" className="nav-icon" />
-        </Link>
-        <Link to="/gallery">
-          <img src={galleryIcon} alt="Gallery" className="nav-icon" />
-        </Link>
-        <Link to="/contact">
-          <img src={contactIcon} alt="Contact" className="nav-icon" />
-        </Link>
-      </div>
-    </nav>
+<nav className="navbar">
+  <div className="navbar-buttons">
+    {/* Izquierda */}
+    <div className="nav-left">
+      <Link to="/home">
+        <img src={homeIcon} alt="Home" className="nav-icon" />
+      </Link>
+      <Link to="/about">
+        <img src={aboutIcon} alt="About" className="nav-icon" />
+      </Link>
+    </div>
+
+    {/* Derecha */}
+    <div className="nav-right">
+      <Link to="/contact">
+        <img src={contactIcon} alt="Contact" className="nav-icon" />
+      </Link>
+      <Link to="/gallery">
+        <img src={galleryIcon} alt="Gallery" className="nav-icon" />
+      </Link>
+    </div>
+  </div>
+</nav>
+
   );
 };
 

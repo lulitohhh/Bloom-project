@@ -2,37 +2,60 @@ const PageRight = ({ setSelectedCategory, selectedItem, setSelectedItem, selecte
   return (
     <div className="page-right">
       {!selectedCategory && !selectedItem && (
-        <img
-          src="/assets/btn-ecosystems.png"
-          alt="Ecosystems"
-          className="img-btn"
-          onClick={() => {
-            setSelectedCategory("ecosystems");
-            setSelectedItem(null);
-          }}
-          style={{ cursor: "pointer" }}
-        />
+        <div className="btns-wrapper">
+          <div className="btn2-container">
+            <img
+              src="/assets/btn-ecosystems.png"
+              alt="Ecosystems"
+              className="img-btn"
+              onClick={() => {
+                setSelectedCategory("ecosystems");
+                setSelectedItem(null);
+              }}
+              style={{ cursor: "pointer" }}
+            />
+            <p className="btn-label">Ecosystems</p>
+          </div>
+        </div>
       )}
 
       {selectedItem && (
         <div className="item-details">
+          <img
+            src="/assets/buttoms/back-btn.png"
+            alt="Back"
+            className="back-btn"
+            onClick={() => {
+              setSelectedCategory(null);
+              setSelectedItem(null);
+            }}
+          />
+
           <h2>{selectedItem.name}</h2>
-          <img src={selectedItem.image} alt={selectedItem.name} style={{ width: "100%", maxWidth: "300px" }} />
+
+          <img
+            src={selectedItem.image}
+            alt={selectedItem.name}
+            className="item-img"
+          />
+
           <p><strong>Description:</strong> {selectedItem.description}</p>
-          <p><strong>Animals:</strong> {selectedItem.animals}</p>
-          <p><strong>Plants:</strong> {selectedItem.plants}</p>
-          <p><strong>Location:</strong> {selectedItem.location}</p>
 
-          <button
-  onClick={() => {
-    setSelectedCategory(null);
-    setSelectedItem(null);
-  }}
-  style={{ marginTop: "1rem", padding: "0.5rem 1rem", cursor: "pointer" }}
->
-  ← Back
-</button>
+          {selectedCategory === "ecosystems" && (
+            <>
+              <p><strong>Animals:</strong> {selectedItem.animals}</p>
+              <p><strong>Plants:</strong> {selectedItem.plants}</p>
+              <p><strong>Location:</strong> {selectedItem.location}</p>
+            </>
+          )}
 
+          {selectedCategory === "plants" && (
+            <>
+              <p><strong>Kingdom:</strong> {selectedItem.kingdom}</p>
+              <p><strong>Genus:</strong> {selectedItem.genus}</p>
+              <p><strong>Habitat:</strong> {selectedItem.habitat}</p>
+            </>
+          )}
         </div>
       )}
     </div>

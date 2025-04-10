@@ -1,31 +1,43 @@
-const PageLeft = ({ selectedCategory, setSelectedCategory, data, setSelectedItem }) => {
+const PageLeft = ({ selectedCategory, setSelectedCategory, data = [], selectedItem, setSelectedItem }) => {
   return (
     <div className="page-left">
       {!selectedCategory && (
-        <img
-          src="/assets/btn-plants.png"
-          alt="Plants"
-          className="img-btn"
-          onClick={() => setSelectedCategory("plants")}
-          style={{ cursor: "pointer" }}
-        />
-      )}
-
-      {selectedCategory && (
-        <div className="grid-3-columns">
-          {data.map((item, index) => (
+        <div className="btns-wrapper">
+          <div className="btn-container">
             <img
-              key={index}
-              src={item.image}
-              alt={item.name}
-              onClick={() => setSelectedItem(item)}
-              style={{ width: "100px", height: "100px", objectFit: "cover", cursor: "pointer" }}
+              src="/assets/btn-plants.png"
+              alt="Plants"
+              className="img-btn"
+              onClick={() => setSelectedCategory("plants")}
+              style={{ cursor: "pointer" }}
             />
-          ))}
+            <p className="btn-label">Plants</p>
+          </div>
         </div>
       )}
+{selectedCategory && (
+  <div className="grid-wrapper">
+    <div className="grid-3-columns">
+      {data.slice(0, 9).map((item, index) => (
+        <div
+          key={index}
+          className={`grid-item ${selectedItem?.name === item.name ? "selected" : ""}`}
+          onClick={() => setSelectedItem(item)}
+        >
+          <img
+            src={item.image}
+            alt={item.name}
+            style={{ width: "80px", height: "80px", objectFit: "cover" }}
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+)}
+
     </div>
   );
 };
+
 
 export default PageLeft;
