@@ -3,7 +3,7 @@ const PageLeft = ({ selectedCategory, setSelectedCategory, data = [], selectedIt
     <div className="page-left">
       {!selectedCategory && (
         <div className="btns-wrapper">
-          <div className="btn-container">
+          <div className=".btn-containerplus">
             <img
               src="/assets/btn-plants.png"
               alt="Plants"

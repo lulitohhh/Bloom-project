@@ -1,12 +1,12 @@
 .garden-album {
   position: relative;
-  min-height: 100vh;
-  background: linear-gradient(to bottom, #B8F2FE 60%, #B1DC6B 40%);
+  max-height: 100%;
   overflow-y: hidden;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
-  padding-top: 100px;
+  justify-content: left;
+  padding-top: 0;
 }
 
 .bg-img {
@@ -43,9 +43,9 @@
   display: flex;
   justify-content: center;
   gap: 10rem;
-  margin-top: 3 rem;
+  
   z-index: 10;
-  top: -20px;
+  top: -100px;
 }
 
 .image-button {
@@ -81,15 +81,10 @@
     z-index: 1;
   }
   
-  .garden-album {
-    position: relative;
-    min-height: 100vh;
-    z-index: 0;
-  }
-  
+
   .album-bg {
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 800px;
@@ -106,7 +101,7 @@
   margin-top: 2rem;
 }
 
-.btn-container {
+.btn-containerplus {
   position: relative;
   display: flex;
   justify-content: center;
