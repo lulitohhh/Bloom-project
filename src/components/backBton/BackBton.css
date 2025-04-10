@@ -1,0 +1,15 @@
+.back-button{
+    background-color: #EC6956;
+    border: none;
+    border-radius: 20px;
+    width: 20vw;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    justify-content: space-evenly;
+    width: 5vw;
+    box-shadow: 
+    0 4px 0 #DB321A, 
+    0 5px 10px rgba(0, 0, 0, 0.2);
+}

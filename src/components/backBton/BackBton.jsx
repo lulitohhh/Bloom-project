@@ -2,13 +2,13 @@ import React from "react";
 import "./BackBton.css"
 
 
-const EcoButton = () => {
+const BackButton = () => {
   return (
-    <button className='eco-button'>
+    <button className='back-button'>
       
-      <h1 id="ecobtontt">Ecoguide</h1>
+      <img src="" alt="" />
     </button>
   );
 };
 
-export default EcoButton;
+export default BackButton;
