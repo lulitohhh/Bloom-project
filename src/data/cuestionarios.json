@@ -1,0 +1,39 @@
+[
+    {
+      "id": 1,
+      "type": "Think and answer!",
+      "title": "What should you do with an empty plastic bottle?",
+      "options": ["Throw it in the trash", "Leave it on the ground", "Recycle it", "Burn it"],
+      "correctAnswer": "Recycle it"
+    },
+    {
+      "id": 2,
+      "type": "Think and answer!",
+      "title": "Which of these items can be composted?",
+      "options": ["Apple core", "Plastic spoon", "Glass bottle", "Aluminum can"],
+      "correctAnswer": "Apple core"
+    },
+    {
+      "id": 3,
+      "type": "Think and answer!",
+      "title": "What helps plants grow?",
+      "options": ["Oil", "Sunlight", "Soda", "Smoke"],
+      "correctAnswer": "Sunlight"
+    },
+    {
+      "id": 4,
+      "type": "Think and answer!",
+      "title": "Why is it important to turn off the lights when you leave a room?",
+      "options": ["To make the room dark", "To save electricity", "To scare others", "To play hide and seek"],
+      "correctAnswer": "To save electricity"
+    },
+    {
+      "id": 5,
+      "type": "Think and answer!",
+      "title": "Which one is a clean energy source?",
+      "options": ["Coal", "Wind", "Gasoline", "Plastic"],
+      "correctAnswer": "Wind"
+    }
+   
+  ]
+  
