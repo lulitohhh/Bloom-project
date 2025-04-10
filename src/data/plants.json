@@ -1,0 +1,20 @@
+[
+    {
+      "id": "level-1-badge",
+      "image": "./assets/images/decorations/level-1-badge.png",
+      "style": {
+        "position": "absolute",
+        "top": "10%",
+        "left": "-15px",
+        "zIndex": 10,
+        "width": "70px",
+        "height": "auto",
+        "transform": "rotate(15deg)",
+        "filter": "drop-shadow(2px 2px 3px rgba(0,0,0,0.3))"
+      },
+      "metadata": {
+        "level": 1,
+        "interactive": true
+      }
+    }
+  ]
