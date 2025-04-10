@@ -6,6 +6,7 @@
     background-position: center;
     width: 25vw; /* Tamaño fijo recomendado */
     height: 25vh;
+    position: relative;
 
     
 }
@@ -93,4 +94,12 @@
     margin-top: 15%;
     margin-right: 10%;
     transition: transform 0.08s;
+}
+
+#main-plant{
+    position: absolute;
+    width: auto;
+    height: 30vh;
+    left: 30%;
+    top: -90%;
 }
