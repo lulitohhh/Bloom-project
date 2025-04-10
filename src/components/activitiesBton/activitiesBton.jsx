@@ -2,13 +2,13 @@ import React from "react";
 import "./activitiesBton.css"
 
 
-const EcoButton = () => {
+const ActivitiesBton = () => {
   return (
-    <button className='eco-button'>
+    <button className='act-button'>
       
-      <h1 id="ecobtontt">Ecoguide</h1>
+      <h1 id="activitext">Play activities!</h1>
     </button>
   );
 };
 
-export default EcoButton;
+export default ActivitiesBton;

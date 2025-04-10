@@ -7,13 +7,14 @@
     justify-content: center;
     align-items: center;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 
 #ecobtontt{
     font-family: "Fredoka", sans-serif;
     font-weight: 600;
     color: #CC730B;
+    text-align: start;
 }
 
 #ecoimg{

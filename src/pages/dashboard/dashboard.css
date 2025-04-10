@@ -15,7 +15,7 @@
     flex-direction: row;
     height: 100%;
     gap: 20px;
-    padding-top: 300px;
+    padding-top: 400px;
     justify-content: center; /* Centra los elementos horizontalmente */
     align-items: center;
     
@@ -30,7 +30,7 @@
     height: 100%;
     gap: 20px;
     
-    justify-content: center; /* Centra los elementos horizontalmente */
+    justify-content: space-around; /* Centra los elementos horizontalmente */
     align-items: center;
 }
 

@@ -6,6 +6,8 @@ import Background from '../../components/background/background';
 import BigPot from '../../components/BigPot/BigPot';
 import Pot from '../../components/pot/pot';
 import EcoButton from '../../components/ecoButton/ecoButton';
+import ActivitiesBton from '../../components/activitiesBton/activitiesBton';
+
 
 const Dashboard = () => {
 
@@ -20,6 +22,7 @@ const Dashboard = () => {
       </div>
       <div className="btn-container">
         <EcoButton/>
+        <ActivitiesBton/>
       </div>
     </div>
   );
