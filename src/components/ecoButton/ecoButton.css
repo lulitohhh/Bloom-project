@@ -1,0 +1,22 @@
+.eco-button{
+    background-color: #FFDBB1;
+    border: none;
+    border-radius: 20px;
+    width: 20vw;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+}
+
+#ecobtontt{
+    font-family: "Fredoka", sans-serif;
+    font-weight: 600;
+    color: #CC730B;
+}
+
+#ecoimg{
+    max-width: 100%;
+    max-height: 100%;
+}

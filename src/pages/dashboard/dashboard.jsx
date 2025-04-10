@@ -5,6 +5,7 @@ import "./dashboard.css"
 import Background from '../../components/background/background';
 import BigPot from '../../components/BigPot/BigPot';
 import Pot from '../../components/pot/pot';
+import EcoButton from '../../components/ecoButton/ecoButton';
 
 const Dashboard = () => {
 
@@ -13,9 +14,12 @@ const Dashboard = () => {
     <div className='dashboard'>
       <Background />
       <div className="pots-container">
-      <Pot /><BigPot /> <Pot />
-        
-        
+        <Pot />
+        <BigPot /> 
+        <Pot />
+      </div>
+      <div className="btn-container">
+        <EcoButton/>
       </div>
     </div>
   );
