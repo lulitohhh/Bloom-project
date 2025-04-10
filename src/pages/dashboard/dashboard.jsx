@@ -8,6 +8,7 @@ import Pot from '../../components/pot/pot';
 import EcoButton from '../../components/ecoButton/ecoButton';
 import ActivitiesBton from '../../components/activitiesBton/activitiesBton';
 import BackButton from '../../components/backBton/BackBton';
+import ShopBton from '../../components/shopBton/shopBton';
 
 
 const Dashboard = () => {
@@ -19,6 +20,7 @@ const Dashboard = () => {
       <div className="up-container">
         <div className="leftup">
           <BackButton/>
+          <ShopBton/>
         </div>
         <div className="rightup">
           

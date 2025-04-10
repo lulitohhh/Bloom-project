@@ -15,7 +15,7 @@
     flex-direction: row;
     height: 100%;
     gap: 20px;
-    padding-top: 300px;
+    padding-top: 200px;
     justify-content: center; /* Centra los elementos horizontalmente */
     align-items: center;
     
@@ -36,10 +36,13 @@
 
 .leftup{
     height: auto;
+    display: flex;
+    justify-content: start;
 }
 
 .up-container{
     display: flex;
-    /* padding-top: 10vh;
-    padd */
+    padding-top: 10vh;
+    
+    
 }

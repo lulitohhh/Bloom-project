@@ -1,0 +1,21 @@
+.shop-button{
+    background-color: #82C14C;
+    border: none;
+    border-radius: 20px;
+    width: 20vw;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    justify-content: space-evenly;
+    width: 5vw;
+    box-shadow: 
+    0 4px 0 #427229, 
+    0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+#shopIcon{
+    max-width: 100%;
+    max-height: 100%;
+    
+}
