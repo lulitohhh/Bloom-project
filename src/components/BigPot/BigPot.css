@@ -6,5 +6,45 @@
     background-position: center;
     width: 25vw; /* Tamaño fijo recomendado */
     height: 25vh;
+
     
+}
+.bigpot-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.pot-bton-container{
+    height: auto;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10px;
+}
+
+.bigpot-bton{
+    
+    border: none;
+    border-radius: 20px;
+    width: 8vw;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    justify-content: space-evenly;
+    
+
+}
+
+#feed{
+    background-color: #EC9444; 
+    box-shadow: 
+    0 4px 0 #D06400, 
+    0 5px 10px rgba(0, 0, 0, 0.2);
+}
+#spray{
+    background-color: #2AB0CC; 
+    box-shadow: 
+    0 4px 0 #16768A, 
+    0 5px 10px rgba(0, 0, 0, 0.2);
 }

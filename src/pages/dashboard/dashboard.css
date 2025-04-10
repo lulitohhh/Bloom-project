@@ -8,6 +8,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
+    justify-content: center;
 }
 
 .pots-container{
@@ -42,18 +43,21 @@
     gap: 50px;
 }
 
-.leftup{
+.rightup{
+    width: 80%;
     height: auto;
     display: flex;
-    justify-content: start;
-    justify-content: space-between;
+    justify-content: end;
+    
     gap: 50px;
 }
 
 .up-container{
     display: flex;
     padding-top: 5vh;
+    
     padding-left: 5vw;
+    margin: 0;
 
 
     

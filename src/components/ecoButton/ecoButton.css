@@ -8,6 +8,9 @@
     align-items: center;
     display: flex;
     justify-content: space-evenly;
+    box-shadow: 
+    0 4px 0 #EBB372, 
+    0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 #ecobtontt{
