@@ -9,7 +9,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Dashboard />} />
-        <Route path="/" element={<Actividades />} />
+        <Route path="/activities" element={<Actividades />} />
         {/* Puedes agregar más rutas aquí si luego tienes más páginas */}
       </Routes>
     </BrowserRouter>
