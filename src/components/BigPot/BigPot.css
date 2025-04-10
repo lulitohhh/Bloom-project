@@ -1,0 +1,105 @@
+.big-pot{
+    background-image: url('../../assets/images/bigpot.png');
+    background-repeat: no-repeat;
+    background-clip: content-box;
+    background-size: contain;
+    background-position: center;
+    width: 25vw; /* Tamaño fijo recomendado */
+    height: 25vh;
+    position: relative;
+
+    
+}
+.bigpot-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.pot-bton-container{
+    height: auto;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10px;
+}
+
+.bigpot-bton {
+    /* Estilos base compartidos */
+    border: none;
+    border-radius: 20px;
+    width: 8vw;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    justify-content: space-evenly;
+    position: relative;
+    transition: all 0.08s cubic-bezier(0.3, 0, 0.5, 1);
+    cursor: pointer;
+}
+
+/* Botón Naranja (#feed) */
+#feed {
+    background-color: #EC9444;
+    box-shadow: 
+        0 4px 0 #D06400, 
+        0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+#feed:active {
+    transform: translateY(4px);
+    box-shadow: 
+        0 1px 0 #D06400,
+        0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #E68A38;
+}
+
+/* Botón Azul (#spray) */
+#spray {
+    background-color: #2AB0CC;
+    box-shadow: 
+        0 4px 0 #16768A, 
+        0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+#spray:active {
+    transform: translateY(4px);
+    box-shadow: 
+        0 1px 0 #16768A,
+        0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #25A5C0;
+}
+
+/* Efectos para las imágenes */
+#feed:active #fertilizer {
+    transform: scale(0.95) rotate(-5deg);
+    transition: transform 0.08s;
+}
+
+#spray:active #watering {
+    transform: scale(0.95) translateY(2px);
+    transition: transform 0.08s;
+}
+
+/* Mantén tus estilos existentes para imágenes */
+#fertilizer {
+    max-width: 90%;
+    max-height: 90%;
+    transition: transform 0.08s;
+}
+
+#watering {
+    max-width: 90%;
+    max-height: 90%;
+    margin-top: 15%;
+    margin-right: 10%;
+    transition: transform 0.08s;
+}
+
+#main-plant{
+    position: absolute;
+    width: auto;
+    height: 30vh;
+    left: 30%;
+    top: -90%;
+}
