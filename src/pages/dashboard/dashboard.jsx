@@ -9,6 +9,7 @@ import EcoButton from '../../components/ecoButton/ecoButton';
 import ActivitiesBton from '../../components/activitiesBton/activitiesBton';
 import BackButton from '../../components/backBton/BackBton';
 import ShopBton from '../../components/shopBton/shopBton';
+import ProfileBton from '../../components/profileBton/profileBton';
 
 
 const Dashboard = () => {
@@ -23,7 +24,7 @@ const Dashboard = () => {
           <ShopBton/>
         </div>
         <div className="rightup">
-          
+          <ProfileBton/>
         </div>
       </div>
       <div className="pots-container">

@@ -1,0 +1,21 @@
+.prof-button{
+    background-color: #6CB5EB;
+    border: none;
+    border-radius: 20px;
+    width: 20vw;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    justify-content: space-evenly;
+    width: 5vw;
+    box-shadow: 
+    0 4px 0 #2F8BCD, 
+    0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+#profIcon{
+    max-width: 80%;
+    max-height: 80%;
+    box-shadow: 40px;
+}
