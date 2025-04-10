@@ -48,3 +48,15 @@
     0 4px 0 #16768A, 
     0 5px 10px rgba(0, 0, 0, 0.2);
 }
+
+#fertilizer{
+    max-width: 90%;
+    max-height: 90%;
+}
+
+#watering{
+    max-width: 90%;
+    max-height: 90%;
+    margin-top: 15%;
+    margin-right: 10%;
+}

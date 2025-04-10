@@ -1,5 +1,7 @@
 import React from "react";
 import "./BigPot.css"
+import fertilizer from '../../assets/images/fertilizante 1.png'
+import watering from '../../assets/images/regadera (1) 1.png'
 
 const BigPot = () => {
   return (
@@ -10,10 +12,10 @@ const BigPot = () => {
       </div>
       <div className="pot-bton-container">
         <button id="feed" className="bigpot-bton">
-          <img src="" alt="" />
+          <img id="fertilizer" src= {fertilizer} alt="" />
         </button>
         <button id="spray" className="bigpot-bton">
-          <img src="" alt="" />
+          <img id="watering" src={watering} alt="" />
         </button>
       </div>
     </div>
