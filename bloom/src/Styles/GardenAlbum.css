@@ -1,0 +1,12 @@
+.fixed-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .fixed-btn {
+    width: 60px;
+    height: auto;
+    cursor: pointer;
+  }
+  
