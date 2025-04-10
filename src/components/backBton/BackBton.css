@@ -1,8 +1,8 @@
-.back-button{
+.back-button {
+    /* Tus estilos actuales */
     background-color: #EC6956;
     border: none;
     border-radius: 20px;
-    width: 20vw;
     height: 60px;
     justify-content: center;
     align-items: center;
@@ -10,6 +10,20 @@
     justify-content: space-evenly;
     width: 5vw;
     box-shadow: 
-    0 4px 0 #DB321A, 
-    0 5px 10px rgba(0, 0, 0, 0.2);
+        0 4px 0 #DB321A, 
+        0 5px 10px rgba(0, 0, 0, 0.2);
+    
+    /* Efecto de presión */
+    position: relative;
+    transition: all 0.08s cubic-bezier(0.3, 0, 0.5, 1);
+    cursor: pointer;
+    transition: transform 0.05s, box-shadow 0.05s, background-color 0.1s;
+}
+
+.back-button:active {
+    transform: translateY(5px) scale(0.98);
+    box-shadow: 
+        0 0.5px 0 #DB321A,
+        0 1px 3px rgba(0, 0, 0, 0.1);
+    background-color: #D74B36;
 }

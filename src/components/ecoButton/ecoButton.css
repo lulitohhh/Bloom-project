@@ -11,6 +11,24 @@
     box-shadow: 
     0 4px 0 #EBB372, 
     0 5px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.1s, box-shadow 0.1s, background-color 0.2s;
+}
+
+.eco-button:active {
+    transform: translateY(5px) scale(0.98);
+    box-shadow: 
+        0 0.5px 0 #EBB372,
+        0 1px 3px rgba(0, 0, 0, 0.1);
+    background-color: #F5C78D;
+}
+
+.eco-button:active #ecoimg {
+    transform: scale(0.92) rotate(-2deg); /* Efecto lúdico */
+}
+
+.eco-button:active #ecobtontt {
+    color: #C26A0A; /* Color de texto más intenso */
+    text-shadow: 0 1px 1px rgba(0,0,0,0.1);
 }
 
 #ecobtontt{

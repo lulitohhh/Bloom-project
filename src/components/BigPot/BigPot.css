@@ -22,8 +22,8 @@
     margin-top: 10px;
 }
 
-.bigpot-bton{
-    
+.bigpot-bton {
+    /* Estilos base compartidos */
     border: none;
     border-radius: 20px;
     width: 8vw;
@@ -32,31 +32,65 @@
     align-items: center;
     display: flex;
     justify-content: space-evenly;
-    
-
+    position: relative;
+    transition: all 0.08s cubic-bezier(0.3, 0, 0.5, 1);
+    cursor: pointer;
 }
 
-#feed{
-    background-color: #EC9444; 
+/* Botón Naranja (#feed) */
+#feed {
+    background-color: #EC9444;
     box-shadow: 
-    0 4px 0 #D06400, 
-    0 5px 10px rgba(0, 0, 0, 0.2);
-}
-#spray{
-    background-color: #2AB0CC; 
-    box-shadow: 
-    0 4px 0 #16768A, 
-    0 5px 10px rgba(0, 0, 0, 0.2);
+        0 4px 0 #D06400, 
+        0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
-#fertilizer{
+#feed:active {
+    transform: translateY(4px);
+    box-shadow: 
+        0 1px 0 #D06400,
+        0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #E68A38;
+}
+
+/* Botón Azul (#spray) */
+#spray {
+    background-color: #2AB0CC;
+    box-shadow: 
+        0 4px 0 #16768A, 
+        0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+#spray:active {
+    transform: translateY(4px);
+    box-shadow: 
+        0 1px 0 #16768A,
+        0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #25A5C0;
+}
+
+/* Efectos para las imágenes */
+#feed:active #fertilizer {
+    transform: scale(0.95) rotate(-5deg);
+    transition: transform 0.08s;
+}
+
+#spray:active #watering {
+    transform: scale(0.95) translateY(2px);
+    transition: transform 0.08s;
+}
+
+/* Mantén tus estilos existentes para imágenes */
+#fertilizer {
     max-width: 90%;
     max-height: 90%;
+    transition: transform 0.08s;
 }
 
-#watering{
+#watering {
     max-width: 90%;
     max-height: 90%;
     margin-top: 15%;
     margin-right: 10%;
+    transition: transform 0.08s;
 }

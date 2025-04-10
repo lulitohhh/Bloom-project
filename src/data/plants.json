@@ -1,7 +1,7 @@
 [
     {
       "id": "level-1-badge",
-      "image": "./assets/images/decorations/level-1-badge.png",
+      "image": "../../assets/images/plant.png",
       "style": {
         "position": "absolute",
         "top": "10%",
