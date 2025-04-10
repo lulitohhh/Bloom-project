@@ -1,0 +1,16 @@
+.bg {
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    left: 0; /* Asegura que empiece desde la esquina superior izquierda */
+    width: 100vw; /* Usa viewport width en lugar de 100% */
+    height: 100vh; /* Usa viewport height */
+    background-color: #B8F2FE;
+    background-image: url('../../assets/images/MacBook Air - 12 (1).png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    z-index: -1;
+  }

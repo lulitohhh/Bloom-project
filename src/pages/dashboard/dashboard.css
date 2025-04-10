@@ -1,0 +1,64 @@
+.dashboard{
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+}
+
+.pots-container{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    gap: 20px;
+    padding-top: 200px;
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center;
+    
+}
+
+.btn-container{
+    margin: 0;
+    background-color: none;
+    
+    display: flex;
+    flex-direction: row;
+    height: 80%;
+    gap: 20px;
+    
+    justify-content: space-around; /* Centra los elementos horizontalmente */
+    align-items: center;
+}
+
+.leftup{
+    height: auto;
+    display: flex;
+    justify-content: start;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.rightup{
+    width: 80%;
+    height: auto;
+    display: flex;
+    justify-content: end;
+    
+    gap: 50px;
+}
+
+.navBar{
+    display: flex;
+    padding-top: 5vh;
+    
+    padding-left: 5vw;
+    margin: 0;
+
+
+    
+}

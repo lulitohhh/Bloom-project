@@ -1,0 +1,69 @@
+.prof-button {
+    /* Estilos base (corregido el width duplicado) */
+    background-color: #6CB5EB;
+    border: none;
+    border-radius: 20px;
+    height: 60px;
+    width: 5vw;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    justify-content: space-evenly;
+    box-shadow: 
+        0 4px 0 #2F8BCD, 
+        0 5px 10px rgba(0, 0, 0, 0.2);
+    
+    /* Efecto de presión premium */
+    position: relative;
+    transition: all 0.1s cubic-bezier(0.25, 0.1, 0.25, 1);
+    cursor: pointer;
+    overflow: hidden; /* Para efectos adicionales */
+}
+
+.prof-button:active {
+    transform: translateY(5px) scale(0.98);
+    box-shadow: 
+        0 1px 0 #2F8BCD,
+        0 2px 3px rgba(0, 0, 0, 0.15);
+    background-color: #5CA5DB;
+}
+
+/* Efecto de onda al hacer clic (opcional) */
+.prof-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: translate(-50%, -50%) scale(1, 1);
+}
+
+.prof-button:active::after {
+    animation: ripple 0.6s ease-out;
+}
+
+@keyframes ripple {
+    to {
+        transform: translate(-50%, -50%) scale(15, 15);
+        opacity: 0;
+    }
+}
+
+/* Estilos para el ícono */
+#profIcon {
+    max-width: 80%;
+    max-height: 80%;
+    filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));
+    transition: all 0.2s ease;
+    position: relative;
+    z-index: 2; /* Sobre el efecto de onda */
+}
+
+.prof-button:active #profIcon {
+    transform: scale(0.93) translateY(1px);
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,0.05));
+}

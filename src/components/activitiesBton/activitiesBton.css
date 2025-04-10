@@ -1,0 +1,35 @@
+.act-button {
+    /* Tus estilos actuales */
+    background-color: #27A258;
+    border: none;
+    border-radius: 20px;
+    width: 20vw;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    justify-content: space-evenly;
+    box-shadow: 
+        0 4px 0 #2a722a, 
+        0 5px 10px rgba(0, 0, 0, 0.2);
+    
+    /* Nuevos estilos para el efecto */
+    position: relative;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+    cursor: pointer;
+    user-select: none;
+}
+
+.act-button:active {
+    transform: translateY(4px);
+    box-shadow: 
+        0 1px 0 #2a722a,
+        0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Mantén tus estilos existentes para el texto */
+#activitext {
+    font-family: "Fredoka", sans-serif;
+    font-weight: 600;
+    color: #FFFFFF;
+    text-align: start;}
