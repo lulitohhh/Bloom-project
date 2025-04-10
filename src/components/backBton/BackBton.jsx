@@ -6,7 +6,7 @@ const BackButton = () => {
   return (
     <button className='back-button'>
       
-      <img src="" alt="" />
+      {/* <img src="" alt="" /> */}
     </button>
   );
 };

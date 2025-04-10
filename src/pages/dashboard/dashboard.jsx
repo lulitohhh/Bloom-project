@@ -10,6 +10,8 @@ import ActivitiesBton from '../../components/activitiesBton/activitiesBton';
 import BackButton from '../../components/backBton/BackBton';
 import ShopBton from '../../components/shopBton/shopBton';
 import ProfileBton from '../../components/profileBton/profileBton';
+import LvlBar from '../../components/lvlbar/lvlbar';
+import NavBar from '../../components/navBar/navBar';
 
 
 const Dashboard = () => {
@@ -18,15 +20,7 @@ const Dashboard = () => {
   return (
     <div className='dashboard'>
       <Background />
-      <div className="up-container">
-        <div className="leftup">
-          <BackButton/>
-          <ShopBton/>
-        </div>
-        <div className="rightup">
-          <ProfileBton/>
-        </div>
-      </div>
+      <NavBar/>
       <div className="pots-container">
         <Pot />
         <BigPot /> 
