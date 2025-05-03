@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import './Actividades.css';
 import bgImage from '../assets/images/fondo.png';
-import Pregunta from '../components/Pregunta/Pregunta';
-import Asociacion from '../components/Asociacion/Asociacion';
+import Pregunta from '../components/QuizGame/QuizGame';
+import Asociacion from '../components/AssociationGame/AssociationGame';
 import HistoriaActividad from '../components/HistoriaActividad/HistoriaActividad';
 
 const Actividades = () => {
