@@ -5,7 +5,7 @@ import NextButton from '../NextButton/NextButton';
 import './AssociationGame.css';
 import NavBar from '../navBar/navBar'
 
-import asociaciones from '../../data/asociaciones.json';
+import Association from '../../data/Association.json';
 
 // Cargar imágenes desde assets
 const imagenes = import.meta.glob('../../assets/images/*.png', { eager: true });
@@ -23,7 +23,7 @@ function AssociationGame({ id, onSuccess }) {
   const [selected, setSelected] = useState([]);
   const [resueltos, setResueltos] = useState([]);
 
-  const actividad = asociaciones.find((a) => a.id === id);
+  const actividad = Association.find((a) => a.id === id);
 
   useEffect(() => {
     if (actividad) {
