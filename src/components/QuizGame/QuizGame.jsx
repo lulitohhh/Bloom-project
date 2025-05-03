@@ -6,7 +6,7 @@ import Header from '../Header/Header';
 import OpcionRespuesta from '../AnswerOption/AnswerOption';
 import BotonSiguiente from '../NextButton/NextButton';
 
-const Pregunta = ({ id, onSuccess }) => {
+const QuizGame = ({ id, onSuccess }) => {
   const pregunta = cuestionarios.find((p) => p.id === id);
   const [seleccion, setSeleccion] = useState(null);
   const [correcta, setCorrecta] = useState(false);
@@ -43,5 +43,5 @@ const Pregunta = ({ id, onSuccess }) => {
   );
 };
 
-export default Pregunta;
+export default QuizGame;
 
