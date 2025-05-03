@@ -2,7 +2,7 @@ import './AnswerOption.css';
 
 const colores = ['verde', 'rojo', 'amarillo', 'azul'];
 
-const OpcionRespuesta = ({ texto, index, seleccion, correcta, onSelect, fueRespondidaCorrectamente }) => {
+const AnswerOption = ({ texto, index, seleccion, correcta, onSelect, fueRespondidaCorrectamente }) => {
   const esSeleccionada = seleccion === texto;
   const esCorrecta = texto === correcta;
 
@@ -22,4 +22,4 @@ const OpcionRespuesta = ({ texto, index, seleccion, correcta, onSelect, fueRespo
     </button>
   );
 };
-export default OpcionRespuesta;
+export default AnswerOption;
