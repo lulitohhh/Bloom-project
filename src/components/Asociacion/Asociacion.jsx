@@ -112,7 +112,7 @@ function Asociacion({ id, onSuccess }) {
 
   return (
     <div className="asociacion-container">
-      <NavBar></NavBar>
+      
       <Header tipo={actividad.type} titulo={actividad.title} />
       <CardGroup cards={cards} onCardClick={handleCardClick} selected={selected} />
       <BotonSiguiente
