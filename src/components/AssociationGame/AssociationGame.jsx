@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import CardGroup from '../CardGroup/CardGroup';
 import Header from '../Header/Header';
-import BotonSiguiente from '../NextButton/NextButton';
+import NextButton from '../NextButton/NextButton';
 import './AssociationGame.css';
 import NavBar from '../navBar/navBar'
 
@@ -18,7 +18,7 @@ function getImage(nombre) {
   return '';
 }
 
-function Asociacion({ id, onSuccess }) {
+function AssociationGame({ id, onSuccess }) {
   const [cards, setCards] = useState([]);
   const [selected, setSelected] = useState([]);
   const [resueltos, setResueltos] = useState([]);
@@ -115,7 +115,7 @@ function Asociacion({ id, onSuccess }) {
       
       <Header tipo={actividad.type} titulo={actividad.title} />
       <CardGroup cards={cards} onCardClick={handleCardClick} selected={selected} />
-      <BotonSiguiente
+      <NextButton
         onClick={onSuccess}
         disabled={resueltos.length !== cards.length}
       />
@@ -123,5 +123,5 @@ function Asociacion({ id, onSuccess }) {
   );
 }
 
-export default Asociacion;
+export default AssociationGame;
 
