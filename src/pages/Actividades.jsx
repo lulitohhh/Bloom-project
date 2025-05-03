@@ -3,7 +3,7 @@ import './Actividades.css';
 import bgImage from '../assets/images/fondo.png';
 import Pregunta from '../components/QuizGame/QuizGame';
 import Asociacion from '../components/AssociationGame/AssociationGame';
-import HistoriaActividad from '../components/HistoriaActividad/HistoriaActividad';
+import HistoriaActividad from '../components/HistoryGame/HistoryGame';
 
 const Actividades = () => {
   const [paso, setPaso] = useState(0);
