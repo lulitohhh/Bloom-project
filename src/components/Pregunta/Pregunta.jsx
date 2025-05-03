@@ -1,4 +1,4 @@
-// src/components/Pregunta/Pregunta.jsx
+
 import './Pregunta.css';
 import { useState } from 'react';
 import cuestionarios from '../../data/cuestionarios.json';
