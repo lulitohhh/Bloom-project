@@ -3,7 +3,7 @@ import './Pregunta.css';
 import { useState } from 'react';
 import cuestionarios from '../../data/cuestionarios.json';
 import Header from '../Header/Header';
-import OpcionRespuesta from '../OpcionRespuesta/OpcionRespuesta';
+import OpcionRespuesta from '../AnswerOption/AnswerOption';
 import BotonSiguiente from '../BotonSiguiente/BotonSiguiente';
 
 const Pregunta = ({ id, onSuccess }) => {
