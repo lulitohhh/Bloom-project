@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Añade esto
 import historias from '../../data/historias.json';
 import Header from '../Header/Header';
-import BotonSiguiente from '../NextButton/NextButton';
+import NextButton from '../NextButton/NextButton';
 import './HistoryGame.css';
 
 const imagenes = import.meta.glob('../../assets/images/*.png', { eager: true });
@@ -12,7 +12,7 @@ function getImage(nombre) {
   return imagenes[path]?.default || null;
 }
 
-function HistoriaActividad() {
+function HistoryGame() {
   const [historia, setHistoria] = useState(null);
   const [paginaActual, setPaginaActual] = useState(0);
   const navigate = useNavigate(); // Hook para navegación
@@ -54,7 +54,7 @@ function HistoriaActividad() {
           />
         )}
         <p className="historia-texto">{pagina.text}</p>
-        <BotonSiguiente
+        <NextButton
           onClick={handleSiguiente}
           disabled={false}
           label={esUltima ? 'Back to Dashboard' : 'Next'} // Cambia el texto del botón
@@ -64,4 +64,4 @@ function HistoriaActividad() {
   );
 }
 
-export default HistoriaActividad;
+export default HistoryGame;
