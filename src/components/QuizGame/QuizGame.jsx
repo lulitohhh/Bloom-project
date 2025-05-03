@@ -4,7 +4,7 @@ import { useState } from 'react';
 import cuestionarios from '../../data/cuestionarios.json';
 import Header from '../Header/Header';
 import OpcionRespuesta from '../AnswerOption/AnswerOption';
-import BotonSiguiente from '../BotonSiguiente/BotonSiguiente';
+import BotonSiguiente from '../NextButton/NextButton';
 
 const Pregunta = ({ id, onSuccess }) => {
   const pregunta = cuestionarios.find((p) => p.id === id);

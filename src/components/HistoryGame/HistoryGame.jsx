@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Añade esto
 import historias from '../../data/historias.json';
 import Header from '../Header/Header';
-import BotonSiguiente from '../BotonSiguiente/BotonSiguiente';
+import BotonSiguiente from '../NextButton/NextButton';
 import './HistoryGame.css';
 
 const imagenes = import.meta.glob('../../assets/images/*.png', { eager: true });

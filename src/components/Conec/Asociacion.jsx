@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import CardGroup from '../CardGroup/CardGroup';
 import Header from '../Header/Header';
-import BotonSiguiente from '../NextButton/NextButton';
-import './AssociationGame.css';
+import BotonSiguiente from '../NextButton/BotonSiguiente';
+import './Asociacion.css';
 import NavBar from '../navBar/navBar'
 
 import asociaciones from '../../data/asociaciones.json';
