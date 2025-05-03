@@ -3,7 +3,7 @@ import './Actividades.css';
 import bgImage from '../assets/images/fondo.png';
 import Pregunta from '../components/QuizGame/QuizGame';
 import Asociacion from '../components/AssociationGame/AssociationGame';
-import HistoriaActividad from '../components/HistoryGame/HistoryGame';
+import HistoryGame from '../components/HistoryGame/HistoryGame';
 
 const Actividades = () => {
   const [paso, setPaso] = useState(0);
@@ -16,7 +16,7 @@ const Actividades = () => {
       {paso === 1 && <Pregunta id={2} onSuccess={avanzarPaso} />}
       {paso === 2 && <Asociacion id={1} onSuccess={avanzarPaso} />}
       {paso === 3 && <Asociacion id={2} onSuccess={avanzarPaso} />}
-      {paso === 4 && <HistoriaActividad onFinish={avanzarPaso} />} 
+      {paso === 4 && <HistoryGame onFinish={avanzarPaso} />} 
 
       <img src={bgImage} alt="Decoración inferior" className="fondo-inferior" />
     </div>
