@@ -3,6 +3,7 @@ import CardGroup from '../CardGroup/CardGroup';
 import Header from '../Header/Header';
 import BotonSiguiente from '../BotonSiguiente/BotonSiguiente';
 import './Asociacion.css';
+import NavBar from '../navBar/navBar'
 
 import asociaciones from '../../data/asociaciones.json';
 
@@ -111,6 +112,7 @@ function Asociacion({ id, onSuccess }) {
 
   return (
     <div className="asociacion-container">
+      <NavBar></NavBar>
       <Header tipo={actividad.type} titulo={actividad.title} />
       <CardGroup cards={cards} onCardClick={handleCardClick} selected={selected} />
       <BotonSiguiente
