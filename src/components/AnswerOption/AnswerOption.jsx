@@ -1,4 +1,4 @@
-import './OpcionRespuesta.css';
+import './AnswerOption.css';
 
 const colores = ['verde', 'rojo', 'amarillo', 'azul'];
 
