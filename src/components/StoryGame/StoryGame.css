@@ -19,10 +19,12 @@
     font-weight: bold;
   }
   
-  .story-imagen {
-    width: 100%;
-    max-width: 300px;
-    margin: 20px auto;
+  .story-image {
+    width: 150px;
+    height: auto;
+    border-radius: 12px;
+    margin: 10px 0;
+    object-fit: contain; /* Asegura que no se deforme */
   }
   
   .story-texto {
