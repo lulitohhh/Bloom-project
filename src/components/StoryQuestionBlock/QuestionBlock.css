@@ -1,20 +1,10 @@
-.question-buttons {
-    border: 2px solid transparent;
-    border-radius: 15px;
-    padding: 15px 20px;
-    margin: 2%;
-    background-color: #fff;
-    transition: all 0.3s ease;
+.answer-small{
+    padding: 5px 5px;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
-    box-shadow: 0 6px 0.3px rgb(173, 173, 173);
-  }
-
-  .question-buttons.correct {
-    background-color: #4CAF50; /* green */
-    color: white;
-  }
-  
-  .question-buttons.incorrect {
-    background-color: #F44336; /* red */
-    color: white;
-  }
+    transition: all 0.1s ease-in-out;
+    position: relative;
+}
