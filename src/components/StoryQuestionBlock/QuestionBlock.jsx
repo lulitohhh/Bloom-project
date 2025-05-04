@@ -2,7 +2,7 @@ import { useState } from 'react';
 import AnswerOption from '../AnswerOption/AnswerOption';
 import './QuestionBlock.css';
 
-function QuestionBlock({ question, onAnswer }) {
+function QuestionBlock({ question, onAnswer}) {
   const [selection, setSelection] = useState(null);
 
 
@@ -30,6 +30,7 @@ function QuestionBlock({ question, onAnswer }) {
             correct={question.correctAnswer}
             onSelect={() => handleAnswer(option)}
             wasRespondedCorrectly={selection !== null}
+            
           />
         ))}
       </div>
