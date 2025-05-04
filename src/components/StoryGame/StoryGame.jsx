@@ -12,7 +12,7 @@ function getImage(nombre) {
   return imagenes[path]?.default || null;
 }
 
-function HistoryGame() {
+function StoryGame() {
   const [historia, setHistoria] = useState(null);
   const [paginaActual, setPaginaActual] = useState(0);
   const navigate = useNavigate(); // Hook para navegación
@@ -64,4 +64,4 @@ function HistoryGame() {
   );
 }
 
-export default HistoryGame;
+export default StoryGame;
