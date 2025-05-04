@@ -4,11 +4,11 @@
     "title": "Luna the Little Recycler",
     "pages": [
       {
-        "text": "Luna loves to keep the Earth clean. Every Saturday, she grabs her recycling bag and goes to the park.",
+        "text": "Every Saturday morning, Luna puts on her favorite green hat, grabs her big blue recycling bag, and heads to the park with a big smile. She loves seeing the flowers bloom and hearing the birds sing, and she knows that keeping the park clean helps all the creatures that live there.",
         "image": "luna-park.png"
       },
       {
-        "text": "She finds a plastic bottle on the ground. 'This should be in the recycling bin!' she says.",
+        "text": "As Luna walks under the tall trees, she spots a plastic bottle lying on the grass. 'Oh no!' she exclaims. 'This doesn’t belong here.' She carefully picks it up and looks around for the nearest recycling bin. 'This should be in the recycling bin!' she says proudly.",
         "image": "luna-bottle.png",
         "question": {
           "type": "true-false",
@@ -17,11 +17,11 @@
         }
       },
       {
-        "text": "Luna puts the bottle in the right bin and smiles. She knows she's helping the planet.",
+        "text": "Luna tosses the bottle into the blue bin with a satisfying clunk. She smiles, knowing that small actions like this make the Earth a better place. As she walks away, she waves at a butterfly and thinks, 'Even tiny helpers can make a big difference.'",
         "image": "luna-recycle-bin.png"
       },
       {
-        "text": "The next week, Luna teaches her friends how to recycle too. Together, they make a big difference!",
+        "text": "The next weekend, Luna brings her friends to the park and shows them how to pick up litter and sort it into recycling and trash. They laugh and cheer as they work together, proud of their clean park. 'We’re Earth’s little heroes!' Luna says.",
         "image": "luna-friends.png",
         "question": {
           "type": "multiple-choice",
@@ -41,11 +41,11 @@
     "title": "Timmy Saves Water",
     "pages": [
       {
-        "text": "Timmy the turtle is brushing his teeth. He notices the water is still running.",
+        "text": "Timmy the turtle loves taking care of the ocean. One morning, while brushing his teeth, he hears the water running and realizes he's wasting it. He pauses and thinks, 'If I keep the water running, I’m using more than I need.'",
         "image": "timmy-brushing.png"
       },
       {
-        "text": "'I should turn off the tap while I brush,' he thinks. Click! The water stops.",
+        "text": "Timmy reaches for the tap and turns it off with a firm click. 'There!' he says. 'That’s better. Now I’m saving water for the fish and other ocean creatures!' He feels proud and wants to tell everyone what he learned.",
         "image": "timmy-turning-off.png",
         "question": {
           "type": "true-false",
@@ -54,11 +54,11 @@
         }
       },
       {
-        "text": "Timmy tells his brother: 'Let’s save water every day!'",
+        "text": "That afternoon, Timmy shares the tip with his brother Tommy. 'Let’s save water every day!' he says. They make a plan to turn off faucets, take shorter showers, and tell their friends at school about water conservation.",
         "image": "timmy-talking.png"
       },
       {
-        "text": "That night, they dream of a cleaner, happier ocean.",
+        "text": "That night, the two turtles dream of a world where the ocean sparkles with joy. Fish swim happily, and coral reefs glow bright because the water is clean and cared for. Timmy knows that even small habits can lead to a big, beautiful change.",
         "image": "timmy-dreaming.png",
         "question": {
           "type": "multiple-choice",
@@ -78,11 +78,11 @@
     "title": "Maya and the Magical Tree",
     "pages": [
       {
-        "text": "Maya walks through the forest and sees a tree sparkling in the sunlight.",
+        "text": "Maya loves to hike through the forest near her village. One day, as she followed a new trail, she found a tall, glowing tree surrounded by sparkling butterflies. The tree glimmered in the sunlight, and Maya stood quietly in awe.",
         "image": "maya-tree.png"
       },
       {
-        "text": "The tree speaks: 'Thank you for not littering. The forest stays beautiful because of kids like you!'",
+        "text": "Suddenly, the tree began to speak in a gentle voice: 'Thank you, Maya, for never leaving trash behind. Because of you, this forest stays safe and lovely for all who live here.' Maya smiled, feeling warmth in her heart.",
         "image": "tree-talking.png",
         "question": {
           "type": "true-false",
@@ -91,11 +91,11 @@
         }
       },
       {
-        "text": "Maya promises to plant a new tree every year.",
+        "text": "Maya knelt beside the tree and whispered, 'I promise to plant a new tree every year, and I’ll teach others to care for nature too.' The forest around her seemed to sparkle brighter as if it were cheering her on.",
         "image": "maya-planting.png"
       },
       {
-        "text": "One day, the magical tree grows flowers in the shape of hearts as a thank you.",
+        "text": "Years later, Maya returns and finds the magical tree covered in heart-shaped flowers. Birds chirp melodies of thanks. The tree glows again and whispers, 'You’ve helped the world grow with kindness and care.'",
         "image": "tree-hearts.png",
         "question": {
           "type": "multiple-choice",
