@@ -17,8 +17,8 @@ const QuizGame = ({ id, onSuccess }) => {
     if (correct) return;
 
     setSelection(answer);
-    const esCorrecta = answer === question.correctAnswer;
-    setCorrect(esCorrecta);
+    const isCorrect = answer === question.correctAnswer;
+    setCorrect(isCorrect);
   };
 
   return (
@@ -32,7 +32,7 @@ const QuizGame = ({ id, onSuccess }) => {
               texto={option}
               index={index}
               seleccion={selection}
-              correcta={question.correctAnswer}
+              correct={question.correctAnswer}
               onSelect={() => handleResponse(option)}
             />
           ))}

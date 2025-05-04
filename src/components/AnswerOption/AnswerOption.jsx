@@ -2,12 +2,12 @@ import './AnswerOption.css';
 
 const colores = ['verde', 'rojo', 'amarillo', 'azul'];
 
-const AnswerOption = ({ texto, index, seleccion, correcta, onSelect, fueRespondidaCorrectamente }) => {
+const AnswerOption = ({ texto, index, seleccion, correct, onSelect, fueRespondidaCorrectamente }) => {
   const esSeleccionada = seleccion === texto;
-  const esCorrecta = texto === correcta;
+  const isCorrect = texto === correct;
 
   const clases = esSeleccionada
-    ? esCorrecta
+    ? isCorrect
       ? 'respuesta correcta'
       : 'respuesta incorrecta'
     : `respuesta ${colores[index]}`;
