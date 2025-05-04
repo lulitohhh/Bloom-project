@@ -113,7 +113,7 @@ function AssociationGame({ id, onSuccess }) {
   return (
     <div className="asociacion-container">
       
-      <Header tipo={activity.type} titulo={activity.title} />
+      <Header type={activity.type} title={activity.title} />
       <CardGroup cards={cards} onCardClick={handleCardClick} selected={selected} />
       <NextButton
         onClick={onSuccess}
