@@ -11,9 +11,9 @@ const GardenAlbum = () => {
       <Background />
       <NavBar />
       <Album />
-      <div className="fixed-buttons">
-        <EcoButton />
-        <ActivitiesBton />
+      <div className="btn-container">
+        <EcoButton/>
+        <ActivitiesBton/>
       </div>
     </>
   );

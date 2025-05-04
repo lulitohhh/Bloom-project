@@ -3,8 +3,10 @@ import "./ItemCard.css";
 const ItemCard = ({ item, type }) => {
   return (
     <div className="item-card">
-      <img src={item.image} alt={item.name} />
-      <h3>{item.name}</h3>
+      <div className="image-wrapper">
+        <h3>{item.name}</h3>
+        <img src={item.image} alt={item.name} className="item-image"/>
+      </div>
       <p>{item.description}</p>
 
       {type === "plants" ? (

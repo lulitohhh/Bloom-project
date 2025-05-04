@@ -160,7 +160,7 @@ export const ecosystems = [
     image: "/assets/ecosystems/mountain.png",
     description:
       "Very tall, cold places with snowy tops. It’s hard to breathe way up high!",
-    animals: "🦙 Llama, 🐐 Mountain goat, 🦅 Eagle",
+    animals: "🦙 Llama, 🐐 goat, 🦅 Eagle",
     plants: "Pine trees, small bushes",
     location: "Andes, Himalayas, Alps",
   },

@@ -1,73 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
-
-.btn2-container {
-    position: relative;
+.page-right {
     display: flex;
-    justify-content: center;
     align-items: center;
-    flex-direction: column;
-    left: 15%;
-    bottom: 155px;
-  }
-  
-  .btn-label {
-    font-family: 'Fredoka One', sans-serif;
-    color: #0E6229;
-    font-size: 1.2rem;
-    margin-top: 0.5rem;
-  }
-  
-  .img-btn {
-    position: relative;
-    display: flex;
     justify-content: center;
-    left: 0%;
-    width: 200px;
-    height: auto;
-    transition: transform 0.2s ease;
-    z-index: 1;
-  }
-  
-
-  .item-details {
-    width: 280px; /* Más pequeño */
-    background: rgba(255, 255, 255, 0.95);
-    border: 3px solid #0E6229;
-    border-radius: 20px;
-    padding: 15px;
-    font-family: 'Fredoka One', cursive;
-    text-align: center;
-    margin: 20px auto;
+    padding: 20px;
     position: relative;
-    z-index: 2;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: transparent; /* ya está la imagen del álbum */
+    height: 100%;
   }
   
-  .back-btn {
-    width: 30px;
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    cursor: pointer;
-  }
-
-.item-details h2 {
-  font-size: 18px;
-  margin-bottom: 8px;
-}
-
-.item-img {
-  width: 100%;
-  max-width: 200px;
-  border-radius: 10px;
-  object-fit: cover;
-  margin: 8px auto;
-  display: block;
-}
-
-.item-details p {
-  font-size: 13px;
-  margin: 6px 0;
-  color: #333;
-  line-height: 1.2;
-}
