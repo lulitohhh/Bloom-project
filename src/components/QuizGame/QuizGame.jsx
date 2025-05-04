@@ -3,41 +3,41 @@ import './QuizGame.css';
 import { useState } from 'react';
 import cuestionarios from '../../data/Quizzes.json';
 import Header from '../Header/Header';
-import OpcionRespuesta from '../AnswerOption/AnswerOption';
-import BotonSiguiente from '../NextButton/NextButton';
+import AnswerOption from '../AnswerOption/AnswerOption';
+import NextButton from '../NextButton/NextButton';
 
 const QuizGame = ({ id, onSuccess }) => {
-  const pregunta = cuestionarios.find((p) => p.id === id);
-  const [seleccion, setSeleccion] = useState(null);
-  const [correcta, setCorrecta] = useState(false);
+  const question = cuestionarios.find((p) => p.id === id);
+  const [selection, setSelection] = useState(null);
+  const [correct, setCorrect] = useState(false);
 
-  if (!pregunta) return <p>Pregunta no encontrada.</p>;
+  if (!question) return <p>Pregunta no encontrada.</p>;
 
-  const manejarRespuesta = (respuesta) => {
-    if (correcta) return;
+  const handleResponse = (answer) => {
+    if (correct) return;
 
-    setSeleccion(respuesta);
-    const esCorrecta = respuesta === pregunta.correctAnswer;
-    setCorrecta(esCorrecta);
+    setSelection(answer);
+    const esCorrecta = answer === question.correctAnswer;
+    setCorrect(esCorrecta);
   };
 
   return (
-    <section className="pregunta-container">
-      <section className="pregunta-box">
-        <Header tipo={pregunta.type} titulo={pregunta.title} />
-        <section className="pregunta-opciones">
-          {pregunta.options.map((opcion, index) => (
-            <OpcionRespuesta
+    <section className="question-container">
+      <section className="question-box">
+        <Header tipo={question.type} titulo={question.title} />
+        <section className="question-opciones">
+          {question.options.map((opcion, index) => (
+            <AnswerOption
               key={index}
               texto={opcion}
               index={index}
-              seleccion={seleccion}
-              correcta={pregunta.correctAnswer}
-              onSelect={() => manejarRespuesta(opcion)}
+              seleccion={selection}
+              correcta={question.correctAnswer}
+              onSelect={() => handleResponse(opcion)}
             />
           ))}
         </section>
-        <BotonSiguiente onClick={onSuccess} disabled={!correcta} />
+        <NextButton onClick={onSuccess} disabled={!correct} />
       </section>
     </section>
   );
