@@ -1,3 +1,5 @@
+import "./ItemCard.css"; 
+
 const ItemCard = ({ item, type }) => {
   return (
     <div className="item-card">

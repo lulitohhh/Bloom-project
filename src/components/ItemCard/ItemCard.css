@@ -1,0 +1,43 @@
+.item-card {
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 2px solid #0E6229;
+    border-radius: 15px;
+    padding: 1rem;
+    font-family: 'Fredoka One', cursive;
+    text-align: center;
+    width: 260px;
+    margin: 10px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .item-card img {
+    width: 100%;
+    max-width: 200px;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+  
+  .item-card h3 {
+    font-size: 1.2rem;
+    color: #0E6229;
+    margin-top: 0.5rem;
+  }
+  
+  .item-card p {
+    font-size: 0.9rem;
+    color: #333;
+    margin: 0.5rem 0;
+  }
+  
+  .item-card ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 0.5rem;
+  }
+  
+  .item-card li {
+    font-size: 0.85rem;
+    color: #444;
+    margin: 0.2rem 0;
+  }
+  

@@ -1,3 +1,5 @@
+import "./PageRight"
+
 const PageRight = ({ setSelectedCategory, selectedItem, setSelectedItem, selectedCategory }) => {
   return (
     <div className="page-right">
