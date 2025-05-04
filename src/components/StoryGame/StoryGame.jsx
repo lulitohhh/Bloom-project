@@ -1,63 +1,81 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Añade esto
+import { useNavigate } from 'react-router-dom';
 import Stories from '../../data/Stories.json';
 import Header from '../Header/Header';
 import NextButton from '../NextButton/NextButton';
+import QuestionBlock from '../StoryQuestionBlock/QuestionBlock'; // Make sure this file exists
 import './StoryGame.css';
 
-const imagenes = import.meta.glob('../../assets/images/*.png', { eager: true });
+const images = import.meta.glob('../../assets/images/*.png', { eager: true });
 
-function getImage(nombre) {
-  const path = `../../assets/images/${nombre}`;
-  return imagenes[path]?.default || null;
+function getImage(fileName) {
+  const path = `../../assets/images/${fileName}`;
+  return images[path]?.default || null;
 }
 
 function StoryGame() {
-  const [historia, setHistoria] = useState(null);
-  const [paginaActual, setPaginaActual] = useState(0);
-  const navigate = useNavigate(); // Hook para navegación
+  const [story, setStory] = useState(null);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [answeredCorrectly, setAnsweredCorrectly] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const aleatoria = Stories[Math.floor(Math.random() * Stories.length)];
-    setHistoria(aleatoria);
-    setPaginaActual(0);
+    const randomStory = Stories[Math.floor(Math.random() * Stories.length)];
+    setStory(randomStory);
+    setCurrentPage(0);
+    setAnsweredCorrectly(null);
   }, []);
 
-  function handleSiguiente() {
-    if (!historia) return;
+  function handleNext() {
+    if (!story) return;
 
-    const ultimaPagina = paginaActual === historia.pages.length - 1;
+    const isLastPage = currentPage === story.pages.length - 1;
 
-    if (ultimaPagina) {
-      navigate('/'); // Redirige al Dashboard al terminar
+    if (isLastPage) {
+      navigate('/'); // Redirect to dashboard or home
     } else {
-      setPaginaActual(paginaActual + 1);
+      setCurrentPage(currentPage + 1);
+      setAnsweredCorrectly(null);
     }
   }
 
-  if (!historia) return <p>Cargando historia...</p>;
+  function handleAnswer(isCorrect) {
+    setAnsweredCorrectly(isCorrect);
+    // Optionally add coin rewards here
+  }
 
-  const pagina = historia.pages[paginaActual];
-  const imagenSrc = getImage(pagina.image);
-  const esUltima = paginaActual === historia.pages.length - 1;
+  if (!story) return <p>Loading story...</p>;
+
+  const page = story.pages[currentPage];
+  const imageSrc = getImage(page.image);
+  const isLastPage = currentPage === story.pages.length - 1;
+  const hasQuestion = !!page.question;
 
   return (
-    <div className="historia-container">
-      <Header tipo="historia" titulo="Read the text" />
-      <div className="historia-content">
-        <h2 className="historia-title">{historia.title}</h2>
-        {imagenSrc && (
+    <div className="story-container">
+      <Header type="story" title="Read the story" />
+
+      <div className="story-content">
+        <h2 className="story-title">{story.title}</h2>
+
+        {imageSrc && (
           <img
-            src={imagenSrc}
-            alt="Imagen de historia"
-            className="historia-imagen"
+            src={imageSrc}
+            alt="Story scene"
+            className="story-image"
           />
         )}
-        <p className="historia-texto">{pagina.text}</p>
+
+        <p className="story-text">{page.text}</p>
+
+        {hasQuestion && (
+          <QuestionBlock question={page.question} onAnswer={handleAnswer} />
+        )}
+
         <NextButton
-          onClick={handleSiguiente}
-          disabled={false}
-          label={esUltima ? 'Back to Dashboard' : 'Next'} // Cambia el texto del botón
+          onClick={handleNext}
+          disabled={hasQuestion && answeredCorrectly === null}
+          label={isLastPage ? 'Back to Dashboard' : 'Next'}
         />
       </div>
     </div>

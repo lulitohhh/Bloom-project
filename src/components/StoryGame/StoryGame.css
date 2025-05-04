@@ -1,4 +1,4 @@
-.historia-container {
+.story-container {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -6,26 +6,26 @@
     padding: 30px;
   }
   
-  .historia-content {
+  .story-content {
     max-width: 600px;
     border-radius: 12px;
     text-align: center;
   }
   
-  .historia-title {
+  .story-title {
     color: #9d4528;
     font-size: 22px;
     margin-bottom: 20px;
     font-weight: bold;
   }
   
-  .historia-imagen {
+  .story-imagen {
     width: 100%;
     max-width: 300px;
     margin: 20px auto;
   }
   
-  .historia-texto {
+  .story-texto {
     font-size: 18px;
     line-height: 1.5;
     color: #333;
