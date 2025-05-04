@@ -1,45 +1,26 @@
 .album-wrapper {
-    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 60px 0;
-    z-index: 5; 
+    margin-top: 20px;
   }
   
-  .album-bg {
-    width: 800px; 
-    height: auto;
-    
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 0;
-  }
-  
-  .album-content {
-    position: relative;
+  .album-image {
+    background-image: url('/assets/album.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 900px; 
+    height: 600px;
     display: flex;
-    width: 800px; 
-    z-index: 1;.garden-album {
-        position: relative;
-        max-height: 100%;
-        overflow-y: hidden;
-        overflow-x: hidden;
-        display: flex;
-        flex-direction: column;
-        justify-content: left;
-        padding-top: 0;
-      }
-      
-      .album-bg {
-        position: absolute;
-        top: 40%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 800px;
-        z-index: 1;
-        pointer-events: none;
-      }
-      
+    position: relative;
+  }
+  
+  .page-left,
+  .page-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
