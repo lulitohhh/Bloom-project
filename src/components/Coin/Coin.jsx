@@ -1,5 +1,5 @@
 import React from "react";
-import "./lvlbar.css"
+import "./Coin.css"
 import lvlIndicator from '../../assets/images/lvl indicator.png'
 
 

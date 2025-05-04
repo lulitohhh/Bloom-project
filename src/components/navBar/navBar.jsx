@@ -2,7 +2,7 @@ import React from "react";
 import "./navBar.css"
 import BackButton from "../backBton/BackBton";
 import ShopBton from "../shopBton/shopBton";
-import LvlBar from "../lvlbar/lvlbar";
+import Coin from "../Coin/Coin";
 import ProfileBton from "../profileBton/profileBton";
 
 const NavBar = () => {
@@ -13,7 +13,7 @@ const NavBar = () => {
           <ShopBton/>
         </div>
         <div className="rightup">
-          <LvlBar/>
+          <Coin/>
           <ProfileBton/>
         </div>
       </div>
