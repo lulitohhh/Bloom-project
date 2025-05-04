@@ -8,7 +8,7 @@
         "image": "luna-park.png"
       },
       {
-        "text": "As Luna walks under the tall trees, she spots a plastic bottle lying on the grass. 'Oh no!' she exclaims. 'This doesn’t belong here.' She carefully picks it up and looks around for the nearest recycling bin. 'This should be in the recycling bin!' she says proudly.",
+        "text": "As Luna walks under the tall trees, she spots a plastic bottle lying on the grass. 'Oh no!' she exclaims. 'This doesn’t belong here.' She picks it up and looks around for the nearest recycling bin. 'This should be in the recycling bin!' she says proudly.",
         "image": "luna-bottle.png",
         "question": {
           "type": "true-false",
@@ -28,7 +28,7 @@
           "text": "What did Luna teach her friends?",
           "options": [
             "To throw trash on the ground",
-            "To recycle",
+            "To recycle correctly",
             "To play video games"
           ],
           "correctAnswer": "To recycle"
