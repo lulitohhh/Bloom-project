@@ -3,6 +3,6 @@ import QuizGameReducer from './Activities/QuizGameSlice'
 
 export const store = configureStore({
   reducer: {
-   
+    quiz: QuizGameReducer,
   }
 });
