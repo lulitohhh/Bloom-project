@@ -1,7 +1,7 @@
 
 import './QuizGame.css';
 import { useState } from 'react';
-import cuestionarios from '../../data/cuestionarios.json';
+import cuestionarios from '../../data/Quizzes.json';
 import Header from '../Header/Header';
 import OpcionRespuesta from '../AnswerOption/AnswerOption';
 import BotonSiguiente from '../NextButton/NextButton';
