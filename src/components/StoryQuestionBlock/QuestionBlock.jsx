@@ -30,6 +30,7 @@ function QuestionBlock({ question, onAnswer}) {
             correct={question.correctAnswer}
             onSelect={() => handleAnswer(option)}
             wasRespondedCorrectly={selection !== null}
+            size="small"
             
           />
         ))}

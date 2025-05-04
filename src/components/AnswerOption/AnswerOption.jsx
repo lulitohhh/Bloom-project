@@ -6,17 +6,22 @@ const AnswerOption = ({ text, index, selection, correct, onSelect, wasRespondedC
   const isSelected = selection === text;
   const isCorrect = text === correct;
 
-  const baseClass = `answer ${colors[index]}`;  // Clase base que nunca debe cambiar
-  const sizeClass = size === "small" ? "answer-small" : "";  // Clase de tamaño, puede ser pequeña o no
+
 
   const stateClass = isSelected
     ? isCorrect
-      ? "correcta" // Se aplica cuando la respuesta es correcta
-      : "incorrecta" // Se aplica cuando la respuesta es incorrecta
+      ? "correcta"
+      : "incorrecta"
     : "";
+    
+    const classes = [
+      'answer',
+      colors[index],
+      size === 'small' ? 'answer-small' : '',
+      stateClass
+    ].filter(Boolean).join(' ');
 
-  // Unimos todas las clases necesarias, manteniendo las de base y tamaño
-  const classes = [baseClass, sizeClass, stateClass].filter(Boolean).join(' ');
+
   return (
     <button 
       className={classes} 
