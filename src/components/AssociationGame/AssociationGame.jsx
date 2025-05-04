@@ -8,12 +8,12 @@ import NavBar from '../navBar/navBar'
 import Association from '../../data/Association.json';
 
 // Cargar imágenes desde assets
-const imagenes = import.meta.glob('../../assets/images/*.png', { eager: true });
+const images = import.meta.glob('../../assets/images/*.png', { eager: true });
 
 function getImage(nombre) {
   const path = `../../assets/images/${nombre}.png`;
-  if (imagenes[path]) {
-    return imagenes[path].default;
+  if (images[path]) {
+    return images[path].default;
   }
   return '';
 }
@@ -23,15 +23,15 @@ function AssociationGame({ id, onSuccess }) {
   const [selected, setSelected] = useState([]);
   const [resueltos, setResueltos] = useState([]);
 
-  const actividad = Association.find((a) => a.id === id);
+  const activity = Association.find((a) => a.id === id);
 
   useEffect(() => {
-    if (actividad) {
-      const pares = actividad.pairs || [];
-      let barajadas = [];
+    if (activity) {
+      const pairs = activity.pairs || [];
+      let shuffled = [];
 
-      for (let i = 0; i < pares.length; i++) {
-        const pair = pares[i];
+      for (let i = 0; i < pairs.length; i++) {
+        const pair = pairs[i];
 
         const itemCard = {
           id: pair.item,
@@ -45,47 +45,47 @@ function AssociationGame({ id, onSuccess }) {
           pairId: pair.item,
         };
 
-        barajadas.push(itemCard);
-        barajadas.push(matchCard);
+        shuffled.push(itemCard);
+        shuffled.push(matchCard);
       }
 
       // Mezclar manualmente
-      for (let i = barajadas.length - 1; i > 0; i--) {
+      for (let i = shuffled.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        const temp = barajadas[i];
-        barajadas[i] = barajadas[j];
-        barajadas[j] = temp;
+        const temp = shuffled[i];
+        shuffled[i] = shuffled[j];
+        shuffled[j] = temp;
       }
 
-      setCards(barajadas);
+      setCards(shuffled);
       setSelected([]);
       setResueltos([]);
     }
-  }, [actividad]);
+  }, [activity]);
 
   function handleCardClick(cardId) {
     if (resueltos.includes(cardId)) return;
     if (selected.includes(cardId)) return;
 
-    const nuevaSeleccion = [...selected, cardId];
-    setSelected(nuevaSeleccion);
+    const newSelection = [...selected, cardId];
+    setSelected(newSelection);
 
-    if (nuevaSeleccion.length === 2) {
-      const id1 = nuevaSeleccion[0];
-      const id2 = nuevaSeleccion[1];
+    if (newSelection.length === 2) {
+      const id1 = newSelection[0];
+      const id2 = newSelection[1];
 
       const card1 = cards.find((c) => c.id === id1);
       const card2 = cards.find((c) => c.id === id2);
 
-      const sonCorrectos = card1 && card2 && card1.pairId === card2.id;
+      const areCorrect = card1 && card2 && card1.pairId === card2.id;
 
-      if (sonCorrectos) {
+      if (areCorrect) {
         setResueltos((prev) => [...prev, id1, id2]);
-        actualizarCorrectos([id1, id2], true);
+        updateCorrect([id1, id2], true);
       } else {
-        actualizarCorrectos([id1, id2], false);
+        updateCorrect([id1, id2], false);
         setTimeout(() => {
-          actualizarCorrectos([id1, id2], null);
+          updateCorrect([id1, id2], null);
         }, 800);
       }
 
@@ -95,7 +95,7 @@ function AssociationGame({ id, onSuccess }) {
     }
   }
 
-  function actualizarCorrectos(ids, estado) {
+  function updateCorrect(ids, estado) {
     const nuevasCartas = cards.map((card) => {
       if (ids.includes(card.id)) {
         return { ...card, correct: estado };
@@ -106,14 +106,14 @@ function AssociationGame({ id, onSuccess }) {
     setCards(nuevasCartas);
   }
 
-  if (!actividad) {
+  if (!activity) {
     return <p>Actividad no encontrada.</p>;
   }
 
   return (
     <div className="asociacion-container">
       
-      <Header tipo={actividad.type} titulo={actividad.title} />
+      <Header tipo={activity.type} titulo={activity.title} />
       <CardGroup cards={cards} onCardClick={handleCardClick} selected={selected} />
       <NextButton
         onClick={onSuccess}
