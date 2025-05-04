@@ -4,10 +4,16 @@ const colors = ['green', 'red', 'yellow', 'blue'];
 
 const AnswerOption = ({ text, index, selection, correct, onSelect, wasRespondedCorrectly, size = "default"}) => {
   const isSelected = selection === text;
-  const isCorrect = text === correct;
-
-
-
+  const normalize = (val) => {
+    if (typeof val === 'string') {
+      if (val.toLowerCase() === 'true') return true;
+      if (val.toLowerCase() === 'false') return false;
+    }
+    return val;
+  };
+  
+  const isCorrect = normalize(text) === normalize(correct);
+  
   const stateClass = isSelected
     ? isCorrect
       ? "correcta"
