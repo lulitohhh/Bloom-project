@@ -1,7 +1,7 @@
 import './QuizGame.css';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectAnswer, resetQuiz } from '../../redux/slices/quizSlice';
+import { selectAnswer, resetQuiz } from '../../redux/Activities/QuizGameSlice';
 import cuestionarios from '../../data/Quizzes.json';
 import Header from '../Header/Header';
 import AnswerOption from '../AnswerOption/AnswerOption';
