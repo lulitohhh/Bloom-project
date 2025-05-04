@@ -37,7 +37,7 @@
   .grid-3-columns {
     display: grid;
     grid-template-columns: repeat(3, 90px);
-    gap: 15px;
+    gap: 20px;
     justify-content: center;
     align-items: center;
     padding: 10px 0;
@@ -46,14 +46,19 @@
   .grid-item {
     width: 80px;
     height: 80px;
-    border: 2px dashed #0E6229;
+    border: none;
     border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: #FFF3E0;
     display: flex;
     justify-content: center;
     align-items: center;
     transition: transform 0.2s ease;
+  
+    /* sombra sólida hacia abajo */
+    box-shadow: 0 10px 0 #FFD79F;
   }
+  
+  
   
   .grid-item:hover {
     transform: scale(1.05);
@@ -61,7 +66,7 @@
   }
   
   .grid-item.selected {
-    border: 3px solid #0E6229;
-    background-color: rgba(255, 255, 255, 1);
+    border: 3px solid #ac411b52;
+    background-color: #ffd79f71;
   }
   
