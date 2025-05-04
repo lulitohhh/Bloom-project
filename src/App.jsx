@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Dashboard from './pages/dashboard/dashboard';
 import React from 'react';
 import GardenAlbum from './pages/GardenAlbum'
-import Activities from './pages/Actividades';
+import Activities from './pages/Activities/Activities';
 
 function App() {
   return (
