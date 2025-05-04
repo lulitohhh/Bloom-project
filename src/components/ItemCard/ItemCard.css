@@ -6,7 +6,7 @@
   padding: 20px 17px;
   max-width: 270px;
   height: 300px;
-  font-family: "Freedoka", sans-serif;
+  font-family: "Fredoka One", sans-serif;
   animation: fadeIn 0.3s ease-in-out;
   text-align: left;
     border: 10px solid #ac411b52;
@@ -15,7 +15,7 @@
 
 .image-wrapper {
   background-color: #FFD79F;
-  padding: 40px;
+  padding: 30px;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   position: relative;
@@ -32,7 +32,6 @@
   margin: 0;
   font-size: 20px;
   color: #AC411B;
-  font-family: "Freedoka", sans-serif;
   z-index: 1;
 }
 
