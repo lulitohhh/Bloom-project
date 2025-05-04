@@ -1,10 +1,10 @@
-.lvl-bar {
+.Coin-Bar {
     align-self: center;
-    background-color: #82ADFF;
+    background-color: #1e5ccf7a;
     opacity: 0,5;
-    border: 2px solid white; /* Borde blanco de 2px */
+    border: 2px solid rgba(255, 255, 255, 0.384); /* Borde blanco de 2px */
     border-radius: 50px;
-    width: 20vw;
+    width: 10vw;
     height: 40px;
     display: flex;
     justify-content: start;
@@ -12,11 +12,11 @@
     position: relative;
 }
 
-#lvlIndicator{
+#CoinIndicator{
     width: auto;
-    height: 200%;
+    height: 150%;
     margin-right: 10px;
     position: absolute;
-    left: -15%;
+    left: -10%;
    
 }

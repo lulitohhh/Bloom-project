@@ -1,16 +1,15 @@
-import React from "react";
 import "./Coin.css"
-import lvlIndicator from '../../assets/images/lvl indicator.png'
+import Coin from '../../assets/images/Coin.png'
 
 
-const LvlBar = () => {
+const CoinCounter = () => {
   return (
-    <div className='lvl-bar'>
+    <div className='Coin-Bar'>
       
-      <img id="lvlIndicator" src={lvlIndicator} alt="" />
+      <img id="CoinIndicator" src={Coin} alt="" />
       
     </div>
   );
 };
 
-export default LvlBar;
+export default CoinCounter;
