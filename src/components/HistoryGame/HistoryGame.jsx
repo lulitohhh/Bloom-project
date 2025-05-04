@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Añade esto
-import historias from '../../data/historias.json';
+import historias from '../../data/Historys.json';
 import Header from '../Header/Header';
 import NextButton from '../NextButton/NextButton';
 import './HistoryGame.css';
