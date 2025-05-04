@@ -1,24 +1,26 @@
-
 import './QuizGame.css';
-import { useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectAnswer, resetQuiz } from '../../redux/slices/quizSlice';
 import cuestionarios from '../../data/Quizzes.json';
 import Header from '../Header/Header';
 import AnswerOption from '../AnswerOption/AnswerOption';
 import NextButton from '../NextButton/NextButton';
 
 const QuizGame = ({ id, onSuccess }) => {
+  const dispatch = useDispatch();
+  const { selection, correct } = useSelector((state) => state.quiz);
+
   const question = cuestionarios.find((p) => p.id === id);
-  const [selection, setSelection] = useState(null);
-  const [correct, setCorrect] = useState(false);
+
+  useEffect(() => {
+    dispatch(resetQuiz());
+  }, [id, dispatch]);
 
   if (!question) return <p>Pregunta no encontrada.</p>;
 
   const handleResponse = (answer) => {
-    if (correct) return;
-
-    setSelection(answer);
-    const isCorrect = answer === question.correctAnswer;
-    setCorrect(isCorrect);
+    dispatch(selectAnswer({ answer, correctAnswer: question.correctAnswer }));
   };
 
   return (
@@ -44,4 +46,3 @@ const QuizGame = ({ id, onSuccess }) => {
 };
 
 export default QuizGame;
-
