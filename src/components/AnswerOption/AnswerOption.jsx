@@ -1,24 +1,24 @@
 import './AnswerOption.css';
 
-const colores = ['verde', 'rojo', 'amarillo', 'azul'];
+const colors = ['green', 'red', 'yellow', 'blue'];
 
-const AnswerOption = ({ texto, index, seleccion, correct, onSelect, fueRespondidaCorrectamente }) => {
-  const esSeleccionada = seleccion === texto;
-  const isCorrect = texto === correct;
+const AnswerOption = ({ text, index, selection, correct, onSelect, wasRespondedCorrectly }) => {
+  const isSelected = selection === text;
+  const isCorrect = text === correct;
 
-  const clases = esSeleccionada
+  const clases = isSelected
     ? isCorrect
       ? 'respuesta correcta'
       : 'respuesta incorrecta'
-    : `respuesta ${colores[index]}`;
+    : `respuesta ${colors[index]}`;
 
   return (
     <button 
       className={clases} 
       onClick={onSelect} 
-      disabled={fueRespondidaCorrectamente} // solo se bloquea si ya acertaste
+      disabled={wasRespondedCorrectly} // solo se bloquea si ya acertaste
     >
-      {texto}
+      {text}
     </button>
   );
 };

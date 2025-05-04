@@ -29,9 +29,9 @@ const QuizGame = ({ id, onSuccess }) => {
           {question.options.map((option, index) => (
             <AnswerOption
               key={index}
-              texto={option}
+              text={option}
               index={index}
-              seleccion={selection}
+              selection={selection}
               correct={question.correctAnswer}
               onSelect={() => handleResponse(option)}
             />

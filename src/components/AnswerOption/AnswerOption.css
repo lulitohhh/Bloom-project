@@ -13,44 +13,44 @@
     filter: brightness(1.1);
   }
   
-  .verde {
+  .green {
     background-color: #B5DF71;
     color: #484800;
     box-shadow: 0 6px 0 #8EBA47;
   }
 
-  .verde:active {
+  .green:active {
     box-shadow: 0 2px 0 #8EBA47;
     transform: translateY(4px);
   }
   
-  .rojo {
+  .red {
     background-color: #F29B5E;
     color: #622C07;
     box-shadow: 0 6px 0 #FF7544;
   }
-  .rojo:active {
+  .red:active {
     box-shadow: 0 2px 0 #FF7544;
     transform: translateY(4px);
   }
   
-  .amarillo {
+  .yellow {
     background-color: #FFD578;
     color: #544013;
     box-shadow: 0 6px 0 #E9B647;
     
   }
-  .amarillo:active {
+  .yellow:active {
     box-shadow: 0 2px 0 #E9B647;
     transform: translateY(4px);
   }
   
-  .azul {
+  .blue {
     background-color: #9EE6F4;
     color: #124F5B;
     box-shadow: 0 6px 0 #73CDDF;
   }
-  .azul:active {
+  .blue:active {
     box-shadow: 0 2px 0 #73CDDF;
     transform: translateY(4px);
   }
