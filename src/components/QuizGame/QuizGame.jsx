@@ -25,15 +25,15 @@ const QuizGame = ({ id, onSuccess }) => {
     <section className="question-container">
       <section className="question-box">
         <Header tipo={question.type} titulo={question.title} />
-        <section className="question-opciones">
-          {question.options.map((opcion, index) => (
+        <section className="question-option">
+          {question.options.map((option, index) => (
             <AnswerOption
               key={index}
-              texto={opcion}
+              texto={option}
               index={index}
               seleccion={selection}
               correcta={question.correctAnswer}
-              onSelect={() => handleResponse(opcion)}
+              onSelect={() => handleResponse(option)}
             />
           ))}
         </section>
