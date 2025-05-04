@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Añade esto
-import historias from '../../data/Historys.json';
+import Stories from '../../data/Stories.json';
 import Header from '../Header/Header';
 import NextButton from '../NextButton/NextButton';
-import './HistoryGame.css';
+import './StoryGame.css';
 
 const imagenes = import.meta.glob('../../assets/images/*.png', { eager: true });
 
@@ -18,7 +18,7 @@ function HistoryGame() {
   const navigate = useNavigate(); // Hook para navegación
 
   useEffect(() => {
-    const aleatoria = historias[Math.floor(Math.random() * historias.length)];
+    const aleatoria = Stories[Math.floor(Math.random() * Stories.length)];
     setHistoria(aleatoria);
     setPaginaActual(0);
   }, []);
