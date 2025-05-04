@@ -3,7 +3,7 @@ import './NextButton.css';
 const BotonSiguiente = ({ onClick, disabled, label = "Next" }) => { // Valor predeterminado aquí
   return (
     <button 
-      className="boton-siguiente" 
+      className="Next-button" 
       onClick={onClick} 
       disabled={disabled}
     >

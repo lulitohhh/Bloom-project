@@ -1,4 +1,4 @@
-.boton-siguiente {
+.Next-button {
   padding: 16px 24px;
   font-weight: bold;
   font-family: 'Poppins', sans-serif;
@@ -14,18 +14,18 @@
 }
 
 /* Hover: más brillante */
-.boton-siguiente:hover {
+.Next-button:hover {
   filter: brightness(1.05);
 }
 
 /* Al hacer click: se "hunde" */
-.boton-siguiente:active {
+.Next-button:active {
   box-shadow: 0 2px 0 #22864A;
   transform: translateY(4px);
 }
 
 /* Cuando está deshabilitado */
-.boton-siguiente:disabled {
+.Next-button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
   box-shadow: none;
