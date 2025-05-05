@@ -63,14 +63,12 @@ function StoryGame({ onFinish }) {
   function handleNext() {
     if (isLastPage) {
       if (onFinish) {
-        onFinish(); 
-      } else {
-        
-        navigate('/'); 
+        onFinish(); // Ejecuta lógica extra si se necesita
       }
+      navigate('/'); // Pero siempre navega al dashboard
     } else {
-      dispatch(nextPage()); 
-      setAnsweredCorrectly(null); 
+      dispatch(nextPage());
+      setAnsweredCorrectly(null);
     }
   }
 
