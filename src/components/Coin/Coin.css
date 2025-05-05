@@ -1,13 +1,15 @@
 .Coin-Bar {
     align-self: center;
-    background-color: #1e5ccf7a;
+    background-color: #0138a09c;
     opacity: 0,5;
     border: 2px solid rgba(255, 255, 255, 0.384); /* Borde blanco de 2px */
     border-radius: 50px;
     width: 10vw;
     height: 40px;
     display: flex;
-    justify-content: start;
+    justify-content: center; /* Centra horizontalmente los hijos */
+    align-items: center; 
+    gap: 8px;  
     align-items: center;
     position: relative;
 }
@@ -17,19 +19,15 @@
     height: 150%;
     margin-right: 10px;
     position: absolute;
-    left: -10%;
+    left: -25%;
    
 }
 
 .coin-counter{
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    background-color: #fff8cc;
-    border: 2px solid #ffd700;
     padding: 8px 12px;
     border-radius: 12px;
     font-weight: bold;
     font-size: 18px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    color: aliceblue;
+    
 }
