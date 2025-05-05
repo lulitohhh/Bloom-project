@@ -1,0 +1,13 @@
+.navBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto; 
+    z-index: 9999;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra inferior sutil */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px; 
+  }
