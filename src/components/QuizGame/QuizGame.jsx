@@ -6,6 +6,7 @@ import cuestionarios from '../../data/Quizzes.json';
 import Header from '../Header/Header';
 import AnswerOption from '../AnswerOption/AnswerOption';
 import NextButton from '../NextButton/NextButton';
+import NavBar from '../navBar/navBar';
 
 const QuizGame = ({ id, onSuccess }) => {
   const dispatch = useDispatch();
@@ -24,6 +25,8 @@ const QuizGame = ({ id, onSuccess }) => {
   };
 
   return (
+    <>
+    <NavBar/>
     <section className="question-container">
       <section className="question-box">
         <Header type={question.type} title={question.title} />
@@ -42,6 +45,7 @@ const QuizGame = ({ id, onSuccess }) => {
         <NextButton onClick={onSuccess} disabled={!correct} />
       </section>
     </section>
+    </>
   );
 };
 
