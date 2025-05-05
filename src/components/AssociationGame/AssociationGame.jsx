@@ -1,127 +1,104 @@
-import { useEffect, useState } from 'react';
+// src/components/AssociationGame/AssociationGame.jsx
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setPairs, selectCard, clearSelection, markResolved,} from '../../redux/Activities/associationSlice';
 import CardGroup from '../CardGroup/CardGroup';
 import Header from '../Header/Header';
 import NextButton from '../NextButton/NextButton';
-import './AssociationGame.css';
-import NavBar from '../navBar/navBar'
-
 import Association from '../../data/Association.json';
+import './AssociationGame.css';
 
-// Cargar imágenes desde assets
 const images = import.meta.glob('../../assets/images/*.png', { eager: true });
-
 function getImage(nombre) {
   const path = `../../assets/images/${nombre}.png`;
-  if (images[path]) {
-    return images[path].default;
-  }
-  return '';
+  return images[path]?.default || '';
 }
 
 function AssociationGame({ id, onSuccess }) {
-  const [cards, setCards] = useState([]);
-  const [selected, setSelected] = useState([]);
-  const [resueltos, setResueltos] = useState([]);
+  const dispatch = useDispatch();
+  const { currentPairs, selected, resolved } = useSelector((state) => state.association);
 
   const activity = Association.find((a) => a.id === id);
 
   useEffect(() => {
     if (activity) {
       const pairs = activity.pairs || [];
-      let shuffled = [];
+      const shuffled = [];
 
-      for (let i = 0; i < pairs.length; i++) {
-        const pair = pairs[i];
-
-        const itemCard = {
+      for (let pair of pairs) {
+        const item = {
           id: pair.item,
           image: getImage(pair.item),
           pairId: pair.match,
         };
-
-        const matchCard = {
+        const match = {
           id: pair.match,
           image: getImage(pair.match),
           pairId: pair.item,
         };
-
-        shuffled.push(itemCard);
-        shuffled.push(matchCard);
+        shuffled.push(item, match);
       }
 
-      // Mezclar manualmente
+      // Mezclar
       for (let i = shuffled.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        const temp = shuffled[i];
-        shuffled[i] = shuffled[j];
-        shuffled[j] = temp;
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
       }
 
-      setCards(shuffled);
-      setSelected([]);
-      setResueltos([]);
+      dispatch(setPairs(shuffled));
     }
-  }, [activity]);
+  }, [dispatch, activity]);
 
   function handleCardClick(cardId) {
-    if (resueltos.includes(cardId)) return;
-    if (selected.includes(cardId)) return;
+    if (resolved.includes(cardId) || selected.includes(cardId)) return;
 
-    const newSelection = [...selected, cardId];
-    setSelected(newSelection);
+    dispatch(selectCard(cardId));
 
-    if (newSelection.length === 2) {
-      const id1 = newSelection[0];
-      const id2 = newSelection[1];
+    if (selected.length === 1) {
+      const id1 = selected[0];
+      const id2 = cardId;
 
-      const card1 = cards.find((c) => c.id === id1);
-      const card2 = cards.find((c) => c.id === id2);
+      const card1 = currentPairs.find((c) => c.id === id1);
+      const card2 = currentPairs.find((c) => c.id === id2);
 
-      const areCorrect = card1 && card2 && card1.pairId === card2.id;
+      const match = card1?.pairId === card2?.id;
 
-      if (areCorrect) {
-        setResueltos((prev) => [...prev, id1, id2]);
-        updateCorrect([id1, id2], true);
-      } else {
-        updateCorrect([id1, id2], false);
+      if (match) {
         setTimeout(() => {
-          updateCorrect([id1, id2], null);
+          dispatch(markResolved([id1, id2]));
+          dispatch(clearSelection());
+        }, 800);
+      } else {
+        setTimeout(() => {
+          dispatch(clearSelection());
         }, 800);
       }
-
-      setTimeout(() => {
-        setSelected([]);
-      }, 800);
     }
   }
 
-  function updateCorrect(ids, estado) {
-    const nuevasCartas = cards.map((card) => {
-      if (ids.includes(card.id)) {
-        return { ...card, correct: estado };
-      }
-      return card;
-    });
-
-    setCards(nuevasCartas);
-  }
-
-  if (!activity) {
-    return <p>Actividad no encontrada.</p>;
-  }
+  if (!activity) return <p>Actividad no encontrada</p>;
 
   return (
     <div className="asociacion-container">
-      
       <Header type={activity.type} title={activity.title} />
-      <CardGroup cards={cards} onCardClick={handleCardClick} selected={selected} />
+      <CardGroup
+        cards={currentPairs.map((c) => ({
+          ...c,
+          correct: resolved.includes(c.id)
+            ? true
+            : selected.includes(c.id)
+            ? 'selected'
+            : null,
+        }))}
+        onCardClick={handleCardClick}
+        selected={selected}
+      />
       <NextButton
         onClick={onSuccess}
-        disabled={resueltos.length !== cards.length}
+        disabled={resolved.length !== currentPairs.length}
       />
     </div>
   );
 }
 
 export default AssociationGame;
-
