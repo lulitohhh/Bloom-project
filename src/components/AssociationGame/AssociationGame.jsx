@@ -1,12 +1,14 @@
 // src/components/AssociationGame/AssociationGame.jsx
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setPairs, selectCard, clearSelection, markResolved,} from '../../redux/Activities/associationSlice';
+import { setPairs, selectCard, clearSelection, markResolved } from '../../redux/Activities/associationSlice';
+import { addCoins } from '../../redux/coinSlice'; 
 import CardGroup from '../CardGroup/CardGroup';
 import Header from '../Header/Header';
 import NextButton from '../NextButton/NextButton';
 import Association from '../../data/Association.json';
 import './AssociationGame.css';
+import NavBar from '../navBar/navBar';
 
 const images = import.meta.glob('../../assets/images/*.png', { eager: true });
 function getImage(nombre) {
@@ -18,9 +20,9 @@ function AssociationGame({ id, onSuccess }) {
   const dispatch = useDispatch();
   const { currentPairs, selected, resolved } = useSelector((state) => state.association);
 
-  const activity = Association.find((a) => a.id === id);
-
+  // 🧠 El useEffect ahora depende de id, no de activity
   useEffect(() => {
+    const activity = Association.find((a) => a.id === id);
     if (activity) {
       const pairs = activity.pairs || [];
       const shuffled = [];
@@ -47,7 +49,14 @@ function AssociationGame({ id, onSuccess }) {
 
       dispatch(setPairs(shuffled));
     }
-  }, [dispatch, activity]);
+  }, [dispatch, id]); // ✅ 'id' es la dependencia clave
+
+  // ✔ Solo añade monedas una vez completado
+  useEffect(() => {
+    if (resolved.length === currentPairs.length && currentPairs.length > 0) {
+      dispatch(addCoins(5));
+    }
+  }, [resolved, currentPairs.length, dispatch]);
 
   function handleCardClick(cardId) {
     if (resolved.includes(cardId) || selected.includes(cardId)) return;
@@ -76,10 +85,13 @@ function AssociationGame({ id, onSuccess }) {
     }
   }
 
+  // Actividad encontrada por ID (por si el JSON está mal formateado)
+  const activity = Association.find((a) => a.id === id);
   if (!activity) return <p>Actividad no encontrada</p>;
 
   return (
     <div className="asociacion-container">
+      <NavBar/>
       <Header type={activity.type} title={activity.title} />
       <CardGroup
         cards={currentPairs.map((c) => ({

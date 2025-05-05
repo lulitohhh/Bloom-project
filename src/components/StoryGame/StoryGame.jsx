@@ -1,17 +1,19 @@
 // src/components/StoryGame/StoryGame.jsx
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   startStory,
   nextPage,
   registerCorrect,
 } from '../../redux/Activities/storySlice';
+import { addCoins } from '../../redux/coinSlice'; 
 import { useNavigate } from 'react-router-dom';
 import Stories from '../../data/Stories.json';
 import Header from '../Header/Header';
 import NextButton from '../NextButton/NextButton';
 import QuestionBlock from '../StoryQuestionBlock/QuestionBlock';
 import './StoryGame.css';
+import NavBar from '../navBar/navBar';
 
 const images = import.meta.glob('../../assets/images/*.png', { eager: true });
 function getImage(fileName) {
@@ -19,20 +21,37 @@ function getImage(fileName) {
   return images[path]?.default || null;
 }
 
-function StoryGame() {
+function StoryGame({ onFinish }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { storyId, currentPage, correctAnswers } = useSelector((state) => state.story);
+  const { storyId, currentPage } = useSelector((state) => state.story); 
+
+  const [answeredCorrectly, setAnsweredCorrectly] = useState(null); 
 
   const story = storyId
     ? Stories.find((s) => s.id === storyId)
     : Stories[Math.floor(Math.random() * Stories.length)];
 
   useEffect(() => {
-    if (!storyId) {
+    const storedProgress = JSON.parse(localStorage.getItem('storyProgress'));
+    if (storedProgress && storedProgress.storyId === story.id) {
+      dispatch(startStory(storedProgress.storyId));
+      dispatch(nextPage(storedProgress.currentPage));
+    } else {
       dispatch(startStory(story.id));
     }
-  }, [dispatch, storyId, story.id]);
+  }, [dispatch, story.id]);
+
+  useEffect(() => {
+
+    localStorage.setItem(
+      'storyProgress',
+      JSON.stringify({
+        storyId: story.id,
+        currentPage,
+      })
+    );
+  }, [story.id, currentPage]);
 
   if (!story) return <p>Loading story...</p>;
 
@@ -43,20 +62,30 @@ function StoryGame() {
 
   function handleNext() {
     if (isLastPage) {
-      navigate('/');
+      if (onFinish) {
+        onFinish(); 
+      } else {
+        
+        navigate('/'); 
+      }
     } else {
-      dispatch(nextPage());
+      dispatch(nextPage()); 
+      setAnsweredCorrectly(null); 
     }
   }
 
   function handleAnswer(isCorrect) {
+    setAnsweredCorrectly(isCorrect); 
+
     if (isCorrect) {
       dispatch(registerCorrect());
+      dispatch(addCoins(5)); 
     }
   }
 
   return (
     <div className="story-container">
+      <NavBar />
       <Header type="story" title="Read the story" />
       <div className="story-content">
         <h2 className="story-title">{story.title}</h2>
@@ -65,7 +94,7 @@ function StoryGame() {
         {hasQuestion && <QuestionBlock question={page.question} onAnswer={handleAnswer} />}
         <NextButton
           onClick={handleNext}
-          disabled={hasQuestion && correctAnswers <= currentPage}
+          disabled={hasQuestion && answeredCorrectly === null} 
           label={isLastPage ? 'Back to Dashboard' : 'Next'}
         />
       </div>
