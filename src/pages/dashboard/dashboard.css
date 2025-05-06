@@ -31,7 +31,9 @@
     gap: 20px;
     justify-content: space-around; /* Centra los elementos horizontalmente */
     align-items: center;
+    cursor: pointer;
 }
+
 
 .leftup{
     height: auto;

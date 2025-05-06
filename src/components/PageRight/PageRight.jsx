@@ -1,3 +1,6 @@
+import "./PageRight"
+import ItemCard from "../ItemCard/ItemCard"; // Asegúrate de que esta ruta sea correcta
+
 const PageRight = ({ setSelectedCategory, selectedItem, setSelectedItem, selectedCategory }) => {
   return (
     <div className="page-right">
@@ -20,7 +23,8 @@ const PageRight = ({ setSelectedCategory, selectedItem, setSelectedItem, selecte
       )}
 
       {selectedItem && (
-        <div className="item-details">
+        <div className="card-wrapper">
+          <ItemCard item={selectedItem} type={selectedCategory} />
           <img
             src="/assets/buttoms/back-btn.png"
             alt="Back"
@@ -30,32 +34,6 @@ const PageRight = ({ setSelectedCategory, selectedItem, setSelectedItem, selecte
               setSelectedItem(null);
             }}
           />
-
-          <h2>{selectedItem.name}</h2>
-
-          <img
-            src={selectedItem.image}
-            alt={selectedItem.name}
-            className="item-img"
-          />
-
-          <p><strong>Description:</strong> {selectedItem.description}</p>
-
-          {selectedCategory === "ecosystems" && (
-            <>
-              <p><strong>Animals:</strong> {selectedItem.animals}</p>
-              <p><strong>Plants:</strong> {selectedItem.plants}</p>
-              <p><strong>Location:</strong> {selectedItem.location}</p>
-            </>
-          )}
-
-          {selectedCategory === "plants" && (
-            <>
-              <p><strong>Kingdom:</strong> {selectedItem.kingdom}</p>
-              <p><strong>Genus:</strong> {selectedItem.genus}</p>
-              <p><strong>Habitat:</strong> {selectedItem.habitat}</p>
-            </>
-          )}
         </div>
       )}
     </div>

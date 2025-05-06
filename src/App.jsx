@@ -1,6 +1,6 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Dashboard from './pages/dashboard/dashboard';
 import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Dashboard from './pages/dashboard/dashboard'
 import GardenAlbum from './pages/GardenAlbum'
 import Activities from './pages/Activities/Activities';
 import { Provider } from 'react-redux';

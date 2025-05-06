@@ -1,0 +1,22 @@
+/* Scrollbar para WebKit (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #FFD79F; /* mismo amarillo claro del proyecto */
+    border-radius: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #AC411B; /* naranja oscuro */
+    border-radius: 10px;
+    border: 2px solid #FFD79F; /* crea efecto de padding */
+  }
+  
+  /* Scrollbar para Firefox */
+  body {
+    scrollbar-width: thin;
+    scrollbar-color: #AC411B #FFD79F;
+  }
+  

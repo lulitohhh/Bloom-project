@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+.item-card {
+  background: #f5955163;
+  border-radius: 20px;
+  padding: 20px 17px;
+  max-width: 270px;
+  height: 300px;
+  font-family: "Fredoka One", sans-serif;
+  animation: fadeIn 0.3s ease-in-out;
+  text-align: left;
+    border: 10px solid #ac411b52;
+    overflow: hidden; 
+}
+
+.image-wrapper {
+  background-color: #FFD79F;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  position: relative;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
+.image-wrapper h3 {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  margin: 0;
+  font-size: 20px;
+  color: #AC411B;
+  z-index: 1;
+}
+
+.item-image {
+  max-width: 70px;
+  max-height: 150px;
+  z-index: 0;
+}
+
+/* Descripción */
+.item-card p {
+  font-size: 14px;
+  color: #000000a6;
+  margin: 6px 0;
+  text-align: left;
+}
+
+/* Lista */
+.item-card ul {
+  padding-left: 20px;
+  margin-top: 5px;
+}
+
+.item-card li {
+  font-size: 14px;
+  color: #000000a6;
+  margin-bottom: 4px;
+}
+
+.item-card li strong {
+  color: #AC411B;
+}
+
+.back-btn {
+  max-width: 300px;
+  animation: fadeIn 0.3s ease-in-out;
+  cursor: pointer;
+  position: relative; 
+  margin-top: 10px;
+  text-align: left;
+}
