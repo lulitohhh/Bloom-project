@@ -28,8 +28,8 @@ const QuizGame = ({ id, onSuccess }) => {
     <>
     <NavBar/>
     <section className="question-container">
+    <Header type={question.type} title={question.title} />
       <section className="question-box">
-        <Header type={question.type} title={question.title} />
         <section className="question-option">
           {question.options.map((option, index) => (
             <AnswerOption

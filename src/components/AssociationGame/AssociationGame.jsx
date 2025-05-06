@@ -90,9 +90,11 @@ function AssociationGame({ id, onSuccess }) {
   if (!activity) return <p>Actividad no encontrada</p>;
 
   return (
+    <>
+     <NavBar/>
     <div className="asociacion-container">
-      <NavBar/>
       <Header type={activity.type} title={activity.title} />
+      <section className="asociacion-box">
       <CardGroup
         cards={currentPairs.map((c) => ({
           ...c,
@@ -105,11 +107,13 @@ function AssociationGame({ id, onSuccess }) {
         onCardClick={handleCardClick}
         selected={selected}
       />
+      </section>
       <NextButton
         onClick={onSuccess}
         disabled={resolved.length !== currentPairs.length}
       />
     </div>
+    </>
   );
 }
 
