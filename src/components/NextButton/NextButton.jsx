@@ -1,0 +1,15 @@
+import './NextButton.css';
+
+const BotonSiguiente = ({ onClick, disabled, label = "Next" }) => { // Valor predeterminado aquí
+  return (
+    <button 
+      className="Next-button" 
+      onClick={onClick} 
+      disabled={disabled}
+    >
+      {label} {/* Mostrará "Next" si label no está definido */}
+    </button>
+  );
+};
+
+export default BotonSiguiente;  

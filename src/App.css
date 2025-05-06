@@ -8,8 +8,8 @@
 /* Asegura que html y body ocupen toda la pantalla */
 html, body, #root {
   width: 100%;
-  min-height: 100vh;
-  overflow-x: hidden; /* Opcional: evita scroll horizontal */
+  min-height: auto;
+  overflow-y: hidden;
   background-color: #B8F2FE;
   margin: 0;
   padding: 0;

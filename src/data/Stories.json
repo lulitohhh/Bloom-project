@@ -1,0 +1,113 @@
+[
+  {
+    "id": 1,
+    "title": "Luna the Little Recycler",
+    "pages": [
+      {
+        "text": "Every Saturday morning, Luna puts on her favorite green hat, grabs her big blue recycling bag, and heads to the park with a big smile. She loves seeing the flowers bloom and hearing the birds sing, and she knows that keeping the park clean helps all the creatures that live there.",
+        "image": "luna-park.png"
+      },
+      {
+        "text": "As Luna walks under the tall trees, she spots a plastic bottle lying on the grass. 'Oh no!' she exclaims. 'This doesn’t belong here.' She picks it up and looks around for the nearest recycling bin. 'This should be in the recycling bin!' she says proudly.",
+        "image": "luna-bottle.png",
+        "question": {
+          "type": "true-false",
+          "text": "Should plastic bottles go in the recycling bin?",
+          "correctAnswer": true
+        }
+      },
+      {
+        "text": "Luna tosses the bottle into the blue bin with a satisfying clunk. She smiles, knowing that small actions like this make the Earth a better place. As she walks away, she waves at a butterfly and thinks, 'Even tiny helpers can make a big difference.'",
+        "image": "luna-recycle-bin.png"
+      },
+      {
+        "text": "The next weekend, Luna brings her friends to the park and shows them how to pick up litter and sort it into recycling and trash. They laugh and cheer as they work together, proud of their clean park. 'We’re Earth’s little heroes!' Luna says.",
+        "image": "luna-friends.png",
+        "question": {
+          "type": "multiple-choice",
+          "text": "What did Luna teach her friends?",
+          "options": [
+            "To throw trash on the ground",
+            "To recycle correctly",
+            "To play video games"
+          ],
+          "correctAnswer": "To recycle correctly"
+        }
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Timmy Saves Water",
+    "pages": [
+      {
+        "text": "Timmy the turtle loves taking care of the ocean. One morning, while brushing his teeth, he hears the water running and realizes he's wasting it. He pauses and thinks, 'If I keep the water running, I’m using more than I need.'",
+        "image": "timmy-brushing.png"
+      },
+      {
+        "text": "Timmy reaches for the tap and turns it off with a firm click. 'There!' he says. 'That’s better. Now I’m saving water for the fish and other ocean creatures!' He feels proud and wants to tell everyone what he learned.",
+        "image": "timmy-turning-off.png",
+        "question": {
+          "type": "true-false",
+          "text": "Should you turn off the tap while brushing your teeth?",
+          "correctAnswer": true
+        }
+      },
+      {
+        "text": "That afternoon, Timmy shares the tip with his brother Tommy. 'Let’s save water every day!' he says. They make a plan to turn off faucets, take shorter showers, and tell their friends at school about water conservation.",
+        "image": "timmy-talking.png"
+      },
+      {
+        "text": "That night, the two turtles dream of a world where the ocean sparkles with joy. Fish swim happily, and coral reefs glow bright because the water is clean and cared for. Timmy knows that even small habits can lead to a big, beautiful change.",
+        "image": "timmy-dreaming.png",
+        "question": {
+          "type": "multiple-choice",
+          "text": "What did Timmy and his brother dream about?",
+          "options": [
+            "A candy ocean",
+            "A cleaner, happier ocean",
+            "Swimming in soda"
+          ],
+          "correctAnswer": "A cleaner, happier ocean"
+        }
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Maya and the Magical Tree",
+    "pages": [
+      {
+        "text": "Maya loves to hike through the forest near her village. One day, as she followed a new trail, she found a tall, glowing tree surrounded by sparkling butterflies. The tree glimmered in the sunlight, and Maya stood quietly in awe.",
+        "image": "maya-tree.png"
+      },
+      {
+        "text": "Suddenly, the tree began to speak in a gentle voice: 'Thank you, Maya, for never leaving trash behind. Because of you, this forest stays safe and lovely for all who live here.' Maya smiled, feeling warmth in her heart.",
+        "image": "tree-talking.png",
+        "question": {
+          "type": "true-false",
+          "text": "Is it good to keep the forest clean by not littering?",
+          "correctAnswer": true
+        }
+      },
+      {
+        "text": "Maya knelt beside the tree and whispered, 'I promise to plant a new tree every year, and I’ll teach others to care for nature too.' The forest around her seemed to sparkle brighter as if it were cheering her on.",
+        "image": "maya-planting.png"
+      },
+      {
+        "text": "Years later, Maya returns and finds the magical tree covered in heart-shaped flowers. Birds chirp melodies of thanks. The tree glows again and whispers, 'You’ve helped the world grow with kindness and care.'",
+        "image": "tree-hearts.png",
+        "question": {
+          "type": "multiple-choice",
+          "text": "What did Maya promise to do?",
+          "options": [
+            "Cut down trees",
+            "Plant a tree every year",
+            "Pick all the flowers"
+          ],
+          "correctAnswer": "Plant a tree every year"
+        }
+      }
+    ]
+  }
+]

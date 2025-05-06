@@ -1,0 +1,34 @@
+.Next-button {
+  padding: 16px 24px;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background-color: #27A258;
+  color: #edeee7;
+  box-shadow: 0 6px 0 #22864A;
+  transition: all 0.15s ease-in-out;
+  position: relative;
+}
+
+/* Hover: más brillante */
+.Next-button:hover {
+  filter: brightness(1.05);
+}
+
+/* Al hacer click: se "hunde" */
+.Next-button:active {
+  box-shadow: 0 2px 0 #22864A;
+  transform: translateY(4px);
+}
+
+/* Cuando está deshabilitado */
+.Next-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+  box-shadow: 0 6px 0 #22864A;
+}

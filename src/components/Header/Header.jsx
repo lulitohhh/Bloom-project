@@ -1,12 +1,12 @@
 
 import './Header.css';
 
-const Header = ({ tipo, titulo }) => (
+const Header = ({ type, title }) => (
   <section className="pregunta-header">
     <section className="subtitulo-container">
-      <p className="pregunta-subtitulo">{tipo}</p>
+      <p className="pregunta-subtitulo">{type}</p>
     </section>
-    <h2 className="pregunta-titulo">{titulo}</h2>
+    <h2 className="pregunta-titulo">{title}</h2>
   </section>
 );
 

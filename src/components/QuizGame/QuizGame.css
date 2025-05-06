@@ -1,0 +1,32 @@
+.question-container {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative; 
+    overflow: hidden;
+    padding: 6%;
+  }
+  
+  .question-box {
+    border-radius: 1rem;
+    padding: 1.5rem;
+    max-width: 900px;
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+    
+  }
+ 
+  
+  .question-option {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem; /* antes 1rem */
+    margin-bottom: 1.5rem;
+    max-width: 800px; /* limita el ancho total */
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
