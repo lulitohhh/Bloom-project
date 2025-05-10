@@ -1,9 +1,12 @@
 import './AssociationGame.css';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setPairs, selectCard, clearSelection, markResolved } from '../../redux/Activities/associationSlice';
-import { addCoins } from '../../redux/coinSlice'; 
-import { markAssociationCompleted } from '../../redux/ActivityProgressSlice';
+import {
+  setPairs,
+  selectCard,
+  clearSelection,
+  markResolved
+} from '../../redux/Activities/associationSlice';
 import CardGroup from '../CardGroup/CardGroup';
 import Header from '../Header/Header';
 import NextButton from '../NextButton/NextButton';
@@ -11,6 +14,7 @@ import Association from '../../data/Association.json';
 import NavBar from '../navBar/navBar';
 
 const images = import.meta.glob('../../assets/images/*.png', { eager: true });
+
 function getImage(nombre) {
   const path = `../../assets/images/${nombre}.png`;
   return images[path]?.default || '';
@@ -19,10 +23,7 @@ function getImage(nombre) {
 function AssociationGame({ id, onSuccess }) {
   const dispatch = useDispatch();
   const { currentPairs, selected, resolved } = useSelector((state) => state.association);
-  const completedAssociations = useSelector((state) => state.activityProgress.associationsCompleted);
-  const [hasAwarded, setHasAwarded] = useState(false); 
 
-  // Reiniciar el estado de las cartas y resueltos al cambiar de id
   useEffect(() => {
     const activity = Association.find((a) => a.id === id);
     if (activity) {
@@ -50,23 +51,9 @@ function AssociationGame({ id, onSuccess }) {
       }
 
       dispatch(setPairs(shuffled));
-      dispatch(clearSelection()); // Reset selection state on activity change
-      setHasAwarded(false); // Prevenir que las monedas se otorguen varias veces
+      dispatch(clearSelection());
     }
   }, [dispatch, id]);
-
-  // Lógica para agregar monedas solo si la actividad no ha sido completada
-  useEffect(() => {
-    if (resolved.length === currentPairs.length && currentPairs.length > 0) {
-      const alreadyCompleted = completedAssociations.includes(id);
-
-      if (!alreadyCompleted && !hasAwarded) {
-        dispatch(addCoins(2)); // Otorgar 2 monedas
-        dispatch(markAssociationCompleted(id)); // Marcar actividad como completada
-        setHasAwarded(true); // Prevenir múltiples recompensas
-      }
-    }
-  }, [resolved, currentPairs, completedAssociations, id, dispatch, hasAwarded]);
 
   function handleCardClick(cardId) {
     if (resolved.includes(cardId) || selected.includes(cardId)) return;
