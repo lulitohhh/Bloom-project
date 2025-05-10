@@ -7,6 +7,7 @@ import Header from '../Header/Header';
 import AnswerOption from '../AnswerOption/AnswerOption';
 import NextButton from '../NextButton/NextButton';
 import NavBar from '../navBar/navBar';
+import { addCoins } from '../../redux/coinSlice'; 
 
 const QuizGame = ({ id, onSuccess }) => {
   const dispatch = useDispatch();
@@ -18,33 +19,44 @@ const QuizGame = ({ id, onSuccess }) => {
     dispatch(resetQuiz());
   }, [id, dispatch]);
 
-  if (!question) return <p>Pregunta no encontrada.</p>;
+  // Lógica para otorgar monedas una vez que se ha respondido correctamente
+  useEffect(() => {
+    if (correct) {
+      const coinsAwarded = localStorage.getItem('coinsAwarded');
+      if (!coinsAwarded) {
+        dispatch(addCoins(5));
+        localStorage.setItem('coinsAwarded', 'true'); // Marcar que ya se otorgaron las monedas
+      }
+    }
+  }, [correct, dispatch]);
 
   const handleResponse = (answer) => {
     dispatch(selectAnswer({ answer, correctAnswer: question.correctAnswer }));
   };
 
+  if (!question) return <p>Pregunta no encontrada.</p>;
+
   return (
     <>
-    <NavBar/>
-    <section className="question-container">
-    <Header type={question.type} title={question.title} />
-      <section className="question-box">
-        <section className="question-option">
-          {question.options.map((option, index) => (
-            <AnswerOption
-              key={index}
-              text={option}
-              index={index}
-              selection={selection}
-              correct={question.correctAnswer}
-              onSelect={() => handleResponse(option)}
-            />
-          ))}
+      <NavBar />
+      <section className="question-container">
+        <Header type={question.type} title={question.title} />
+        <section className="question-box">
+          <section className="question-option">
+            {question.options.map((option, index) => (
+              <AnswerOption
+                key={index}
+                text={option}
+                index={index}
+                selection={selection}
+                correct={question.correctAnswer}
+                onSelect={() => handleResponse(option)}
+              />
+            ))}
+          </section>
+          <NextButton onClick={onSuccess} disabled={!correct} />
         </section>
-        <NextButton onClick={onSuccess} disabled={!correct} />
       </section>
-    </section>
     </>
   );
 };
