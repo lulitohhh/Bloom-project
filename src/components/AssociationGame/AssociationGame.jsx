@@ -1,13 +1,13 @@
-// src/components/AssociationGame/AssociationGame.jsx
-import { useEffect } from 'react';
+import './AssociationGame.css';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setPairs, selectCard, clearSelection, markResolved } from '../../redux/Activities/associationSlice';
 import { addCoins } from '../../redux/coinSlice'; 
+import { markAssociationCompleted } from '../../redux/ActivityProgressSlice';
 import CardGroup from '../CardGroup/CardGroup';
 import Header from '../Header/Header';
 import NextButton from '../NextButton/NextButton';
 import Association from '../../data/Association.json';
-import './AssociationGame.css';
 import NavBar from '../navBar/navBar';
 
 const images = import.meta.glob('../../assets/images/*.png', { eager: true });
@@ -19,8 +19,10 @@ function getImage(nombre) {
 function AssociationGame({ id, onSuccess }) {
   const dispatch = useDispatch();
   const { currentPairs, selected, resolved } = useSelector((state) => state.association);
+  const completedAssociations = useSelector((state) => state.activityProgress.associationsCompleted);
+  const [hasAwarded, setHasAwarded] = useState(false); 
 
-  // 🧠 El useEffect ahora depende de id, no de activity
+  // Reiniciar el estado de las cartas y resueltos al cambiar de id
   useEffect(() => {
     const activity = Association.find((a) => a.id === id);
     if (activity) {
@@ -48,18 +50,23 @@ function AssociationGame({ id, onSuccess }) {
       }
 
       dispatch(setPairs(shuffled));
+      dispatch(clearSelection()); // Reset selection state on activity change
+      setHasAwarded(false); // Prevenir que las monedas se otorguen varias veces
     }
-  }, [dispatch, id]); // ✅ 'id' es la dependencia clave
+  }, [dispatch, id]);
 
- useEffect(() => {
-  if (resolved.length === currentPairs.length && currentPairs.length > 0) {
-    // Evitar agregar monedas más de una vez
-    if (resolved.length === currentPairs.length && !localStorage.getItem('coinsAwarded')) {
-      dispatch(addCoins(5));
-      localStorage.setItem('coinsAwarded', 'true');  // Asegura que no se sumen monedas varias veces
+  // Lógica para agregar monedas solo si la actividad no ha sido completada
+  useEffect(() => {
+    if (resolved.length === currentPairs.length && currentPairs.length > 0) {
+      const alreadyCompleted = completedAssociations.includes(id);
+
+      if (!alreadyCompleted && !hasAwarded) {
+        dispatch(addCoins(2)); // Otorgar 2 monedas
+        dispatch(markAssociationCompleted(id)); // Marcar actividad como completada
+        setHasAwarded(true); // Prevenir múltiples recompensas
+      }
     }
-  }
-}, [resolved, currentPairs.length, dispatch]);
+  }, [resolved, currentPairs, completedAssociations, id, dispatch, hasAwarded]);
 
   function handleCardClick(cardId) {
     if (resolved.includes(cardId) || selected.includes(cardId)) return;
@@ -88,34 +95,33 @@ function AssociationGame({ id, onSuccess }) {
     }
   }
 
-  // Actividad encontrada por ID (por si el JSON está mal formateado)
   const activity = Association.find((a) => a.id === id);
   if (!activity) return <p>Actividad no encontrada</p>;
 
   return (
     <>
-     <NavBar/>
-    <div className="asociacion-container">
-      <Header type={activity.type} title={activity.title} />
-      <section className="asociacion-box">
-      <CardGroup
-        cards={currentPairs.map((c) => ({
-          ...c,
-          correct: resolved.includes(c.id)
-            ? true
-            : selected.includes(c.id)
-            ? 'selected'
-            : null,
-        }))}
-        onCardClick={handleCardClick}
-        selected={selected}
-      />
-      </section>
-      <NextButton
-        onClick={onSuccess}
-        disabled={resolved.length !== currentPairs.length}
-      />
-    </div>
+      <NavBar />
+      <div className="asociacion-container">
+        <Header type={activity.type} title={activity.title} />
+        <section className="asociacion-box">
+          <CardGroup
+            cards={currentPairs.map((c) => ({
+              ...c,
+              correct: resolved.includes(c.id)
+                ? true
+                : selected.includes(c.id)
+                ? 'selected'
+                : null,
+            }))}
+            onCardClick={handleCardClick}
+            selected={selected}
+          />
+        </section>
+        <NextButton
+          onClick={onSuccess}
+          disabled={resolved.length !== currentPairs.length}
+        />
+      </div>
     </>
   );
 }

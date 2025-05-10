@@ -13,16 +13,22 @@ const activityProgressSlice = createSlice({
   initialState,
   reducers: {
     markQuizCompleted: (state, action) => {
-      state.quizCompleted.push(action.payload); // por ejemplo: ID de quiz
-      saveToLocalStorage('activityProgress', state);
+      if (!state.quizCompleted.includes(action.payload)) {
+        state.quizCompleted.push(action.payload);
+        saveToLocalStorage('activityProgress', state);
+      }
     },
     markAssociationCompleted: (state, action) => {
-      state.associationsCompleted.push(action.payload);
-      saveToLocalStorage('activityProgress', state);
+      if (!state.associationsCompleted.includes(action.payload)) {
+        state.associationsCompleted.push(action.payload);
+        saveToLocalStorage('activityProgress', state);
+      }
     },
     markStoryCompleted: (state, action) => {
-      state.storiesCompleted.push(action.payload);
-      saveToLocalStorage('activityProgress', state);
+      if (!state.storiesCompleted.includes(action.payload)) {
+        state.storiesCompleted.push(action.payload);
+        saveToLocalStorage('activityProgress', state);
+      }
     },
     resetProgress: (state) => {
       state.quizCompleted = [];
