@@ -1,5 +1,5 @@
 import './QuizGame.css';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAnswer, resetQuiz } from '../../redux/Activities/QuizGameSlice';
 import cuestionarios from '../../data/Quizzes.json';
@@ -7,25 +7,15 @@ import Header from '../Header/Header';
 import AnswerOption from '../AnswerOption/AnswerOption';
 import NextButton from '../NextButton/NextButton';
 import NavBar from '../navBar/navBar';
-import { addCoins } from '../../redux/coinSlice'; 
 
 const QuizGame = ({ id, onSuccess }) => {
   const dispatch = useDispatch();
   const { selection, correct } = useSelector((state) => state.quiz);
-  const [hasAwarded, setHasAwarded] = useState(false);
   const question = cuestionarios.find((p) => p.id === id);
 
   useEffect(() => {
     dispatch(resetQuiz());
-    setHasAwarded(false); // reiniciar al cambiar de pregunta
   }, [id, dispatch]);
-
-  useEffect(() => {
-    if (correct && !hasAwarded) {
-      dispatch(addCoins(2));
-      setHasAwarded(true);
-    }
-  }, [correct, hasAwarded, dispatch]);
 
   const handleResponse = (answer) => {
     dispatch(selectAnswer({ answer, correctAnswer: question.correctAnswer }));
