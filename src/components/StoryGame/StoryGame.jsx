@@ -73,13 +73,16 @@ function StoryGame({ onFinish }) {
   }
 
   function handleAnswer(isCorrect) {
-    setAnsweredCorrectly(isCorrect); 
+  setAnsweredCorrectly(isCorrect);
 
-    if (isCorrect) {
-      dispatch(registerCorrect());
-      dispatch(addCoins(5)); 
-    }
+  if (isCorrect && !localStorage.getItem('coinsAwarded')) {
+    dispatch(registerCorrect());
+    dispatch(addCoins(5));
+    localStorage.setItem('coinsAwarded', 'true');
   }
+}
+
+
 
   return (
     <div className="story-container">
