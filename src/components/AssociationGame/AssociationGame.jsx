@@ -51,12 +51,15 @@ function AssociationGame({ id, onSuccess }) {
     }
   }, [dispatch, id]); // ✅ 'id' es la dependencia clave
 
-  // ✔ Solo añade monedas una vez completado
-  useEffect(() => {
-    if (resolved.length === currentPairs.length && currentPairs.length > 0) {
+ useEffect(() => {
+  if (resolved.length === currentPairs.length && currentPairs.length > 0) {
+    // Evitar agregar monedas más de una vez
+    if (resolved.length === currentPairs.length && !localStorage.getItem('coinsAwarded')) {
       dispatch(addCoins(5));
+      localStorage.setItem('coinsAwarded', 'true');  // Asegura que no se sumen monedas varias veces
     }
-  }, [resolved, currentPairs.length, dispatch]);
+  }
+}, [resolved, currentPairs.length, dispatch]);
 
   function handleCardClick(cardId) {
     if (resolved.includes(cardId) || selected.includes(cardId)) return;
