@@ -21,7 +21,7 @@ const Activities = () => {
   const [actividades, setActividades] = useState([]);
 
 useEffect(() => {
-  localStorage.removeItem('actividad-lista'); // ← limpia antes de generar
+  localStorage.removeItem('actividad-lista'); 
   const mezcladas = [...allActivities].sort(() => Math.random() - 0.5);
   const cantidad = Math.floor(Math.random() * 2) + 4;
   const seleccionadas = mezcladas.slice(0, cantidad);
@@ -52,7 +52,7 @@ useEffect(() => {
       ? <SessionSummary />  // ← aquí va tu componente de resumen
       : actividades[paso] && renderActividad(actividades[paso])
     }
-    <img src={bgImage} alt="Decoración inferior" className="fondo-inferior" />
+    <img src={bgImage} alt="Lower-decoration" className="background-bottom" />
   </div>
   );
 };
