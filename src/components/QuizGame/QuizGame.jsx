@@ -1,5 +1,5 @@
 import './QuizGame.css';
-import {useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAnswer, resetQuiz } from '../../redux/Activities/QuizGameSlice';
 import cuestionarios from '../../data/Quizzes.json';
@@ -14,15 +14,22 @@ const QuizGame = ({ id, onSuccess }) => {
   const { selection, correct } = useSelector((state) => state.quiz);
   const question = cuestionarios.find((p) => p.id === id);
 
+  const coinsGiven = useRef(false);
+
+  // Reiniciar estado del quiz al montar
   useEffect(() => {
     dispatch(resetQuiz());
+    coinsGiven.current = false;
   }, [id, dispatch]);
 
+  // Agregar monedas solo una vez cuando la respuesta es correcta
   useEffect(() => {
-    if (correct) {
-      dispatch(addCoins(2)); 
+    if (correct && !coinsGiven.current) {
+      console.log('✅ Monedas otorgadas por pregunta ID:', id);
+      dispatch(addCoins(2));
+      coinsGiven.current = true;
     }
-  }, [correct, dispatch]);
+  }, [correct, dispatch, id]);
 
   const handleResponse = (answer) => {
     dispatch(selectAnswer({ answer, correctAnswer: question.correctAnswer }));
