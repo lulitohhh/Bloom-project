@@ -4,6 +4,7 @@ import bgImage from '../../assets/images/fondo.png';
 import QuizGame from '../../components/QuizGame/QuizGame';
 import AssociationGame from '../../components/AssociationGame/AssociationGame';
 import StoryGame from '../../components/StoryGame/StoryGame';
+import SessionSummary from '../../components/SessionSummary/SessionSummary';
 
 const allActivities = [
   { type: 'quiz', id: 1 },
@@ -11,8 +12,8 @@ const allActivities = [
   { type: 'quiz', id: 3 },
   { type: 'quiz', id: 4 },
   { type: 'quiz', id: 5 },
-  { type: 'association', id: 1 },
-  { type: 'association', id: 2 }
+  //{ type: 'association', id: 1 },
+  //{ type: 'association', id: 2 }
 ];
 
 const Activities = () => {
@@ -43,12 +44,16 @@ useEffect(() => {
     }
     return null;
   };
+  const isFinished = paso >= actividades.length;
 
   return (
-    <div>
-      {actividades[paso] && renderActividad(actividades[paso])}
-      <img src={bgImage} alt="Decoración inferior" className="fondo-inferior" />
-    </div>
+     <div>
+    {isFinished 
+      ? <SessionSummary />  // ← aquí va tu componente de resumen
+      : actividades[paso] && renderActividad(actividades[paso])
+    }
+    <img src={bgImage} alt="Decoración inferior" className="fondo-inferior" />
+  </div>
   );
 };
 

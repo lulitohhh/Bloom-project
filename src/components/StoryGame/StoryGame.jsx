@@ -7,7 +7,7 @@ import {
   registerCorrect,
 } from '../../redux/Activities/storySlice';
 import { addCoins } from '../../redux/coinSlice';
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 import Stories from '../../data/Stories.json';
 import Header from '../Header/Header';
 import NextButton from '../NextButton/NextButton';
@@ -23,7 +23,7 @@ function getImage(fileName) {
 
 function StoryGame({ onFinish }) {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   const { storyId, currentPage } = useSelector((state) => state.story);
 
   const [answeredCorrectly, setAnsweredCorrectly] = useState({}); // Estado modificado para manejar varias respuestas
@@ -62,9 +62,8 @@ function StoryGame({ onFinish }) {
   function handleNext() {
     if (isLastPage) {
       if (onFinish) {
-        onFinish();
-      }
-      navigate('/');
+    onFinish(); // ← el componente padre sabrá qué mostrar
+  }
     } else {
       dispatch(nextPage());
       setAnsweredCorrectly({});

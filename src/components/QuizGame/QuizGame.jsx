@@ -7,7 +7,8 @@ import Header from '../Header/Header';
 import AnswerOption from '../AnswerOption/AnswerOption';
 import NextButton from '../NextButton/NextButton';
 import NavBar from '../navBar/navBar';
-import { addCoins } from '../../redux/coinSlice'; 
+//import { addCoins } from '../../redux/coinSlice'; 
+import { addSessionCoins } from '../../redux/sessionCoinsSlice';
 
 const QuizGame = ({ id, onSuccess }) => {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ const QuizGame = ({ id, onSuccess }) => {
   useEffect(() => {
   if (selection && correct && !coinsGiven.current) {
     console.log('Monedas otorgadas ID:', id);
-    dispatch(addCoins(5));
+    dispatch(addSessionCoins(5));
     coinsGiven.current = true;
   }
 }, [selection, correct, dispatch, id]);
