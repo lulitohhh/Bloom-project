@@ -1,4 +1,3 @@
-// Puedes simplificar todo así si ya no lo usás para nada más:
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
@@ -21,3 +20,4 @@ const activityProgressSlice = createSlice({
 
 export const { resetProgress } = activityProgressSlice.actions;
 export default activityProgressSlice.reducer;
+

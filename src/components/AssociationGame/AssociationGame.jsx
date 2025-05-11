@@ -1,12 +1,8 @@
 import './AssociationGame.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  setPairs,
-  selectCard,
-  clearSelection,
-  markResolved
-} from '../../redux/Activities/associationSlice';
+import { setPairs, selectCard, clearSelection, markResolved } from '../../redux/Activities/associationSlice';
+import { addCoins } from '../../redux/coinSlice';  // Para dar las monedas
 import CardGroup from '../CardGroup/CardGroup';
 import Header from '../Header/Header';
 import NextButton from '../NextButton/NextButton';
@@ -14,7 +10,6 @@ import Association from '../../data/Association.json';
 import NavBar from '../navBar/navBar';
 
 const images = import.meta.glob('../../assets/images/*.png', { eager: true });
-
 function getImage(nombre) {
   const path = `../../assets/images/${nombre}.png`;
   return images[path]?.default || '';
@@ -23,7 +18,9 @@ function getImage(nombre) {
 function AssociationGame({ id, onSuccess }) {
   const dispatch = useDispatch();
   const { currentPairs, selected, resolved } = useSelector((state) => state.association);
+  const [hasAwarded, setHasAwarded] = useState(false);  // Flag para evitar dar monedas múltiples veces
 
+  // Reiniciar las cartas cuando cambiamos de actividad
   useEffect(() => {
     const activity = Association.find((a) => a.id === id);
     if (activity) {
@@ -44,17 +41,27 @@ function AssociationGame({ id, onSuccess }) {
         shuffled.push(item, match);
       }
 
-      // Mezclar
+      // Mezclar las cartas
       for (let i = shuffled.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
       }
 
       dispatch(setPairs(shuffled));
-      dispatch(clearSelection());
+      dispatch(clearSelection());  // Limpiar la selección cuando cambiamos de actividad
+      setHasAwarded(false);  // Resetear la flag para las monedas
     }
   }, [dispatch, id]);
 
+  // Otorgar 6 monedas cuando todas las parejas están resueltas
+  useEffect(() => {
+    if (resolved.length === currentPairs.length && !hasAwarded) {
+      dispatch(addCoins(6));  // Otorgar 6 monedas
+      setHasAwarded(true);  // Evitar que se otorguen monedas más de una vez
+    }
+  }, [resolved, currentPairs, dispatch, hasAwarded]);
+
+  // Manejo del clic en las cartas
   function handleCardClick(cardId) {
     if (resolved.includes(cardId) || selected.includes(cardId)) return;
 
