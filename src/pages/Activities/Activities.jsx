@@ -12,8 +12,8 @@ const allActivities = [
   { type: 'quiz', id: 3 },
   { type: 'quiz', id: 4 },
   { type: 'quiz', id: 5 },
-  //{ type: 'association', id: 1 },
-  //{ type: 'association', id: 2 }
+  { type: 'association', id: 1 },
+  { type: 'association', id: 2 }
 ];
 
 const Activities = () => {
