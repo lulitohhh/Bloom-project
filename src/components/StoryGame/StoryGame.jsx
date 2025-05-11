@@ -1,12 +1,10 @@
 // src/components/StoryGame/StoryGame.jsx
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  startStory,
-  nextPage,
-  registerCorrect,
-} from '../../redux/Activities/storySlice';
-import { addCoins } from '../../redux/coinSlice';
+import { startStory, nextPage, registerCorrect } from '../../redux/Activities/storySlice';
+
+import { addSessionCoins } from '../../redux/sessionCoinsSlice';
+
 //import { useNavigate } from 'react-router-dom';
 import Stories from '../../data/Stories.json';
 import Header from '../Header/Header';
@@ -79,7 +77,7 @@ function StoryGame({ onFinish }) {
     // Otorgar 2 monedas por cada respuesta correcta
     if (isCorrect) {
       dispatch(registerCorrect());
-      dispatch(addCoins(2)); // Otorgar 2 monedas por respuesta correcta
+      dispatch(addSessionCoins(3)); // Otorgar 2 monedas por respuesta correcta
     }
   }
 
