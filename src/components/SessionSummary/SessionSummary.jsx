@@ -5,6 +5,7 @@ import './SessionSummary.css';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../navBar/navBar';
 import celebrationImage from '../../assets/images/celebration.webp';
+import NextButton from '../../components/NextButton/NextButton' ;
 
 
 
@@ -29,7 +30,11 @@ const SessionSummary = () => {
             <p>Has aprendido sobre el medio ambiente y has ganado</p>
             <h2> {sessionTotal} monedas.</h2>
         </section>
-       <button className="continue-button" onClick={handleFinish}> Continuar </button>
+        <NextButton 
+        text="Continuar"
+        onClick={handleFinish}
+        className="continue-button"
+      />
     </section>
     </>
   );
