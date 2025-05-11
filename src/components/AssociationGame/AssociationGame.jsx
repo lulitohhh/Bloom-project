@@ -18,10 +18,10 @@ function getImage(nombre) {
 function AssociationGame({ id, onSuccess }) {
   const dispatch = useDispatch();
   const { currentPairs, selected, resolved } = useSelector((state) => state.association);
-  const hasAwarded = useRef(false);  // ← reemplazamos useState por useRef
+  const hasAwarded = useRef(false); 
 
   useEffect(() => {
-  dispatch(resetAssociation()); // ← limpieza segura
+  dispatch(resetAssociation()); 
 
   const activity = Association.find((a) => a.id === id);
   if (activity) {
