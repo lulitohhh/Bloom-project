@@ -2,12 +2,12 @@ import './AssociationGame.css';
 import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setPairs, selectCard, clearSelection, markResolved, resetAssociation } from '../../redux/Activities/associationSlice';
-import { addCoins } from '../../redux/coinSlice';
 import CardGroup from '../CardGroup/CardGroup';
 import Header from '../Header/Header';
 import NextButton from '../NextButton/NextButton';
 import Association from '../../data/Association.json';
 import NavBar from '../navBar/navBar';
+import { addSessionCoins } from '../../redux/sessionCoinsSlice';
 
 const images = import.meta.glob('../../assets/images/*.png', { eager: true });
 function getImage(nombre) {
@@ -57,7 +57,7 @@ function AssociationGame({ id, onSuccess }) {
   const activityCompleted = currentPairs.length > 0 && resolved.length === currentPairs.length;
 
   if (activityCompleted && !hasAwarded.current) {
-    dispatch(addCoins(2));
+    dispatch(addSessionCoins(3));
     hasAwarded.current = true;
   }
 }, [resolved, currentPairs, dispatch]);
