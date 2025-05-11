@@ -4,9 +4,6 @@
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  background-color: #fef6e4;
-  border-radius: 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   margin: 2rem auto;
   max-width: 500px;
   text-align: center;
@@ -19,7 +16,7 @@
 }
 
 .coin-icon {
-  width: 80px;
+  width: 70%;
   margin: 1rem 0;
 }
 

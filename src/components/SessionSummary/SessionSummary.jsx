@@ -4,6 +4,9 @@ import { resetSessionCoins } from '../../redux/sessionCoinsSlice';
 import './SessionSummary.css';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../navBar/navBar';
+import celebrationImage from '../../assets/images/celebration.webp';
+
+
 
 const SessionSummary = () => {
   const dispatch = useDispatch();
@@ -19,12 +22,11 @@ const SessionSummary = () => {
   return (
     <>
     <NavBar></NavBar>
-    <div className="session-summary">
-     <img src="/assets/images/celebration.webp" alt="Coin" className="coin-icon" />
-      <h2>¡Has ganado {sessionTotal} monedas en esta sesión!</h2>
-      <button className="continue-button" onClick={handleFinish}>
-        Continuar
-      </button>
+    <div className="session-summary"> 
+       <img src={celebrationImage} alt="CelebrationImage" className="coin-icon" />
+        <h1>¡Lo lograste!</h1>
+        <p>Has aprendido sobre el medio ambiente y has ganado {sessionTotal} monedas.</p>
+       <button className="continue-button" onClick={handleFinish}> Continuar </button>
     </div>
     </>
   );
