@@ -24,12 +24,12 @@ const QuizGame = ({ id, onSuccess }) => {
 
   // Agregar monedas solo una vez cuando la respuesta es correcta
   useEffect(() => {
-    if (correct && !coinsGiven.current) {
-      console.log('✅ Monedas otorgadas por pregunta ID:', id);
-      dispatch(addCoins(2));
-      coinsGiven.current = true;
-    }
-  }, [correct, dispatch, id]);
+  if (selection && correct && !coinsGiven.current) {
+    console.log('Monedas otorgadas ID:', id);
+    dispatch(addCoins(5));
+    coinsGiven.current = true;
+  }
+}, [selection, correct, dispatch, id]);
 
   const handleResponse = (answer) => {
     dispatch(selectAnswer({ answer, correctAnswer: question.correctAnswer }));
