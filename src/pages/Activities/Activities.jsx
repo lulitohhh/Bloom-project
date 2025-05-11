@@ -20,12 +20,19 @@ const Activities = () => {
   const [actividades, setActividades] = useState([]);
 
   useEffect(() => {
-    const mezcladas = [...allActivities].sort(() => Math.random() - 0.5);
-    const cantidad = Math.floor(Math.random() * 2) + 4; // 4 o 5
-    const seleccionadas = mezcladas.slice(0, cantidad);
-
-    setActividades([...seleccionadas, { type: 'story' }]);
+    const data = localStorage.getItem('actividad-lista');
+    if (data) {
+      setActividades(JSON.parse(data));
+    } else {
+      const mezcladas = [...allActivities].sort(() => Math.random() - 0.5);
+      const cantidad = Math.floor(Math.random() * 2) + 4;
+      const seleccionadas = mezcladas.slice(0, cantidad);
+      const finalList = [...seleccionadas, { type: 'story' }];
+      localStorage.setItem('actividad-lista', JSON.stringify(finalList));
+      setActividades(finalList);
+    }
   }, []);
+
   const avanzarPaso = () => setPaso((prev) => prev + 1);
 
   const renderActividad = (actividad) => {
