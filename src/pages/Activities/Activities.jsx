@@ -1,24 +1,49 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './Activities.css';
 import bgImage from '../../assets/images/fondo.png';
 import QuizGame from '../../components/QuizGame/QuizGame';
 import AssociationGame from '../../components/AssociationGame/AssociationGame';
 import StoryGame from '../../components/StoryGame/StoryGame';
 
+const allActivities = [
+  { type: 'quiz', id: 1 },
+  { type: 'quiz', id: 2 },
+  { type: 'quiz', id: 3 },
+  { type: 'quiz', id: 4 },
+  { type: 'quiz', id: 5 },
+  { type: 'association', id: 1 },
+  { type: 'association', id: 2 }
+];
+
 const Activities = () => {
   const [paso, setPaso] = useState(0);
+  const [actividades, setActividades] = useState([]);
 
+  useEffect(() => {
+    const mezcladas = [...allActivities].sort(() => Math.random() - 0.5);
+    const cantidad = Math.floor(Math.random() * 2) + 4; // 4 o 5
+    const seleccionadas = mezcladas.slice(0, cantidad);
+
+    setActividades([...seleccionadas, { type: 'story' }]);
+  }, []);
   const avanzarPaso = () => setPaso((prev) => prev + 1);
+
+  const renderActividad = (actividad) => {
+    if (actividad.type === 'quiz') {
+      return <QuizGame id={actividad.id} onSuccess={avanzarPaso} />;
+    }
+    if (actividad.type === 'association') {
+      return <AssociationGame id={actividad.id} onSuccess={avanzarPaso} />;
+    }
+    if (actividad.type === 'story') {
+      return <StoryGame onFinish={avanzarPaso} />;
+    }
+    return null;
+  };
 
   return (
     <div>
-      {paso === 0 && <QuizGame id={1} onSuccess={avanzarPaso} />}
-      {paso === 1 && <QuizGame id={2} onSuccess={avanzarPaso} />}
-      {paso === 2 && <QuizGame id={3} onSuccess={avanzarPaso} />}
-      {paso === 3 && <AssociationGame id={1} onSuccess={avanzarPaso} />}
-      {paso === 4 && <AssociationGame id={2} onSuccess={avanzarPaso} />}
-      {paso === 5 && <StoryGame onFinish={avanzarPaso} />} 
-
+      {actividades[paso] && renderActividad(actividades[paso])}
       <img src={bgImage} alt="Decoración inferior" className="fondo-inferior" />
     </div>
   );
