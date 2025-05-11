@@ -1,3 +1,5 @@
+import "./PageLeft.css"
+
 const PageLeft = ({ selectedCategory, setSelectedCategory, data = [], selectedItem, setSelectedItem }) => {
   return (
     <div className="page-left">

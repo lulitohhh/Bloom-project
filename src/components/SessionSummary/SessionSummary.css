@@ -1,0 +1,34 @@
+.session-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5%;
+  margin: 1% auto;
+  max-width: 500px;
+  text-align: center;
+}
+
+.session-summary h2 {
+  color: #333;
+  font-size: 1.8rem;
+  margin-bottom: 4px;
+}
+
+.coin-icon {
+  width: 70%;
+  margin: 2px 0;
+}
+
+.Text-summary{
+ padding: 3px;
+}
+
+
+
+
+#activitext {
+    font-family: "Fredoka", sans-serif;
+    font-weight: 600;
+    color: #FFFFFF;
+    text-align: start;}

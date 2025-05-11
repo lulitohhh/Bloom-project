@@ -1,15 +1,19 @@
-import { useState } from 'react';
+// src/components/StoryQuestionBlock/QuestionBlock.jsx
+import { useState, useEffect } from 'react';
 import AnswerOption from '../AnswerOption/AnswerOption';
 import './QuestionBlock.css';
 
-function QuestionBlock({ question, onAnswer}) {
+function QuestionBlock({ question, onAnswer, questionIndex }) {
   const [selection, setSelection] = useState(null);
 
+  useEffect(() => {
+    setSelection(null); // Reset selection on question change
+  }, [questionIndex]); // Reset on page change
 
   const handleAnswer = (selectedOption) => {
     const isCorrect = selectedOption === question.correctAnswer;
     setSelection(selectedOption);
-    onAnswer(isCorrect);
+    onAnswer(isCorrect, questionIndex); // Pass question index to track answers
   };
 
   const options =
@@ -31,7 +35,6 @@ function QuestionBlock({ question, onAnswer}) {
             onSelect={() => handleAnswer(option)}
             wasRespondedCorrectly={selection !== null}
             size="small"
-            
           />
         ))}
       </div>

@@ -1,0 +1,29 @@
+.album-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .album-image {
+    background-image: url('/assets/album.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 900px; 
+    height: 600px;
+    display: flex;
+    position: relative;
+  }
+  
+  .page-left,
+  .page-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  
+  
