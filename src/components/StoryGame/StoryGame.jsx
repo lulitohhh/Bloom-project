@@ -1,11 +1,8 @@
-// src/components/StoryGame/StoryGame.jsx
+
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { startStory, nextPage, registerCorrect } from '../../redux/Activities/storySlice';
-
 import { addSessionCoins } from '../../redux/sessionCoinsSlice';
-
-//import { useNavigate } from 'react-router-dom';
 import Stories from '../../data/Stories.json';
 import Header from '../Header/Header';
 import NextButton from '../NextButton/NextButton';
@@ -21,10 +18,8 @@ function getImage(fileName) {
 
 function StoryGame({ onFinish }) {
   const dispatch = useDispatch();
-  //const navigate = useNavigate();
   const { storyId, currentPage } = useSelector((state) => state.story);
-
-  const [answeredCorrectly, setAnsweredCorrectly] = useState({}); // Estado modificado para manejar varias respuestas
+  const [answeredCorrectly, setAnsweredCorrectly] = useState({});
 
   const story = storyId
     ? Stories.find((s) => s.id === storyId)
@@ -32,12 +27,16 @@ function StoryGame({ onFinish }) {
 
   useEffect(() => {
     const storedProgress = JSON.parse(localStorage.getItem('storyProgress'));
+
     if (storedProgress && storedProgress.storyId === story.id) {
       dispatch(startStory(storedProgress.storyId));
       dispatch(nextPage(storedProgress.currentPage));
-    } else {
+    }
+
+    else {
       dispatch(startStory(story.id));
     }
+    
   }, [dispatch, story.id]);
 
   useEffect(() => {
@@ -60,7 +59,7 @@ function StoryGame({ onFinish }) {
   function handleNext() {
     if (isLastPage) {
       if (onFinish) {
-    onFinish(); // ← el componente padre sabrá qué mostrar
+    onFinish(); 
   }
     } else {
       dispatch(nextPage());
@@ -74,12 +73,13 @@ function StoryGame({ onFinish }) {
       [questionIndex]: isCorrect,
     }));
 
-    // Otorgar 2 monedas por cada respuesta correcta
+
     if (isCorrect) {
       dispatch(registerCorrect());
-      dispatch(addSessionCoins(3)); // Otorgar 2 monedas por respuesta correcta
+      dispatch(addSessionCoins(3)); 
     }
   }
+
 
   return (
     <div className="story-container">
@@ -93,12 +93,12 @@ function StoryGame({ onFinish }) {
           <QuestionBlock 
             question={page.question} 
             onAnswer={handleAnswer} 
-            questionIndex={currentPage} // Pass the current page index to track questions
+            questionIndex={currentPage} 
           />
         }
         <NextButton
           onClick={handleNext}
-          disabled={hasQuestion && Object.keys(answeredCorrectly).length < page.question.length} // Only enable next if all questions are answered
+          disabled={hasQuestion && Object.keys(answeredCorrectly).length < page.question.length} 
           label={isLastPage ? 'Back to Dashboard' : 'Next'}
         />
       </div>
