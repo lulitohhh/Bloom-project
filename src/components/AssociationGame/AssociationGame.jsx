@@ -1,7 +1,7 @@
 import './AssociationGame.css';
 import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setPairs, selectCard, clearSelection, markResolved } from '../../redux/Activities/associationSlice';
+import { setPairs, selectCard, clearSelection, markResolved, resetAssociation } from '../../redux/Activities/associationSlice';
 import { addCoins } from '../../redux/coinSlice';
 import CardGroup from '../CardGroup/CardGroup';
 import Header from '../Header/Header';
@@ -21,43 +21,47 @@ function AssociationGame({ id, onSuccess }) {
   const hasAwarded = useRef(false);  // ← reemplazamos useState por useRef
 
   useEffect(() => {
-    const activity = Association.find((a) => a.id === id);
-    if (activity) {
-      const pairs = activity.pairs || [];
-      const shuffled = [];
+  dispatch(resetAssociation()); // ← limpieza segura
 
-      for (let pair of pairs) {
-        const item = {
-          id: pair.item,
-          image: getImage(pair.item),
-          pairId: pair.match,
-        };
-        const match = {
-          id: pair.match,
-          image: getImage(pair.match),
-          pairId: pair.item,
-        };
-        shuffled.push(item, match);
-      }
+  const activity = Association.find((a) => a.id === id);
+  if (activity) {
+    const pairs = activity.pairs || [];
+    const shuffled = [];
 
-      for (let i = shuffled.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-      }
-
-      dispatch(setPairs(shuffled));
-      dispatch(clearSelection());
-      hasAwarded.current = false; // ← reiniciamos correctamente
-      console.log("Reiniciando actividad, limpiando monedas.");
+    for (let pair of pairs) {
+      const item = {
+        id: pair.item,
+        image: getImage(pair.item),
+        pairId: pair.match,
+      };
+      const match = {
+        id: pair.match,
+        image: getImage(pair.match),
+        pairId: pair.item,
+      };
+      shuffled.push(item, match);
     }
-  }, [dispatch, id]);
+
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+
+    dispatch(setPairs(shuffled));
+    dispatch(clearSelection());
+    hasAwarded.current = false;
+  }
+}, [dispatch, id]);
 
   useEffect(() => {
-    if (resolved.length === currentPairs.length && !hasAwarded.current) {
-      dispatch(addCoins(6));
-      hasAwarded.current = true; // ← ahora se guarda correctamente
-    }
-  }, [resolved, currentPairs, dispatch]);
+  const activityCompleted = currentPairs.length > 0 && resolved.length === currentPairs.length;
+
+  if (activityCompleted && !hasAwarded.current) {
+    dispatch(addCoins(2));
+    hasAwarded.current = true;
+  }
+}, [resolved, currentPairs, dispatch]);
+
 
   function handleCardClick(cardId) {
     if (resolved.includes(cardId) || selected.includes(cardId)) return;
