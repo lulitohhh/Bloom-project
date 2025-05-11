@@ -27,7 +27,7 @@ const QuizGame = ({ id, onSuccess }) => {
   useEffect(() => {
   if (selection && correct && !coinsGiven.current) {
     console.log('Monedas otorgadas ID:', id);
-    dispatch(addSessionCoins(5));
+    dispatch(addSessionCoins(3));
     coinsGiven.current = true;
   }
 }, [selection, correct, dispatch, id]);
