@@ -25,7 +25,8 @@ const SessionSummary = () => {
     <div className="session-summary"> 
        <img src={celebrationImage} alt="CelebrationImage" className="coin-icon" />
         <h1>¡Lo lograste!</h1>
-        <p>Has aprendido sobre el medio ambiente y has ganado {sessionTotal} monedas.</p>
+        <p>Has aprendido sobre el medio ambiente y has ganado</p>
+        <h2> {sessionTotal} monedas.</h2>
        <button className="continue-button" onClick={handleFinish}> Continuar </button>
     </div>
     </>
