@@ -6,7 +6,7 @@ import {
   nextPage,
   registerCorrect,
 } from '../../redux/Activities/storySlice';
-import { addCoins } from '../../redux/coinSlice'; 
+import { addCoins } from '../../redux/coinSlice';
 import { useNavigate } from 'react-router-dom';
 import Stories from '../../data/Stories.json';
 import Header from '../Header/Header';
@@ -24,9 +24,9 @@ function getImage(fileName) {
 function StoryGame({ onFinish }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { storyId, currentPage } = useSelector((state) => state.story); 
+  const { storyId, currentPage } = useSelector((state) => state.story);
 
-  const [answeredCorrectly, setAnsweredCorrectly] = useState(null); 
+  const [answeredCorrectly, setAnsweredCorrectly] = useState({}); // Estado modificado para manejar varias respuestas
 
   const story = storyId
     ? Stories.find((s) => s.id === storyId)
@@ -43,7 +43,6 @@ function StoryGame({ onFinish }) {
   }, [dispatch, story.id]);
 
   useEffect(() => {
-
     localStorage.setItem(
       'storyProgress',
       JSON.stringify({
@@ -63,26 +62,27 @@ function StoryGame({ onFinish }) {
   function handleNext() {
     if (isLastPage) {
       if (onFinish) {
-        onFinish(); // Ejecuta lógica extra si se necesita
+        onFinish();
       }
-      navigate('/'); // Pero siempre navega al dashboard
+      navigate('/');
     } else {
       dispatch(nextPage());
-      setAnsweredCorrectly(null);
+      setAnsweredCorrectly({});
     }
   }
 
-  function handleAnswer(isCorrect) {
-  setAnsweredCorrectly(isCorrect);
+  function handleAnswer(isCorrect, questionIndex) {
+    setAnsweredCorrectly((prevState) => ({
+      ...prevState,
+      [questionIndex]: isCorrect,
+    }));
 
-  if (isCorrect && !localStorage.getItem('coinsAwarded')) {
-    dispatch(registerCorrect());
-    dispatch(addCoins(5));
-    localStorage.setItem('coinsAwarded', 'true');
+    // Otorgar 2 monedas por cada respuesta correcta
+    if (isCorrect) {
+      dispatch(registerCorrect());
+      dispatch(addCoins(2)); // Otorgar 2 monedas por respuesta correcta
+    }
   }
-}
-
-
 
   return (
     <div className="story-container">
@@ -92,10 +92,16 @@ function StoryGame({ onFinish }) {
         <h2 className="story-title">{story.title}</h2>
         {imageSrc && <img src={imageSrc} alt="Story scene" className="story-image" />}
         <p className="story-text">{page.text}</p>
-        {hasQuestion && <QuestionBlock question={page.question} onAnswer={handleAnswer} />}
+        {hasQuestion && 
+          <QuestionBlock 
+            question={page.question} 
+            onAnswer={handleAnswer} 
+            questionIndex={currentPage} // Pass the current page index to track questions
+          />
+        }
         <NextButton
           onClick={handleNext}
-          disabled={hasQuestion && answeredCorrectly === null} 
+          disabled={hasQuestion && Object.keys(answeredCorrectly).length < page.question.length} // Only enable next if all questions are answered
           label={isLastPage ? 'Back to Dashboard' : 'Next'}
         />
       </div>
@@ -104,3 +110,4 @@ function StoryGame({ onFinish }) {
 }
 
 export default StoryGame;
+

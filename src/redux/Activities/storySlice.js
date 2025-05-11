@@ -1,4 +1,4 @@
-// src/redux/storySlice.js
+// src/redux/Activities/storySlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
