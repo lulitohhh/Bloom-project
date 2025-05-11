@@ -99,7 +99,7 @@ function StoryGame({ onFinish }) {
         <NextButton
           onClick={handleNext}
           disabled={hasQuestion && Object.keys(answeredCorrectly).length < page.question.length} 
-          label={isLastPage ? 'Back to Dashboard' : 'Next'}
+          label={'Next'}
         />
       </div>
     </div>
