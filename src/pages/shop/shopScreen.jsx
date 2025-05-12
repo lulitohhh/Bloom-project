@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import "./ShopScreen.css";
 import NavBar from "../../components/navBar/navBar";
-import { plants } from "../../data/itemData"; 
-import { ecosystems } from "../../data/itemData"; 
-import { accessories } from "../../data/itemData"; 
+import { plants } from "../../data/itemData";
+import { ecosystems } from "../../data/itemData";
+import { accessories } from "../../data/itemData";
+import coinImg from "/src/assets/images/Coin.png";
 
 const formatItems = {
   plants: plants.map((plant, index) => ({
     id: index + 1,
     name: plant.name,
-    price: 50, // Puedes cambiar los precios si lo deseas
+    price: 50,
     img: plant.image,
   })),
   ecosystems: ecosystems.map((eco, index) => ({
@@ -55,21 +56,26 @@ const ShopScreen = () => {
             </button>
           ))}
         </div>
-        <div className="coins-counter">🪙 {coins}</div>
+        <div className="coins-counter">
+          <img src={coinImg} alt="Coin" className="coin-icon" />
+          {coins}
+        </div>
       </div>
-
-          <div className="container-shop">
-      <div className="items-grid">
-        {formatItems[category].map((item) => (
-          <div key={item.id} className="item-card">
-            <img src={item.img} alt={item.name} className="item-img" />
-            <h3>{item.name}</h3>
-            <p>{item.price} 🪙</p>
-            <button onClick={() => handleBuy(item.price)}>Buy</button>
-          </div>
-        ))}
+      <div className="container-shop">
+        <div className="items-grid">
+          {formatItems[category].map((item) => (
+            <div key={item.id} className="item-card">
+              <img src={item.img} alt={item.name} className="item-img" />
+              <h3>{item.name}</h3>
+              <p>
+                {item.price}{" "}
+                <img src={coinImg} alt="coin" className="coin-icon" />
+              </p>
+              <button onClick={() => handleBuy(item.price)}>Buy</button>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
     </div>
   );
 };

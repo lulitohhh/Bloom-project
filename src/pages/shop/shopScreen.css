@@ -5,6 +5,16 @@ body {
 }
 
 .shop-container {
+  background: url("/src/assets/images/bg-shop.png") no-repeat center center fixed;
+  background-size: cover;
+  padding: 20px;
+  font-family: "Fredoka", sans-serif;
+  min-height: 100vh;
+  color: #4B2E15;
+}
+
+
+.shop-container {
   font-family: "Fredoka", sans-serif;
   padding: 20px;
   background-color: #FFF7E6;
@@ -99,4 +109,20 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.coins-counter {
+  background-color: #FFD79F;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.coin-icon {
+  width: 15px;
+  height: 15px;
 }
