@@ -71,7 +71,7 @@ const ShopScreen = () => {
                 {item.price}{" "}
                 <img src={coinImg} alt="coin" className="coin-icon" />
               </p>
-              <button onClick={() => handleBuy(item.price)}>Buy</button>
+              <button className="BuyBtn" onClick={() => handleBuy(item.price)}>Buy</button>
             </div>
           ))}
         </div>

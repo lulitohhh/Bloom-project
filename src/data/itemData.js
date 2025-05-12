@@ -130,7 +130,7 @@ export const plants = [
     },
     {
       name: "Coral Reef",
-      image: "/assets/ecosystems/coral_reef.png",
+      image: "/assets/ecosystems/coral-reef.png",
       description:
         "A colorful underwater world made of living corals. It’s like a rainbow under the sea!",
       animals: "🐠 Clownfish, 🐢 Sea turtle, 🦑 Octopus",
@@ -148,7 +148,7 @@ export const plants = [
     },
     {
       name: "Temperate Forest",
-      image: "/assets/ecosystems/temperate_forest.png",
+      image: "/assets/ecosystems/forest.png",
       description:
         "It has four seasons: spring, summer, fall and winter. Trees change color in autumn!",
       animals: "🦌 Deer, 🐿 Squirrel, 🦉 Owl",
