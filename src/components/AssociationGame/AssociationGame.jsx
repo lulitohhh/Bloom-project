@@ -1,14 +1,13 @@
-// src/components/AssociationGame/AssociationGame.jsx
-import { useEffect } from 'react';
+import './AssociationGame.css';
+import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setPairs, selectCard, clearSelection, markResolved } from '../../redux/Activities/associationSlice';
-import { addCoins } from '../../redux/coinSlice'; 
+import { setPairs, selectCard, clearSelection, markResolved, resetAssociation } from '../../redux/Activities/associationSlice';
 import CardGroup from '../CardGroup/CardGroup';
 import Header from '../Header/Header';
 import NextButton from '../NextButton/NextButton';
 import Association from '../../data/Association.json';
-import './AssociationGame.css';
 import NavBar from '../navBar/navBar';
+import { addSessionCoins } from '../../redux/sessionCoinsSlice';
 
 const images = import.meta.glob('../../assets/images/*.png', { eager: true });
 function getImage(nombre) {
@@ -19,44 +18,50 @@ function getImage(nombre) {
 function AssociationGame({ id, onSuccess }) {
   const dispatch = useDispatch();
   const { currentPairs, selected, resolved } = useSelector((state) => state.association);
+  const hasAwarded = useRef(false); 
 
-  // 🧠 El useEffect ahora depende de id, no de activity
   useEffect(() => {
-    const activity = Association.find((a) => a.id === id);
-    if (activity) {
-      const pairs = activity.pairs || [];
-      const shuffled = [];
+  dispatch(resetAssociation()); 
 
-      for (let pair of pairs) {
-        const item = {
-          id: pair.item,
-          image: getImage(pair.item),
-          pairId: pair.match,
-        };
-        const match = {
-          id: pair.match,
-          image: getImage(pair.match),
-          pairId: pair.item,
-        };
-        shuffled.push(item, match);
-      }
+  const activity = Association.find((a) => a.id === id);
+  if (activity) {
+    const pairs = activity.pairs || [];
+    const shuffled = [];
 
-      // Mezclar
-      for (let i = shuffled.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-      }
-
-      dispatch(setPairs(shuffled));
+    for (let pair of pairs) {
+      const item = {
+        id: pair.item,
+        image: getImage(pair.item),
+        pairId: pair.match,
+      };
+      const match = {
+        id: pair.match,
+        image: getImage(pair.match),
+        pairId: pair.item,
+      };
+      shuffled.push(item, match);
     }
-  }, [dispatch, id]); // ✅ 'id' es la dependencia clave
 
-  // ✔ Solo añade monedas una vez completado
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+
+    dispatch(setPairs(shuffled));
+    dispatch(clearSelection());
+    hasAwarded.current = false;
+  }
+}, [dispatch, id]);
+
   useEffect(() => {
-    if (resolved.length === currentPairs.length && currentPairs.length > 0) {
-      dispatch(addCoins(5));
-    }
-  }, [resolved, currentPairs.length, dispatch]);
+  const activityCompleted = currentPairs.length > 0 && resolved.length === currentPairs.length;
+
+  if (activityCompleted && !hasAwarded.current) {
+    dispatch(addSessionCoins(3));
+    hasAwarded.current = true;
+  }
+}, [resolved, currentPairs, dispatch]);
+
 
   function handleCardClick(cardId) {
     if (resolved.includes(cardId) || selected.includes(cardId)) return;
@@ -85,34 +90,33 @@ function AssociationGame({ id, onSuccess }) {
     }
   }
 
-  // Actividad encontrada por ID (por si el JSON está mal formateado)
   const activity = Association.find((a) => a.id === id);
   if (!activity) return <p>Actividad no encontrada</p>;
 
   return (
     <>
-     <NavBar/>
-    <div className="asociacion-container">
-      <Header type={activity.type} title={activity.title} />
-      <section className="asociacion-box">
-      <CardGroup
-        cards={currentPairs.map((c) => ({
-          ...c,
-          correct: resolved.includes(c.id)
-            ? true
-            : selected.includes(c.id)
-            ? 'selected'
-            : null,
-        }))}
-        onCardClick={handleCardClick}
-        selected={selected}
-      />
-      </section>
-      <NextButton
-        onClick={onSuccess}
-        disabled={resolved.length !== currentPairs.length}
-      />
-    </div>
+      <NavBar />
+      <div className="asociacion-container">
+        <Header type={activity.type} title={activity.title} />
+        <section className="asociacion-box">
+          <CardGroup
+            cards={currentPairs.map((c) => ({
+              ...c,
+              correct: resolved.includes(c.id)
+                ? true
+                : selected.includes(c.id)
+                ? 'selected'
+                : null,
+            }))}
+            onCardClick={handleCardClick}
+            selected={selected}
+          />
+        </section>
+        <NextButton
+          onClick={onSuccess}
+          disabled={resolved.length !== currentPairs.length}
+        />
+      </div>
     </>
   );
 }

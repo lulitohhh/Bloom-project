@@ -6,12 +6,12 @@ import "./activitiesBton.css"
 const ActivitiesBton = () => {
   const navigate = useNavigate();
 
-  const handleClick = () => {
+  const handleNavigateClick = () => {
     navigate('/activities'); 
   };
 
   return (
-       <button className='act-button' onClick={handleClick}>
+       <button className='act-button' onClick={handleNavigateClick}>
       <h1 id="activitext">Play activities!</h1>
     </button>
   );

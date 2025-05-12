@@ -3,6 +3,8 @@ import QuizGameReducer from './Activities/QuizGameSlice'
 import coinReducer from './coinSlice';
 import associationReducer from './Activities/associationSlice';
 import storyReducer from './Activities/storySlice';
+import activityProgressReducer from './ActivityProgressSlice';
+import sessionCoinsReducer from './sessionCoinsSlice';
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +12,8 @@ export const store = configureStore({
     story: storyReducer,
     quiz: QuizGameReducer,
     coins: coinReducer,
+    activityProgress: activityProgressReducer,
+    sessionCoins: sessionCoinsReducer
   
   }
 });

@@ -3,7 +3,7 @@ import Coin from '../../assets/images/Coin.png';
 import { useSelector } from 'react-redux';
 
 const CoinCounter = () => {
-  const coins = useSelector((state) => state.coins.coins); // Asegúrate que "coin" es el nombre del slice en tu store
+  const coins = useSelector((state) => state.coins.coins); 
 
   return (
     <div className='Coin-Bar'>
