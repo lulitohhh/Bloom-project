@@ -10,7 +10,7 @@ import ActivitiesBton from '../../components/activitiesBton/activitiesBton';
 import BackButton from '../../components/backBton/BackBton';
 import ShopBton from '../../components/shopBton/shopBton';
 import ProfileBton from '../../components/profileBton/profileBton';
-import LvlBar from '../../components/lvlbar/lvlbar';
+import CoinCounter from '../../components/Coin/Coin';
 import NavBar from '../../components/navBar/navBar';
 
 

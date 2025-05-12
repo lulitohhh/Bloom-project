@@ -1,5 +1,5 @@
 .prof-button {
-    /* Estilos base (corregido el width duplicado) */
+ 
     background-color: #6CB5EB;
     border: none;
     border-radius: 20px;
@@ -12,12 +12,11 @@
     box-shadow: 
         0 4px 0 #2F8BCD, 
         0 5px 10px rgba(0, 0, 0, 0.2);
-    
-    /* Efecto de presión premium */
     position: relative;
     transition: all 0.1s cubic-bezier(0.25, 0.1, 0.25, 1);
     cursor: pointer;
-    overflow: hidden; /* Para efectos adicionales */
+    overflow: hidden;
+    margin: 0 20px;
 }
 
 .prof-button:active {

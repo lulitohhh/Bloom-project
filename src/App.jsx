@@ -2,8 +2,8 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Dashboard from './pages/dashboard/dashboard';
 import GardenAlbum from './pages/GardenAlbum/GardenAlbum';
-import Actividades from './pages/Actividades';
-import ShopScreen from './pages/shop/shopScreen'; // 👈 Importación añadida
+import Actividades from './pages/Activities/Activities'
+import ShopScreen from './pages/shop/shopScreen'; 
 
 function App() {
   return (

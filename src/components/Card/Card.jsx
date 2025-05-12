@@ -1,4 +1,4 @@
-// src/components/Card/Card.jsx
+
 import './Card.css';
 
 const Card = ({ card, onClick, isSelected }) => {
