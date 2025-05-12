@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Dashboard from './pages/dashboard/dashboard';
 import GardenAlbum from './pages/GardenAlbum/GardenAlbum';
 import Actividades from './pages/Actividades';
+import ShopScreen from './pages/shop/shopScreen'; // 👈 Importación añadida
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Route path="/" element={<Dashboard />} />
         <Route path="/activities" element={<Actividades />} />
         <Route path="/garden" element={<GardenAlbum />} />
+        <Route path="/shop" element={<ShopScreen />} />
       </Routes>
     </BrowserRouter>
   );

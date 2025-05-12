@@ -166,3 +166,50 @@ export const plants = [
     },
   ];
   
+export const accessories = [
+  {
+    name: "Flower Pots",
+    image: "/assets/accessories/magic_pot.png",
+    price: 60,
+  },
+  {
+    name: "Watering Can",
+    image: "/assets/accessories/auto_watering.png",
+    price: 70,
+  },
+  {
+    name: "Garden Gloves",
+    image: "/assets/accessories/gloves.png",
+    price: 30,
+  },
+  {
+    name: "Fertilizer",
+    image: "/assets/accessories/magic_soil.png",
+    price: 80,
+  },
+  {
+    name: "Scarecrow",
+    image: "/assets/accessories/mini_scarecrow.png",
+    price: 75,
+  },
+  {
+    name: "Shovel",
+    image: "/assets/accessories/wheelbarrow.png",
+    price: 60,
+  },
+  {
+    name: "Fence",
+    image: "/assets/accessories/flower_stake.png",
+    price: 40,
+  },
+  {
+    name: "Rake",
+    image: "/assets/accessories/deco_ribbon.png",
+    price: 35,
+  },
+  {
+    name: "Compost",
+    image: "/assets/accessories/magic_sprayer.png",
+    price: 50,
+  },
+];

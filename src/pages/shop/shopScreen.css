@@ -1,0 +1,102 @@
+body {
+  background-color: #FFF7E6;
+  font-family: "Fredoka", sans-serif;
+  margin: 0;
+}
+
+.shop-container {
+  font-family: "Fredoka", sans-serif;
+  padding: 20px;
+  background-color: #FFF7E6;
+  min-height: 100vh;
+  color: #4B2E15;
+}
+
+.shop-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0;
+  margin-top: 90px; 
+}
+
+.category-tabs {
+  display: flex;
+  gap: 10px;
+}
+
+.tab-btn {
+  background-color: #FFECB3;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.tab-btn.active {
+  background-color: #FFD79F;
+  font-weight: bold;
+}
+
+.coins-counter {
+  background-color: #FFD79F;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.shop-container .items-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  justify-items: center;
+}
+
+.shop-container .item-card {
+  background-color: #FFFFED;
+  border-radius: 20px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 8px 0 #FFD79F;
+  transition: transform 0.2s;
+  width: 180px;
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.shop-container .item-card:hover {
+  transform: translateY(-4px);
+}
+
+.shop-container .item-img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin: 0 auto 8px;
+}
+
+.shop-container .item-card h3,
+.shop-container .item-card p {
+  margin: 4px 0;
+}
+
+.shop-container .item-card button {
+  background-color: #AC411B;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 12px;
+  margin-top: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.container-shop{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
