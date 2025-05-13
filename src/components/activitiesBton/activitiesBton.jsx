@@ -11,9 +11,11 @@ const ActivitiesBton = () => {
   };
 
   return (
+    <>
        <button className='act-button' onClick={handleNavigateClick}>
       <h1 id="activitext">Play activities!</h1>
     </button>
+    </>
   );
 };
 
