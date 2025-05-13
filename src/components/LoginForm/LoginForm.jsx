@@ -1,7 +1,12 @@
 import './LoginForm.css'
 
 const LoginForm = () =>{
-
+    const [username, setUsername] = useState(''); // Asumiré que es el email
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
+    const location = useLocation();
     return(
 
          <div className="log-container">
