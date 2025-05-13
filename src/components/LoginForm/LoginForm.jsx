@@ -4,18 +4,58 @@ const LoginForm = () =>{
 
     return(
 
-        <div className="log-container">
-            <h1 className='log-title'>LOGIN</h1>
-            
-            <div className="input-container">
-                <label className='bloom-label'><input className="bloom-input" type="text" placeholder="Joseph123"/></label>
-                <label className='bloom-label'><input className="bloom-input" type="password" placeholder="Type your password here" /></label>
-            </div>
-            <button id="logButton">Login</button>
-
-
-
+         <div className="log-container">
+      <h1 className='log-title'>LOGIN</h1>
+      
+      {location.state?.registrationSuccess && (
+        <div className="success-message">
+          ¡Registro completado! Por favor inicia sesión.
         </div>
+      )}
+
+      {error && <p className="error-message">{error}</p>}
+
+      <div className="input-container">
+        <label className='bloom-label'>
+          <input 
+            className="bloom-input" 
+            type="text" 
+            placeholder="Joseph123" 
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+        </label>
+        <label className='bloom-label'>
+          <input 
+            className="bloom-input" 
+            type="password" 
+            placeholder="Type your password here" 
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            minLength="6"
+          />
+        </label>
+      </div>
+      
+      <button 
+        id="logButton" 
+        onClick={handleLogin}
+        disabled={isLoading}
+      >
+        {isLoading ? 'Iniciando sesión...' : 'Login'}
+      </button>
+
+      <div className="login-links">
+        <button 
+          className="text-button"
+          onClick={() => navigate('/register')}
+        >
+          ¿No tienes cuenta? Regístrate
+        </button>
+      </div>
+    </div>
     )
 
 }
