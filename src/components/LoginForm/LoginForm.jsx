@@ -1,14 +1,17 @@
 import './LoginForm.css'
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 const LoginForm = () =>{
-    const [username, setUsername] = useState(''); // Asumiré que es el email
+    const [username, setUsername] = useState(''); // Asumo que es el email
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
-    const location = useLocation();
+
+
+
     return(
 
          <div className="log-container">
