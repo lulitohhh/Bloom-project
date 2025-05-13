@@ -6,6 +6,8 @@ import Activities from './pages/Activities/Activities';
 import ShopScreen from './pages/shop/shopScreen';
 import { Provider } from 'react-redux';
 import { store } from './redux/Store';
+import Login from './pages/Login/Login';
+import Register from './pages/Register/Register';
 
 function App() {
   return (
@@ -13,6 +15,9 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Dashboard />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+
           <Route path="/activities" element={<Activities />} /> {/* ✅ nombre correcto */}
           <Route path="/garden" element={<GardenAlbum />} />
           <Route path="/shop" element={<ShopScreen />} />
