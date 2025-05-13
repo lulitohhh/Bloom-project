@@ -2,6 +2,7 @@ import { createUserProfile } from '../../services/firebase/userService';
 import {registerWithEmailAndPassword} from '../../services/firebase/authservice'
 import './registerForm.css'
 import { useState } from "react";
+import { avatarOptions } from '../../data/avatarData';
 
 const RegisterForm = () =>{
     const [selectedAvatar, setSelectedAvatar] = useState('avatar1');
@@ -58,13 +59,13 @@ const RegisterForm = () =>{
 
 
 
-   return (
+    return (
     <div className="reg-container">
       <h1 className='reg-title'>REGISTER</h1>
       
       {error && <p className="error-message">{error}</p>}
 
-      <form onSubmit={handleSubmit} className="reg-form">
+      <form onSubmit={handleSubmit}>
         <div className="reg-input-container">
           <div className="text-input-container">
             <label className='bloom-label'>
@@ -72,7 +73,7 @@ const RegisterForm = () =>{
                 className="bloom-input" 
                 type="text" 
                 name="name"
-                placeholder="Name" 
+                placeholder="Full Name" 
                 required 
                 minLength="2"
               />
@@ -82,7 +83,7 @@ const RegisterForm = () =>{
                 className="bloom-input" 
                 type="email" 
                 name="email"
-                placeholder="Email" 
+                placeholder="Email Address" 
                 required 
               />
             </label>
@@ -91,23 +92,30 @@ const RegisterForm = () =>{
                 className="bloom-input" 
                 type="password" 
                 name="password"
-                placeholder="Password" 
+                placeholder="Password (min 6 chars)" 
                 required 
                 minLength="6"
               />
             </label>
           </div>
 
-          <div className="avatar-selection">
-            {[1, 2, 3, 4, 5, 6].map((num) => (
-              <button
-                key={num}
-                type="button"
-                className={`avatar-button ${selectedAvatar === `avatar${num}` ? 'selected' : ''}`}
-                onClick={() => setSelectedAvatar(`avatar${num}`)}
-                aria-label={`Avatar ${num}`}
-              />
-            ))}
+          <div className="avatar-selection-container">
+            <h3 className="avatar-title">Choose your avatar</h3>
+            <div className="avatar-grid">
+              {avatarOptions.map((avatar) => (
+                <div 
+                  key={avatar.id}
+                  className={`avatar-item ${selectedAvatar === avatar.id ? 'selected' : ''}`}
+                  onClick={() => setSelectedAvatar(avatar.id)}
+                >
+                  <img 
+                    src={avatar.image} 
+                    alt={avatar.alt}
+                    className="avatar-image"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -116,7 +124,7 @@ const RegisterForm = () =>{
           type="submit"
           disabled={isLoading}
         >
-          {isLoading ? 'Creando cuenta...' : 'Registrarse'}
+          {isLoading ? 'Creating Account...' : 'Register Now'}
         </button>
       </form>
     </div>
