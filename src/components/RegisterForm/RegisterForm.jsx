@@ -3,11 +3,13 @@ import {registerWithEmailAndPassword} from '../../services/firebase/authservice'
 import './registerForm.css'
 import { useState } from "react";
 import { avatarOptions } from '../../data/avatarData';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterForm = () =>{
     const [selectedAvatar, setSelectedAvatar] = useState('avatar1');
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,8 +33,11 @@ const RegisterForm = () =>{
         lastLogin: new Date()
       });
 
-      // 3. Redirigir (ejemplo con react-router)
-      // navigate('/dashboard');
+      navigate('/', { 
+        state: { 
+          registrationSuccess: true,
+        } 
+      });
 
     } catch (err) {
       // Mapeo de errores de Firebase
