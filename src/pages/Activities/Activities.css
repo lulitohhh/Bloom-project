@@ -17,11 +17,11 @@
   object-fit: cover;
 }
 
-/* 📱 Responsive: fondo adaptado para pantallas pequeñas */
-@media (max-width: 768px) {
+
+@media (max-width: 600px) {
   .background-bottom {
-    height: 200px; /* Más alto en móviles para que se note más */
+    height: 200px; 
     object-fit: cover;
-    object-position: top center; /* Por ejemplo, muestra la parte superior */
+    object-position: top center; 
   }
 }
