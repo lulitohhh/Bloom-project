@@ -5,6 +5,7 @@ import QuizGame from '../../components/QuizGame/QuizGame';
 import AssociationGame from '../../components/AssociationGame/AssociationGame';
 import StoryGame from '../../components/StoryGame/StoryGame';
 import SessionSummary from '../../components/SessionSummary/SessionSummary';
+import { useSelector } from 'react-redux';
 
 const allActivities = [
   { type: 'quiz', id: 1 },
@@ -19,16 +20,26 @@ const allActivities = [
 const Activities = () => {
   const [paso, setPaso] = useState(0);
   const [actividades, setActividades] = useState([]);
+  const auth = useSelector((state) => state.auth); // Añade esto
 
-useEffect(() => {
-  localStorage.removeItem('actividad-lista'); 
-  const mezcladas = [...allActivities].sort(() => Math.random() - 0.5);
-  const cantidad = Math.floor(Math.random() * 2) + 4;
-  const seleccionadas = mezcladas.slice(0, cantidad);
-  const finalList = [...seleccionadas, { type: 'story' }];
-  localStorage.setItem('actividad-lista', JSON.stringify(finalList));
-  setActividades(finalList);
-}, []);
+  useEffect(() => {
+    if (auth.user?.uid) {
+      console.log("Login exitoso. UID:", auth.user.uid);
+    }
+  }, [auth.user]);
+
+
+
+
+    useEffect(() => {
+      localStorage.removeItem('actividad-lista'); 
+      const mezcladas = [...allActivities].sort(() => Math.random() - 0.5);
+      const cantidad = Math.floor(Math.random() * 2) + 4;
+      const seleccionadas = mezcladas.slice(0, cantidad);
+      const finalList = [...seleccionadas, { type: 'story' }];
+      localStorage.setItem('actividad-lista', JSON.stringify(finalList));
+      setActividades(finalList);
+    }, []);
 
   const avanzarPaso = () => setPaso((prev) => prev + 1);
 

@@ -12,9 +12,20 @@ import ShopBton from '../../components/shopBton/shopBton';
 import ProfileBton from '../../components/profileBton/profileBton';
 import CoinCounter from '../../components/Coin/Coin';
 import NavBar from '../../components/navBar/navBar';
-
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 const Dashboard = () => {
+  const auth = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (auth.user?.uid) {
+      console.log("UID en Dashboard:", auth.user.uid);
+    } else {
+      console.error("Error: No hay UID. Redirigiendo a login...");
+      // navigate('/login'); // Opcional: redirige si no hay UID
+    }
+  }, [auth.user]);
 
 
   return (
