@@ -1,6 +1,7 @@
 import './LoginForm.css'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { loginWithEmailAndPassword } from '../../services/firebase/authservice';
 
 
 const LoginForm = () =>{
@@ -10,7 +11,31 @@ const LoginForm = () =>{
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
+    const handleLogin = async (e) => {
+    e.preventDefault();
+    setError('');
+    setIsLoading(true);
 
+    try {
+      await loginWithEmailAndPassword(username, password);
+      navigate('/dashboard'); // Redirige al dashboard tras login
+    } catch (error) {
+      setError(getErrorMessage(error.code));
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const getErrorMessage = (errorCode) => {
+    switch(errorCode) {
+      case 'auth/user-not-found':
+        return 'Usuario no registrado';
+      case 'auth/wrong-password':
+        return 'Contraseña incorrecta';
+      default:
+        return 'Error al iniciar sesión';
+    }
+  };
 
     return(
 
