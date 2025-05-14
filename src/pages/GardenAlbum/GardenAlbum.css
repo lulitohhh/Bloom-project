@@ -17,6 +17,10 @@
   /* Scrollbar para Firefox */
   body {
     scrollbar-width: thin;
-    scrollbar-color: #AC411B #FFD79F;
+    scrollbar-color: #ac421b56 #FFD79F;
+    margin-top: 40px;
   }
   
+  .btn-container {
+    margin-bottom: 20px;
+  }

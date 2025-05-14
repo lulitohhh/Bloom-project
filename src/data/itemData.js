@@ -130,7 +130,7 @@ export const plants = [
     },
     {
       name: "Coral Reef",
-      image: "/assets/ecosystems/coral_reef.png",
+      image: "/assets/ecosystems/coral-reef.png",
       description:
         "A colorful underwater world made of living corals. It’s like a rainbow under the sea!",
       animals: "🐠 Clownfish, 🐢 Sea turtle, 🦑 Octopus",
@@ -148,7 +148,7 @@ export const plants = [
     },
     {
       name: "Temperate Forest",
-      image: "/assets/ecosystems/temperate_forest.png",
+      image: "/assets/ecosystems/forest.png",
       description:
         "It has four seasons: spring, summer, fall and winter. Trees change color in autumn!",
       animals: "🦌 Deer, 🐿 Squirrel, 🦉 Owl",
@@ -166,3 +166,50 @@ export const plants = [
     },
   ];
   
+export const accessories = [
+  {
+    name: "Flower Pots",
+    image: "/assets/accessories/magic_pot.png",
+    price: 60,
+  },
+  {
+    name: "Watering Can",
+    image: "/assets/accessories/auto_watering.png",
+    price: 70,
+  },
+  {
+    name: "Garden Gloves",
+    image: "/assets/accessories/gloves.png",
+    price: 30,
+  },
+  {
+    name: "Fertilizer",
+    image: "/assets/accessories/magic_soil.png",
+    price: 80,
+  },
+  {
+    name: "Scarecrow",
+    image: "/assets/accessories/mini_scarecrow.png",
+    price: 75,
+  },
+  {
+    name: "Shovel",
+    image: "/assets/accessories/wheelbarrow.png",
+    price: 60,
+  },
+  {
+    name: "Fence",
+    image: "/assets/accessories/flower_stake.png",
+    price: 40,
+  },
+  {
+    name: "Rake",
+    image: "/assets/accessories/deco_ribbon.png",
+    price: 35,
+  },
+  {
+    name: "Compost",
+    image: "/assets/accessories/magic_sprayer.png",
+    price: 50,
+  },
+];
