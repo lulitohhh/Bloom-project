@@ -5,4 +5,9 @@
   justify-items: center;
   margin: 20px 0;
 }
-  
+
+@media (max-width: 600px) {
+  .card-group {
+    grid-template-columns: repeat(2, 1fr); 
+  }
+}

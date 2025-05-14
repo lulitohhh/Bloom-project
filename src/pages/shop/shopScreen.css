@@ -1,0 +1,154 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+body {
+  background-color: #FFF7E6;
+  font-family: "Fredoka One", sans-serif;
+  margin: 0;
+}
+
+/*.shop-container {
+  background: url("/src/assets/images/bg-shop.png") no-repeat center center fixed;
+  background-size: cover;
+  padding: 20px;
+  font-family: "Fredoka", sans-serif;
+  min-height: 100vh;
+  color: #4B2E15;
+}*/
+
+.shop-container {
+  font-family: "Fredoka One", sans-serif;
+  padding: 20px;
+  background-color: #FFF7E6;
+  min-height: 100vh;
+  color: #4B2E15;
+}
+
+.shop-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0;
+  margin-top: 90px; 
+}
+
+.category-tabs {
+  display: flex;
+  gap: 10px;
+}
+
+.tab-btn {
+  background-color: #FFECB3;
+  font-family: "Fredoka One";
+  color:rgb(59, 57, 57);
+  border: none;
+  padding: 10px 15px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.tab-btn.active {
+  background-color: #FFD79F;
+  font-weight: bold;
+  color: rgb(22, 22, 22);
+}
+
+.coins-counter {
+  background-color: #FFD79F;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.shop-container .items-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  justify-items: center;
+}
+
+.shop-container .item-card {
+  background-color: #FFFFED;
+  border-radius: 20px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 8px 0 #FFD79F;
+  transition: transform 0.2s;
+  width: 180px;
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.shop-container .item-card:hover {
+  transform: translateY(-4px);
+}
+
+.shop-container .item-img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin: 0 auto 8px;
+}
+
+.shop-container .item-card h3,
+.shop-container .item-card p {
+  margin: 4px 0;
+}
+
+.shop-container .item-card button {
+  background-color: #AC411B;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 12px;
+  margin-top: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.container-shop{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.coins-counter {
+  background-color: #FFD79F;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.coin-icon {
+  width: 15px;
+  height: 15px;
+}
+.BuyBtn {
+  background-color: #AC411B;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 12px;
+  margin-top: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  position: relative;
+  transition: all 0.08s cubic-bezier(0.3, 0, 0.5, 1);
+  user-select: none;
+  font-family: 'Fredoka One', sans-serif;
+  box-shadow: 0 4px 0 #8c370d, 0 5px 10px rgba(0, 0, 0, 0.2); /* Sombra original */
+}
+
+.BuyBtn:active {
+  transform: translateY(4px); /* Movimiento al presionar */
+  box-shadow: 0 1px 0 #8c370d, 0 2px 5px rgba(0, 0, 0, 0.1); /* Cambio de sombra al presionar */
+  background-color: #933b17; /* Cambio a un color más oscuro */
+}

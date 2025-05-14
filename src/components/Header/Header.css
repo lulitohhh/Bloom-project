@@ -37,3 +37,24 @@
   font-family: 'Poppins', sans-serif;
   text-align: center;
 }
+
+@media (max-width: 768px) {
+  .pregunta-header {
+    width: 95%;
+    padding: 2%;
+  }
+
+  .subtitulo-container {
+    width: 90%;
+    padding: 6px;
+  }
+
+  .pregunta-titulo {
+    font-size: 18px;
+    padding: 6px;
+  }
+
+  .pregunta-subtitulo {
+    font-size: 13px;
+  }
+}

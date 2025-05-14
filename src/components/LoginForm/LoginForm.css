@@ -1,0 +1,90 @@
+.log-container{
+    padding: 0%;
+    display: flex;
+    width: 20vw;
+    height: 35vh;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: #FFDBB1;
+    border-radius: 20px;
+    box-shadow: 
+    0 4px 0 #EBB372, 
+    0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.log-title{
+    margin-bottom: 0;
+    padding: 0;
+    font-family: "Fredoka", sans-serif;
+    color:#CC730B
+}
+
+.input-container{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 50%;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+.bloom-label{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.bloom-input{
+    width: 100%;
+    height: 100%;
+    background-color: #EBB372;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    font-family: "Fredoka", sans-serif;
+    
+}
+
+.bloom-input::placeholder{
+    padding-left: 10px;
+    color: rgb(255, 255, 255);
+    opacity: 0.8;
+
+}
+#logButton{
+    font-family: "Fredoka", sans-serif;
+    font-weight: 600;
+    font-size: large;
+    background-color: #27A258;
+    margin-bottom: 10%;
+    margin-top: 1%;
+    border: none;
+    border-radius: 20px;
+    width: 40%;
+    height: 15%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    justify-content: space-evenly;
+    box-shadow: 
+        0 4px 0 #2a722a, 
+        0 5px 10px rgba(0, 0, 0, 0.2);
+    
+    /* Nuevos estilos para el efecto */
+    position: relative;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+    cursor: pointer;
+    user-select: none;
+    color: white;
+}
+
+#logButton:active {
+    transform: translateY(4px);
+    box-shadow: 
+        0 1px 0 #2a722a,
+        0 2px 5px rgba(0, 0, 0, 0.2);
+}

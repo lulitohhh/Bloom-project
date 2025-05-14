@@ -120,24 +120,6 @@ export const plants = [
       location: "Alaska, Canada, Russia",
     },
     {
-      name: "Ocean",
-      image: "/assets/ecosystems/ocean.png",
-      description:
-        "The biggest ecosystem on Earth! It's full of salt water and amazing sea life.",
-      animals: "🐬 Dolphin, 🐳 Whale, 🐠 Fish",
-      plants: "Seaweed, corals",
-      location: "All over the world (Pacific, Atlantic, Indian…)",
-    },
-    {
-      name: "Coral Reef",
-      image: "/assets/ecosystems/coral_reef.png",
-      description:
-        "A colorful underwater world made of living corals. It’s like a rainbow under the sea!",
-      animals: "🐠 Clownfish, 🐢 Sea turtle, 🦑 Octopus",
-      plants: "Algae",
-      location: "Australia, Caribbean, Philippines",
-    },
-    {
       name: "Wetland",
       image: "/assets/ecosystems/wetland.png",
       description:
@@ -148,7 +130,7 @@ export const plants = [
     },
     {
       name: "Temperate Forest",
-      image: "/assets/ecosystems/temperate_forest.png",
+      image: "/assets/ecosystems/forest.png",
       description:
         "It has four seasons: spring, summer, fall and winter. Trees change color in autumn!",
       animals: "🦌 Deer, 🐿 Squirrel, 🦉 Owl",
@@ -164,5 +146,50 @@ export const plants = [
       plants: "Pine trees, small bushes",
       location: "Andes, Himalayas, Alps",
     },
+        {
+      name: "Ocean",
+      image: "/assets/ecosystems/ocean.png",
+      description:
+        "The biggest ecosystem on Earth! It's full of salt water and amazing sea life.",
+      animals: "🐬 Dolphin, 🐳 Whale, 🐠 Fish",
+      plants: "Seaweed, corals",
+      location: "All over the world (Pacific, Atlantic, Indian…)",
+    },
+    {
+      name: "Coral Reef",
+      image: "/assets/ecosystems/coral-reef.png",
+      description:
+        "A colorful underwater world made of living corals. It’s like a rainbow under the sea!",
+      animals: "🐠 Clownfish, 🐢 Sea turtle, 🦑 Octopus",
+      plants: "Algae",
+      location: "Australia, Caribbean, Philippines",
+    },
   ];
   
+export const accessories = [
+  {
+    name: "Flower Pots",
+    image: "/assets/accessories/magic_pot.png",
+    price: 60,
+  },
+  {
+    name: "Watering Can",
+    image: "/assets/accessories/auto_watering.png",
+    price: 70,
+  },
+  {
+    name: "Garden Gloves",
+    image: "/assets/accessories/gloves.png",
+    price: 30,
+  },
+  {
+    name: "Fertilizer",
+    image: "/assets/accessories/magic_soil.png",
+    price: 80,
+  },
+  {
+    name: "Compost",
+    image: "/assets/accessories/magic_sprayer.png",
+    price: 50,
+  },
+];
