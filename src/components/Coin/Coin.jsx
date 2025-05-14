@@ -1,5 +1,5 @@
 import "./Coin.css";
-import Coin from '../../assets/images/Coin.png';
+import Coin from '../../assets/images/Coin.webp';
 import { useSelector } from 'react-redux';
 
 const CoinCounter = () => {

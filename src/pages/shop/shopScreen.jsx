@@ -4,7 +4,7 @@ import NavBar from "../../components/navBar/navBar";
 import { plants } from "../../data/itemData";
 import { ecosystems } from "../../data/itemData";
 import { accessories } from "../../data/itemData";
-import coinImg from "/src/assets/images/Coin.png";
+import coinImg from "/src/assets/images/Coin.webp";
 
 const formatItems = {
   plants: plants.map((plant, index) => ({
