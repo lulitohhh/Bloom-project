@@ -26,9 +26,9 @@
   .question-option {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem; /* antes 1rem */
+    gap: 0.75rem; 
     margin-bottom: 1.5rem;
-    max-width: 800px; /* limita el ancho total */
+    max-width: 800px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -36,12 +36,12 @@
   @media (max-width: 600px) {
    .question-option {
     display: grid;
-    grid-template-columns: 1fr; /* 🔁 1 columna en móviles */
+    grid-template-columns: 1fr; 
   }
 
   .answer,
   .answer-small {
-    width: 100%;  /* 🔁 Ocupan todo el ancho */
-    margin: 0;
+    width: 100%;  
+    margin: 2px;
   }
 }

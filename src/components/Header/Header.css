@@ -41,7 +41,7 @@
 @media (max-width: 768px) {
   .pregunta-header {
     width: 95%;
-    padding: 8px;
+    padding: 2%;
   }
 
   .subtitulo-container {
@@ -50,7 +50,8 @@
   }
 
   .pregunta-titulo {
-    font-size: 20px;
+    font-size: 18px;
+    padding: 6px;
   }
 
   .pregunta-subtitulo {
