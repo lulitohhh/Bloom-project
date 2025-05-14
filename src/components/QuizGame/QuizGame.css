@@ -3,7 +3,7 @@
   overflow: hidden;
 }
 .question-container {
-    padding: 30% 6% 6%;
+    padding: 7%;
     min-height: 100%;
     display: flex;
     flex-direction: column;
@@ -34,6 +34,11 @@
   }
 
   @media (max-width: 600px) {
+
+  .question-container {
+    padding: 30% 6% 6%;
+   } 
+    
    .question-option {
     display: grid;
     grid-template-columns: 1fr; 
