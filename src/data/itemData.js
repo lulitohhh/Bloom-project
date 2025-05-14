@@ -100,107 +100,107 @@
 //     },
 //   ];
   
-  export const ecosystems = [
-    {
-      name: "Tropical Rainforest",
-      image: "/assets/ecosystems/rainforest.png",
-      description:
-        "A warm and rainy place with giant trees and tons of animals. It rains almost every day!",
-      animals: "🐒 Monkey, 🐍 Snake, 🦜 Parrot",
-      plants: "Tall trees, orchids",
-      location: "Ecuador, Brazil, Congo, Colombia",
-      price: 68,
-      purchased: false
-    },
-    {
-      name: "Desert",
-      image: "/assets/ecosystems/desert.png",
-      description:
-        "Hot and dry with very little rain. It's super sunny during the day and cold at night.",
-      animals: "🐫 Camel, 🦎 Lizard, 🦂 Scorpion",
-      plants: "Cacti, tough bushes",
-      location: "Sahara, Mexico, Australia",
-      price: 45,
-      purchased: false
-    },
-    {
-      name: "Grassland",
-      image: "/assets/ecosystems/grassland.png",
-      description:
-        "Huge open fields filled with grass and wildflowers. Not many trees, but lots of animals.",
-      animals: "🦬 Bison, 🐇 Rabbit, 🐦 Singing birds",
-      plants: "Grasses, wildflowers",
-      location: "USA, Argentina, Ukraine",
-      price: 52,
-      purchased: false
-    },
-    {
-      name: "Tundra",
-      image: "/assets/ecosystems/volcano.png",
-      description:
-        "A very cold place near the North Pole. The ground is frozen most of the year!",
-      animals: "🐺 Arctic wolf, 🐻‍❄️ Polar bear, 🦊 Arctic fox",
-      plants: "Moss, lichens",
-      location: "Alaska, Canada, Russia",
-      price: 57,
-      purchased: false
-    },
-    {
-      name: "Ocean",
-      image: "/assets/ecosystems/ocean.png",
-      description:
-        "The biggest ecosystem on Earth! It's full of salt water and amazing sea life.",
-      animals: "🐬 Dolphin, 🐳 Whale, 🐠 Fish",
-      plants: "Seaweed, corals",
-      location: "All over the world (Pacific, Atlantic, Indian…)",
-      price: 70,
-      purchased: false
-    },
-    {
-      name: "Coral Reef",
-      image: "/assets/ecosystems/coral-reef.png",
-      description:
-        "A colorful underwater world made of living corals. It's like a rainbow under the sea!",
-      animals: "🐠 Clownfish, 🐢 Sea turtle, 🦑 Octopus",
-      plants: "Algae",
-      location: "Australia, Caribbean, Philippines",
-      price: 65,
-      purchased: false
-    },
-    {
-      name: "Wetland",
-      image: "/assets/ecosystems/wetland.png",
-      description:
-        "Wet and muddy places like swamps and marshes. Lots of birds and frogs live here!",
-      animals: "🦆 Duck, 🐸 Frog, 🐢 Turtle",
-      plants: "Water lilies, reeds",
-      location: "Florida, Colombia, Brazil",
-      price: 48,
-      purchased: false
-    },
-    {
-      name: "Temperate Forest",
-      image: "/assets/ecosystems/forest.png",
-      description:
-        "It has four seasons: spring, summer, fall and winter. Trees change color in autumn!",
-      animals: "🦌 Deer, 🐿 Squirrel, 🦉 Owl",
-      plants: "Oak trees, maple trees",
-      location: "USA, Europe, Chile",
-      price: 55,
-      purchased: false
-    },
-    {
-      name: "Mountain",
-      image: "/assets/ecosystems/mountain.png",
-      description:
-        "Very tall, cold places with snowy tops. It's hard to breathe way up high!",
-      animals: "🦙 Llama, 🐐 Mountain goat, 🦅 Eagle",
-      plants: "Pine trees, small bushes",
-      location: "Andes, Himalayas, Alps",
-      price: 62,
-      purchased: false
-    },
-  ];
+  // export const ecosystems = [
+  //   {
+  //     name: "Tropical Rainforest",
+  //     image: "/assets/ecosystems/rainforest.png",
+  //     description:
+  //       "A warm and rainy place with giant trees and tons of animals. It rains almost every day!",
+  //     animals: "🐒 Monkey, 🐍 Snake, 🦜 Parrot",
+  //     plants: "Tall trees, orchids",
+  //     location: "Ecuador, Brazil, Congo, Colombia",
+  //     price: 68,
+  //     purchased: false
+  //   },
+  //   {
+  //     name: "Desert",
+  //     image: "/assets/ecosystems/desert.png",
+  //     description:
+  //       "Hot and dry with very little rain. It's super sunny during the day and cold at night.",
+  //     animals: "🐫 Camel, 🦎 Lizard, 🦂 Scorpion",
+  //     plants: "Cacti, tough bushes",
+  //     location: "Sahara, Mexico, Australia",
+  //     price: 45,
+  //     purchased: false
+  //   },
+  //   {
+  //     name: "Grassland",
+  //     image: "/assets/ecosystems/grassland.png",
+  //     description:
+  //       "Huge open fields filled with grass and wildflowers. Not many trees, but lots of animals.",
+  //     animals: "🦬 Bison, 🐇 Rabbit, 🐦 Singing birds",
+  //     plants: "Grasses, wildflowers",
+  //     location: "USA, Argentina, Ukraine",
+  //     price: 52,
+  //     purchased: false
+  //   },
+  //   {
+  //     name: "Tundra",
+  //     image: "/assets/ecosystems/volcano.png",
+  //     description:
+  //       "A very cold place near the North Pole. The ground is frozen most of the year!",
+  //     animals: "🐺 Arctic wolf, 🐻‍❄️ Polar bear, 🦊 Arctic fox",
+  //     plants: "Moss, lichens",
+  //     location: "Alaska, Canada, Russia",
+  //     price: 57,
+  //     purchased: false
+  //   },
+  //   {
+  //     name: "Ocean",
+  //     image: "/assets/ecosystems/ocean.png",
+  //     description:
+  //       "The biggest ecosystem on Earth! It's full of salt water and amazing sea life.",
+  //     animals: "🐬 Dolphin, 🐳 Whale, 🐠 Fish",
+  //     plants: "Seaweed, corals",
+  //     location: "All over the world (Pacific, Atlantic, Indian…)",
+  //     price: 70,
+  //     purchased: false
+  //   },
+  //   {
+  //     name: "Coral Reef",
+  //     image: "/assets/ecosystems/coral-reef.png",
+  //     description:
+  //       "A colorful underwater world made of living corals. It's like a rainbow under the sea!",
+  //     animals: "🐠 Clownfish, 🐢 Sea turtle, 🦑 Octopus",
+  //     plants: "Algae",
+  //     location: "Australia, Caribbean, Philippines",
+  //     price: 65,
+  //     purchased: false
+  //   },
+  //   {
+  //     name: "Wetland",
+  //     image: "/assets/ecosystems/wetland.png",
+  //     description:
+  //       "Wet and muddy places like swamps and marshes. Lots of birds and frogs live here!",
+  //     animals: "🦆 Duck, 🐸 Frog, 🐢 Turtle",
+  //     plants: "Water lilies, reeds",
+  //     location: "Florida, Colombia, Brazil",
+  //     price: 48,
+  //     purchased: false
+  //   },
+  //   {
+  //     name: "Temperate Forest",
+  //     image: "/assets/ecosystems/forest.png",
+  //     description:
+  //       "It has four seasons: spring, summer, fall and winter. Trees change color in autumn!",
+  //     animals: "🦌 Deer, 🐿 Squirrel, 🦉 Owl",
+  //     plants: "Oak trees, maple trees",
+  //     location: "USA, Europe, Chile",
+  //     price: 55,
+  //     purchased: false
+  //   },
+  //   {
+  //     name: "Mountain",
+  //     image: "/assets/ecosystems/mountain.png",
+  //     description:
+  //       "Very tall, cold places with snowy tops. It's hard to breathe way up high!",
+  //     animals: "🦙 Llama, 🐐 Mountain goat, 🦅 Eagle",
+  //     plants: "Pine trees, small bushes",
+  //     location: "Andes, Himalayas, Alps",
+  //     price: 62,
+  //     purchased: false
+  //   },
+  // ];
   
 export const accessories = [
   {
