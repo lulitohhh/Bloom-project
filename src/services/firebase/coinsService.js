@@ -9,11 +9,11 @@ export const syncCoinsFromFirestore = async (userId) => {
 
 export const updateCoinsInFirestore = async (userId, newCoins) => {
   try {
-    // ¡Importante! Usa doc() con la referencia correcta a la DB
+    // ¡Clave! Usa doc() con la referencia a 'users/{userId}'
     const userRef = doc(db, 'users', userId); 
     await updateDoc(userRef, { coins: newCoins });
   } catch (error) {
     console.error("Error updating coins in Firestore:", error);
-    throw error; // Re-lanza el error para manejarlo en el middleware
+    throw error; // Opcional: re-lanza el error para manejarlo en el middleware
   }
 };

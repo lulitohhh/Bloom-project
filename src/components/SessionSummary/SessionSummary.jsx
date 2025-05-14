@@ -14,6 +14,8 @@ const SessionSummary = () => {
   const navigate = useNavigate();
   const sessionTotal = useSelector((state) => state.sessionCoins.sessionTotal);
 
+  
+
   const handleFinish = () => {
     dispatch(addCoins(sessionTotal));
     dispatch(resetSessionCoins());
