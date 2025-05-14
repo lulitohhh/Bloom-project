@@ -39,7 +39,7 @@ const LoginForm = () =>{
 
     return(
 
-         <div className="log-container">
+    <div className="log-container">
       <h1 className='log-title'>LOGIN</h1>
       
       {location.state?.registrationSuccess && (

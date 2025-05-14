@@ -17,7 +17,7 @@ const RegisterForm = () =>{
     setIsLoading(true);
 
     const formData = new FormData(e.target);
-    const name = formData.get('name');
+    const username = formData.get('username');
     const email = formData.get('email');
     const password = formData.get('password');
 
@@ -27,7 +27,7 @@ const RegisterForm = () =>{
       
       // 2. Guardar perfil en Firestore
       await createUserProfile(userCredential.user.uid, {
-        name,
+        username,
         email,
         avatar: selectedAvatar,
         lastLogin: new Date()
@@ -77,8 +77,8 @@ const RegisterForm = () =>{
               <input 
                 className="bloom-input" 
                 type="text" 
-                name="name"
-                placeholder="Full Name" 
+                name="username"
+                placeholder="Username" 
                 required 
                 minLength="2"
               />
