@@ -94,7 +94,7 @@ function AssociationGame({ id, onSuccess }) {
   if (!activity) return <p>Actividad no encontrada</p>;
 
   return (
-    <>
+    <section className='main-container'>
       <NavBar />
       <div className="asociacion-container">
         <Header type={activity.type} title={activity.title} />
@@ -117,7 +117,7 @@ function AssociationGame({ id, onSuccess }) {
           disabled={resolved.length !== currentPairs.length}
         />
       </div>
-    </>
+    </section>
   );
 }
 

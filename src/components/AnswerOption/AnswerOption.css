@@ -75,4 +75,15 @@
     box-shadow: 0 6px 0 #9e2121;
     color: white;
   }
-  
+  @media (max-width: 600px) {
+  .answer {
+    padding: 20px 20px;
+    font-size: 14px; /* Opcional: reduce el tamaño de texto */
+    border-radius: 10px;
+  }
+
+  .answer-small {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+}

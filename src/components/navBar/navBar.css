@@ -1,5 +1,5 @@
 .navBar {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -9,9 +9,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 1rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); 
-  z-index: 1000;
-  border-bottom: 1px solid #e0e0e0;
+  z-index: 1;
 }
 
 .leftup,
@@ -20,4 +18,30 @@
   align-items: center;
   gap: 0.5rem;
   margin-right: 20px;
+}
+
+@media (max-width: 600px) {
+  .navBar {
+    height: auto;
+    padding: 0.5rem 1rem;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  .leftup,
+  .rightup {
+    justify-content: space-between;
+    margin: 2%;
+  }
+
+ .leftup {
+    margin: 2%;
+    gap: 0.4rem; /* Aún mayor separación en móvil, si quieres */
+  }
+
+  .rightup {
+     justify-content: flex-end;
+    margin: 2%;
+    gap: 0.5rem; /* Muy poco espacio entre botones en móvil */
+  }
 }

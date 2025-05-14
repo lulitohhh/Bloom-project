@@ -120,24 +120,6 @@ export const plants = [
       location: "Alaska, Canada, Russia",
     },
     {
-      name: "Ocean",
-      image: "/assets/ecosystems/ocean.png",
-      description:
-        "The biggest ecosystem on Earth! It's full of salt water and amazing sea life.",
-      animals: "🐬 Dolphin, 🐳 Whale, 🐠 Fish",
-      plants: "Seaweed, corals",
-      location: "All over the world (Pacific, Atlantic, Indian…)",
-    },
-    {
-      name: "Coral Reef",
-      image: "/assets/ecosystems/coral-reef.png",
-      description:
-        "A colorful underwater world made of living corals. It’s like a rainbow under the sea!",
-      animals: "🐠 Clownfish, 🐢 Sea turtle, 🦑 Octopus",
-      plants: "Algae",
-      location: "Australia, Caribbean, Philippines",
-    },
-    {
       name: "Wetland",
       image: "/assets/ecosystems/wetland.png",
       description:
@@ -164,6 +146,24 @@ export const plants = [
       plants: "Pine trees, small bushes",
       location: "Andes, Himalayas, Alps",
     },
+        {
+      name: "Ocean",
+      image: "/assets/ecosystems/ocean.png",
+      description:
+        "The biggest ecosystem on Earth! It's full of salt water and amazing sea life.",
+      animals: "🐬 Dolphin, 🐳 Whale, 🐠 Fish",
+      plants: "Seaweed, corals",
+      location: "All over the world (Pacific, Atlantic, Indian…)",
+    },
+    {
+      name: "Coral Reef",
+      image: "/assets/ecosystems/coral-reef.png",
+      description:
+        "A colorful underwater world made of living corals. It’s like a rainbow under the sea!",
+      animals: "🐠 Clownfish, 🐢 Sea turtle, 🦑 Octopus",
+      plants: "Algae",
+      location: "Australia, Caribbean, Philippines",
+    },
   ];
   
 export const accessories = [
@@ -186,26 +186,6 @@ export const accessories = [
     name: "Fertilizer",
     image: "/assets/accessories/magic_soil.png",
     price: 80,
-  },
-  {
-    name: "Scarecrow",
-    image: "/assets/accessories/mini_scarecrow.png",
-    price: 75,
-  },
-  {
-    name: "Shovel",
-    image: "/assets/accessories/wheelbarrow.png",
-    price: 60,
-  },
-  {
-    name: "Fence",
-    image: "/assets/accessories/flower_stake.png",
-    price: 40,
-  },
-  {
-    name: "Rake",
-    image: "/assets/accessories/deco_ribbon.png",
-    price: 35,
   },
   {
     name: "Compost",

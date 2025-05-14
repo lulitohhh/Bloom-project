@@ -30,3 +30,20 @@
     box-shadow: 0 6px 0.3px #f87171;
   }
   
+  @media (max-width: 600px) {
+  .card {
+    border: 2px solid transparent;
+    border-radius: 20px;
+    padding: 12px 20px;
+    background-color: #fff;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 6px 0.3px rgb(173, 173, 173);
+  }
+  
+  .card img {
+    width: 100px;
+    height: auto;
+    object-fit: contain;
+  }
+}

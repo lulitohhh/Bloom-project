@@ -82,10 +82,10 @@ function StoryGame({ onFinish }) {
 
 
   return (
-    <div className="story-container">
+    <section className="story-container">
       <NavBar />
       <Header type="story" title="Read the story" />
-      <div className="story-content">
+      <section className="story-content">
         <h2 className="story-title">{story.title}</h2>
         {imageSrc && <img src={imageSrc} alt="Story scene" className="story-image" />}
         <p className="story-text">{page.text}</p>
@@ -99,10 +99,10 @@ function StoryGame({ onFinish }) {
         <NextButton
           onClick={handleNext}
           disabled={hasQuestion && Object.keys(answeredCorrectly).length < page.question.length} 
-          label={isLastPage ? 'Back to Dashboard' : 'Next'}
+          label={'Next'}
         />
-      </div>
-    </div>
+      </section>
+    </section>
   );
 }
 

@@ -36,7 +36,7 @@ const QuizGame = ({ id, onSuccess }) => {
   if (!question) return <p>Pregunta no encontrada.</p>;
 
   return (
-    <>
+   <section className='quiz-container'>
       <NavBar />
       <section className="question-container">
         <Header type={question.type} title={question.title} />
@@ -56,7 +56,7 @@ const QuizGame = ({ id, onSuccess }) => {
           <NextButton onClick={onSuccess} disabled={!correct} />
         </section>
       </section>
-    </>
+    </section>
   );
 };
 

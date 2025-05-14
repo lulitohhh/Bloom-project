@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
 import "./ecoButton.css";
-import ecobuton from '../../assets/images/ecobuton.png';
+import ecobuton from '../../assets/images/ecobuton.webp';
 
 const EcoButton = () => {
   const navigate = useNavigate();

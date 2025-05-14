@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import './Activities.css';
-import bgImage from '../../assets/images/fondo.png';
+import bgImage from '../../assets/images/fondo.webp';
 import QuizGame from '../../components/QuizGame/QuizGame';
 import AssociationGame from '../../components/AssociationGame/AssociationGame';
 import StoryGame from '../../components/StoryGame/StoryGame';
