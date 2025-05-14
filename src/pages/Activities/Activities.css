@@ -1,24 +1,10 @@
 .actividades-page {
-  position: relative;
-  min-height: 100vh;
-  overflow-x: hidden;
-  background-color: #f0f0da;
-  overflow: hidden;
-}
-
-.background-bottom {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
-  z-index: -1;
-  pointer-events: none;
-  object-fit: cover;
-}
-
-
-@media (max-width: 600px) {
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-color: #f0f0da; 
+    overflow: hidden; 
+  }
   
   .background-bottom {
   position: fixed; /* que se quede al fondo incluso si se hace scroll */
@@ -30,4 +16,4 @@
   pointer-events: none;
   object-fit: cover;
   }
-}
+  
