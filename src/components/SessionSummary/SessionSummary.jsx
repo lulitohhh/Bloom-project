@@ -21,10 +21,10 @@ const SessionSummary = () => {
   };
 
   return (
-    <>
+    <section className='page-container'>
     <NavBar></NavBar>
     <section className="session-summary"> 
-       <img src={celebrationImage} alt="CelebrationImage" className="coin-icon" />
+       <img src={celebrationImage} alt="CelebrationImage" className="HappyCoin-icon" />
        <section className='Text-summary'>
             <h1>¡Lo lograste!</h1>
             <p>Has aprendido sobre el medio ambiente y has ganado</p>
@@ -36,7 +36,7 @@ const SessionSummary = () => {
         className="continue-button"
       />
     </section>
-    </>
+    </section>
   );
 };
 
