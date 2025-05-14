@@ -56,10 +56,7 @@ const ShopScreen = () => {
             </button>
           ))}
         </div>
-        <div className="coins-counter">
-          <img src={coinImg} alt="Coin" className="coin-icon" />
-          {coins}
-        </div>
+        
       </div>
       <div className="container-shop">
         <div className="items-grid">

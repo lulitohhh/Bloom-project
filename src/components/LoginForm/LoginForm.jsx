@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { loginWithEmailAndPassword } from '../../services/firebase/authservice';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../redux/AuthSlice';
+import { fetchUserCoins } from '../../redux/AuthSlice';
 
 
 const LoginForm = () =>{
@@ -20,13 +21,12 @@ const LoginForm = () =>{
       setIsLoading(true);
 
       try {
-        const userCredential = await loginWithEmailAndPassword(email, password);
-        
-        // Guarda el usuario en Redux (para que el middleware pueda acceder al uid)
-        dispatch(setUser({
-          uid: userCredential.user.uid,
-          email: userCredential.user.email
-        }));
+    const userCredential = await loginWithEmailAndPassword(email, password);
+    const userId = userCredential.user.uid;
+    
+    // Guarda usuario en Redux y carga sus monedas
+    dispatch(setUser({ uid: userId, email: userCredential.user.email }));
+    dispatch(fetchUserCoins(userId)); // ¡Carga las monedas!
         
         navigate('/dashboard');
       } catch (error) {

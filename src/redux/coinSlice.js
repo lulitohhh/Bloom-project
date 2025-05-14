@@ -17,16 +17,20 @@ const coinSlice = createSlice({
       state.coins = 0;
       saveToLocalStorage('coins', state);
     },
+    setCoins: (state, action) => {
+      state.coins = action.payload; // Sobrescribe el valor
+      saveToLocalStorage('coins', state);
+    },
+    
   },
 });
 
 export const loadCoinsFromFirestore = (userId) => async (dispatch) => {
-  const firestoreCoins = await syncCoinsFromFirestore(userId); // Usa el servicio que creamos antes
-  dispatch(addCoins(firestoreCoins)); // O crea un nuevo reducer "setCoins" si prefieres
+  const firestoreCoins = await syncCoinsFromFirestore(userId);
+  dispatch(setCoins(firestoreCoins)); // Usa setCoins para sobrescribir
 };
 
 
 
-
-export const { addCoins, resetCoins } = coinSlice.actions;
+export const { addCoins, resetCoins, setCoins } = coinSlice.actions;
 export default coinSlice.reducer;

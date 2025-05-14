@@ -1,6 +1,17 @@
 import { db } from '../firebase/firebaseConfig';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 
+export const getCoinsFromFirestore = async (userId) => {
+  try {
+    const userRef = doc(db, 'users', userId);
+    const userSnap = await getDoc(userRef);
+    return userSnap.exists() ? userSnap.data().coins || 0 : 0;
+  } catch (error) {
+    console.error("Error al obtener monedas:", error);
+    return 0; // Valor por defecto si hay error
+  }
+};
+
 export const syncCoinsFromFirestore = async (userId) => {
   const docRef = doc(db, 'users', userId);
   const docSnap = await getDoc(docRef);
