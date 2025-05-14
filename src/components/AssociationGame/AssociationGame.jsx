@@ -9,9 +9,9 @@ import Association from '../../data/Association.json';
 import NavBar from '../navBar/navBar';
 import { addSessionCoins } from '../../redux/sessionCoinsSlice';
 
-const images = import.meta.glob('../../assets/images/*.png', { eager: true });
+const images = import.meta.glob('../../assets/images/*.webp', { eager: true });
 function getImage(nombre) {
-  const path = `../../assets/images/${nombre}.png`;
+  const path = `../../assets/images/${nombre}.webp`;
   return images[path]?.default || '';
 }
 
