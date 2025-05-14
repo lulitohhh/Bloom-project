@@ -10,7 +10,7 @@ const formatItems = {
   plants: plants.map((plant, index) => ({
     id: index + 1,
     name: plant.name,
-    price: 50,
+    price: plant.price,
     img: plant.image,
   })),
   ecosystems: ecosystems.map((eco, index) => ({

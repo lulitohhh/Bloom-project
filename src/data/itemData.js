@@ -7,15 +7,19 @@ export const plants = [
       kingdom: "Plantae",
       genus: "Anthurium",
       habitat: "Central & South America",
+      price: 58,
+      purchased: false
     },
     {
       name: "Monstera",
       image: "/assets/plants/flower2.png",
       description:
-        "Monstera plants are known for their large, split leaves and are often called “Swiss cheese plants.” They thrive in indoor environments with indirect light.",
+        "Monstera plants are known for their large, split leaves and are often called Swiss cheese plants. They thrive in indoor environments with indirect light.",
       kingdom: "Plantae",
       genus: "Monstera",
       habitat: "Central America",
+      price: 65,
+      purchased: false
     },
     {
       name: "Yellow Daffodil",
@@ -25,15 +29,19 @@ export const plants = [
       kingdom: "Plantae",
       genus: "Narcissus",
       habitat: "Europe & North Africa",
+      price: 42,
+      purchased: false
     },
     {
       name: "Azalea",
       image: "/assets/plants/flower4.png",
       description:
-        "Azaleas are flowering shrubs that produce vibrant blooms in pink, red, or white. They’re popular garden plants that prefer acidic soil.",
+        "Azaleas are flowering shrubs that produce vibrant blooms in pink, red, or white. They're popular garden plants that prefer acidic soil.",
       kingdom: "Plantae",
       genus: "Rhododendron",
       habitat: "Asia, North America",
+      price: 55,
+      purchased: false
     },
     {
       name: "Lucky Bamboo",
@@ -43,6 +51,8 @@ export const plants = [
       kingdom: "Plantae",
       genus: "Dracaena",
       habitat: "Central Africa",
+      price: 47,
+      purchased: false
     },
     {
       name: "Red Rose",
@@ -52,6 +62,8 @@ export const plants = [
       kingdom: "Plantae",
       genus: "Rosa",
       habitat: "Asia, Europe, North America",
+      price: 63,
+      purchased: false
     },
     {
       name: "Iris",
@@ -61,6 +73,8 @@ export const plants = [
       kingdom: "Plantae",
       genus: "Iris",
       habitat: "Temperate Northern Hemisphere",
+      price: 51,
+      purchased: false
     },
     {
       name: "Fuchsia",
@@ -70,6 +84,8 @@ export const plants = [
       kingdom: "Plantae",
       genus: "Fuchsia",
       habitat: "Central & South America",
+      price: 49,
+      purchased: false
     },
     {
       name: "Snake Plant",
@@ -79,6 +95,8 @@ export const plants = [
       kingdom: "Plantae",
       genus: "Sansevieria",
       habitat: "West Africa",
+      price: 60,
+      purchased: false
     },
   ];
   
@@ -91,15 +109,19 @@ export const plants = [
       animals: "🐒 Monkey, 🐍 Snake, 🦜 Parrot",
       plants: "Tall trees, orchids",
       location: "Ecuador, Brazil, Congo, Colombia",
+      price: 68,
+      purchased: false
     },
     {
       name: "Desert",
       image: "/assets/ecosystems/desert.png",
       description:
-        "Hot and dry with very little rain. It’s super sunny during the day and cold at night.",
+        "Hot and dry with very little rain. It's super sunny during the day and cold at night.",
       animals: "🐫 Camel, 🦎 Lizard, 🦂 Scorpion",
       plants: "Cacti, tough bushes",
       location: "Sahara, Mexico, Australia",
+      price: 45,
+      purchased: false
     },
     {
       name: "Grassland",
@@ -109,6 +131,8 @@ export const plants = [
       animals: "🦬 Bison, 🐇 Rabbit, 🐦 Singing birds",
       plants: "Grasses, wildflowers",
       location: "USA, Argentina, Ukraine",
+      price: 52,
+      purchased: false
     },
     {
       name: "Tundra",
@@ -118,6 +142,8 @@ export const plants = [
       animals: "🐺 Arctic wolf, 🐻‍❄️ Polar bear, 🦊 Arctic fox",
       plants: "Moss, lichens",
       location: "Alaska, Canada, Russia",
+      price: 57,
+      purchased: false
     },
     {
       name: "Ocean",
@@ -127,15 +153,19 @@ export const plants = [
       animals: "🐬 Dolphin, 🐳 Whale, 🐠 Fish",
       plants: "Seaweed, corals",
       location: "All over the world (Pacific, Atlantic, Indian…)",
+      price: 70,
+      purchased: false
     },
     {
       name: "Coral Reef",
       image: "/assets/ecosystems/coral-reef.png",
       description:
-        "A colorful underwater world made of living corals. It’s like a rainbow under the sea!",
+        "A colorful underwater world made of living corals. It's like a rainbow under the sea!",
       animals: "🐠 Clownfish, 🐢 Sea turtle, 🦑 Octopus",
       plants: "Algae",
       location: "Australia, Caribbean, Philippines",
+      price: 65,
+      purchased: false
     },
     {
       name: "Wetland",
@@ -145,6 +175,8 @@ export const plants = [
       animals: "🦆 Duck, 🐸 Frog, 🐢 Turtle",
       plants: "Water lilies, reeds",
       location: "Florida, Colombia, Brazil",
+      price: 48,
+      purchased: false
     },
     {
       name: "Temperate Forest",
@@ -154,15 +186,19 @@ export const plants = [
       animals: "🦌 Deer, 🐿 Squirrel, 🦉 Owl",
       plants: "Oak trees, maple trees",
       location: "USA, Europe, Chile",
+      price: 55,
+      purchased: false
     },
     {
       name: "Mountain",
       image: "/assets/ecosystems/mountain.png",
       description:
-        "Very tall, cold places with snowy tops. It’s hard to breathe way up high!",
+        "Very tall, cold places with snowy tops. It's hard to breathe way up high!",
       animals: "🦙 Llama, 🐐 Mountain goat, 🦅 Eagle",
       plants: "Pine trees, small bushes",
       location: "Andes, Himalayas, Alps",
+      price: 62,
+      purchased: false
     },
   ];
   
@@ -171,45 +207,54 @@ export const accessories = [
     name: "Flower Pots",
     image: "/assets/accessories/magic_pot.png",
     price: 60,
+    purchased: false
   },
   {
     name: "Watering Can",
     image: "/assets/accessories/auto_watering.png",
     price: 70,
+    purchased: false
   },
   {
     name: "Garden Gloves",
     image: "/assets/accessories/gloves.png",
     price: 30,
+    purchased: false
   },
   {
     name: "Fertilizer",
     image: "/assets/accessories/magic_soil.png",
     price: 80,
+    purchased: false
   },
   {
     name: "Scarecrow",
     image: "/assets/accessories/mini_scarecrow.png",
     price: 75,
+    purchased: false
   },
   {
     name: "Shovel",
     image: "/assets/accessories/wheelbarrow.png",
     price: 60,
+    purchased: false
   },
   {
     name: "Fence",
     image: "/assets/accessories/flower_stake.png",
     price: 40,
+    purchased: false
   },
   {
     name: "Rake",
     image: "/assets/accessories/deco_ribbon.png",
     price: 35,
+    purchased: false
   },
   {
     name: "Compost",
     image: "/assets/accessories/magic_sprayer.png",
     price: 50,
+    purchased: false
   },
 ];
