@@ -29,4 +29,16 @@
     margin-left: auto;
     margin-right: auto;
   }
-  
+
+  @media (max-width: 600px) {
+   .question-option {
+    display: grid;
+    grid-template-columns: 1fr; /* 🔁 1 columna en móviles */
+  }
+
+  .answer,
+  .answer-small {
+    width: 100%;  /* 🔁 Ocupan todo el ancho */
+    margin: 0;
+  }
+}

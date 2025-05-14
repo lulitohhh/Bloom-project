@@ -1,20 +1,27 @@
 .actividades-page {
-    position: relative;
-    min-height: 100vh;
-    overflow-x: hidden;
-    background-color: #f0f0da; 
-    overflow: hidden; 
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: #f0f0da;
+  overflow: hidden;
+}
+
+.background-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: -1;
+  pointer-events: none;
+  object-fit: cover;
+}
+
+/* 📱 Responsive: fondo adaptado para pantallas pequeñas */
+@media (max-width: 768px) {
+  .background-bottom {
+    height: 200px; /* Más alto en móviles para que se note más */
+    object-fit: cover;
+    object-position: top center; /* Por ejemplo, muestra la parte superior */
   }
-  
-  .fondo-inferior {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100vw;
-    height: auto;
-    
-    z-index: -1;
-    pointer-events: none;
-    object-fit: cover; 
-  }
-  
+}
