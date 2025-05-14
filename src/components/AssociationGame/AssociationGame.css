@@ -20,4 +20,8 @@
     gap: 2rem;
     flex-wrap: wrap;
   }
-  
+  @media (max-width: 600px) {
+  .asociacion-container{
+    padding: 20% 8% 8%
+  }
+}
