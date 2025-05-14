@@ -1,19 +1,23 @@
 import { useState } from "react";
 import PageLeft from "../PageLeft/PageLeft";
 import PageRight from "../PageRight/PageRight";
-import { plants, ecosystems } from "../ItemData/ItemData";
+import { useFirestoreData } from "../../data/userFirestoreData";
 import "./Album.css";
 
 const Album = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedItem, setSelectedItem] = useState(null);
 
-  const data =
-    selectedCategory === "plants"
-      ? plants
-      : selectedCategory === "ecosystems"
-      ? ecosystems
-      : [];
+  // Usamos el custom hook para obtener los datos de Firestore
+  const { data, loading, error } = useFirestoreData(selectedCategory);
+
+  if (loading && selectedCategory) {
+    return <div className="loading-message">Cargando...</div>;
+  }
+
+  if (error) {
+    return <div className="error-message">Error al cargar los datos: {error.message}</div>;
+  }
 
   return (
     <div className="album-wrapper">

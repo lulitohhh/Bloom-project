@@ -1,104 +1,104 @@
-export const plants = [
-    {
-      name: "Anthurium",
-      image: "/assets/plants/flower1.png",
-      description:
-        "Anthuriums are tropical plants with shiny, heart-shaped leaves and bright red or pink spathes. They're popular for their exotic look and long-lasting flowers.",
-      kingdom: "Plantae",
-      genus: "Anthurium",
-      habitat: "Central & South America",
-      price: 58,
-      purchased: false
-    },
-    {
-      name: "Monstera",
-      image: "/assets/plants/flower2.png",
-      description:
-        "Monstera plants are known for their large, split leaves and are often called Swiss cheese plants. They thrive in indoor environments with indirect light.",
-      kingdom: "Plantae",
-      genus: "Monstera",
-      habitat: "Central America",
-      price: 65,
-      purchased: false
-    },
-    {
-      name: "Yellow Daffodil",
-      image: "/assets/plants/flower3.png",
-      description:
-        "Daffodils are bright, cheerful flowers often associated with spring. Their trumpet-shaped blooms come mostly in yellow and white.",
-      kingdom: "Plantae",
-      genus: "Narcissus",
-      habitat: "Europe & North Africa",
-      price: 42,
-      purchased: false
-    },
-    {
-      name: "Azalea",
-      image: "/assets/plants/flower4.png",
-      description:
-        "Azaleas are flowering shrubs that produce vibrant blooms in pink, red, or white. They're popular garden plants that prefer acidic soil.",
-      kingdom: "Plantae",
-      genus: "Rhododendron",
-      habitat: "Asia, North America",
-      price: 55,
-      purchased: false
-    },
-    {
-      name: "Lucky Bamboo",
-      image: "/assets/plants/flower5.png",
-      description:
-        "Despite its name, Lucky Bamboo is not a bamboo but a type of Dracaena. It's known for bringing good luck and is often seen in decorative arrangements.",
-      kingdom: "Plantae",
-      genus: "Dracaena",
-      habitat: "Central Africa",
-      price: 47,
-      purchased: false
-    },
-    {
-      name: "Red Rose",
-      image: "/assets/plants/flower6.png",
-      description:
-        "Roses are classic symbols of love and beauty. The red variety is especially famous and widely cultivated for ornamental and gifting purposes.",
-      kingdom: "Plantae",
-      genus: "Rosa",
-      habitat: "Asia, Europe, North America",
-      price: 63,
-      purchased: false
-    },
-    {
-      name: "Iris",
-      image: "/assets/plants/flower7.png",
-      description:
-        "Irises are elegant flowers with distinct, upright petals. They are often purple or blue and symbolize wisdom and hope.",
-      kingdom: "Plantae",
-      genus: "Iris",
-      habitat: "Temperate Northern Hemisphere",
-      price: 51,
-      purchased: false
-    },
-    {
-      name: "Fuchsia",
-      image: "/assets/plants/flower8.png",
-      description:
-        "Fuchsias have unique, bell-shaped flowers that hang down like little lanterns. They come in shades of pink, purple, and red.",
-      kingdom: "Plantae",
-      genus: "Fuchsia",
-      habitat: "Central & South America",
-      price: 49,
-      purchased: false
-    },
-    {
-      name: "Snake Plant",
-      image: "/assets/plants/flower9.png",
-      description:
-        "Snake plants are hardy succulents with long, upright leaves. They're great air purifiers and thrive with minimal care.",
-      kingdom: "Plantae",
-      genus: "Sansevieria",
-      habitat: "West Africa",
-      price: 60,
-      purchased: false
-    },
-  ];
+// export const plants = [
+//     {
+//       name: "Anthurium",
+//       image: "/assets/plants/flower1.png",
+//       description:
+//         "Anthuriums are tropical plants with shiny, heart-shaped leaves and bright red or pink spathes. They're popular for their exotic look and long-lasting flowers.",
+//       kingdom: "Plantae",
+//       genus: "Anthurium",
+//       habitat: "Central & South America",
+//       price: 58,
+//       purchased: false
+//     },
+//     {
+//       name: "Monstera",
+//       image: "/assets/plants/flower2.png",
+//       description:
+//         "Monstera plants are known for their large, split leaves and are often called Swiss cheese plants. They thrive in indoor environments with indirect light.",
+//       kingdom: "Plantae",
+//       genus: "Monstera",
+//       habitat: "Central America",
+//       price: 65,
+//       purchased: false
+//     },
+//     {
+//       name: "Yellow Daffodil",
+//       image: "/assets/plants/flower3.png",
+//       description:
+//         "Daffodils are bright, cheerful flowers often associated with spring. Their trumpet-shaped blooms come mostly in yellow and white.",
+//       kingdom: "Plantae",
+//       genus: "Narcissus",
+//       habitat: "Europe & North Africa",
+//       price: 42,
+//       purchased: false
+//     },
+//     {
+//       name: "Azalea",
+//       image: "/assets/plants/flower4.png",
+//       description:
+//         "Azaleas are flowering shrubs that produce vibrant blooms in pink, red, or white. They're popular garden plants that prefer acidic soil.",
+//       kingdom: "Plantae",
+//       genus: "Rhododendron",
+//       habitat: "Asia, North America",
+//       price: 55,
+//       purchased: false
+//     },
+//     {
+//       name: "Lucky Bamboo",
+//       image: "/assets/plants/flower5.png",
+//       description:
+//         "Despite its name, Lucky Bamboo is not a bamboo but a type of Dracaena. It's known for bringing good luck and is often seen in decorative arrangements.",
+//       kingdom: "Plantae",
+//       genus: "Dracaena",
+//       habitat: "Central Africa",
+//       price: 47,
+//       purchased: false
+//     },
+//     {
+//       name: "Red Rose",
+//       image: "/assets/plants/flower6.png",
+//       description:
+//         "Roses are classic symbols of love and beauty. The red variety is especially famous and widely cultivated for ornamental and gifting purposes.",
+//       kingdom: "Plantae",
+//       genus: "Rosa",
+//       habitat: "Asia, Europe, North America",
+//       price: 63,
+//       purchased: false
+//     },
+//     {
+//       name: "Iris",
+//       image: "/assets/plants/flower7.png",
+//       description:
+//         "Irises are elegant flowers with distinct, upright petals. They are often purple or blue and symbolize wisdom and hope.",
+//       kingdom: "Plantae",
+//       genus: "Iris",
+//       habitat: "Temperate Northern Hemisphere",
+//       price: 51,
+//       purchased: false
+//     },
+//     {
+//       name: "Fuchsia",
+//       image: "/assets/plants/flower8.png",
+//       description:
+//         "Fuchsias have unique, bell-shaped flowers that hang down like little lanterns. They come in shades of pink, purple, and red.",
+//       kingdom: "Plantae",
+//       genus: "Fuchsia",
+//       habitat: "Central & South America",
+//       price: 49,
+//       purchased: false
+//     },
+//     {
+//       name: "Snake Plant",
+//       image: "/assets/plants/flower9.png",
+//       description:
+//         "Snake plants are hardy succulents with long, upright leaves. They're great air purifiers and thrive with minimal care.",
+//       kingdom: "Plantae",
+//       genus: "Sansevieria",
+//       habitat: "West Africa",
+//       price: 60,
+//       purchased: false
+//     },
+//   ];
   
   export const ecosystems = [
     {
