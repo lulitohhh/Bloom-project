@@ -17,7 +17,7 @@ const SessionSummary = () => {
   const handleFinish = () => {
     dispatch(addCoins(sessionTotal));
     dispatch(resetSessionCoins());
-    navigate('/'); 
+    navigate('/dashboard'); 
   };
 
   return (

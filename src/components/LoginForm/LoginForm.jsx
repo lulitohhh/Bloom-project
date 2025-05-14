@@ -2,29 +2,39 @@ import './LoginForm.css'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginWithEmailAndPassword } from '../../services/firebase/authservice';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../redux/AuthSlice';
 
 
 const LoginForm = () =>{
-    const [username, setUsername] = useState(''); // Asumo que es el email
+    const [email, setEmail] = useState(''); // Asumo que es el email
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
+    const dispatch = useDispatch()
 
     const handleLogin = async (e) => {
-    e.preventDefault();
-    setError('');
-    setIsLoading(true);
+      e.preventDefault();
+      setError('');
+      setIsLoading(true);
 
-    try {
-      await loginWithEmailAndPassword(username, password);
-      navigate('/dashboard'); // Redirige al dashboard tras login
-    } catch (error) {
-      setError(getErrorMessage(error.code));
-    } finally {
-      setIsLoading(false);
-    }
-  };
+      try {
+        const userCredential = await loginWithEmailAndPassword(email, password);
+        
+        // Guarda el usuario en Redux (para que el middleware pueda acceder al uid)
+        dispatch(setUser({
+          uid: userCredential.user.uid,
+          email: userCredential.user.email
+        }));
+        
+        navigate('/dashboard');
+      } catch (error) {
+        setError(getErrorMessage(error.code));
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
   const getErrorMessage = (errorCode) => {
     switch(errorCode) {
@@ -56,8 +66,8 @@ const LoginForm = () =>{
             className="bloom-input" 
             type="text" 
             placeholder="Joseph123" 
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
         </label>
