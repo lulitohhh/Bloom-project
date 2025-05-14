@@ -36,6 +36,6 @@
   }
     @media (max-width: 600px) {
   .story-container{
-    
+    padding: 30% 6% 6%;
   }
 }
