@@ -1,11 +1,12 @@
 import "./Coin.css";
 import Coin from '../../assets/images/Coin.png';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from "react";
 import { loadCoinsFromFirestore } from "../../redux/coinSlice";
 
 
 const CoinCounter = () => {
+  const dispatch = useDispatch()
   const coins = useSelector((state) => state.coins.coins); 
   const auth = useSelector((state) => state.auth);
 
@@ -13,7 +14,7 @@ const CoinCounter = () => {
     if (auth.user?.uid) {
       dispatch(loadCoinsFromFirestore(auth.user.uid)); // Recarga al montar
     }
-  }, [auth.user?.uid]);
+  }, [dispatch, auth.user?.uid]);
 
   return (
     <div className='Coin-Bar'>
