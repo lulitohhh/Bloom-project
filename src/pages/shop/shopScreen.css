@@ -7,6 +7,7 @@ body {
   margin: 0;
 }
 
+
 /*.shop-container {
   background: url("/src/assets/images/bg-shop.png") no-repeat center center fixed;
   background-size: cover;
@@ -174,62 +175,78 @@ body {
 }
 
 
+
 @media (max-width: 480px) {
+  .shop-container {
+    padding: 15px;
+    margin-bottom: 60px;
+  }
+
+  .shop-container .items-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
   .shop-controls {
-    flex-direction: row;
-    align-items: stretch;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 80px;
+    text-align: center;
   }
 
   .category-tabs {
     flex-wrap: wrap;
     justify-content: center;
+    gap: 8px;
   }
 
-  .shop-container .items-grid {
-    grid-template-columns: 1fr;
+  .coins-counter {
+    font-size: 0.9rem;
+    padding: 6px 12px;
+    gap: 4px;
+    display: flex;
+    align-items: center;
+    background-color: #FFD79F;
+    border-radius: 20px;
+  }
+
+  .coin-icon {
+    width: 14px;
+    height: 14px;
+    object-fit: contain;
+    display: inline-block;
+    
   }
 
   .shop-container .item-card {
-    width: 90%;
-    height: 200px;
-    min-height: 200px;
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    min-height: 220px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
-  
-  .BuyBtn {
-    font-size: 14px;
-  }
-  
 
   .price-buy-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 8px;
-    width: 100%;
+    margin-top: 10px;
   }
-  
+
   .price {
     display: flex;
-    align-items: center;
-    gap: 4px;
+    align-items:flex-start;
+    font-size: 13px;
     font-weight: bold;
-    font-size: 14px;
   }
-  
-  .coin-icon {
-    object-fit: contain;
-  }
-  
-  .coins-counter {
-    max-width: 120px;
-    overflow: hidden;
-    text-overflow: ellipsis;
+
+  .BuyBtn {
+    font-size: 12px;
+    padding: 6px 10px;
     white-space: nowrap;
-    justify-content: flex-end;
   }
-  
 }
