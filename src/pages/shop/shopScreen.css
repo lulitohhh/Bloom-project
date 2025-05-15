@@ -141,7 +141,7 @@ body {
   z-index: 2;
 }
 
-/* Efecto en la imagen */
+
 .item-card.purchased .item-img {
   filter: brightness(0.85);
   transition: filter 0.3s ease;
