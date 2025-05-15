@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh; /* Centrado vertical */
+  min-height: 100vh; 
   background-image: url('../img/bg.png'); /* Usa tu ruta real */
   background-size: cover;
   background-position: center;
