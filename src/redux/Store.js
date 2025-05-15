@@ -5,6 +5,8 @@ import associationReducer from './Activities/associationSlice';
 import storyReducer from './Activities/storySlice';
 import activityProgressReducer from './ActivityProgressSlice';
 import sessionCoinsReducer from './sessionCoinsSlice';
+import { coinMiddleware } from './coinMiddleware';
+import authReducer from './AuthSlice'
 
 export const store = configureStore({
   reducer: {
@@ -13,7 +15,10 @@ export const store = configureStore({
     quiz: QuizGameReducer,
     coins: coinReducer,
     activityProgress: activityProgressReducer,
-    sessionCoins: sessionCoinsReducer
+    sessionCoins: sessionCoinsReducer,
+    auth: authReducer,
   
-  }
+  },
+   middleware: (getDefaultMiddleware) => 
+    getDefaultMiddleware().concat(coinMiddleware), // Añade tu middleware
 });
