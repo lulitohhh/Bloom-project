@@ -62,7 +62,7 @@ const BigPot = () => {
     } catch (error) {
       console.error("Error watering plant:", error);
     }
-  };
+  };  
 
   const handleFertilizePlant = async () => {
     if (resources.fertilizer <= 0 || !currentPlant) return;

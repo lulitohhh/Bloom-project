@@ -122,18 +122,18 @@ const ShopScreen = () => {
     const plantData = {
       id: plantItem.id,
       name: plantItem.name,
-      image: plantItem.image,        // Mantiene tu campo original
-      sproutImage: "/assets/brote.png",   // Usa la misma imagen por defecto
-      matureImage: plantItem.image,   // Puedes cambiarlo después
+      image: plantItem.image,        
+      sproutImage: "/assets/brote.png",   
+      matureImage: plantItem.image,   
       isMature: false,
       purchasedAt: new Date(),
-      // Copia campos descriptivos automáticamente
+      
       ...(plantItem.description && { description: plantItem.description }),
       ...(plantItem.genus && { genus: plantItem.genus }),
       ...(plantItem.habitat && { habitat: plantItem.habitat })
     };
 
-    // Decide dónde colocar la planta
+    
     if (!userData.bigPotPlant) {
       return {
         bigPotPlant: plantData,

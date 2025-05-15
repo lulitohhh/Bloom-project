@@ -14,7 +14,7 @@ const Album = () => {
   const [purchasedItems, setPurchasedItems] = useState([]);
   const userId = useSelector((state) => state.auth.user?.uid);
 
-  // Obtener items comprados por el usuario
+
   useEffect(() => {
     const fetchPurchasedItems = async () => {
       if (userId) {

@@ -115,19 +115,20 @@
 
 .progress-bar {
   position: absolute;
-  bottom: 5%; /* Acercamos la barra un poco más al borde inferior */
+  top: -60%;
   left: 50%;
   transform: translateX(-50%);
   background-color: #e0e0e0;
   border-radius: 10px;
-  width: 70%; /* Reducimos el ancho de la barra */
-  height: 15px; /* Reducimos la altura de la barra */
+  width: 70%;
+  height: 20px;
   overflow: hidden;
   z-index: 0;
+  border: 3px solid white; /* Borde blanco de 2px de grosor */
 }
 
 .progress-fill {
-  background-color: #8BC34A;
+  background-color: #98ea3b;
   height: 100%;
   border-radius: 10px;
   width: 0%;
