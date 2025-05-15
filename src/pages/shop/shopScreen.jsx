@@ -151,7 +151,7 @@ const ShopScreen = () => {
     return {};
   };
 
-  // Muestra alerta con mensaje
+  
   const showAlertMessage = (message) => {
     setAlertMessage(message);
     setShowAlert(true);
