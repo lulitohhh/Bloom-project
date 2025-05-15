@@ -35,7 +35,7 @@ const ShopScreen = () => {
     fetchUserPurchasedItems();
   }, [userId]);
 
-  // Formatear items para mostrar
+  
   const formatItems = {
     plants: shopItems.plants?.map(plant => ({
       ...plant,
