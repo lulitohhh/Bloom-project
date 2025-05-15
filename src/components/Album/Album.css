@@ -41,8 +41,8 @@
   .album-image {
     display: flex;
     flex-direction: column;
-    width: 80vw;
-    max-width: 280px;
+    width: 90vw;
+    max-width: 320px;
     height: auto;
     padding: 10px;
 
