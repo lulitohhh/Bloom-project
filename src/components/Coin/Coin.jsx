@@ -14,7 +14,7 @@ const CoinCounter = () => {
 
   useEffect(() => {
     if (auth.user?.uid) {
-      dispatch(loadCoinsFromFirestore(auth.user.uid)); // Recarga al montar
+      dispatch(loadCoinsFromFirestore(auth.user.uid)); 
     }
   }, [dispatch, auth.user?.uid]);
 
