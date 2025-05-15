@@ -18,7 +18,7 @@
     height: 100%;
     gap: 20px;
     padding-top: 20%;
-    justify-content: center; /* Centra los elementos horizontalmente */
+    justify-content: center; 
     align-items: center;
     
 }
