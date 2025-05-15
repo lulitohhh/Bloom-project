@@ -20,5 +20,5 @@ export const store = configureStore({
   
   },
    middleware: (getDefaultMiddleware) => 
-    getDefaultMiddleware().concat(coinMiddleware), // Añade tu middleware
+    getDefaultMiddleware().concat(coinMiddleware), 
 });
