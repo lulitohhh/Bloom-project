@@ -337,7 +337,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; /* Asegura que la alerta esté por encima de todo */
+  z-index: 1000; 
 }
 
 /* Estilos para la caja de la alerta */
