@@ -54,7 +54,7 @@ const ShopScreen = () => {
     })) || []
   };
 
-  // Función para comprar un ítem
+  
   const handleBuy = async (item) => {
   if (!userId) {
     showAlertMessage("Por favor inicia sesión para realizar compras");
