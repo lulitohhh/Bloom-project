@@ -5,7 +5,7 @@ import { setPairs, selectCard, clearSelection, markResolved, resetAssociation } 
 import CardGroup from '../CardGroup/CardGroup';
 import Header from '../Header/Header';
 import NextButton from '../NextButton/NextButton';
-import Association from '../../data/Association.json';
+
 import NavBar from '../navBar/navBar';
 import { addSessionCoins } from '../../redux/sessionCoinsSlice';
 import { useState } from 'react';

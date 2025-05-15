@@ -1,4 +1,4 @@
-// src/pages/Actividades.jsx
+
 import React from 'react';
 
 import "./dashboard.css"
@@ -14,9 +14,29 @@ import CoinCounter from '../../components/Coin/Coin';
 import NavBar from '../../components/navBar/navBar';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { useState } from 'react';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../../services/firebase/firebaseConfig';
 
 const Dashboard = () => {
   const auth = useSelector((state) => state.auth);
+  const [potPlantsData, setPotPlantsData] = useState([]);
+
+  useEffect(() => {
+    const loadPotPlants = async () => {
+      if (!auth.user?.uid) return;
+
+      const userRef = doc(db, 'users', auth.user.uid);
+      const docSnap = await getDoc(userRef);
+
+      if (docSnap.exists()) {
+        const userData = docSnap.data();
+        setPotPlantsData(userData.potPlants || []);
+      }
+    };
+
+    loadPotPlants();
+  }, [auth.user]);
 
   useEffect(() => {
     if (auth.user?.uid) {
@@ -27,15 +47,16 @@ const Dashboard = () => {
     }
   }, [auth.user]);
 
-
   return (
     <div className='dashboard'>
       <Background />
       <NavBar/>
       <div className="pots-container">
-        <Pot />
-        <BigPot /> 
-        <Pot />
+        {potPlantsData.map((plant, index) => (
+          <Pot key={index} plantData={plant} />
+        ))}
+        <BigPot />
+        {/* Si quieres más de 2 maceteros pequeños, puedes renderizar más componentes Pot */}
       </div>
       <div className="btn-container">
         <EcoButton/>

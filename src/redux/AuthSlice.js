@@ -5,13 +5,16 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    user: null,
+    user: null,  // Asegúrate que user tenga el uid
     loading: false,
     error: null
   },
   reducers: {
     setUser: (state, action) => {
-      state.user = action.payload;
+      state.user = action.payload; // Debe incluir { uid, email, etc... }
+    },
+    clearUser: (state) => {
+      state.user = null;
     }
   },
   extraReducers: (builder) => {
@@ -33,5 +36,5 @@ export const fetchUserCoins = createAsyncThunk(
   }
 );
 
-export const { setUser } = authSlice.actions;
+export const { setUser, clearUser } = authSlice.actions;
 export default authSlice.reducer;
