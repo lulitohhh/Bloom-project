@@ -5,7 +5,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    user: null,  // Asegúrate que user tenga el uid
+    user: null, 
     loading: false,
     error: null
   },
