@@ -229,7 +229,7 @@ body {
 }
 
 .BuyBtn:active {
-  transform: translateY(4px); /* Movimiento al presionar */
+  transform: translateY(4px); 
   box-shadow: 0 1px 0 #8c370d, 0 2px 5px rgba(0, 0, 0, 0.1); /* Cambio de sombra al presionar */
   background-color: #933b17; /* Cambio a un color más oscuro */
 }
