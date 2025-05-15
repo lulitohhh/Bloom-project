@@ -73,3 +73,40 @@
   margin-top: 10px;
   text-align: left;
 }
+
+@media (max-width: 768px) {
+  .item-card {
+    width: 80%;
+    max-width: none;
+    height: auto;
+    padding: 16px;
+    border-width: 6px;
+  }
+
+  .image-wrapper {
+    padding: 20px;
+  }
+
+  .image-wrapper h3 {
+    font-size: 12px;
+    top: 6px;
+    left: 8px;
+  }
+
+  .item-image {
+    max-width: 60px;
+    max-height: 120px;
+  }
+
+  .item-card p,
+  .item-card li {
+    font-size: 13px;
+  }
+
+  .back-btn {
+    font-size: 14px;
+    width: 120px;
+    margin-top: 20px;
+    text-align: center;
+  }
+}
