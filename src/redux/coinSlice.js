@@ -1,4 +1,4 @@
-// src/redux/coinSlice.js
+
 import { createSlice } from '@reduxjs/toolkit';
 import { saveToLocalStorage, loadFromLocalStorage } from './storage';
 import { syncCoinsFromFirestore } from '../services/firebase/coinsService';
