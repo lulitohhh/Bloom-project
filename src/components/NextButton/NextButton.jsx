@@ -7,7 +7,7 @@ const BotonSiguiente = ({ onClick, disabled, label = "Next" }) => {
       onClick={onClick} 
       disabled={disabled}
     >
-      {label} {/* Mostrará "Next" si label no está definido */}
+      {label} 
     </button>
   );
 };
