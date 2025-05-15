@@ -347,7 +347,7 @@ body {
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
-  min-width: 300px; /* Ancho mínimo para la alerta */
+  min-width: 300px;
   max-width: 80%; /* Ancho máximo para adaptarse a pantallas más pequeñas */
 }
 
