@@ -45,7 +45,7 @@ const Activities = () => {
         console.error('Error cargando actividades:', error);
         
       } finally {
-        setIsLoading(false); // Finalizar el estado de carga
+        setIsLoading(false); 
       }
     }
 
