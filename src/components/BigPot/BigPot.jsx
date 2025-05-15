@@ -89,7 +89,7 @@ const BigPot = () => {
   const getPlantImage = () => {
     if (!currentPlant) return null;
 
-    // Prioridad: matureImage/sproutImage -> image (fallback)
+   
     if (currentPlant.isMature || growthProgress >= 100) {
       return currentPlant.matureImage || currentPlant.image;
     } else if (growthProgress >= 50) {
