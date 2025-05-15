@@ -13,7 +13,7 @@ import { db } from '../../services/firebase/firebaseConfig';
 const Activities = () => {
   const [paso, setPaso] = useState(0);
   const [actividades, setActividades] = useState([]);
-  const [isLoading, setIsLoading] = useState(true); // Nuevo estado de carga
+  const [isLoading, setIsLoading] = useState(true); 
   const auth = useSelector((state) => state.auth);
 
   useEffect(() => {
