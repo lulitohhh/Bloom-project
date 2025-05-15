@@ -67,11 +67,14 @@ const ShopScreen = () => {
             <div key={item.id} className="item-card">
               <img src={item.img} alt={item.name} className="item-img" />
               <h3>{item.name}</h3>
-              <p>
-                {item.price}{" "}
-                <img src={coinImg} alt="coin" className="coin-icon" />
-              </p>
-              <button className="BuyBtn" onClick={() => handleBuy(item.price)}>Buy</button>
+              <div className="price-buy-row">
+  <div className="price">
+    {item.price}
+    <img src={coinImg} alt="coin" className="coin-icon" />
+  </div>
+  <button className="BuyBtn" onClick={() => handleBuy(item.price)}>Buy</button>
+</div>
+
             </div>
           ))}
         </div>

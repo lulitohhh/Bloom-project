@@ -19,6 +19,7 @@ body {
 .shop-container {
   font-family: "Fredoka One", sans-serif;
   padding: 20px;
+  font-size: 13px;
   background-color: #FFF7E6;
   min-height: 100vh;
   color: #4B2E15;
@@ -28,9 +29,12 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   margin: 1rem 0;
-  margin-top: 90px; 
+  margin-top: 90px;
+  gap: 10px;
 }
+
 
 .category-tabs {
   display: flex;
@@ -76,11 +80,11 @@ body {
   text-align: center;
   box-shadow: 0 8px 0 #FFD79F;
   transition: transform 0.2s;
-  width: 180px;
-  height: 180px;
+  width: 200px;
+  height: 200px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .shop-container .item-card:hover {
@@ -88,8 +92,8 @@ body {
 }
 
 .shop-container .item-img {
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   object-fit: contain;
   margin: 0 auto 8px;
 }
@@ -107,7 +111,7 @@ body {
   border-radius: 12px;
   margin-top: 4px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 10px;
 }
 
 .container-shop{
@@ -131,11 +135,12 @@ body {
   width: 15px;
   height: 15px;
 }
+
 .BuyBtn {
   background-color: #AC411B;
   color: white;
   border: none;
-  padding: 8px 12px;
+  padding: 6px 10px;
   border-radius: 12px;
   margin-top: 8px;
   cursor: pointer;
@@ -151,4 +156,80 @@ body {
   transform: translateY(4px); /* Movimiento al presionar */
   box-shadow: 0 1px 0 #8c370d, 0 2px 5px rgba(0, 0, 0, 0.1); /* Cambio de sombra al presionar */
   background-color: #933b17; /* Cambio a un color más oscuro */
+}
+
+.price-buy-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.price {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+
+@media (max-width: 480px) {
+  .shop-controls {
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-between;
+  }
+
+  .category-tabs {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .shop-container .items-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .shop-container .item-card {
+    width: 90%;
+    height: 200px;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .BuyBtn {
+    font-size: 14px;
+  }
+  
+
+  .price-buy-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+    width: 100%;
+  }
+  
+  .price {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  
+  .coin-icon {
+    object-fit: contain;
+  }
+  
+  .coins-counter {
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    justify-content: flex-end;
+  }
+  
 }
