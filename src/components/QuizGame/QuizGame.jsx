@@ -15,26 +15,30 @@ import { db } from '../../services/firebase/firebaseConfig';
 const QuizGame = ({ id, onSuccess }) => {
   const dispatch = useDispatch();
   const { selection, correct } = useSelector((state) => state.quiz);
-  const coinsGiven = useRef(false);
-
   const [question, setQuestion] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
+  const coinsGiven = useRef(false);
+
+  // Obtener la pregunta de Firestore
   useEffect(() => {
-    const fetchQuiz = async () => {
-      setLoading(true);
+    const fetchQuestion = async () => {
       try {
-        const docRef = doc(db, 'quizzes', id.toString());
+        const docRef = doc(db, 'quizzes', id.toString()); // Asumiendo que tienes una colección 'quizzes'
         const docSnap = await getDoc(docRef);
-
+        
         if (docSnap.exists()) {
-          setQuestion(docSnap.data());
+          setQuestion({
+            id: docSnap.id,
+            ...docSnap.data()
+          });
         } else {
-          setQuestion(null);
+          setError('Pregunta no encontrada');
         }
-      } catch (error) {
-        console.error('Error fetching quiz:', error);
-        setQuestion(null);
+      } catch (err) {
+        setError('Error al cargar la pregunta');
+        console.error("Error fetching question:", err);
       } finally {
         setLoading(false);
       }
@@ -42,15 +46,16 @@ const QuizGame = ({ id, onSuccess }) => {
 
     dispatch(resetQuiz());
     coinsGiven.current = false;
-    fetchQuiz();
+    fetchQuestion();
   }, [id, dispatch]);
 
   useEffect(() => {
     if (selection && correct && !coinsGiven.current) {
+      console.log('Monedas otorgadas ID:', id);
       dispatch(addSessionCoins(3));
       coinsGiven.current = true;
     }
-  }, [selection, correct, dispatch]);
+  }, [selection, correct, dispatch, id]);
 
   const handleResponse = (answer) => {
     if (question) {
@@ -59,6 +64,7 @@ const QuizGame = ({ id, onSuccess }) => {
   };
 
   if (loading) return <p>Cargando pregunta...</p>;
+  if (error) return <p>{error}</p>;
   if (!question) return <p>Pregunta no encontrada.</p>;
 
   return (

@@ -8,9 +8,10 @@ import NextButton from '../NextButton/NextButton';
 import Association from '../../data/Association.json';
 import NavBar from '../navBar/navBar';
 import { addSessionCoins } from '../../redux/sessionCoinsSlice';
+import { useState } from 'react';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../services/firebase/firebaseConfig';
-import { useState } from 'react';
+
 
 const images = import.meta.glob('../../assets/images/*.png', { eager: true });
 function getImage(nombre) {
