@@ -117,7 +117,7 @@ const ShopScreen = () => {
   }
 };
 
-  // Genera los datos de actualización para plantas
+  
   const getPlantUpdateData = (plantItem, userData) => {
     const plantData = {
       id: plantItem.id,
