@@ -225,7 +225,7 @@ body {
   transition: all 0.08s cubic-bezier(0.3, 0, 0.5, 1);
   user-select: none;
   font-family: 'Fredoka One', sans-serif;
-  box-shadow: 0 4px 0 #8c370d, 0 5px 10px rgba(0, 0, 0, 0.2); /* Sombra original */
+  box-shadow: 0 4px 0 #8c370d, 0 5px 10px rgba(0, 0, 0, 0.2); 
 }
 
 .BuyBtn:active {
