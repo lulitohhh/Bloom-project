@@ -326,7 +326,7 @@ body {
   }
 }
 
-/* Estilos para el overlay semitransparente detrás de la alerta */
+
 .alert-overlay {
   position: fixed; /* Cubre toda la ventana */
   top: 0;
