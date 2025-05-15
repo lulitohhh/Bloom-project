@@ -26,6 +26,6 @@ export const updateCoinsInFirestore = async (userId, newCoins) => {
     console.log("Monedas actualizadas en Firestore para UID:", userId);
   } catch (error) {
     console.error("Error en updateCoinsInFirestore:", error);
-    throw error; // Opcional: re-lanza el error para manejarlo en el middleware
+    throw error; 
   }
 };
