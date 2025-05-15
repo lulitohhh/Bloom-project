@@ -37,10 +37,10 @@ const RegisterForm = () =>{
     const password = formData.get('password');
 
     try {
-      // 1. Registro en Firebase Auth
+      
       const userCredential = await registerWithEmailAndPassword(email, password);
       
-      // 2. Guardar perfil en Firestore
+      
       await createUserProfile(userCredential.user.uid, {
         username,
         email,
@@ -55,7 +55,7 @@ const RegisterForm = () =>{
       });
 
     } catch (err) {
-      // Mapeo de errores de Firebase
+      
       switch (err.code) {
         case 'auth/email-already-in-use':
           setError('El correo ya está registrado');
