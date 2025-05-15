@@ -21,7 +21,7 @@ const ShopScreen = () => {
 
   const { shopItems, loading, error } = useShopItems();
 
-  // Obtener los ítems comprados por el usuario
+  
   useEffect(() => {
     const fetchUserPurchasedItems = async () => {
       if (userId) {
