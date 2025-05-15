@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import "./ShopScreen.css";
 import NavBar from "../../components/navBar/navBar";
-import { doc, updateDoc, arrayUnion, increment } from "firebase/firestore";
+import { doc, updateDoc, arrayUnion, increment, getDoc } from "firebase/firestore";
 import coinImg from "/src/assets/images/Coin.png";
 import { useShopItems } from "../../data/useShopData";
 import { db } from "../../services/firebase/firebaseConfig";
 import { useSelector, useDispatch } from "react-redux";
 import { subtractCoins} from "../../redux/coinSlice";
+import { useEffect } from "react";
 
 const ShopScreen = () => {
   const [category, setCategory] = useState("plants");
