@@ -8,7 +8,7 @@ import { fetchUserCoins } from '../../redux/AuthSlice';
 
 
 const LoginForm = () =>{
-    const [email, setEmail] = useState(''); // Asumo que es el email
+    const [email, setEmail] = useState(''); 
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -24,9 +24,9 @@ const LoginForm = () =>{
     const userCredential = await loginWithEmailAndPassword(email, password);
     const userId = userCredential.user.uid;
     
-    // Guarda usuario en Redux y carga sus monedas
+    
     dispatch(setUser({ uid: userId, email: userCredential.user.email }));
-    dispatch(fetchUserCoins(userId)); // ¡Carga las monedas!
+    dispatch(fetchUserCoins(userId));
         
         navigate('/dashboard');
       } catch (error) {

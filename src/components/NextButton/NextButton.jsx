@@ -1,6 +1,6 @@
 import './NextButton.css';
 
-const BotonSiguiente = ({ onClick, disabled, label = "Next" }) => { // Valor predeterminado aquí
+const BotonSiguiente = ({ onClick, disabled, label = "Next" }) => {
   return (
     <button 
       className="Next-button" 
