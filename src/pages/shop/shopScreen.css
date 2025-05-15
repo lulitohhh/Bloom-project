@@ -342,7 +342,7 @@ body {
 
 
 .alert-box {
-  background-color: #fff; /* Fondo blanco para la alerta */
+  background-color: #fff; 
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
