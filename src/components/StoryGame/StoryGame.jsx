@@ -26,15 +26,15 @@ function StoryGame({ onFinish }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Cargar historia desde Firestore
+  
   useEffect(() => {
     const loadStory = async () => {
       try {
         let storyToLoad = storyId;
 
-        // Si no hay storyId, seleccionamos una aleatoria
+       
         if (!storyToLoad) {
-          const randomId = Math.floor(Math.random() * 3) + 1; // Asumiendo que tienes 3 historias
+          const randomId = Math.floor(Math.random() * 3) + 1; 
           storyToLoad = randomId;
         }
 
@@ -47,7 +47,7 @@ function StoryGame({ onFinish }) {
             ...docSnap.data()
           };
 
-          // Convertir pages de objeto a array ordenado si es necesario
+          
           if (storyData.pages && !Array.isArray(storyData.pages)) {
             const pagesArray = Object.keys(storyData.pages)
               .sort((a, b) => Number(a) - Number(b))
@@ -57,7 +57,7 @@ function StoryGame({ onFinish }) {
 
           setStory(storyData);
 
-          // Verificar progreso guardado
+          
           const storedProgress = JSON.parse(localStorage.getItem('storyProgress'));
           if (storedProgress && storedProgress.storyId === docSnap.id) {
             dispatch(startStory(storedProgress.storyId));
@@ -107,7 +107,7 @@ function StoryGame({ onFinish }) {
       onFinish(); 
     }
   } else {
-    dispatch(nextPage(story.pages.length - 1)); // <-- Aquí se pasa el máximo índice permitido
+    dispatch(nextPage(story.pages.length - 1)); 
     setAnsweredCorrectly({});
   }
 }
@@ -115,7 +115,7 @@ function StoryGame({ onFinish }) {
   function handleAnswer(isCorrect, questionIndex) {
   setAnsweredCorrectly((prevState) => ({
     ...prevState,
-    [questionIndex]: true,  // Aquí sólo indicas que se respondió, sin importar si es correcta o no
+    [questionIndex]: true,  
   }));
 
   if (isCorrect) {
