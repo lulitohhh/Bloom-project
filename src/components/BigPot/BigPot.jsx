@@ -116,7 +116,7 @@ const BigPot = () => {
             </div>
           </>
         ) : (
-          <div className="empty-pot">Vacío</div>
+          <div className="empty-pot"></div>
         )}
       </div>
       <div className="pot-bton-container">
