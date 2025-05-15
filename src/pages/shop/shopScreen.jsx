@@ -15,10 +15,10 @@ const ShopScreen = () => {
   const [alertMessage, setAlertMessage] = useState("");
   const [userPurchasedItems, setUserPurchasedItems] = useState([]);
   const dispatch = useDispatch();
-  
+
   const coins = useSelector((state) => state.coins.coins);
   const userId = useSelector((state) => state.auth.user?.uid);
-  
+
   const { shopItems, loading, error } = useShopItems();
 
   // Obtener los ítems comprados por el usuario
@@ -56,56 +56,66 @@ const ShopScreen = () => {
 
   // Función para comprar un ítem
   const handleBuy = async (item) => {
-    if (!userId) {
-      showAlertMessage("Por favor inicia sesión para realizar compras");
-      return;
-    }
+  if (!userId) {
+    showAlertMessage("Por favor inicia sesión para realizar compras");
+    return;
+  }
 
-    if (userPurchasedItems.includes(item.id)) {
-      showAlertMessage("¡Ya posees este artículo!");
-      return;
-    }
+  const isResource = item.id === "watering_can" || item.id === "fertilizer";
 
-    if (coins < item.price) {
-      showAlertMessage(`¡No tienes suficientes monedas! Necesitas ${item.price - coins} monedas más.`);
-      return;
-    }
+  if (!isResource && userPurchasedItems.includes(item.id)) {
+    showAlertMessage("¡Ya posees este artículo!");
+    return;
+  }
 
-    try {
-      const userRef = doc(db, "users", userId);
-      const userDoc = await getDoc(userRef);
-      
-      if (!userDoc.exists()) return;
+  if (coins < item.price) {
+    showAlertMessage(`¡No tienes suficientes monedas! Necesitas ${item.price - coins} monedas más.`);
+    return;
+  }
 
-      // Lógica específica para plantas
+  try {
+    const userRef = doc(db, "users", userId);
+    const userDoc = await getDoc(userRef);
+
+    if (!userDoc.exists()) return;
+    const userData = userDoc.data();
+
+    if (isResource) {
+      // Incrementar la cantidad del recurso en el documento del usuario
+      const resourceName = item.id === "watering_can" ? "water" : "fertilizer";
+      await updateDoc(userRef, {
+        [`resources.${resourceName}`]: increment(1)
+      });
+      dispatch(subtractCoins(item.price));
+      showAlertMessage(`¡Compra exitosa! Has adquirido 1 unidad de ${item.name}`);
+    } else {
+      // Lógica para ítems únicos (plantas, ecosistemas, otros accesorios)
       if (category === "plants") {
-        const userData = userDoc.data();
-        const hasSpace = !userData.bigPotPlant || 
-                       (userData.potPlants || [null, null]).some(pot => pot === null);
-        
+        const hasSpace = !userData.bigPotPlant ||
+                          (userData.potPlants || [null, null]).some(pot => pot === null);
+
         if (!hasSpace) {
           showAlertMessage("¡No tienes espacio para más plantas!");
           return;
         }
       }
 
-      // Actualización atómica en Firestore
       await updateDoc(userRef, {
         purchasedItems: arrayUnion(item.id),
         coins: increment(-item.price),
-        ...(category === "plants" && getPlantUpdateData(item, userDoc.data()))
+        ...(category === "plants" && getPlantUpdateData(item, userData))
       });
 
-      // Actualizar Redux y estado local
       dispatch(subtractCoins(item.price));
       setUserPurchasedItems(prev => [...prev, item.id]);
       showAlertMessage(`¡Compra exitosa! Has adquirido ${item.name}`);
-
-    } catch (error) {
-      console.error("Error en la compra:", error);
-      showAlertMessage("Error al completar la compra. Por favor intenta nuevamente.");
     }
-  };
+
+  } catch (error) {
+    console.error("Error en la compra:", error);
+    showAlertMessage("Error al completar la compra. Por favor intenta nuevamente.");
+  }
+};
 
   // Genera los datos de actualización para plantas
   const getPlantUpdateData = (plantItem, userData) => {
@@ -113,8 +123,8 @@ const ShopScreen = () => {
       id: plantItem.id,
       name: plantItem.name,
       image: plantItem.image,        // Mantiene tu campo original
-      sproutImage: plantItem.image,  // Usa la misma imagen por defecto
-      matureImage: plantItem.image,  // Puedes cambiarlo después
+      sproutImage: "/assets/brote.png",   // Usa la misma imagen por defecto
+      matureImage: plantItem.image,   // Puedes cambiarlo después
       isMature: false,
       purchasedAt: new Date(),
       // Copia campos descriptivos automáticamente
@@ -125,7 +135,7 @@ const ShopScreen = () => {
 
     // Decide dónde colocar la planta
     if (!userData.bigPotPlant) {
-      return { 
+      return {
         bigPotPlant: plantData,
         plantGrowth: 0,
         potPlants: userData.potPlants || [null, null] // Inicializa si no existe
@@ -177,7 +187,7 @@ const ShopScreen = () => {
         <div className="alert-overlay">
           <div className="alert-box">
             <p>{alertMessage}</p>
-            <button 
+            <button
               className="close-alert-btn"
               onClick={() => setShowAlert(false)}
             >
@@ -204,37 +214,37 @@ const ShopScreen = () => {
       <div className="container-shop">
         <div className="items-grid">
           {formatItems[category].map((item) => (
-            <div 
-              key={item.id} 
-              className={`item-card ${item.purchased ? "purchased" : ""}`}
+            <div
+              key={item.id}
+              className={`item-card ${item.purchased && item.id !== "watering_can" && item.id !== "fertilizer" ? "purchased" : ""}`}
             >
-              {item.purchased && (
+              {item.purchased && item.id !== "watering_can" && item.id !== "fertilizer" && (
                 <span className="purchased-badge">ADQUIRIDO</span>
               )}
 
-              <img 
-                src={item.img} 
-                alt={item.name} 
+              <img
+                src={item.img}
+                alt={item.name}
                 className="item-img"
                 onError={(e) => {
                   e.target.src = '/src/assets/images/default-item.png';
                 }}
               />
-              
+
               <h3>{item.name}</h3>
               <p>
                 {item.price} <img src={coinImg} alt="moneda" className="coin-icon" />
               </p>
-              
-              <button 
-                className={`buy-btn ${item.purchased ? "owned" : ""}`}
+
+              <button
+                className={`buy-btn ${item.purchased && item.id !== "watering_can" && item.id !== "fertilizer" ? "owned" : ""}`}
                 onClick={() => handleBuy(item)}
-                disabled={item.purchased}
+                disabled={item.purchased && item.id !== "watering_can" && item.id !== "fertilizer"}
               >
-                {item.purchased ? "Adquirido" : "Comprar"}
+                {item.purchased && item.id !== "watering_can" && item.id !== "fertilizer" ? "Adquirido" : "Comprar"}
               </button>
 
-              {item.purchased && <div className="purchased-overlay"></div>}
+              {item.purchased && item.id !== "watering_can" && item.id !== "fertilizer" && <div className="purchased-overlay"></div>}
             </div>
           ))}
         </div>

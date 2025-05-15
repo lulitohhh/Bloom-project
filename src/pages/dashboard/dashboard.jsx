@@ -7,6 +7,7 @@ import BigPot from '../../components/BigPot/BigPot';
 import Pot from '../../components/pot/pot';
 import EcoButton from '../../components/ecoButton/ecoButton';
 import ActivitiesBton from '../../components/activitiesBton/activitiesBton';
+
 import BackButton from '../../components/backBton/BackBton';
 import ShopBton from '../../components/shopBton/shopBton';
 import ProfileBton from '../../components/profileBton/profileBton';
@@ -27,11 +28,19 @@ const Dashboard = () => {
       if (!auth.user?.uid) return;
 
       const userRef = doc(db, 'users', auth.user.uid);
-      const docSnap = await getDoc(userRef);
+      try {
+        const docSnap = await getDoc(userRef);
 
-      if (docSnap.exists()) {
-        const userData = docSnap.data();
-        setPotPlantsData(userData.potPlants || []);
+        if (docSnap.exists()) {
+          const userData = docSnap.data();
+          setPotPlantsData(userData.potPlants || []);
+        } else {
+          console.log("No se encontró el documento del usuario al cargar las plantas de los maceteros pequeños.");
+          setPotPlantsData([]);
+        }
+      } catch (error) {
+        console.error("Error al cargar las plantas de los maceteros pequeños:", error);
+        setPotPlantsData([]);
       }
     };
 
@@ -52,11 +61,10 @@ const Dashboard = () => {
       <Background />
       <NavBar/>
       <div className="pots-container">
-        {potPlantsData.map((plant, index) => (
-          <Pot key={index} plantData={plant} />
+        {Array.from({ length: 2 }).map((_, index) => (
+          <Pot key={index} index={index} plantData={potPlantsData[index]} />
         ))}
         <BigPot />
-        {/* Si quieres más de 2 maceteros pequeños, puedes renderizar más componentes Pot */}
       </div>
       <div className="btn-container">
         <EcoButton/>

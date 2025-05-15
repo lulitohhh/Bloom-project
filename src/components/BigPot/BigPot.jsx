@@ -18,18 +18,24 @@ const BigPot = () => {
   useEffect(() => {
     const loadPlantData = async () => {
       if (!currentUser?.uid) return;
-      
+
       const userRef = doc(db, 'users', currentUser.uid);
-      const docSnap = await getDoc(userRef);
-      
-      if (docSnap.exists()) {
-        const userData = docSnap.data();
-        setCurrentPlant(userData.bigPotPlant || null);
-        setGrowthProgress(userData.plantGrowth || 0);
-        setResources({
-          water: userData.resources?.water || 0,
-          fertilizer: userData.resources?.fertilizer || 0
-        });
+      try {
+        const docSnap = await getDoc(userRef);
+
+        if (docSnap.exists()) {
+          const userData = docSnap.data();
+          setCurrentPlant(userData.bigPotPlant || null);
+          setGrowthProgress(userData.plantGrowth || 0);
+          setResources({
+            water: userData.resources?.water || 0,
+            fertilizer: userData.resources?.fertilizer || 0
+          });
+        } else {
+          console.log("No se encontró el documento del usuario al cargar datos de BigPot.");
+        }
+      } catch (error) {
+        console.error("Error al cargar datos de la planta grande:", error);
       }
     };
 
@@ -38,21 +44,21 @@ const BigPot = () => {
 
   const handleWaterPlant = async () => {
     if (resources.water <= 0 || !currentPlant) return;
-    
+
     try {
       const userRef = doc(db, 'users', currentUser.uid);
       const newProgress = Math.min(growthProgress + 10, 100);
       const newWater = resources.water - 1;
-      
+
       await updateDoc(userRef, {
         "plantGrowth": newProgress,
         "resources.water": newWater,
         ...(newProgress === 100 && { "bigPotPlant.isMature": true })
       });
-      
+
       setGrowthProgress(newProgress);
       setResources(prev => ({ ...prev, water: newWater }));
-      
+
     } catch (error) {
       console.error("Error watering plant:", error);
     }
@@ -60,21 +66,21 @@ const BigPot = () => {
 
   const handleFertilizePlant = async () => {
     if (resources.fertilizer <= 0 || !currentPlant) return;
-    
+
     try {
       const userRef = doc(db, 'users', currentUser.uid);
       const newProgress = Math.min(growthProgress + 20, 100);
       const newFertilizer = resources.fertilizer - 1;
-      
+
       await updateDoc(userRef, {
         "plantGrowth": newProgress,
         "resources.fertilizer": newFertilizer,
         ...(newProgress === 100 && { "bigPotPlant.isMature": true })
       });
-      
+
       setGrowthProgress(newProgress);
       setResources(prev => ({ ...prev, fertilizer: newFertilizer }));
-      
+
     } catch (error) {
       console.error("Error fertilizing plant:", error);
     }
@@ -82,7 +88,7 @@ const BigPot = () => {
 
   const getPlantImage = () => {
     if (!currentPlant) return null;
-    
+
     // Prioridad: matureImage/sproutImage -> image (fallback)
     if (currentPlant.isMature || growthProgress >= 100) {
       return currentPlant.matureImage || currentPlant.image;
@@ -97,14 +103,14 @@ const BigPot = () => {
       <div className='big-pot'>
         {currentPlant ? (
           <>
-            <img 
-              id="main-plant" 
-              src={getPlantImage()} 
-              alt={currentPlant.name} 
+            <img
+              id="main-plant"
+              src={getPlantImage()}
+              alt={currentPlant.name}
             />
             <div className="progress-bar">
-              <div 
-                className="progress-fill" 
+              <div
+                className="progress-fill"
                 style={{ width: `${growthProgress}%` }}
               ></div>
             </div>
@@ -114,18 +120,18 @@ const BigPot = () => {
         )}
       </div>
       <div className="pot-bton-container">
-        <button 
-          id="feed" 
-          className="bigpot-bton" 
+        <button
+          id="feed"
+          className="bigpot-bton"
           onClick={handleFertilizePlant}
           disabled={!currentPlant || resources.fertilizer <= 0}
         >
           <img id="fertilizer" src={fertilizer} alt="Fertilizar" />
           <span>{resources.fertilizer}</span>
         </button>
-        <button 
-          id="spray" 
-          className="bigpot-bton" 
+        <button
+          id="spray"
+          className="bigpot-bton"
           onClick={handleWaterPlant}
           disabled={!currentPlant || resources.water <= 0}
         >
