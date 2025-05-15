@@ -83,6 +83,47 @@ body {
   justify-content: space-around;
 }
 
+.item-card {
+  position: relative;
+ 
+  overflow: hidden; 
+}
+
+.item-card.purchased::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Superposición oscura semi-transparente */
+  z-index: 1;
+}
+
+.item-card.purchased .item-img {
+  filter: brightness(0.7); /* Oscurece la imagen un poco más */
+}
+
+.purchased-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: bold;
+  z-index: 2;
+}
+
+.item-card h3,
+.item-card p,
+.item-card .buy-btn {
+  position: relative;
+  z-index: 2;
+}
+
 .shop-container .item-card:hover {
   transform: translateY(-4px);
 }

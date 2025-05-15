@@ -123,7 +123,7 @@ const ShopScreen = () => {
     );
   }
 
-  return (
+    return (
     <div className="shop-container">
       <NavBar />
 
@@ -163,6 +163,13 @@ const ShopScreen = () => {
               key={item.id} 
               className={`item-card ${item.purchased ? "purchased" : ""}`}
             >
+              {/* Badge de adquirido */}
+              {item.purchased && (
+                <span className="purchased-badge">
+                  <i className="fas fa-check-circle"></i> ADQUIRIDO
+                </span>
+              )}
+
               <img 
                 src={item.img} 
                 alt={item.name} 
@@ -171,18 +178,31 @@ const ShopScreen = () => {
                   e.target.src = '/src/assets/images/default-item.png';
                 }}
               />
+              
               <h3>{item.name}</h3>
               <p>
                 {item.price}{" "}
                 <img src={coinImg} alt="moneda" className="coin-icon" />
               </p>
+              
               <button 
                 className={`buy-btn ${item.purchased ? "owned" : ""}`}
                 onClick={() => handleBuy(item)}
                 disabled={item.purchased}
               >
-                {item.purchased ? "Adquirido" : "Comprar"}
+                {item.purchased ? (
+                  <>
+                    <i className="fas fa-check"></i> Adquirido
+                  </>
+                ) : (
+                  <>
+                    <i className="fas fa-shopping-cart"></i> Comprar
+                  </>
+                )}
               </button>
+
+              {/* Superposición oscura para items adquiridos */}
+              {item.purchased && <div className="purchased-overlay"></div>}
             </div>
           ))}
         </div>
