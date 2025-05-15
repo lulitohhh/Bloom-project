@@ -28,7 +28,7 @@ const authSlice = createSlice({
   }
 });
 
-// Thunk para cargar monedas
+
 export const fetchUserCoins = createAsyncThunk(
   'auth/fetchUserCoins',
   async (userId) => {
