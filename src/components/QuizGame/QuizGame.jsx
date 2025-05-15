@@ -21,11 +21,11 @@ const QuizGame = ({ id, onSuccess }) => {
 
   const coinsGiven = useRef(false);
 
-  // Obtener la pregunta de Firestore
+
   useEffect(() => {
     const fetchQuestion = async () => {
       try {
-        const docRef = doc(db, 'quizzes', id.toString()); // Asumiendo que tienes una colección 'quizzes'
+        const docRef = doc(db, 'quizzes', id.toString()); 
         const docSnap = await getDoc(docRef);
         
         if (docSnap.exists()) {
