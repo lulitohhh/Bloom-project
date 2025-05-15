@@ -43,7 +43,7 @@ const Activities = () => {
         setActividades(finalList);
       } catch (error) {
         console.error('Error cargando actividades:', error);
-        // Puedes mostrar un mensaje de error al usuario aquí si lo deseas
+        
       } finally {
         setIsLoading(false); // Finalizar el estado de carga
       }
