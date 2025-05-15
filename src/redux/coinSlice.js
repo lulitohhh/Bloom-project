@@ -22,7 +22,7 @@ const coinSlice = createSlice({
       saveToLocalStorage('coins', state);
     },
     setCoins: (state, action) => {
-      state.coins = action.payload; // Sobrescribe el valor
+      state.coins = action.payload; 
       saveToLocalStorage('coins', state);
     },
     
