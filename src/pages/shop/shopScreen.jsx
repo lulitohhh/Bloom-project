@@ -89,7 +89,7 @@ const ShopScreen = () => {
       dispatch(subtractCoins(item.price));
       showAlertMessage(`¡Compra exitosa! Has adquirido 1 unidad de ${item.name}`);
     } else {
-      // Lógica para ítems únicos (plantas, ecosistemas, otros accesorios)
+      
       if (category === "plants") {
         const hasSpace = !userData.bigPotPlant ||
                           (userData.potPlants || [null, null]).some(pot => pot === null);
