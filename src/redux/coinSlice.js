@@ -13,6 +13,10 @@ const coinSlice = createSlice({
       state.coins += action.payload;
       saveToLocalStorage('coins', state); // guardamos cada vez
     },
+    subtractCoins: (state, action) => {  // ¡Nuevo reducer!
+      state.coins -= action.payload;
+      saveToLocalStorage('coins', state);
+    },
     resetCoins: (state) => {
       state.coins = 0;
       saveToLocalStorage('coins', state);
@@ -32,5 +36,5 @@ export const loadCoinsFromFirestore = (userId) => async (dispatch) => {
 
 
 
-export const { addCoins, resetCoins, setCoins } = coinSlice.actions;
+export const { addCoins, resetCoins, setCoins, subtractCoins } = coinSlice.actions;
 export default coinSlice.reducer;
