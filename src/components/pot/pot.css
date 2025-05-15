@@ -1,5 +1,5 @@
 .pot{
-    background-image: url('../../assets/images/pot.png');
+    background-image: url('../../assets/images/pot.webp');
     background-repeat: no-repeat;
     background-clip: content-box;
     background-size: contain;
@@ -7,4 +7,11 @@
     width: 160px; /* Tamaño fijo recomendado */
     height: 160px;
     flex-shrink: 0;
+}
+.pot-plant { /* Clase para la imagen de la planta dentro del pot */
+  max-width: 40%; /* La imagen no ocupará más del 80% del ancho del contenedor .pot */
+  max-height: 40%; /* La imagen no ocupará más del 80% de la altura del contenedor .pot */
+  display: block; /* Evita espacios extra debajo de la imagen */
+  margin: 0 auto; /* Centra la imagen dentro del contenedor */
+  
 }

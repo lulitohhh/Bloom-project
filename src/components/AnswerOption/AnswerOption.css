@@ -1,0 +1,89 @@
+
+
+.answer {
+  padding: 30px 30px;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+  position: relative;
+}
+
+.answer-small{
+  padding: 10px 30px;
+  margin: 10px; 
+  border-radius: 10px;
+}
+
+
+  .answer:hover {
+    filter: brightness(1.1);
+  }
+  
+  .green {
+    background-color: #B5DF71;
+    color: #484800;
+    box-shadow: 0 6px 0 #8EBA47;
+  }
+
+  .green:active {
+    box-shadow: 0 2px 0 #8EBA47;
+    transform: translateY(4px);
+  }
+  
+  .red {
+    background-color: #F29B5E;
+    color: #622C07;
+    box-shadow: 0 6px 0 #FF7544;
+  }
+  .red:active {
+    box-shadow: 0 2px 0 #FF7544;
+    transform: translateY(4px);
+  }
+  
+  .yellow {
+    background-color: #FFD578;
+    color: #544013;
+    box-shadow: 0 6px 0 #E9B647;
+    
+  }
+  .yellow:active {
+    box-shadow: 0 2px 0 #E9B647;
+    transform: translateY(4px);
+  }
+  
+  .blue {
+    background-color: #9EE6F4;
+    color: #124F5B;
+    box-shadow: 0 6px 0 #73CDDF;
+  }
+  .blue:active {
+    box-shadow: 0 2px 0 #73CDDF;
+    transform: translateY(4px);
+  }
+  
+  .correcta {
+    background-color: #22c55e;
+    box-shadow: 0 6px 0 #17a34a;
+    color: white;
+  }
+  
+  .incorrecta {
+    background-color: #ef4444;
+    box-shadow: 0 6px 0 #9e2121;
+    color: white;
+  }
+  @media (max-width: 600px) {
+  .answer {
+    padding: 20px 20px;
+    font-size: 14px; /* Opcional: reduce el tamaño de texto */
+    border-radius: 10px;
+  }
+
+  .answer-small {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+}

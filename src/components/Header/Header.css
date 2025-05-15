@@ -6,18 +6,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 auto 16px auto;
+  margin: 0 auto 5px auto;
   width: 300px;
 }
 
 .pregunta-header {
-  padding: 10px;
+  padding: 2px;
   width: 900px;
   border: 1px solid #d85e25;
   background-color: #f3f4f6;
   border-radius: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 10px;
+  margin-bottom: 2px;
 }
 
 .pregunta-subtitulo {
@@ -36,4 +36,25 @@
   margin-bottom: 15px;
   font-family: 'Poppins', sans-serif;
   text-align: center;
+}
+
+@media (max-width: 768px) {
+  .pregunta-header {
+    width: 95%;
+    padding: 2%;
+  }
+
+  .subtitulo-container {
+    width: 90%;
+    padding: 6px;
+  }
+
+  .pregunta-titulo {
+    font-size: 18px;
+    padding: 6px;
+  }
+
+  .pregunta-subtitulo {
+    font-size: 13px;
+  }
 }

@@ -1,0 +1,54 @@
+.Coin-Bar {
+    align-self: center;
+    background-color: #0138a09c;
+    border: 2px solid rgba(255, 255, 255, 0.384);
+    border-radius: 50px;
+    width: 10vw;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    padding-left: 40px; 
+}
+#CoinIndicator {
+    position: absolute;
+    left: -15px; 
+    top: 50%;
+    transform: translateY(-50%);
+    height: 50px;
+    z-index: 2; 
+}
+
+.coin-counter{
+    padding: 8px 12px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 18px;
+    color: aliceblue;
+    
+}
+@media (max-width: 600px) {
+  .Coin-Bar {
+    width: 20vw;
+    height: 35px;
+    gap: 6px;
+  }
+
+  .coin-counter {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+
+  #CoinIndicator {
+    height: 130%;
+    position: absolute;
+    left: -10px; 
+    top: 50%;
+    transform: translateY(-50%);
+    height: 50px;
+    z-index: 2; 
+    
+  }
+}

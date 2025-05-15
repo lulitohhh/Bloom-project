@@ -1,0 +1,28 @@
+.actividades-page {
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-color: #f0f0da; 
+    overflow: hidden; 
+  }
+  
+  .background-bottom {
+  position: fixed; /* que se quede al fondo incluso si se hace scroll */
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto; /* que ocupe todo el alto visible */
+  z-index: -1;
+  pointer-events: none;
+  object-fit: cover;
+  font-family: "Fredoka", sans-serif;
+  }
+
+  .load-p{
+    font-family: "Fredoka", sans-serif;
+    font-weight: 600;
+    position: absolute;
+    top: 40%;
+    left: 45%;
+  }
+  

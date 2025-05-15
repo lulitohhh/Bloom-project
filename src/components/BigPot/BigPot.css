@@ -1,105 +1,147 @@
-.big-pot{
-    background-image: url('../../assets/images/bigpot.png');
-    background-repeat: no-repeat;
-    background-clip: content-box;
-    background-size: contain;
-    background-position: center;
-    width: 25vw; /* Tamaño fijo recomendado */
-    height: 25vh;
-    position: relative;
-
-    
+.big-pot {
+  background-image: url('../../assets/images/bigpot.webp');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center bottom; /* centrar, anclar al fondo */
+  width: 25vw;
+  height: 25vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* alinea el contenido más hacia abajo */
+  align-items: center;
+  padding-top: 15%; /* espacio para que la planta sobresalga */
+  overflow: visible; /* permite que la planta sobresalga del contenedor */
 }
-.bigpot-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.bigpot-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* Centramos el contenido del contenedor principal también */
 }
 
-.pot-bton-container{
-    height: auto;
-    display: flex;
-    justify-content: space-evenly;
-    margin-top: 10px;
+.pot-bton-container {
+  height: auto;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 10px;
+  width: 100%; /* Aseguramos que los botones ocupen el ancho del contenedor */
 }
 
 .bigpot-bton {
-    /* Estilos base compartidos */
-    border: none;
-    border-radius: 20px;
-    width: 8vw;
-    height: 60px;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    justify-content: space-evenly;
-    position: relative;
-    transition: all 0.08s cubic-bezier(0.3, 0, 0.5, 1);
-    cursor: pointer;
+  /* Estilos base compartidos */
+  border: none;
+  border-radius: 20px;
+  width: 8vw;
+  min-width: 80px; /* Añadimos un ancho mínimo para pantallas pequeñas */
+  height: 60px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+  position: relative;
+  transition: all 0.08s cubic-bezier(0.3, 0, 0.5, 1);
+  cursor: pointer;
 }
 
 /* Botón Naranja (#feed) */
 #feed {
-    background-color: #EC9444;
-    box-shadow: 
-        0 4px 0 #D06400, 
-        0 5px 10px rgba(0, 0, 0, 0.2);
+  background-color: #EC9444;
+  box-shadow:
+    0 4px 0 #D06400,
+    0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 #feed:active {
-    transform: translateY(4px);
-    box-shadow: 
-        0 1px 0 #D06400,
-        0 2px 5px rgba(0, 0, 0, 0.1);
-    background-color: #E68A38;
+  transform: translateY(4px);
+  box-shadow:
+    0 1px 0 #D06400,
+    0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #E68A38;
 }
 
 /* Botón Azul (#spray) */
 #spray {
-    background-color: #2AB0CC;
-    box-shadow: 
-        0 4px 0 #16768A, 
-        0 5px 10px rgba(0, 0, 0, 0.2);
+  background-color: #2AB0CC;
+  box-shadow:
+    0 4px 0 #16768A,
+    0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 #spray:active {
-    transform: translateY(4px);
-    box-shadow: 
-        0 1px 0 #16768A,
-        0 2px 5px rgba(0, 0, 0, 0.1);
-    background-color: #25A5C0;
+  transform: translateY(4px);
+  box-shadow:
+    0 1px 0 #16768A,
+    0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #25A5C0;
 }
 
 /* Efectos para las imágenes */
 #feed:active #fertilizer {
-    transform: scale(0.95) rotate(-5deg);
-    transition: transform 0.08s;
+  transform: scale(0.95) rotate(-5deg);
+  transition: transform 0.08s;
 }
 
 #spray:active #watering {
-    transform: scale(0.95) translateY(2px);
-    transition: transform 0.08s;
+  transform: scale(0.95) translateY(2px);
+  transition: transform 0.08s;
 }
 
 /* Mantén tus estilos existentes para imágenes */
 #fertilizer {
-    max-width: 90%;
-    max-height: 90%;
-    transition: transform 0.08s;
+  max-width: 90%;
+  max-height: 90%;
+  transition: transform 0.08s;
 }
 
 #watering {
-    max-width: 90%;
-    max-height: 90%;
-    margin-top: 15%;
-    margin-right: 10%;
-    transition: transform 0.08s;
+  max-width: 90%;
+  max-height: 90%;
+  margin-top: 15%;
+  margin-right: 10%;
+  transition: transform 0.08s;
 }
 
-#main-plant{
-    position: absolute;
-    width: auto;
-    height: 30vh;
-    left: 30%;
-    top: -90%;
+#main-plant {
+  position: absolute;
+  width: auto;
+  height: auto;
+  max-height: 65%;
+  left: 50%;
+  top: -30%; /* <-- Esto la posiciona relativamente dentro del contenedor */
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.progress-bar {
+  position: absolute;
+  top: -60%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  width: 70%;
+  height: 20px;
+  overflow: hidden;
+  z-index: 0;
+  border: 3px solid white; /* Borde blanco de 2px de grosor */
+}
+
+.progress-fill {
+  background-color: #98ea3b;
+  height: 100%;
+  border-radius: 10px;
+  width: 0%;
+  transition: width 0.3s ease-in-out;
+}
+
+/* Estilo para el texto "Vacío" */
+.empty-pot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-family: 'Fredoka One', sans-serif;
+  color: #777;
+  font-size: 1.5rem;
 }

@@ -1,0 +1,125 @@
+/* Contenedor principal centrado */
+.log-container {
+  width: 320px;
+  height: auto;
+  padding: 2rem;
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #FFDBB1;
+  border-radius: 20px;
+  box-shadow: 
+    0 4px 0 #EBB372, 
+    0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Título */
+.log-title {
+  margin-bottom: 1rem;
+  font-family: "Fredoka", sans-serif;
+  color: #CC730B;
+}
+
+/* Inputs */
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.bloom-label {
+  width: 80%; /* controlar el ancho visible del input */
+}
+
+.bloom-input {
+  width: 100%;
+  box-sizing: border-box; /* ← evita desbordes por padding interno */
+  background-color: #EBB372;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  font-family: "Fredoka", sans-serif;
+}
+
+.bloom-input::placeholder {
+  color: white;
+  opacity: 0.8;
+  padding-left: 5px;
+}
+
+/* Botón de login centrado */
+#logButton {
+  font-family: "Fredoka", sans-serif;
+  font-weight: 600;
+  font-size: large;
+  background-color: #27A258;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  width: 60%;
+  padding: 0.75rem;
+  margin: 1rem auto;
+  box-shadow: 
+    0 4px 0 #2a722a, 
+    0 5px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+
+/* Efecto clic */
+#logButton:active {
+  transform: translateY(4px);
+  box-shadow: 
+    0 1px 0 #2a722a,
+    0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Error login */
+.error-message {
+  color: red;
+  font-family: "Fredoka", sans-serif;
+  margin-bottom: 1rem;
+}
+
+/* Enlace de registro */
+.login-links {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.text-button {
+  background: none;
+  border: none;
+  color: #333;
+  font-family: "Fredoka", sans-serif;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 480px) {
+  .log-container {
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+  }
+
+  .log-button {
+    font-size: 1rem;
+  }
+
+  .input-style {
+    font-size: 1rem;
+  }
+}

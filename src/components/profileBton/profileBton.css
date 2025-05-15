@@ -1,23 +1,21 @@
 .prof-button {
-    /* Estilos base (corregido el width duplicado) */
+ 
     background-color: #6CB5EB;
     border: none;
     border-radius: 20px;
     height: 60px;
     width: 5vw;
-    justify-content: center;
     align-items: center;
     display: flex;
     justify-content: space-evenly;
     box-shadow: 
         0 4px 0 #2F8BCD, 
         0 5px 10px rgba(0, 0, 0, 0.2);
-    
-    /* Efecto de presión premium */
     position: relative;
     transition: all 0.1s cubic-bezier(0.25, 0.1, 0.25, 1);
     cursor: pointer;
-    overflow: hidden; /* Para efectos adicionales */
+    overflow: hidden;
+    margin-right: -10px;
 }
 
 .prof-button:active {
@@ -66,4 +64,12 @@
 .prof-button:active #profIcon {
     transform: scale(0.93) translateY(1px);
     filter: drop-shadow(0 1px 1px rgba(0,0,0,0.05));
+}
+
+@media (max-width: 600px) {
+  .prof-button {
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+  }
 }

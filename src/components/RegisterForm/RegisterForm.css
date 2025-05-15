@@ -1,0 +1,154 @@
+
+.reg-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #FFDBB1;
+  border-radius: 20px;
+  box-shadow: 0 4px 0 #EBB372, 0 5px 10px rgba(0, 0, 0, 0.2);
+  padding: 2rem;
+  width: 100%;
+  max-width: 400px;
+  margin: 4rem auto; /* centrado horizontal y margen superior */
+  box-sizing: border-box;
+}
+
+/* === Título === */
+.reg-title {
+  font-family: "Fredoka", sans-serif;
+  color: #CC730B;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+/* === Formulario y Entradas === */
+.reg-form,
+.reg-input-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1rem;
+}
+
+.text-input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.bloom-label {
+  width: 100%;
+}
+
+.bloom-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: #EBB372;
+  border: none;
+  border-radius: 10px;
+  font-family: "Fredoka", sans-serif;
+  color: white;
+}
+
+.bloom-input::placeholder {
+  color: white;
+  opacity: 0.8;
+}
+
+/* === Botón de Registro === */
+#regButton {
+  font-family: "Fredoka", sans-serif;
+  font-weight: 600;
+  font-size: large;
+  background-color: #27A258;
+  border: none;
+  border-radius: 20px;
+  width: 60%;
+  height: 45px;
+  box-shadow: 
+    0 4px 0 #2a722a, 
+    0 5px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  cursor: pointer;
+  user-select: none;
+  color: white;
+
+  /* centrado horizontal */
+  margin: 2rem auto 0 auto;
+  display: block;
+}
+
+#regButton:active {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 #2a722a, 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* === Avatares === */
+.avatar-selection-container {
+  width: 100%;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.avatar-title {
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.avatar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columnas horizontales */
+  gap: 1rem;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.avatar-item {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  border: 2px solid transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar-item.selected {
+  border-color: #CC730B;
+  transform: scale(1.05);
+}
+
+.avatar-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* === Responsive === */
+@media (max-width: 600px) {
+  .reg-container {
+    width: 95vw;
+    padding: 1.5rem;
+  }
+
+  .reg-title {
+    font-size: 1.5rem;
+  }
+
+  #regButton {
+    width: 100%;
+  }
+
+  .avatar-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .avatar-item {
+    width: 60px;
+    height: 60px;
+  }
+}

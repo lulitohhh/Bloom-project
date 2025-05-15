@@ -1,0 +1,62 @@
+.page-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; 
+  padding: 0; 
+}
+.session-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6%;
+  margin: 1% auto;
+  max-width: 1000px;  /* Aumentar el tamaño máximo del contenedor */
+  text-align: center;
+  height: auto;  /* Deja que el contenedor crezca según el contenido */
+}
+
+
+.session-summary h2 {
+  color: #333;
+  font-size: 1.8rem;
+  margin-bottom: 4px;
+}
+
+.HappyCoin-icon {
+  width: 70%;
+  max-width: 500px;      
+  height: auto;          
+  object-fit: contain;  
+  display: block;
+}
+
+.Text-summary{
+ padding: 3px;
+}
+
+#activitext {
+    font-family: "Fredoka", sans-serif;
+    font-weight: 600;
+    color: #FFFFFF;
+    text-align: start;}
+
+ @media (max-width: 600px) {
+  .session-summary{
+    padding:6%;
+    max-width: 100%;
+  }
+
+  .Text-summary{
+    margin: 3%;
+  }
+
+  .coin-icon {
+    width: 100%;
+    min-width: 300px;
+    height: auto;
+  }
+ 
+
+}
