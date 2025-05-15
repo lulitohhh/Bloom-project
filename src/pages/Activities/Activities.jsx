@@ -24,7 +24,7 @@ const Activities = () => {
 
   useEffect(() => {
     async function fetchActivities() {
-      setIsLoading(true); // Iniciar el estado de carga
+      setIsLoading(true); 
       try {
         const quizSnap = await getDocs(collection(db, 'quizzes'));
         const associationSnap = await getDocs(collection(db, 'association'));
