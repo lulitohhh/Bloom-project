@@ -79,7 +79,7 @@ function StoryGame({ onFinish }) {
     loadStory();
   }, [dispatch, storyId]);
 
-  // Guardar progreso en localStorage
+  
   useEffect(() => {
     if (story?.id && currentPage !== undefined) {
       localStorage.setItem(
