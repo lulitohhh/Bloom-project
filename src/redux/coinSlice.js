@@ -13,7 +13,7 @@ const coinSlice = createSlice({
       state.coins += action.payload;
       saveToLocalStorage('coins', state);
     },
-    subtractCoins: (state, action) => {  // ¡Nuevo reducer!
+    subtractCoins: (state, action) => {  
       state.coins -= action.payload;
       saveToLocalStorage('coins', state);
     },
