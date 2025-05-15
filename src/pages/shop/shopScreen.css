@@ -111,7 +111,7 @@ body {
 }
 
 .item-card.purchased .item-img {
-  filter: brightness(0.7); /* Oscurece la imagen un poco más */
+  filter: brightness(0.7); 
 }
 
 .purchased-badge {
