@@ -72,7 +72,7 @@ const Activities = () => {
   return (
     <div>
       {isLoading ? (
-        <p className='load-p'>Cargando actividades...</p> // Muestra un mensaje de carga
+        <p className='load-p'>Cargando actividades...</p> 
       ) : isFinished ? (
         <SessionSummary />
       ) : actividades[paso] ? (
