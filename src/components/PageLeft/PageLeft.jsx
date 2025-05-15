@@ -1,6 +1,7 @@
 import "./PageLeft.css"
 import { useState } from "react";
 import { useEffect } from "react";
+import locked from "../../assets/images/locked.png"
 
 
 const PageLeft = ({ 
@@ -8,11 +9,11 @@ const PageLeft = ({
   setSelectedCategory, 
   data = [], 
   selectedItem, 
-  setSelectedItem 
+  setSelectedItem,
+  purchasedItems
 }) => {
   const [displayedItems, setDisplayedItems] = useState([]);
 
-  // Actualizar los items mostrados cuando cambian los datos o el item seleccionado
   useEffect(() => {
     setDisplayedItems(data.slice(0, 9));
   }, [data]);
@@ -37,24 +38,28 @@ const PageLeft = ({
       {selectedCategory && (
         <div className="grid-wrapper">
           <div className="grid-3-columns">
-            {displayedItems.map((item) => (
-              <div
-                key={item.id}  // Usamos el ID de Firestore como key
-                className={`grid-item ${
-                  selectedItem?.id === item.id ? "selected" : ""
-                }`}
-                onClick={() => setSelectedItem(item)}
-              >
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  style={{ width: "80px", height: "80px", objectFit: "cover" }}
-                  onError={(e) => {
-                    e.target.src = "/assets/default-image.png"; // Imagen de respaldo
-                  }}
-                />
-              </div>
-            ))}
+            {displayedItems.map((item) => {
+              const isPurchased = purchasedItems.includes(item.id);
+              return (
+                <div
+                  key={item.id}
+                  className={`grid-item ${
+                    selectedItem?.id === item.id ? "selected" : ""
+                  }`}
+                  onClick={() => isPurchased && setSelectedItem(item)}
+                  style={{ cursor: isPurchased ? "pointer" : "not-allowed" }}
+                >
+                  <img
+                    src={isPurchased ? item.image : locked}
+                    alt={isPurchased ? item.name : "Bloqueado"}
+                    className="item-image"
+                    onError={(e) => {
+                      e.target.src = "/assets/default-image.png";
+                    }}
+                  />
+                </div>
+              );
+            })}
           </div>
         </div>
       )}

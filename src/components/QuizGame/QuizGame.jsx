@@ -2,37 +2,63 @@ import './QuizGame.css';
 import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAnswer, resetQuiz } from '../../redux/Activities/QuizGameSlice';
-import cuestionarios from '../../data/Quizzes.json';
+
 import Header from '../Header/Header';
 import AnswerOption from '../AnswerOption/AnswerOption';
 import NextButton from '../NextButton/NextButton';
 import NavBar from '../navBar/navBar';
 import { addSessionCoins } from '../../redux/sessionCoinsSlice';
+import { useState } from 'react';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../../services/firebase/firebaseConfig';
 
 const QuizGame = ({ id, onSuccess }) => {
   const dispatch = useDispatch();
   const { selection, correct } = useSelector((state) => state.quiz);
-  const question = cuestionarios.find((p) => p.id === id);
-
   const coinsGiven = useRef(false);
 
+  const [question, setQuestion] = useState(null);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
+    const fetchQuiz = async () => {
+      setLoading(true);
+      try {
+        const docRef = doc(db, 'quizzes', id.toString());
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          setQuestion(docSnap.data());
+        } else {
+          setQuestion(null);
+        }
+      } catch (error) {
+        console.error('Error fetching quiz:', error);
+        setQuestion(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     dispatch(resetQuiz());
     coinsGiven.current = false;
+    fetchQuiz();
   }, [id, dispatch]);
 
   useEffect(() => {
-  if (selection && correct && !coinsGiven.current) {
-    console.log('Monedas otorgadas ID:', id);
-    dispatch(addSessionCoins(3));
-    coinsGiven.current = true;
-  }
-}, [selection, correct, dispatch, id]);
+    if (selection && correct && !coinsGiven.current) {
+      dispatch(addSessionCoins(3));
+      coinsGiven.current = true;
+    }
+  }, [selection, correct, dispatch]);
 
   const handleResponse = (answer) => {
-    dispatch(selectAnswer({ answer, correctAnswer: question.correctAnswer }));
+    if (question) {
+      dispatch(selectAnswer({ answer, correctAnswer: question.correctAnswer }));
+    }
   };
 
+  if (loading) return <p>Cargando pregunta...</p>;
   if (!question) return <p>Pregunta no encontrada.</p>;
 
   return (
