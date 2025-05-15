@@ -1,38 +1,39 @@
 .btns-wrapper {
-    display: flex;
-    justify-content: center;
-    gap: 3rem;
-    margin-top: 2rem;
-  }
-  
-  .btn-containerplus {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    right: 15%;
-    top: 130px;
-  }
-  
-  .btn-label {
-    font-family: 'Fredoka One', sans-serif;
-    color: #0E6229;
-    font-size: 1.2rem;
-    margin-top: 0.5rem;
-  }
-  
-  .img-btn {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    left: 0%;
-    width: 200px;
-    height: auto;
-    transition: transform 0.2s ease;
-    z-index: 1;
-    margin: 0;
-  }
+  display: flex;
+  justify-content: center; /* Centra los elementos horizontalmente */
+  align-items: center; /* Centra los elementos verticalmente (si es necesario) */
+  gap: 3rem;
+  margin-top: 2rem;
+}
+
+.btn-containerplus {
+  position: relative; /* Mantén la posición relativa para el posicionamiento interno */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* Elimina o ajusta estos valores problemáticos */
+  right: auto; /* Elimina el desplazamiento a la derecha */
+  top: auto;   /* Elimina el desplazamiento hacia abajo */
+}
+
+.btn-label {
+  font-family: 'Fredoka One', sans-serif;
+  color: #0E6229;
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.img-btn {
+  position: relative; /* O 'static' si no necesitas un posicionamiento especial dentro de .btn-containerplus */
+  display: block; /* Cambia a 'block' para que ocupe el ancho de su contenedor */
+  width: 100%; /* O ajusta al ancho deseado del contenedor */
+  height: auto;
+  transition: transform 0.2s ease;
+  z-index: 1;
+  margin: 0; /* Asegúrate de que no haya márgenes que causen desplazamiento */
+  max-width: 200px; /* Limita el ancho máximo si es necesario */
+}
 
   
   .grid-3-columns {
