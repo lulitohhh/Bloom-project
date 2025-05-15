@@ -9,7 +9,7 @@
   }
   
   ::-webkit-scrollbar-thumb {
-    background-color: #AC411B; /* naranja oscuro */
+    background-color: #AC411B; 
     border-radius: 10px;
     border: 2px solid #FFD79F; /* crea efecto de padding */
   }
