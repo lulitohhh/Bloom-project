@@ -360,7 +360,7 @@ body {
 
 
 .close-alert-btn {
-  background-color: #5cb85c; /* Color verde para un mensaje positivo */
+  background-color: #5cb85c; 
   color: white;
   border: none;
   border-radius: 5px;
