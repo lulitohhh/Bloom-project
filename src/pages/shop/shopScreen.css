@@ -365,7 +365,7 @@ body {
   margin-bottom: 15px;
 }
 
-/* Estilos para el botón de cerrar/aceptar la alerta */
+
 .close-alert-btn {
   background-color: #5cb85c; /* Color verde para un mensaje positivo */
   color: white;
