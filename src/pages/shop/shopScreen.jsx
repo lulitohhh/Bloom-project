@@ -81,7 +81,7 @@ const ShopScreen = () => {
     const userData = userDoc.data();
 
     if (isResource) {
-      // Incrementar la cantidad del recurso en el documento del usuario
+      
       const resourceName = item.id === "watering_can" ? "water" : "fertilizer";
       await updateDoc(userRef, {
         [`resources.${resourceName}`]: increment(1)
