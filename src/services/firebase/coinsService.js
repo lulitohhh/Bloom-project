@@ -8,7 +8,7 @@ export const getCoinsFromFirestore = async (userId) => {
     return userSnap.exists() ? userSnap.data().coins || 0 : 0;
   } catch (error) {
     console.error("Error al obtener monedas:", error);
-    return 0; // Valor por defecto si hay error
+    return 0; 
   }
 };
 
@@ -20,7 +20,7 @@ export const syncCoinsFromFirestore = async (userId) => {
 
 export const updateCoinsInFirestore = async (userId, newCoins) => {
   try {
-    // ¡Usa doc() con la referencia a 'users/{userId}'!
+    
     const userRef = doc(db, 'users', userId); 
     await updateDoc(userRef, { coins: newCoins });
     console.log("Monedas actualizadas en Firestore para UID:", userId);
