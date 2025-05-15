@@ -14,7 +14,7 @@ const BigPot = () => {
   const [growthProgress, setGrowthProgress] = useState(0);
   const [resources, setResources] = useState({ water: 0, fertilizer: 0 });
 
-  // Cargar planta y recursos
+
   useEffect(() => {
     const loadPlantData = async () => {
       if (!currentUser?.uid) return;
