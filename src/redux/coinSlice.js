@@ -31,7 +31,7 @@ const coinSlice = createSlice({
 
 export const loadCoinsFromFirestore = (userId) => async (dispatch) => {
   const firestoreCoins = await syncCoinsFromFirestore(userId);
-  dispatch(setCoins(firestoreCoins)); // Usa setCoins para sobrescribir
+  dispatch(setCoins(firestoreCoins)); 
 };
 
 
