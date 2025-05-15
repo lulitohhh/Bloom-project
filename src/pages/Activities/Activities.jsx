@@ -13,6 +13,7 @@ import { db } from '../../services/firebase/firebaseConfig';
 const Activities = () => {
   const [paso, setPaso] = useState(0);
   const [actividades, setActividades] = useState([]);
+  const [isLoading, setIsLoading] = useState(true); // Nuevo estado de carga
   const auth = useSelector((state) => state.auth);
 
   useEffect(() => {
@@ -23,28 +24,28 @@ const Activities = () => {
 
   useEffect(() => {
     async function fetchActivities() {
+      setIsLoading(true); // Iniciar el estado de carga
       try {
-        // Obtener quizzes y associations desde Firestore
         const quizSnap = await getDocs(collection(db, 'quizzes'));
         const associationSnap = await getDocs(collection(db, 'association'));
 
-        // Mapear documentos a objetos con id y tipo
         const quizzes = quizSnap.docs.map(doc => ({ type: 'quiz', id: doc.id }));
         const associations = associationSnap.docs.map(doc => ({ type: 'association', id: doc.id }));
 
-        // Mezclar y seleccionar actividades (como antes)
         const allActivities = [...quizzes, ...associations];
         const mezcladas = [...allActivities].sort(() => Math.random() - 0.5);
         const cantidad = Math.floor(Math.random() * 2) + 4;
         const seleccionadas = mezcladas.slice(0, cantidad);
 
-        // Agregar historia sin id porque StoryGame la obtiene internamente desde Firestore
         const finalList = [...seleccionadas, { type: 'story' }];
 
         localStorage.setItem('actividad-lista', JSON.stringify(finalList));
         setActividades(finalList);
       } catch (error) {
         console.error('Error cargando actividades:', error);
+        // Puedes mostrar un mensaje de error al usuario aquí si lo deseas
+      } finally {
+        setIsLoading(false); // Finalizar el estado de carga
       }
     }
 
@@ -70,10 +71,13 @@ const Activities = () => {
 
   return (
     <div>
-      {isFinished
-        ? <SessionSummary />
-        : actividades[paso] && renderActividad(actividades[paso])
-      }
+      {isLoading ? (
+        <p className='load-p'>Cargando actividades...</p> // Muestra un mensaje de carga
+      ) : isFinished ? (
+        <SessionSummary />
+      ) : actividades[paso] ? (
+        renderActividad(actividades[paso])
+      ) : null}
       <img src={bgImage} alt="Lower-decoration" className="background-bottom" />
     </div>
   );

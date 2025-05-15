@@ -26,11 +26,9 @@ const Dashboard = () => {
   useEffect(() => {
     const loadPotPlants = async () => {
       if (!auth.user?.uid) return;
-
       const userRef = doc(db, 'users', auth.user.uid);
       try {
         const docSnap = await getDoc(userRef);
-
         if (docSnap.exists()) {
           const userData = docSnap.data();
           setPotPlantsData(userData.potPlants || []);
@@ -43,17 +41,7 @@ const Dashboard = () => {
         setPotPlantsData([]);
       }
     };
-
     loadPotPlants();
-  }, [auth.user]);
-
-  useEffect(() => {
-    if (auth.user?.uid) {
-      console.log("UID en Dashboard:", auth.user.uid);
-    } else {
-      console.error("Error: No hay UID. Redirigiendo a login...");
-      // navigate('/login'); // Opcional: redirige si no hay UID
-    }
   }, [auth.user]);
 
   return (
@@ -61,10 +49,11 @@ const Dashboard = () => {
       <Background />
       <NavBar/>
       <div className="pots-container">
-        {Array.from({ length: 2 }).map((_, index) => (
-          <Pot key={index} index={index} plantData={potPlantsData[index]} />
-        ))}
-        <BigPot />
+        {[
+          <Pot key={0} index={0} plantData={potPlantsData[0]} />,
+          <BigPot key="big-pot" />,
+          <Pot key={1} index={1} plantData={potPlantsData[1]} />,
+        ]}
       </div>
       <div className="btn-container">
         <EcoButton/>

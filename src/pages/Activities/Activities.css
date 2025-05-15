@@ -15,5 +15,14 @@
   z-index: -1;
   pointer-events: none;
   object-fit: cover;
+  font-family: "Fredoka", sans-serif;
+  }
+
+  .load-p{
+    font-family: "Fredoka", sans-serif;
+    font-weight: 600;
+    position: absolute;
+    top: 40%;
+    left: 45%;
   }
   

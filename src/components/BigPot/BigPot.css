@@ -1,19 +1,23 @@
-.big-pot{
-    background-image: url('../../assets/images/bigpot.webp');
-    background-repeat: no-repeat;
-    background-clip: content-box;
-    background-size: contain;
-    background-position: center;
-    width: 25vw; /* Tamaño fijo recomendado */
-    height: 25vh;
-    position: relative;
-
-    
+.big-pot {
+  background-image: url('../../assets/images/bigpot.webp');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center bottom; /* centrar, anclar al fondo */
+  width: 25vw;
+  height: 25vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* alinea el contenido más hacia abajo */
+  align-items: center;
+  padding-top: 15%; /* espacio para que la planta sobresalga */
+  overflow: visible; /* permite que la planta sobresalga del contenedor */
 }
-.bigpot-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.bigpot-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* Centramos el contenido del contenedor principal también */
 }
 
 .pot-bton-container {
@@ -101,32 +105,33 @@
 #main-plant {
   position: absolute;
   width: auto;
-  height: 30vh;
-  left: 50%; /* Centramos horizontalmente la planta */
-  top: 10%; /* Ajustamos la posición vertical para dejar espacio a la barra */
-  transform: translateX(-50%); /* Compensamos el 50% del ancho para centrar */
-  z-index: 1; /* Aseguramos que la planta esté por encima de la barra */
+  height: auto;
+  max-height: 65%;
+  left: 50%;
+  top: -30%; /* <-- Esto la posiciona relativamente dentro del contenedor */
+  transform: translateX(-50%);
+  z-index: 1;
 }
 
 .progress-bar {
-  position: absolute; /* Posicionamos la barra de progreso */
-  bottom: 10%; /* La colocamos en la parte inferior del contenedor */
-  left: 50%; /* Centramos horizontalmente */
-  transform: translateX(-50%); /* Compensamos el 50% del ancho */
-  background-color: #e0e0e0; /* Color de fondo de la barra */
+  position: absolute;
+  bottom: 5%; /* Acercamos la barra un poco más al borde inferior */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #e0e0e0;
   border-radius: 10px;
-  width: 80%; /* Ancho de la barra */
-  height: 20px; /* Altura de la barra */
-  overflow: hidden; /* Asegura que la parte rellena se recorte */
-  z-index: 0; /* Aseguramos que esté debajo de la planta */
+  width: 70%; /* Reducimos el ancho de la barra */
+  height: 15px; /* Reducimos la altura de la barra */
+  overflow: hidden;
+  z-index: 0;
 }
 
 .progress-fill {
-  background-color: #8BC34A; /* Color de relleno de la barra */
+  background-color: #8BC34A;
   height: 100%;
   border-radius: 10px;
-  width: 0%; /* Se actualizará con el estado de crecimiento */
-  transition: width 0.3s ease-in-out; /* Animación suave */
+  width: 0%;
+  transition: width 0.3s ease-in-out;
 }
 
 /* Estilo para el texto "Vacío" */
