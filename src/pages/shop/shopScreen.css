@@ -8,14 +8,7 @@ body {
 }
 
 
-/*.shop-container {
-  background: url("/src/assets/images/bg-shop.png") no-repeat center center fixed;
-  background-size: cover;
-  padding: 20px;
-  font-family: "Fredoka", sans-serif;
-  min-height: 100vh;
-  color: #4B2E15;
-}*/
+
 
 .shop-container {
   font-family: "Fredoka One", sans-serif;
