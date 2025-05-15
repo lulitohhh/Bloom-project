@@ -14,7 +14,7 @@
     border: 2px solid #FFD79F; 
   }
   
-  /* Scrollbar para Firefox */
+  
   body {
     scrollbar-width: thin;
     scrollbar-color: #ac421b56 #FFD79F;
