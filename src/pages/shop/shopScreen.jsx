@@ -138,7 +138,7 @@ const ShopScreen = () => {
       return {
         bigPotPlant: plantData,
         plantGrowth: 0,
-        potPlants: userData.potPlants || [null, null] // Inicializa si no existe
+        potPlants: userData.potPlants || [null, null] 
       };
     } else {
       const emptyPotIndex = (userData.potPlants || [null, null]).findIndex(pot => pot === null);
