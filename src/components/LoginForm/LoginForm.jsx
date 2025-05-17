@@ -88,6 +88,7 @@ const LoginForm = () =>{
         id="logButton" 
         onClick={handleLogin}
         disabled={isLoading}
+        aria-busy={isLoading}
       >
         {isLoading ? 'Iniciando sesión...' : 'Login'}
       </button>
