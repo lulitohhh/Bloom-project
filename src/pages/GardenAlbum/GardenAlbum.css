@@ -1,20 +1,20 @@
-/* Scrollbar para WebKit (Chrome, Edge, Safari) */
+
 ::-webkit-scrollbar {
     width: 8px;
   }
   
   ::-webkit-scrollbar-track {
-    background: #FFD79F; /* mismo amarillo claro del proyecto */
+    background: #FFD79F; 
     border-radius: 10px;
   }
   
   ::-webkit-scrollbar-thumb {
-    background-color: #AC411B; /* naranja oscuro */
+    background-color: #AC411B; 
     border-radius: 10px;
-    border: 2px solid #FFD79F; /* crea efecto de padding */
+    border: 2px solid #FFD79F; 
   }
   
-  /* Scrollbar para Firefox */
+  
   body {
     scrollbar-width: thin;
     scrollbar-color: #ac421b56 #FFD79F;
@@ -24,3 +24,44 @@
   .btn-container {
     margin-bottom: 20px;
   }
+
+  @media screen and (max-width: 768px) {
+    .btn-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 80px;
+    }
+  
+    .eco-button,
+    .act-button {
+      width: 60vw;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center; 
+      padding: 0 16px;
+    }
+  
+    .eco-button #ecoimg {
+      width: 30px;
+      height: 30px;
+      margin-right: 8px; 
+    }
+  
+    #ecobtontt,
+    #activitext {
+      font-size: 1.5rem;
+    }
+  
+    .eco-button {
+      order: 1;
+    }
+  
+    .act-button {
+      order: 2;
+    }
+  }
+  
+  

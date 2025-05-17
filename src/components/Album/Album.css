@@ -1,30 +1,63 @@
 .album-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+/* Layout de álbum en pantallas grandes */
+.album-image {
+  background-image: url('/assets/album.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 900px;
+  height: 600px;
+  display: flex;
+  position: relative;
+}
+
+/* Estilos para las dos páginas */
+.page-left,
+.page-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* RESPONSIVE: hasta 768px (tablets y móviles) */
+@media screen and (max-width: 768px) {
+  .album-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
+    padding-top: 100px; /* empuja desde abajo de la navbar */
+    margin-top: 80px;
+    margin-bottom: 50px;
   }
-  
+
   .album-image {
-    background-image: url('/assets/album.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    width: 900px; 
-    height: 600px;
     display: flex;
-    position: relative;
-    margin-top: 20px;
+    flex-direction: column;
+    width: 90vw;
+    max-width: 320px;
+    height: auto;
+    padding: 10px;
+
+    background-image: none;
+    background-color: #FBDAC8;
+    border: 16px solid #FF7544;
+    border-radius: 20px;
   }
-  
+
   .page-left,
   .page-right {
-    flex: 1;
-    display: flex;
-    justify-content: center;
+    width: 100%;
+    flex-direction: column;
     align-items: center;
-    text-align: center;
+    padding: 8px;
+
   }
-  
-  
-  
+}

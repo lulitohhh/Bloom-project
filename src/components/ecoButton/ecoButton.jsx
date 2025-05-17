@@ -7,7 +7,7 @@ const EcoButton = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate('/garden'); // Navega a la ruta /garden
+    navigate('/garden'); 
   };
 
   return (

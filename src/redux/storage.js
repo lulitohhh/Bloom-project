@@ -1,4 +1,4 @@
-//Archivo para guardar y leer de localStorage automáticamente al abrir la app.
+
 export function saveToLocalStorage(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
   }
