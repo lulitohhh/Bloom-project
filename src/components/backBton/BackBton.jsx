@@ -11,7 +11,7 @@ const BackButton = () => {
   };
 
   return (
-       <button className='back-button' onClick={handleClick}>
+       <button className='back-button' aria-label="Go back to the dasboard screen" onClick={handleClick}>
       
     </button>
   );

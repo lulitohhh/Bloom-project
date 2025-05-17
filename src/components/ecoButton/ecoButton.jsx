@@ -11,7 +11,7 @@ const EcoButton = () => {
   };
 
   return (
-    <button className='eco-button' onClick={handleClick}>
+    <button className='eco-button' aria-label="Go to the ecoguide screen" onClick={handleClick}>
       <img id="ecoimg" src={ecobuton} alt="Ecoguide" />
       <h1 id="ecobtontt">Ecoguide</h1>
     </button>
