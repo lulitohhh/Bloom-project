@@ -1,7 +1,6 @@
 import './LoginForm.css'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { loginWithEmailAndPassword } from '../../services/firebase/authservice';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../redux/AuthSlice';
 import { fetchUserCoins } from '../../redux/AuthSlice';
@@ -21,9 +20,10 @@ const LoginForm = () =>{
       setIsLoading(true);
 
       try {
-    const userCredential = await loginWithEmailAndPassword(email, password);
-    const userId = userCredential.user.uid;
-    
+        const { loginWithEmailAndPassword } = await import('../../services/firebase/authservice');
+        const userCredential = await loginWithEmailAndPassword(email, password);
+        const userId = userCredential.user.uid;
+        
     
     dispatch(setUser({ uid: userId, email: userCredential.user.email }));
     dispatch(fetchUserCoins(userId));
