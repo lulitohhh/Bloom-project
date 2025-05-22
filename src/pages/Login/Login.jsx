@@ -1,6 +1,6 @@
 import Background from "../../components/background/background";
 import LoginForm from "../../components/LoginForm/LoginForm";
-import './login.css'
+import './Login.css'
 const Login = () => {
 
 
