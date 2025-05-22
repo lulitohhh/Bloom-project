@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./ShopScreen.css";
+import "./shopScreen.css";
 import NavBar from "../../components/navBar/navBar";
 import { doc, updateDoc, arrayUnion, increment, getDoc } from "firebase/firestore";
 import coinImg from "/src/assets/images/Coin.webp";
