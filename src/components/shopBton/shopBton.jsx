@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./shopBton.css"
-import shopIcon from '../../assets/images/shop icon.webp'
+import shopIcon from '../../assets/images/shopicon.webp'
 
 
 const ShopBton = () => {
