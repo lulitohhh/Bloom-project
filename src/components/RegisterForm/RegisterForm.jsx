@@ -6,7 +6,7 @@ import Avatar5 from '../../assets/avatars/avatar5.png';
 import Avatar6 from '../../assets/avatars/avatar6.png';
 import { createUserProfile } from '../../services/firebase/userService';
 import {registerWithEmailAndPassword} from '../../services/firebase/authservice'
-import './registerForm.css'
+import './RegisterForm.css'
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
