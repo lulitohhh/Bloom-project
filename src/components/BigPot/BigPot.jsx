@@ -1,7 +1,7 @@
 import React from "react";
 import "./BigPot.css"
-import fertilizer from '../../assets/images/fertilizante 1.webp'
-import watering from '../../assets/images/regadera (1) 1.webp'
+import fertilizer from '../../assets/images/fertilizante.webp'
+import watering from '../../assets/images/wateringcan.webp'
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import { doc, getDoc,updateDoc } from "firebase/firestore";
