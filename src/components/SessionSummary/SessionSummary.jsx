@@ -4,7 +4,7 @@ import { resetSessionCoins } from '../../redux/sessionCoinsSlice';
 import './SessionSummary.css';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../navBar/navBar';
-import celebrationImage from '../../assets/images/celebration.webp';
+import celebrationImage from '../../assets/images/Celebration.webp';
 import NextButton from '../../components/NextButton/NextButton' ;
 
 
