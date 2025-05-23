@@ -7,11 +7,11 @@
   }
   
   .background-bottom {
-  position: fixed; /* que se quede al fondo incluso si se hace scroll */
+  position: fixed; 
   bottom: 0;
   left: 0;
   width: 100%;
-  height: auto; /* que ocupe todo el alto visible */
+  height: auto; 
   z-index: -1;
   pointer-events: none;
   object-fit: cover;

@@ -20,7 +20,7 @@
     box-shadow: 
         0 0.5px 0 #EBB372,
         0 1px 3px rgba(0, 0, 0, 0.1);
-    background-color: #F5C78D;
+    background-color: #eecda5;
 }
 
 .eco-button:active #ecoimg {
@@ -32,14 +32,16 @@
     text-shadow: 0 1px 1px rgba(0,0,0,0.1);
 }
 
-#ecobtontt{
+#ecobutton{
     font-family: "Fredoka", sans-serif;
     font-weight: 600;
-    color: #CC730B;
+    color: #a34f00;
     text-align: start;
+     font-size: 1.5rem;
+    cursor: pointer;
 }
 
-#ecoimg{
+.eco-icon{
     max-width: 100%;
     max-height: 100%;
 }
