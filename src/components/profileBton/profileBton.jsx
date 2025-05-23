@@ -1,6 +1,6 @@
 import React from "react";
 import "./profileBton.css"
-import profIcon from '../../assets/images/prof icon.webp'
+import profIcon from '../../assets/images/profIcon.webp'
 
 
 const ProfileBton = () => {

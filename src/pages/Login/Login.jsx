@@ -1,7 +1,6 @@
 import Background from "../../components/background/background";
-import { Suspense, lazy } from 'react';
-import './login.css'
-
+import LoginForm from "../../components/LoginForm/LoginForm";
+import './Login.css'
 const LoginForm = lazy(() => import("../../components/LoginForm/LoginForm"));
 
 const Login = () => {
