@@ -1,0 +1,35 @@
+.profile-page-container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.notebook-bg {
+  width: 936px;
+  height: 512px;
+  background-image: url('../../assets/images/profile.webp'); /* Asegúrate que esta ruta sea correcta */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+}
+
+.right-page {
+  position: absolute;
+  top: 40px;
+  left: 480px; /* Ajusta si es necesario para centrar sobre la "hoja" */
+  width: 420px;
+  height: 420px;
+  padding: 20px;
+  overflow-y: auto;
+  border-radius: 12px;
+}
+
+.profile-page-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}

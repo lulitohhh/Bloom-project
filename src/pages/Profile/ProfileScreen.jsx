@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { getUserProfile } from '../../services/firebase/userService';
 import UserProfile from '../../components/UserProfile/UserProfile';
 import NavBar from '../../components/navBar/navBar';
-
+import './ProfileScreen.css'; 
 const UserProfilePage = () => {
   const user = useSelector((state) => state.auth.user);
   const navigate = useNavigate();
@@ -36,17 +36,20 @@ const UserProfilePage = () => {
 
   return (
     <>
-    <NavBar/>
-    <div className="profile-page-container">
-      <h1 className="profile-page-title">Tu Perfil</h1>
-      {profileData && (
-        <UserProfile
-          profileData={profileData}
-          uid={user.uid}
-          onProfileUpdate={loadProfile}
-        />
-      )}
-    </div>
+     <NavBar />
+      <div className="profile-page-container">
+        <div className="notebook-bg">
+          <div className="right-page">
+            {profileData && (
+              <UserProfile
+                profileData={profileData}
+                uid={user.uid}
+                onProfileUpdate={loadProfile}
+              />
+            )}
+          </div>
+        </div>
+      </div>
     </>
   );
 };

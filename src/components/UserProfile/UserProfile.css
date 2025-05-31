@@ -1,5 +1,5 @@
 .profile-container {
-  background: #fef8e6;
+  background: #5f4e1a;
   border-radius: 20px;
   padding: 20px;
   text-align: center;
@@ -65,4 +65,10 @@
   border-radius: 12px;
   cursor: pointer;
   margin-top: 10px;
+}
+.profile-page-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #5a3e2b;
+  font-weight: bold;
 }
