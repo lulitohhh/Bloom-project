@@ -12,7 +12,7 @@ const UserProfilePage = () => {
   const [loading, setLoading] = useState(true);
 
     const loadProfile = useCallback(async () => {
-    if (!user) return; // 🚫 Protección contra null
+    if (!user) return; 
 
     try {
       const data = await getUserProfile(user.uid);

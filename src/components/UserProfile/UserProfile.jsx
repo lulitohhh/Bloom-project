@@ -47,37 +47,52 @@ const UserProfile = () => {
 
   return (
     <div className="profile-container">
+  <div className="profile-header">
+    <img src={avatarImg} alt="Avatar" className="profile-avatar" />
+    <div className="profile-info">
       <h2 className="profile-title">¡Hola, {profile.username}!</h2>
-      <img src={avatarImg} alt="Avatar" className="profile-avatar" />
-      <p className="profile-detail">Monedas: 🪙 {profile.coins || 0}</p>
       <p className="profile-detail">Plantas compradas: 🌱 {profile.purchasedItems?.length || 0}</p>
-
-      {isEditing ? (
-        <div className="edit-form">
-          <input
-            type="text"
-            value={newUsername}
-            onChange={(e) => setNewUsername(e.target.value)}
-            placeholder="Nuevo nombre"
-            className="profile-input"
-          />
-          <div className="avatar-grid">
-            {avatarOptions.map((avatar) => (
-              <img
-                key={avatar.id}
-                src={avatar.image}
-                alt={avatar.alt}
-                onClick={() => setNewAvatar(avatar.id)}
-                className={`avatar-option ${newAvatar === avatar.id ? 'selected' : ''}`}
-              />
-            ))}
-          </div>
-          <button className="save-button" onClick={handleUpdate}>Guardar</button>
-        </div>
-      ) : (
-        <button className="edit-button" onClick={() => setIsEditing(true)}>Editar Perfil</button>
-      )}
     </div>
+    <button className="edit-icon-button" onClick={() => setIsEditing(true)}>
+      ✏️
+    </button>
+  </div>
+
+  {isEditing && (
+    <div className="edit-form">
+      <input
+        type="text"
+        value={newUsername}
+        onChange={(e) => setNewUsername(e.target.value)}
+        placeholder="Nuevo nombre"
+        className="profile-input"
+      />
+      <div className="avatar-grid">
+        {avatarOptions.map((avatar) => (
+          <img
+            key={avatar.id}
+            src={avatar.image}
+            alt={avatar.alt}
+            onClick={() => setNewAvatar(avatar.id)}
+            className={`avatar-option ${newAvatar === avatar.id ? 'selected' : ''}`}
+          />
+        ))}
+      </div>
+      <button className="save-button" onClick={handleUpdate}>Guardar</button>
+    </div>
+  )}
+
+  <div className="profile-section">
+    <h3>🌼 Tipos de flores compradas</h3>
+    <div className="profile-box">[Aquí van las flores]</div>
+  </div>
+
+  <div className="profile-section">
+    <h3>🌿 Ecosistemas conseguidos</h3>
+    <div className="profile-box">[Aquí van los ecosistemas]</div>
+  </div>
+</div>
+
   );
 };
 
