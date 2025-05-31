@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getUserProfile } from '../../services/firebase/userService';
 import UserProfile from '../../components/UserProfile/UserProfile';
+import NavBar from '../../components/navBar/navBar';
 
 const UserProfilePage = () => {
   const user = useSelector((state) => state.auth.user);
@@ -10,8 +11,9 @@ const UserProfilePage = () => {
   const [profileData, setProfileData] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // useCallback para memorizar loadProfile y evitar recrearlo cada render
-  const loadProfile = useCallback(async () => {
+    const loadProfile = useCallback(async () => {
+    if (!user) return; // 🚫 Protección contra null
+
     try {
       const data = await getUserProfile(user.uid);
       setProfileData(data);
@@ -20,19 +22,21 @@ const UserProfilePage = () => {
     } finally {
       setLoading(false);
     }
-  }, [user.uid]);
+  }, [user]);
 
   useEffect(() => {
     if (!user?.uid) {
-      navigate('/login'); // Redirige si no hay sesión
+      navigate('/login');
     } else {
       loadProfile();
     }
-  }, [user, navigate, loadProfile]);  // Aquí agregamos todas las dependencias
+  }, [user, navigate, loadProfile]);  
 
   if (loading) return <p className="loading-text">Cargando perfil...</p>;
 
   return (
+    <>
+    <NavBar/>
     <div className="profile-page-container">
       <h1 className="profile-page-title">Tu Perfil</h1>
       {profileData && (
@@ -43,6 +47,7 @@ const UserProfilePage = () => {
         />
       )}
     </div>
+    </>
   );
 };
 
