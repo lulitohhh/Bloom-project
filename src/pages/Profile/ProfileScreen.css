@@ -11,7 +11,7 @@
   background-image: linear-gradient(
       rgba(7, 27, 83, 0.2), 
       rgba(3, 19, 49, 0.2)
-    ), url('../../assets/imageS/MacBook.webp');
+    ), url('../../assets/images/MacBook.webp');
   align-items: center;
   overflow: hidden;
   z-index: 0;
