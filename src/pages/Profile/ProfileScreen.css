@@ -1,11 +1,21 @@
 .profile-page-container {
+   position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
   width: 100vw;
   height: 100vh;
-  background-color: #f4f4f4;
-  display: flex;
   justify-content: center;
+  background-image: linear-gradient(
+      rgba(7, 27, 83, 0.2), 
+      rgba(3, 19, 49, 0.2)
+    ), url('../../assets/imageS/MacBook.webp');
   align-items: center;
   overflow: hidden;
+  z-index: 0;
+  
 }
 
 .notebook-bg {
