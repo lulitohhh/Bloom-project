@@ -1,6 +1,6 @@
 import Background from "../../components/background/background";
 import RegisterForm from "../../components/RegisterForm/RegisterForm";
-import './register.css'
+import './Register.css'
 
 
 const Register = () => {

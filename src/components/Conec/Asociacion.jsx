@@ -7,7 +7,7 @@ import NavBar from '../navBar/navBar'
 
 import asociaciones from '../../data/asociaciones.json';
 
-// Cargar imágenes desde assets
+
 const imagenes = import.meta.glob('../../assets/images/*.png', { eager: true });
 
 function getImage(nombre) {
@@ -49,7 +49,7 @@ function Asociacion({ id, onSuccess }) {
         barajadas.push(matchCard);
       }
 
-      // Mezclar manualmente
+      
       for (let i = barajadas.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         const temp = barajadas[i];

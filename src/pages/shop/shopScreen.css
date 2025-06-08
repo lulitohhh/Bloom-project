@@ -7,18 +7,13 @@ body {
   margin: 0;
 }
 
-/*.shop-container {
-  background: url("/src/assets/images/bg-shop.png") no-repeat center center fixed;
-  background-size: cover;
-  padding: 20px;
-  font-family: "Fredoka", sans-serif;
-  min-height: 100vh;
-  color: #4B2E15;
-}*/
+
+
 
 .shop-container {
   font-family: "Fredoka One", sans-serif;
   padding: 20px;
+  font-size: 13px;
   background-color: #FFF7E6;
   min-height: 100vh;
   color: #4B2E15;
@@ -28,9 +23,12 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   margin: 1rem 0;
-  margin-top: 90px; 
+  margin-top: 90px;
+  gap: 10px;
 }
+
 
 .category-tabs {
   display: flex;
@@ -76,11 +74,93 @@ body {
   text-align: center;
   box-shadow: 0 8px 0 #FFD79F;
   transition: transform 0.2s;
-  width: 180px;
-  height: 180px;
+  width: 200px;
+  height: 200px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
+}
+
+.item-card {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.purchased-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.item-card.purchased::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); 
+  z-index: 1;
+}
+
+.item-card.purchased .item-img {
+  filter: brightness(0.7); 
+}
+
+.purchased-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: bold;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.purchased-badge i {
+  font-size: 14px;
+}
+
+.item-card h3,
+.item-card p,
+.item-card .buy-btn {
+  position: relative;
+  z-index: 2;
+}
+
+
+.item-card.purchased .item-img {
+  filter: brightness(0.85);
+  transition: filter 0.3s ease;
+}
+
+
+.buy-btn.owned {
+  background-color: #4CAF50;
+  cursor: default;
+}
+
+.buy-btn i {
+  margin-right: 5px;
+}
+
+
+.item-card:not(.purchased):hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .shop-container .item-card:hover {
@@ -88,8 +168,8 @@ body {
 }
 
 .shop-container .item-img {
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   object-fit: contain;
   margin: 0 auto 8px;
 }
@@ -107,7 +187,7 @@ body {
   border-radius: 12px;
   margin-top: 4px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 10px;
 }
 
 .container-shop{
@@ -131,11 +211,12 @@ body {
   width: 15px;
   height: 15px;
 }
+
 .BuyBtn {
   background-color: #AC411B;
   color: white;
   border: none;
-  padding: 8px 12px;
+  padding: 6px 10px;
   border-radius: 12px;
   margin-top: 8px;
   cursor: pointer;
@@ -144,11 +225,188 @@ body {
   transition: all 0.08s cubic-bezier(0.3, 0, 0.5, 1);
   user-select: none;
   font-family: 'Fredoka One', sans-serif;
-  box-shadow: 0 4px 0 #8c370d, 0 5px 10px rgba(0, 0, 0, 0.2); /* Sombra original */
+  box-shadow: 0 4px 0 #8c370d, 0 5px 10px rgba(0, 0, 0, 0.2); 
 }
 
 .BuyBtn:active {
-  transform: translateY(4px); /* Movimiento al presionar */
-  box-shadow: 0 1px 0 #8c370d, 0 2px 5px rgba(0, 0, 0, 0.1); /* Cambio de sombra al presionar */
-  background-color: #933b17; /* Cambio a un color más oscuro */
+  transform: translateY(4px); 
+  box-shadow: 0 1px 0 #8c370d, 0 2px 5px rgba(0, 0, 0, 0.1); 
+  background-color: #933b17; 
+}
+
+.price-buy-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.price {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+
+
+@media (max-width: 480px) {
+  .shop-container {
+    padding: 15px;
+    margin-bottom: 60px;
+  }
+
+  .shop-container .items-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .shop-controls {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 80px;
+    text-align: center;
+  }
+
+  .category-tabs {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .coins-counter {
+    font-size: 0.9rem;
+    padding: 6px 12px;
+    gap: 4px;
+    display: flex;
+    align-items: center;
+    background-color: #FFD79F;
+    border-radius: 20px;
+  }
+
+  .coin-icon {
+    width: 14px;
+    height: 14px;
+    object-fit: contain;
+    display: inline-block;
+    
+  }
+
+  .shop-container .item-card {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .price-buy-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+  }
+
+  .price {
+    display: flex;
+    align-items:flex-start;
+    font-size: 13px;
+    font-weight: bold;
+  }
+
+  .BuyBtn {
+    font-size: 12px;
+    padding: 6px 10px;
+    white-space: nowrap;
+  }
+}
+
+
+.alert-overlay {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; 
+}
+
+
+.alert-box {
+  background-color: #fff; 
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  min-width: 300px;
+  max-width: 80%;
+}
+
+
+.alert-box p {
+  color: #333;
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+}
+
+
+.close-alert-btn {
+  background-color: #5cb85c; 
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: 'Fredoka One', sans-serif;
+}
+
+.close-alert-btn:hover {
+  background-color: #4cae4c;
+}
+
+
+.alert-box.error {
+  background-color: #fdecea;
+  border: 1px solid #e74c3c;
+}
+
+.alert-box.error p {
+  color: #c0392b;
+}
+
+.alert-box.error .close-alert-btn {
+  background-color: #e74c3c;
+}
+
+.alert-box.error .close-alert-btn:hover {
+  background-color: #c0392b;
+}
+
+.alert-box.warning {
+  background-color: #fff8e1;
+  border: 1px solid #ffc107;
+}
+
+.alert-box.warning p {
+  color: #d98800;
+}
+
+.alert-box.warning .close-alert-btn {
+  background-color: #ffc107;
+  color: #333;
+}
+
+.alert-box.warning .close-alert-btn:hover {
+  background-color: #e0b000;
 }

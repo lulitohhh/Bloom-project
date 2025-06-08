@@ -15,7 +15,7 @@
     transition: all 0.1s cubic-bezier(0.25, 0.1, 0.25, 1);
     cursor: pointer;
     overflow: hidden;
-    margin-right: 20px;
+    margin-right: -10px;
 }
 
 .prof-button:active {

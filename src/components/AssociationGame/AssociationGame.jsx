@@ -5,9 +5,13 @@ import { setPairs, selectCard, clearSelection, markResolved, resetAssociation } 
 import CardGroup from '../CardGroup/CardGroup';
 import Header from '../Header/Header';
 import NextButton from '../NextButton/NextButton';
-import Association from '../../data/Association.json';
+
 import NavBar from '../navBar/navBar';
-import { addSessionCoins  } from '../../redux/sessionCoinsSlice';
+import { addSessionCoins } from '../../redux/sessionCoinsSlice';
+import { useState } from 'react';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../../services/firebase/firebaseConfig';
+
 
 const images = import.meta.glob('../../assets/images/*.webp', { eager: true });
 function getImage(nombre) {
@@ -18,50 +22,60 @@ function getImage(nombre) {
 function AssociationGame({ id, onSuccess }) {
   const dispatch = useDispatch();
   const { currentPairs, selected, resolved } = useSelector((state) => state.association);
-  const hasAwarded = useRef(false); 
+  const hasAwarded = useRef(false);
+  const [activity, setActivity] = useState(null);
 
   useEffect(() => {
-  dispatch(resetAssociation()); 
+    async function fetchData() {
+      dispatch(resetAssociation());
+      hasAwarded.current = false;
 
-  const activity = Association.find((a) => a.id === id);
-  if (activity) {
-    const pairs = activity.pairs || [];
-    const shuffled = [];
+      const ref = doc(db, 'association', id.toString());
+      const snap = await getDoc(ref);
 
-    for (let pair of pairs) {
-      const item = {
-        id: pair.item,
-        image: getImage(pair.item),
-        pairId: pair.match,
-      };
-      const match = {
-        id: pair.match,
-        image: getImage(pair.match),
-        pairId: pair.item,
-      };
-      shuffled.push(item, match);
+      if (snap.exists()) {
+        const data = snap.data();
+        setActivity(data);
+
+        const pairs = data.pairs || [];
+        const shuffled = [];
+
+        for (let pair of pairs) {
+          const item = {
+            id: pair.item,
+            image: getImage(pair.item),
+            pairId: pair.match,
+          };
+          const match = {
+            id: pair.match,
+            image: getImage(pair.match),
+            pairId: pair.item,
+          };
+          shuffled.push(item, match);
+        }
+
+        for (let i = shuffled.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+
+        dispatch(setPairs(shuffled));
+        dispatch(clearSelection());
+      } else {
+        console.error('No such document!');
+      }
     }
 
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-    }
-
-    dispatch(setPairs(shuffled));
-    dispatch(clearSelection());
-    hasAwarded.current = false;
-  }
-}, [dispatch, id]);
+    fetchData();
+  }, [dispatch, id]);
 
   useEffect(() => {
-  const activityCompleted = currentPairs.length > 0 && resolved.length === currentPairs.length;
-
-  if (activityCompleted && !hasAwarded.current) {
-    dispatch(addSessionCoins(3));
-    hasAwarded.current = true;
-  }
-}, [resolved, currentPairs, dispatch]);
-
+    const activityCompleted = currentPairs.length > 0 && resolved.length === currentPairs.length;
+    if (activityCompleted && !hasAwarded.current) {
+      dispatch(addSessionCoins(3));
+      hasAwarded.current = true;
+    }
+  }, [resolved, currentPairs, dispatch]);
 
   function handleCardClick(cardId) {
     if (resolved.includes(cardId) || selected.includes(cardId)) return;
@@ -77,21 +91,16 @@ function AssociationGame({ id, onSuccess }) {
 
       const match = card1?.pairId === card2?.id;
 
-      if (match) {
-        setTimeout(() => {
+      setTimeout(() => {
+        if (match) {
           dispatch(markResolved([id1, id2]));
-          dispatch(clearSelection());
-        }, 800);
-      } else {
-        setTimeout(() => {
-          dispatch(clearSelection());
-        }, 800);
-      }
+        }
+        dispatch(clearSelection());
+      }, 800);
     }
   }
 
-  const activity = Association.find((a) => a.id === id);
-  if (!activity) return <p>Actividad no encontrada</p>;
+  if (!activity) return <p>Cargando actividad...</p>;
 
   return (
     <section className='main-container'>
