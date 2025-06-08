@@ -63,26 +63,29 @@
     padding-top: 20px;
   }
   
-  .notebook-bg {
-    width: 80vw;
-    max-width: 400px;
-    aspect-ratio: auto;
-    background-image: url('../../assets/images/Libreta.webp'); /* Imagen más pequeña */
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    margin: 0 auto;
-  }
+.notebook-bg {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center;     /* Centra verticalmente */
+  flex-direction: column;  /* Por si hay más de un elemento */
+  width: 90vw;              /* Usa todo el ancho disponible */
+  max-width: 500px;          /* Puedes subir esto si quieres más grande */
+  aspect-ratio: 9/16;       /* Proporción vertical tipo libreta */
+  background-image: url('../../assets/images/Libreta.webp');
+  background-size: contain;    /* RELLENA el espacio completo */
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0 auto;
+}
 
   .right-page {
-    position: relative;
+    display: flex;
+    justify-content: center;
     top: auto;
     left: auto;
-    width: 90%;
+    width: 80%;
     height: auto;
-    padding: 1rem;
-    margin: 1.5rem auto 0;
-    border-radius: 12px;
+    padding: 10px;
   }
 
   .profile-page-title {
