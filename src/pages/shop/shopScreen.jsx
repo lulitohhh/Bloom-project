@@ -1,167 +1,171 @@
-import React, { useState } from "react";
-import "./shopScreen.css";
-import NavBar from "../../components/navBar/navBar";
-import { doc, updateDoc, arrayUnion, increment, getDoc } from "firebase/firestore";
-import coinImg from "/src/assets/images/Coin.webp";
-import { useShopItems } from "../../data/useShopData";
-import { db } from "../../services/firebase/firebaseConfig";
-import { useSelector, useDispatch } from "react-redux";
-import { subtractCoins} from "../../redux/coinSlice";
-import { useEffect } from "react";
+  import React, { useState } from "react";
+  import "./shopScreen.css";
+  import NavBar from "../../components/navBar/navBar";
+  import { doc, updateDoc, arrayUnion, increment, getDoc } from "firebase/firestore";
+  import coinImg from "/src/assets/images/Coin.webp";
+  import { useShopItems } from "../../data/useShopData";
+  import { db } from "../../services/firebase/firebaseConfig";
+  import { useSelector, useDispatch } from "react-redux";
+  import { subtractCoins} from "../../redux/coinSlice";
+  import { useEffect } from "react";
+  import { getAuth } from "firebase/auth";
+  import { createUserProfile } from "../../services/firebase/userService";
 
 const ShopScreen = () => {
   const [category, setCategory] = useState("plants");
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
-  const [userPurchasedItems, setUserPurchasedItems] = useState([]);
-  const dispatch = useDispatch();
+  const [userDataFromFirebase, setUserDataFromFirebase] = useState(null);
 
+  const dispatch = useDispatch();
   const coins = useSelector((state) => state.coins.coins);
   const userId = useSelector((state) => state.auth.user?.uid);
+  const auth = getAuth(); 
 
   const { shopItems, loading, error } = useShopItems();
 
-  
   useEffect(() => {
-    const fetchUserPurchasedItems = async () => {
-      if (userId) {
-        const userRef = doc(db, "users", userId);
-        const userDoc = await getDoc(userRef);
-        if (userDoc.exists()) {
-          setUserPurchasedItems(userDoc.data().purchasedItems || []);
+    const loadUserData = async () => {
+      if (!userId) {
+        setUserDataFromFirebase(null);
+        return;
+      }
+
+      const userRef = doc(db, "users", userId);
+      try {
+        const docSnap = await getDoc(userRef);
+        if (docSnap.exists()) {
+          setUserDataFromFirebase(docSnap.data());
+        } else {
+          await createUserProfile(auth.currentUser);
+          const newDocSnap = await getDoc(userRef);
+          setUserDataFromFirebase(newDocSnap.data());
+          console.log("ShopScreen: Perfil de usuario creado o inicializado.");
         }
+      } catch (err) {
+        console.error("ShopScreen: Error al cargar o crear datos del usuario:", err);
+        setUserDataFromFirebase(null);
       }
     };
-    fetchUserPurchasedItems();
-  }, [userId]);
+    loadUserData();
+  }, [userId, auth]); 
 
-  
-  const formatItems = {
+  const formattedItems = {
     plants: shopItems.plants?.map(plant => ({
       ...plant,
       img: plant.image,
-      purchased: userPurchasedItems.includes(plant.id)
+      purchased: userDataFromFirebase?.purchasedItems?.includes(plant.id) || false
     })) || [],
     ecosystems: shopItems.ecosystems?.map(eco => ({
       ...eco,
       img: eco.image,
-      purchased: userPurchasedItems.includes(eco.id)
+      purchased: userDataFromFirebase?.purchasedItems?.includes(eco.id) || false
     })) || [],
     accessories: shopItems.accessories?.map(acc => ({
       ...acc,
       img: acc.image,
-      purchased: userPurchasedItems.includes(acc.id)
+      purchased: userDataFromFirebase?.purchasedItems?.includes(acc.id) || false
     })) || []
   };
 
-  
   const handleBuy = async (item) => {
-  if (!userId) {
-    showAlertMessage("Por favor inicia sesión para realizar compras");
-    return;
-  }
+    if (!userId || !userDataFromFirebase) { 
+      showAlertMessage("Por favor inicia sesión o espera a que los datos se carguen.");
+      return;
+    }
 
-  const isResource = item.id === "watering_can" || item.id === "fertilizer";
+    const isResource = item.id === "watering_can" || item.id === "fertilizer";
 
-  if (!isResource && userPurchasedItems.includes(item.id)) {
-    showAlertMessage("¡Ya posees este artículo!");
-    return;
-  }
+    if (!isResource && userDataFromFirebase.purchasedItems?.includes(item.id)) {
+      showAlertMessage("¡Ya posees este artículo!");
+      return;
+    }
 
-  if (coins < item.price) {
-    showAlertMessage(`¡No tienes suficientes monedas! Necesitas ${item.price - coins} monedas más.`);
-    return;
-  }
+    if (coins < item.price) {
+      showAlertMessage(`¡No tienes suficientes monedas! Necesitas ${item.price - coins} monedas más.`);
+      return;
+    }
 
-  try {
-    const userRef = doc(db, "users", userId);
-    const userDoc = await getDoc(userRef);
+    try {
+      const userRef = doc(db, "users", userId);
+      let updates = { coins: increment(-item.price) }; 
 
-    if (!userDoc.exists()) return;
-    const userData = userDoc.data();
+      if (isResource) {
+        const resourceName = item.id === "watering_can" ? "water" : "fertilizer";
+        // REMOVIDO: 'currentResourceAmount' ya no es necesario aquí.
+        updates[`resources.${resourceName}`] = increment(1); 
 
-    if (isResource) {
-      
-      const resourceName = item.id === "watering_can" ? "water" : "fertilizer";
-      await updateDoc(userRef, {
-        [`resources.${resourceName}`]: increment(1)
-      });
-      dispatch(subtractCoins(item.price));
-      showAlertMessage(`¡Compra exitosa! Has adquirido 1 unidad de ${item.name}`);
-    } else {
-      
-      if (category === "plants") {
-        const hasSpace = !userData.bigPotPlant ||
-                          (userData.potPlants || [null, null]).some(pot => pot === null);
+      } else { 
+        if (category === "plants") {
+          let currentPlants = Array.isArray(userDataFromFirebase.plants) ? [...userDataFromFirebase.plants] : [null, null, null];
+          
+          while (currentPlants.length < 3) {
+            currentPlants.push(null);
+          }
 
-        if (!hasSpace) {
-          showAlertMessage("¡No tienes espacio para más plantas!");
-          return;
+          const emptyPotIndex = currentPlants.indexOf(null);
+
+          if (emptyPotIndex !== -1) {
+            const plantData = {
+              id: item.id,
+              name: item.name,
+              image: item.image,
+              sproutImage: item.sproutImage || "/assets/brote.png", 
+              mediumImage: item.mediumImage || item.image,
+              matureImage: item.matureImage || item.image,
+              isMature: false,
+              purchasedAt: new Date(),
+              plantGrowth: 0,
+              ...(item.description && { description: item.description }),
+              ...(item.genus && { genus: item.genus }),
+              ...(item.habitat && { habitat: item.habitat })
+            };
+
+            currentPlants[emptyPotIndex] = plantData; 
+            updates.plants = currentPlants; 
+
+            updates.purchasedItems = arrayUnion(item.id);
+
+            setUserDataFromFirebase(prevData => ({
+                ...prevData,
+                plants: currentPlants,
+                purchasedItems: [...(prevData.purchasedItems || []), item.id] 
+            }));
+
+          } else {
+            showAlertMessage("¡No tienes macetas vacías disponibles para nuevas plantas!");
+            return; 
+          }
+
+        } else {
+          updates.purchasedItems = arrayUnion(item.id);
+          setUserDataFromFirebase(prevData => ({
+              ...prevData,
+              purchasedItems: [...(prevData.purchasedItems || []), item.id]
+          }));
         }
       }
 
-      await updateDoc(userRef, {
-        purchasedItems: arrayUnion(item.id),
-        coins: increment(-item.price),
-        ...(category === "plants" && getPlantUpdateData(item, userData))
-      });
-
-      dispatch(subtractCoins(item.price));
-      setUserPurchasedItems(prev => [...prev, item.id]);
+      await updateDoc(userRef, updates);
+      dispatch(subtractCoins(item.price)); 
       showAlertMessage(`¡Compra exitosa! Has adquirido ${item.name}`);
+
+    } catch (error) {
+      console.error("Error en la compra:", error);
+      showAlertMessage("Error al completar la compra. Por favor intenta nuevamente.");
     }
-
-  } catch (error) {
-    console.error("Error en la compra:", error);
-    showAlertMessage("Error al completar la compra. Por favor intenta nuevamente.");
-  }
-};
-
-  
-  const getPlantUpdateData = (plantItem, userData) => {
-    const plantData = {
-      id: plantItem.id,
-      name: plantItem.name,
-      image: plantItem.image,        
-      sproutImage: "/assets/brote.png",   
-      matureImage: plantItem.image,   
-      isMature: false,
-      purchasedAt: new Date(),
-      
-      ...(plantItem.description && { description: plantItem.description }),
-      ...(plantItem.genus && { genus: plantItem.genus }),
-      ...(plantItem.habitat && { habitat: plantItem.habitat })
-    };
-
-    
-    if (!userData.bigPotPlant) {
-      return {
-        bigPotPlant: plantData,
-        plantGrowth: 0,
-        potPlants: userData.potPlants || [null, null] 
-      };
-    } else {
-      const emptyPotIndex = (userData.potPlants || [null, null]).findIndex(pot => pot === null);
-      if (emptyPotIndex !== -1) {
-        return {
-          [`potPlants.${emptyPotIndex}`]: plantData
-        };
-      }
-    }
-    return {};
   };
 
-  
   const showAlertMessage = (message) => {
     setAlertMessage(message);
     setShowAlert(true);
   };
 
-  if (loading) {
+  if (loading || !userDataFromFirebase) { 
     return (
       <div className="shop-container">
         <NavBar />
-        <div className="loading-message">Cargando artículos...</div>
+        <div className="loading-message">Cargando tienda y datos de usuario...</div>
       </div>
     );
   }
@@ -182,7 +186,6 @@ const ShopScreen = () => {
     <div className="shop-container">
       <NavBar />
 
-      {/* Alerta personalizada */}
       {showAlert && (
         <div className="alert-overlay">
           <div className="alert-box">
@@ -199,7 +202,7 @@ const ShopScreen = () => {
 
       <div className="shop-controls">
         <div className="category-tabs">
-          {Object.keys(formatItems).map((cat) => (
+          {Object.keys(formattedItems).map((cat) => (
             <button
               key={cat}
               className={`tab-btn ${category === cat ? "active" : ""}`}
@@ -213,7 +216,7 @@ const ShopScreen = () => {
 
       <div className="container-shop">
         <div className="items-grid">
-          {formatItems[category].map((item) => (
+          {formattedItems[category].map((item) => (
             <div
               key={item.id}
               className={`item-card ${item.purchased && item.id !== "watering_can" && item.id !== "fertilizer" ? "purchased" : ""}`}
@@ -227,7 +230,7 @@ const ShopScreen = () => {
                 alt={item.name}
                 className="item-img"
                 onError={(e) => {
-                  e.target.src = '/src/assets/images/default-item.png';
+                  e.target.src = '/src/assets/images/default-item.png'; 
                 }}
               />
 
