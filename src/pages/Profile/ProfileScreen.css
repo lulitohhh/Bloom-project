@@ -1,5 +1,5 @@
 .profile-page-container {
-   position: relative;
+  position: relative;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -8,14 +8,13 @@
   width: 100vw;
   height: 100vh;
   justify-content: center;
-  background-image: linear-gradient(
-      rgba(7, 27, 83, 0.2), 
-      rgba(3, 19, 49, 0.2)
-    ), url('../../assets/images/MacBook.webp');
   align-items: center;
   overflow: hidden;
   z-index: 0;
-  
+  background-image: linear-gradient(
+    rgba(7, 27, 83, 0.2), 
+    rgba(3, 19, 49, 0.2)
+  ), url('../../assets/images/MacBook.webp'); /* ← o la ruta que elijas */
 }
 
 .notebook-bg {
@@ -44,4 +43,84 @@
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 20px;
+}
+@media (max-width: 768px) {
+
+   .profile-page-container {
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* ⬅ Centrado vertical */
+    align-items: center;     /* ⬅ Centrado horizontal */
+    min-height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(
+      rgba(7, 27, 83, 0.6),
+      rgba(3, 19, 49, 0.6)
+    ),('../../assets/images/MacBook.webp'); /* Fondo que cubre toda la pantalla */
+    min-height: 100vh;
+    padding-top: 20px;
+  }
+  
+.notebook-bg {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center;     /* Centra verticalmente */
+  flex-direction: column;  /* Por si hay más de un elemento */
+  width: 90vw;              /* Usa todo el ancho disponible */
+  max-width: 500px;          /* Puedes subir esto si quieres más grande */
+  aspect-ratio: 9/16;       /* Proporción vertical tipo libreta */
+  background-image: url('../../assets/images/Libreta.webp');
+  background-size: contain;    /* RELLENA el espacio completo */
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0 auto;
+}
+
+  .right-page {
+    display: flex;
+    justify-content: center;
+    top: auto;
+    left: auto;
+    width: 80%;
+    height: auto;
+    padding: 10px;
+  }
+
+  .profile-page-title {
+    font-size: 20px;
+    text-align: center;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .profile-page-container {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(
+      rgba(7, 27, 83, 0.4),
+      rgba(3, 19, 49, 0.4)
+    ), url('../../assets/images/MacBook.webp');
+    padding-top: 40px;
+    min-height: 100vh;
+    justify-content: center;
+  }
+
+  .notebook-bg {
+    width: 85vw;
+    max-width: 650px;
+    background-size: contain;
+    margin: 0 auto;
+  }
+
+  .right-page {
+    width: 88%;
+    padding: 1.5rem;
+  }
+
+  .profile-page-title {
+    font-size: 22px;
+  }
 }
