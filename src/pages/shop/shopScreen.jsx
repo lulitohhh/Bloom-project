@@ -43,7 +43,6 @@ const ShopScreen = () => {
   return (
     <div className="shop-container">
       <NavBar />
-
       <div className="shop-controls">
         <div className="category-tabs">
           {Object.keys(formatItems).map((cat) => (
