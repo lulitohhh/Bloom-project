@@ -22,7 +22,7 @@ const cloudinaryImages = {
   'house-plants': 'https://res.cloudinary.com/dbjgvudha/image/upload/v1749475051/house-plants_jui1cc.webp',
   desert: 'https://res.cloudinary.com/dbjgvudha/image/upload/v1749475050/desert_jhkpul.webp',
   ecobuton: 'https://res.cloudinary.com/dbjgvudha/image/upload/v1749475050/ecobuton_h1wwzx.webp',
-  fertilizante: 'https://res.cloudinary.com/dbjgvudha/image/upload/v1749475050/fertilizante_akelxn.webp',
+  fertilizer: 'https://res.cloudinary.com/dbjgvudha/image/upload/v1749475050/fertilizante_akelxn.webp',
   flor: 'https://res.cloudinary.com/dbjgvudha/image/upload/v1749475050/flor_riyvmj.webp',
   'bg-shop': 'https://res.cloudinary.com/dbjgvudha/image/upload/v1749475049/bg-shop_jljwin.png',
   'carton-box': 'https://res.cloudinary.com/dbjgvudha/image/upload/v1749475049/carton-box_nceaek.webp',
