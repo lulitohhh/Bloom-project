@@ -3,7 +3,6 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh; 
-  background-image: url('../img/bg.png'); 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -16,4 +15,34 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+/* Responsive para pantallas medianas y pequeñas */
+@media (max-width: 768px) {
+  .login-page {
+    padding: 0.5rem;
+    background-size: contain; /* Para que la imagen se ajuste mejor */
+  }
+
+  .login-container {
+    flex-direction: column; /* En móviles suele ir mejor en columna */
+    padding: 1rem;
+    width: 90%;
+    height: auto; /* Que no tome todo el alto */
+  }
+}
+
+/* Responsive para pantallas muy pequeñas (celulares pequeños) */
+@media (max-width: 480px) {
+  .login-page {
+    padding: 0.25rem;
+    background-size: contain;
+  }
+
+  .login-container {
+    width: 95%;
+    padding: 0.5rem;
+    justify-content: flex-start; /* Para que quede arriba en pantalla pequeña */
+    height: auto;
+  }
 }

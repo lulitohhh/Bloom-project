@@ -1,0 +1,126 @@
+.profile-page-container {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  z-index: 0;
+  background-image: linear-gradient(
+    rgba(7, 27, 83, 0.2), 
+    rgba(3, 19, 49, 0.2)
+  ), url('https://res.cloudinary.com/dbjgvudha/image/upload/v1749475052/MacBook_x83a3z.webp'); /* ← o la ruta que elijas */
+}
+
+.notebook-bg {
+  width: 90vw;        
+  max-width: 936px;    
+  aspect-ratio: 936 / 512; 
+  background-image: url('https://res.cloudinary.com/dbjgvudha/image/upload/v1749475054/profile_bacbyx.webp'); 
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+}
+
+.right-page {
+  position: absolute;
+  top: 8%;     
+  left: 51.5%;  
+  width: 42%;   
+  height: 82%;
+  padding: 2%;
+  border-radius: 12px;
+  overflow-y: auto;
+}
+
+.profile-page-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+@media (max-width: 768px) {
+
+   .profile-page-container {
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* ⬅ Centrado vertical */
+    align-items: center;     /* ⬅ Centrado horizontal */
+    min-height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(
+      rgba(7, 27, 83, 0.6),
+      rgba(3, 19, 49, 0.6)
+    ),('https://res.cloudinary.com/dbjgvudha/image/upload/v1749475052/MacBook_x83a3z.webp'); /* Fondo que cubre toda la pantalla */
+    min-height: 100vh;
+    padding-top: 20px;
+  }
+  
+.notebook-bg {
+  display: flex;
+  justify-content: center; 
+  align-items: center;    
+  flex-direction: column;  
+  width: 90vw;            
+  max-width: 500px;         
+  aspect-ratio: 9/16;      
+  background-image: url('https://res.cloudinary.com/dbjgvudha/image/upload/v1749475052/Libreta_rjdx8g.webp');
+  background-size: contain;    
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0 auto;
+}
+
+  .right-page {
+    display: flex;
+    justify-content: center;
+    top: auto;
+    left: auto;
+    width: 80%;
+    height: auto;
+    padding: 10px;
+  }
+
+  .profile-page-title {
+    font-size: 20px;
+    text-align: center;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .profile-page-container {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(
+      rgba(7, 27, 83, 0.4),
+      rgba(3, 19, 49, 0.4)
+    ), url('../../assets/images/MacBook.webp');
+    padding-top: 40px;
+    min-height: 100vh;
+    justify-content: center;
+  }
+
+  .notebook-bg {
+    width: 85vw;
+    max-width: 650px;
+    background-size: contain;
+    margin: 0 auto;
+  }
+
+  .right-page {
+    width: 88%;
+    padding: 1.5rem;
+  }
+
+  .profile-page-title {
+    font-size: 22px;
+  }
+}

@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import { store } from './redux/Store';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
+import ProfileScreen from './pages/Profile/ProfileScreen';
 
 function App() {
   return (
@@ -18,9 +19,10 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
 
-          <Route path="/activities" element={<Activities />} /> {/* ✅ nombre correcto */}
+          <Route path="/activities" element={<Activities />} /> 
           <Route path="/garden" element={<GardenAlbum />} />
           <Route path="/shop" element={<ShopScreen />} />
+          <Route path="/perfil" element={<ProfileScreen />} />
         </Routes>
       </BrowserRouter>
     </Provider>

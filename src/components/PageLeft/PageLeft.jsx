@@ -1,7 +1,7 @@
 import "./PageLeft.css"
 import { useState } from "react";
 import { useEffect } from "react";
-import locked from "../../assets/images/locked.png"
+import cloudinaryImages from '../../utils/cloudinaryImages';
 
 
 const PageLeft = ({ 
@@ -50,7 +50,7 @@ const PageLeft = ({
                   style={{ cursor: isPurchased ? "pointer" : "not-allowed" }}
                 >
                   <img
-                    src={isPurchased ? item.image : locked}
+                    src={isPurchased ? item.image : cloudinaryImages.locked}
                     alt={isPurchased ? item.name : "Bloqueado"}
                     className="item-image"
                     onError={(e) => {

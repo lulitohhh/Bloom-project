@@ -1,4 +1,4 @@
-/* Contenedor principal centrado */
+
 .log-container {
   width: 320px;
   height: auto;
@@ -8,22 +8,18 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #FFDBB1;
+  background-color: #ffe8ce;
   border-radius: 20px;
-  box-shadow: 
-    0 4px 0 #EBB372, 
-    0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Título */
 .log-title {
   margin-bottom: 1rem;
   font-family: "Fredoka", sans-serif;
-  color: #CC730B;
+  color: #bd6706;
 }
 
 /* Inputs */
@@ -42,15 +38,15 @@
 .bloom-input {
   width: 100%;
   box-sizing: border-box; /* ← evita desbordes por padding interno */
-  background-color: #EBB372;
+  background-color: #eccba6;
   border: none;
   border-radius: 10px;
-  padding: 10px;
   font-family: "Fredoka", sans-serif;
+  color: rgb(83, 47, 22);
 }
 
 .bloom-input::placeholder {
-  color: white;
+  color: rgb(83, 47, 22);
   opacity: 0.8;
   padding-left: 5px;
 }
@@ -60,7 +56,7 @@
   font-family: "Fredoka", sans-serif;
   font-weight: 600;
   font-size: large;
-  background-color: #27A258;
+  background-color: #219b52;
   color: white;
   border: none;
   border-radius: 20px;
@@ -105,7 +101,6 @@
   color: #333;
   font-family: "Fredoka", sans-serif;
   cursor: pointer;
-  text-decoration: underline;
   font-size: 0.9rem;
 }
 
