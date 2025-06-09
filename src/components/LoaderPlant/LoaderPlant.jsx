@@ -1,27 +1,57 @@
-// src/components/common/LoaderPlant.jsx
+import React from "react";
 import { motion } from "framer-motion";
 import "./LoaderPlant.css";
 
+const plantVariants = {
+  hidden: { scaleY: 0, opacity: 0 },
+  visible: {
+    scaleY: 1,
+    opacity: 1,
+    transition: { duration: 2, ease: "easeOut" },
+  },
+};
+
+const leafVariants = {
+  hidden: { opacity: 0, scale: 0 },
+  visible: (direction) => ({
+    opacity: 1,
+    scale: 1,
+    transition: { delay: 1 + direction * 0.5, duration: 1 },
+  }),
+};
+
 const LoaderPlant = () => {
   return (
-    <div className="loader-plant-container">
-      <motion.svg
-        width="80"
-        height="80"
-        viewBox="0 0 100 100"
-        initial={{ scale: 0 }}
-        animate={{ scale: [0, 1.2, 1] }}
-        transition={{ duration: 1.5, ease: "easeInOut", repeat: Infinity }}
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <g fill="none" stroke="#EA67CB" strokeWidth="2">
-          <path d="M50 80 V50" strokeLinecap="round" />
-          <path d="M50 50 Q45 40 40 45" />
-          <path d="M50 50 Q55 40 60 45" />
-          <circle cx="50" cy="80" r="2" fill="#842883" />
-        </g>
-      </motion.svg>
-      <p className="loader-text">Your garden is growing...</p>
+    <div className="loader-plant-fullscreen">
+      <div className="loader-plant-container">
+        <motion.div
+          className="plant"
+          variants={plantVariants}
+          initial="hidden"
+          animate="visible"
+          style={{ transformOrigin: "bottom center" }}
+        >
+          <div className="stem"></div>
+          <motion.div
+            className="leaf left"
+            custom={0}
+            variants={leafVariants}
+            initial="hidden"
+            animate="visible"
+          />
+          <motion.div
+            className="leaf right"
+            custom={1}
+            variants={leafVariants}
+            initial="hidden"
+            animate="visible"
+          />
+        </motion.div>
+
+        <div className="pot"></div>
+
+        <p className="loader-text">Growing data...</p>
+      </div>
     </div>
   );
 };

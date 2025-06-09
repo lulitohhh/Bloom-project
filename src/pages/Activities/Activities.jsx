@@ -84,6 +84,7 @@ const Activities = () => {
       ) : actividades[paso] ? (
         renderActividad(actividades[paso])
       ) : null}
+      <img src={bgImage} alt="Lower-decoration" className="background-bottom" />
     </div>
   );
 };

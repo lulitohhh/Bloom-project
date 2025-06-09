@@ -8,21 +8,21 @@ import { Provider } from 'react-redux';
 import { store } from './redux/Store';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
-import ProfileScreen from './pages/Profile/ProfileScreen';
+import ProfileScreen from './pages/Profile/ProfileScreen'; // Asegúrate de que este componente esté correctamente importado
+import UserProfilePage from './pages/Profile/ProfileScreen';
 
 function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-
-          <Route path="/activities" element={<Activities />} /> 
+          <Route path="/activities" element={<Activities />} /> {/* ✅ nombre correcto */}
           <Route path="/garden" element={<GardenAlbum />} />
           <Route path="/shop" element={<ShopScreen />} />
-          <Route path="/perfil" element={<ProfileScreen />} />
+          <Route path="/profile" element={<UserProfilePage />} />
         </Routes>
       </BrowserRouter>
     </Provider>

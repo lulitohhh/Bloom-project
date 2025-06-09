@@ -1,15 +1,79 @@
+/* Ocupa toda la pantalla y centra el contenido */
+.loader-plant-fullscreen {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;  /* horizontal */
+  align-items: center;      /* vertical */
+  background: #f0f7f3;      /* color suave de fondo */
+  user-select: none;
+}
+
+/* Contenedor de la planta y maceta */
 .loader-plant-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin-top: 80px;
-  color: var(--purple);
+  font-family: 'Nunito Sans', sans-serif;
+  color: #4a7c59;
 }
 
+/* Maceta */
+.pot {
+  width: 120px;
+  height: 50px;
+  background: #8b5e3c;
+  border-radius: 0 0 30px 30px;
+  box-shadow: inset 0 -6px 6px #6f472a;
+  margin-bottom: -15px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Planta completa */
+.plant {
+  width: 10px;
+  position: relative;
+  z-index: 2;
+  transform-origin: bottom center;
+}
+
+/* Tallo */
+.stem {
+  width: 10px;
+  height: 80px;
+  background-color: #4a7c59;
+  border-radius: 5px;
+  margin: 0 auto;
+}
+
+/* Hojas */
+.leaf {
+  position: absolute;
+  width: 25px;
+  height: 15px;
+  background-color: #3a6541;
+  border-radius: 20px;
+  top: 30px;
+  opacity: 1;
+}
+
+.leaf.left {
+  left: -18px;
+  transform-origin: right center;
+}
+
+.leaf.right {
+  right: -18px;
+  transform-origin: left center;
+}
+
+/* Texto debajo */
 .loader-text {
-  font-family: 'Poppins', sans-serif;
-  margin-top: 12px;
-  font-size: 1rem;
-  color: var(--lavender-dark);
+  margin-top: 20px;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 0.05em;
+  color: #3f6a47;
+  user-select: none;
 }
