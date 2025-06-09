@@ -16,63 +16,45 @@ import NavBar from '../../components/navBar/navBar';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { doc, onSnapshot } from 'firebase/firestore';
+import { doc, onSnapshot, updateDoc } from 'firebase/firestore';
 import { db } from '../../services/firebase/firebaseConfig';
 
 const Dashboard = () => {
   const auth = useSelector((state) => state.auth);
-  const [plants, setPlants] = useState([null, null, null]); 
-  const [centralIndex, setCentralIndex] = useState(1); 
+  const [plants, setPlants] = useState([null, null, null]);
+  const [currentGroupStart, setCurrentGroupStart] = useState(0);
 
   useEffect(() => {
-    let unsubscribe = () => {}; 
+    let unsubscribe = () => {};
 
     const setupRealtimeListener = () => {
       if (!auth.user?.uid) {
         console.log("Dashboard: No hay usuario loggeado. Inicializando plantas a null.");
         setPlants([null, null, null]);
-        setCentralIndex(1);
         return;
       }
 
       const userRef = doc(db, 'users', auth.user.uid);
-      
+
       unsubscribe = onSnapshot(userRef, (docSnap) => {
         if (docSnap.exists()) {
           const userData = docSnap.data();
-          console.log("Dashboard (onSnapshot): Documento de usuario encontrado. userData.plants:", userData.plants);
-          
-          let loadedPlants = Array.isArray(userData.plants) ? userData.plants : []; 
-          
+          let loadedPlants = Array.isArray(userData.plants) ? userData.plants : [];
+
           while (loadedPlants.length < 3) {
             loadedPlants.push(null);
           }
-          console.log("Dashboard (onSnapshot): Plantas cargadas y formateadas:", loadedPlants);
-          setPlants(loadedPlants);
 
-          let newCentralIndex = centralIndex; 
-          if (!loadedPlants[newCentralIndex]) { 
-            if (loadedPlants[0]) {
-              newCentralIndex = 0;
-            } else if (loadedPlants[1]) { 
-              newCentralIndex = 1;
-            } else if (loadedPlants[2]) {
-              newCentralIndex = 2;
-            } else { 
-              newCentralIndex = 1;
-            }
-          }
-          setCentralIndex(newCentralIndex);
+          setPlants(loadedPlants);
+          console.log("Dashboard (onSnapshot): Plantas cargadas:", loadedPlants);
 
         } else {
           console.log("Dashboard (onSnapshot): Documento de usuario NO encontrado. Inicializando plantas a null.");
           setPlants([null, null, null]);
-          setCentralIndex(1); 
         }
-      }, (error) => { 
+      }, (error) => {
         console.error("Dashboard (onSnapshot): Error al escuchar datos del jardín en tiempo real:", error);
         setPlants([null, null, null]);
-        setCentralIndex(1); 
       });
     };
 
@@ -82,34 +64,70 @@ const Dashboard = () => {
       console.log("Dashboard: Desuscribiendo del listener de Firestore.");
       unsubscribe();
     };
+  }, [auth.user]);
 
-  }, [auth.user]); 
-
-  const handleSelectCentralPot = (selectedIndex) => {
-    if (selectedIndex === centralIndex || !plants[selectedIndex]) {
+  const handleSelectCentralPot = async (selectedIndex) => {
+    if (selectedIndex === currentGroupStart + 1 || !plants[selectedIndex]) {
       return;
     }
-    setCentralIndex(selectedIndex); 
+
+    const updatedPlants = plants.map(p => p ? { ...p } : null);
+
+    const plantToMoveToCenter = updatedPlants[selectedIndex];
+    const plantCurrentlyInCenter = updatedPlants[currentGroupStart + 1];
+
+    updatedPlants[currentGroupStart + 1] = { ...plantToMoveToCenter };
+    updatedPlants[selectedIndex] = plantCurrentlyInCenter ? { ...plantCurrentlyInCenter } : null;
+
+    setPlants(updatedPlants);
+
+    const userRef = doc(db, 'users', auth.user.uid);
+    await updateDoc(userRef, {
+      centralPlantId: plantToMoveToCenter.id
+    });
   };
 
+  const visiblePlants = plants.slice(currentGroupStart, currentGroupStart + 3);
 
   return (
     <div className='dashboard'>
       <Background />
-      <NavBar /> {/* La NavBar que ya contiene sus propios botones */}
-      <div className="pots-container">
-        {Array.isArray(plants) && plants.map((plantData, index) => (
-          <Pot
-            key={`pot-${index}`}
-            plantData={plantData}
-            isCentral={index === centralIndex}
-            potIndex={index}
-            onSelectCentralPot={handleSelectCentralPot}
-          />
-        ))}
+      <NavBar />
+
+      <div className="carousel-controls">
+        <button
+          onClick={() => setCurrentGroupStart(prev => Math.max(prev - 3, 0))}
+          disabled={currentGroupStart === 0}
+        >
+          ←
+        </button>
+        <button
+          onClick={() => setCurrentGroupStart(prev => Math.min(prev + 3, plants.length - 3))}
+          disabled={currentGroupStart + 3 >= plants.length}
+        >
+          →
+        </button>
       </div>
+
+      <div className="pots-container">
+        {visiblePlants.map((plantData, index) => {
+          const realIndex = currentGroupStart + index;
+          let positionClass = ['pot-position-left', 'pot-position-center', 'pot-position-right'][index];
+
+          return (
+            <Pot
+              key={`pot-${realIndex}-${plantData?.id || 'empty'}`}
+              plantData={plantData ? { ...plantData } : null}
+              isCentral={index === 1}
+              potIndex={realIndex}
+              onSelectCentralPot={handleSelectCentralPot}
+              className={positionClass}
+            />
+          );
+        })}
+      </div>
+
       <div className="btn-container">
-        {/* Aquí van SOLO los botones que NO están en la NavBar */}
         <EcoButton />
         <ActivitiesBton />
       </div>

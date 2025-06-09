@@ -9,115 +9,136 @@ import wateringImg from '../../assets/images/wateringcan.webp'
 
 
 
-const Pot = ({ plantData, isCentral, potIndex, onSelectCentralPot }) => {
-  console.log(`Pot ${potIndex}: plantData =`, plantData); 
-    console.log(`Pot ${potIndex}: isCentral =`, isCentral);
-  const currentUser = useSelector(state => state.auth.user);
-  // `growthProgress` ahora siempre se inicializa con el plantGrowth de la prop `plantData`
-  const [growthProgress, setGrowthProgress] = useState(plantData?.plantGrowth || 0);
-  const [resources, setResources] = useState({ water: 0, fertilizer: 0 });
+const Pot = ({ plantData, isCentral, potIndex, onSelectCentralPot, className }) => {
+  const currentUser = useSelector((state) => state.auth.user);
 
-  // Este useEffect se encarga de cargar los recursos del usuario
+  const [resources, setResources] = useState({ water: 0, fertilizer: 0 });
+  const [growthProgress, setGrowthProgress] = useState(plantData?.plantGrowth || 0);
+
+  useEffect(() => {
+    if (isCentral && plantData?.plantGrowth !== undefined) {
+      setGrowthProgress(plantData.plantGrowth);
+    }
+  }, [plantData, isCentral]);
+
   useEffect(() => {
     const loadResourceData = async () => {
       if (!currentUser?.uid) return;
 
-      const userRef = doc(db, 'users', currentUser.uid);
+      const userRef = doc(db, "users", currentUser.uid);
       try {
         const docSnap = await getDoc(userRef);
         if (docSnap.exists()) {
           const userData = docSnap.data();
           setResources({
             water: userData.resources?.water || 0,
-            fertilizer: userData.resources?.fertilizer || 0
+            fertilizer: userData.resources?.fertilizer || 0,
           });
-        } else {
-          console.log("No se encontró el documento del usuario al cargar recursos de la maceta.");
         }
       } catch (error) {
-        console.error("Error al cargar recursos de la maceta:", error);
+        console.error("Error al cargar recursos:", error);
       }
     };
     loadResourceData();
-  }, [currentUser]); // Solo depende de currentUser
+  }, [currentUser]);
 
-  // Este useEffect actualiza el estado local `growthProgress` cuando `plantData` cambia
-  useEffect(() => {
-    setGrowthProgress(plantData?.plantGrowth || 0);
-  }, [plantData]); // Solo depende de plantData
+  const refreshPlantProgress = async () => {
+    try {
+      const userRef = doc(db, "users", currentUser.uid);
+      const updatedSnap = await getDoc(userRef);
+      if (updatedSnap.exists()) {
+        const updatedData = updatedSnap.data();
+        const centralPlantId = updatedData.centralPlantId;
+        const updatedPlant = updatedData.plants?.find(p => p?.id === centralPlantId);
+        if (updatedPlant) {
+          setGrowthProgress(updatedPlant.plantGrowth || 0);
+        }
+      }
+    } catch (error) {
+      console.error("Error al refrescar progreso:", error);
+    }
+  };
 
   const handleWaterPlant = async () => {
-    // Solo permitir regar si es la maceta central Y tiene datos de planta Y hay agua
     if (!isCentral || !plantData || resources.water <= 0) return;
 
     try {
-      const userRef = doc(db, 'users', currentUser.uid);
-      const newProgress = Math.min(growthProgress + 10, 100);
+      const userRef = doc(db, "users", currentUser.uid);
+      const docSnap = await getDoc(userRef);
+      if (!docSnap.exists()) return;
+
+      const userData = docSnap.data();
+      const currentPlants = Array.isArray(userData.plants) ? [...userData.plants] : [null, null, null];
+      const centralPlantId = userData.centralPlantId;
+
+      const foundIndex = currentPlants.findIndex((p) => p?.id === centralPlantId);
+      if (foundIndex === -1) return;
+
+      const currentPlant = currentPlants[foundIndex];
+      const prevProgress = currentPlant.plantGrowth || 0;
+      const newProgress = Math.min(prevProgress + 10, 100);
       const newWater = resources.water - 1;
 
-      // *** MODIFICACIÓN CLAVE: Actualiza el `plantGrowth` directamente en el array `plants`
-      // y también `isMature` si la planta alcanza el 100% de crecimiento.
-      const updates = {
-        [`plants.${potIndex}.plantGrowth`]: newProgress, // Accede al índice específico del array `plants`
+      const updatedPlant = { ...currentPlant, plantGrowth: newProgress };
+      if (newProgress >= 100) updatedPlant.isMature = true;
+
+      currentPlants[foundIndex] = updatedPlant;
+
+      await updateDoc(userRef, {
+        plants: currentPlants,
         "resources.water": newWater,
-      };
+      });
 
-      if (newProgress >= 100) {
-        updates[`plants.${potIndex}.isMature`] = true; // Marca como madura en el índice correcto
-      }
-
-      await updateDoc(userRef, updates);
-
-      // Actualizar el estado local
-      setGrowthProgress(newProgress);
-      setResources(prev => ({ ...prev, water: newWater }));
-
+      setResources((prev) => ({ ...prev, water: newWater }));
+      await refreshPlantProgress();
     } catch (error) {
-      console.error("Error watering plant:", error);
+      console.error("Error al regar planta:", error);
     }
   };
 
   const handleFertilizePlant = async () => {
-    // Solo permitir fertilizar si es la maceta central Y tiene datos de planta Y hay fertilizante
     if (!isCentral || !plantData || resources.fertilizer <= 0) return;
 
     try {
-      const userRef = doc(db, 'users', currentUser.uid);
-      const newProgress = Math.min(growthProgress + 20, 100);
+      const userRef = doc(db, "users", currentUser.uid);
+      const docSnap = await getDoc(userRef);
+      if (!docSnap.exists()) return;
+
+      const userData = docSnap.data();
+      const currentPlants = Array.isArray(userData.plants) ? [...userData.plants] : [null, null, null];
+      const centralPlantId = userData.centralPlantId;
+
+      const foundIndex = currentPlants.findIndex((p) => p?.id === centralPlantId);
+      if (foundIndex === -1) return;
+
+      const currentPlant = currentPlants[foundIndex];
+      const prevProgress = currentPlant.plantGrowth || 0;
+      const newProgress = Math.min(prevProgress + 20, 100);
       const newFertilizer = resources.fertilizer - 1;
 
-      // *** MODIFICACIÓN CLAVE: Actualiza el `plantGrowth` directamente en el array `plants`
-      // y también `isMature` si la planta alcanza el 100% de crecimiento.
-      const updates = {
-        [`plants.${potIndex}.plantGrowth`]: newProgress, // Accede al índice específico del array `plants`
+      const updatedPlant = { ...currentPlant, plantGrowth: newProgress };
+      if (newProgress >= 100) updatedPlant.isMature = true;
+
+      currentPlants[foundIndex] = updatedPlant;
+
+      await updateDoc(userRef, {
+        plants: currentPlants,
         "resources.fertilizer": newFertilizer,
-      };
+      });
 
-      if (newProgress >= 100) {
-        updates[`plants.${potIndex}.isMature`] = true; // Marca como madura en el índice correcto
-      }
-
-      await updateDoc(userRef, updates);
-
-      // Actualizar el estado local
-      setGrowthProgress(newProgress);
-      setResources(prev => ({ ...prev, fertilizer: newFertilizer }));
-
+      setResources((prev) => ({ ...prev, fertilizer: newFertilizer }));
+      await refreshPlantProgress();
     } catch (error) {
-      console.error("Error fertilizing plant:", error);
+      console.error("Error al fertilizar planta:", error);
     }
   };
 
   const getPlantImage = () => {
     if (!plantData) return null;
 
-    // `currentProgress` siempre viene del estado local `growthProgress`
-    // porque es la planta central la que estamos mostrando y su progreso es el que controlamos.
-    const currentProgress = growthProgress;
-
-    if (plantData.isMature || currentProgress >= 100) {
+    if (plantData.isMature || growthProgress >= 100) {
       return plantData.matureImage || plantData.image;
-    } else if (currentProgress >= 50) {
+    } else if (growthProgress >= 50) {
       return plantData.mediumImage || plantData.sproutImage || plantData.image;
     }
     return plantData.sproutImage || plantData.image;
@@ -125,11 +146,10 @@ const Pot = ({ plantData, isCentral, potIndex, onSelectCentralPot }) => {
 
   return (
     <div
-      className={`pot-container ${isCentral ? 'pot-central' : 'pot-background'}`}
-      // Solo permite seleccionar si NO es la central y si tiene una planta
+      className={`pot-container ${className} ${isCentral ? "pot-central" : "pot-background"}`}
       onClick={!isCentral && plantData ? () => onSelectCentralPot(potIndex) : null}
     >
-      <div className={`pot-bg ${isCentral ? 'big-pot-bg' : 'small-pot-bg'}`}>
+      <div className={`pot-bg ${isCentral ? "big-pot-bg" : "small-pot-bg"}`}>
         {plantData ? (
           <>
             <img
@@ -138,12 +158,9 @@ const Pot = ({ plantData, isCentral, potIndex, onSelectCentralPot }) => {
               alt={plantData.name}
               className="pot-plant-img"
             />
-            {isCentral && ( // Solo muestra la barra de progreso si es la maceta central
+            {isCentral && (
               <div className="progress-bar">
-                <div
-                  className="progress-fill"
-                  style={{ width: `${growthProgress}%` }}
-                ></div>
+                <div className="progress-fill" style={{ width: `${growthProgress}%` }}></div>
               </div>
             )}
           </>
@@ -152,7 +169,7 @@ const Pot = ({ plantData, isCentral, potIndex, onSelectCentralPot }) => {
         )}
       </div>
 
-      {isCentral && plantData && ( // Solo muestra los botones si es la maceta central Y tiene planta
+      {isCentral && plantData && (
         <div className="pot-bton-container">
           <button
             id="feed"

@@ -122,4 +122,18 @@
   border-radius: 10px;
   padding: 12px;
   min-height: 60px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.purchased-plant-img{
+  width: 100%;
+  
+}
+
+.purchased-plant-item{
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  justify-content: center;
 }

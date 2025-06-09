@@ -27,6 +27,7 @@
   transition: all 0.5s ease-in-out; /* Transición suave para todos los cambios */
   pointer-events: auto; /* Permite interactuar con las macetas individuales */
   display: flex;
+  height: 80%;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
@@ -36,7 +37,7 @@
 /* Estas clases se aplican a los `pot-container` cuando `isCentral` es `false` */
 /* La posición de cada maceta del fondo se define por su orden (`nth-child`) */
 
-.pot-container:nth-child(1) { /* Primera maceta de fondo (izquierda) */
+.pot-position-left {
   bottom: 10%;
   left: 15%; /* Ajusta según tu diseño */
   transform: scale(0.6); /* Más pequeñas */
@@ -44,22 +45,21 @@
   cursor: pointer;
 }
 
-.pot-container:nth-child(2) { /* Esta es la maceta central "por defecto" o la que se mueve a la posición central */
-  bottom: 0;
+.pot-position-center {
+  bottom: 100;
   left: 50%;
   transform: translateX(-50%) scale(1);
   z-index: 2; /* Encima de las macetas de fondo */
   cursor: default; /* No clickeable si ya es la central */
 }
 
-.pot-container:nth-child(3) { /* Segunda maceta de fondo (derecha) */
+.pot-position-right {
   bottom: 10%;
   right: 15%; /* Ajusta según tu diseño */
   transform: scale(0.6);
   z-index: 1; /* Fondo */
   cursor: pointer;
 }
-
 /* Nota: la clase .pot-central que se añade dinámicamente por React sobreescribirá la posición
    si una maceta de fondo se mueve al centro. Esto está implícito en la lógica de `isCentral`
    y cómo CSS aplica las reglas. El `pot-container:nth-child(2)` es la posición donde

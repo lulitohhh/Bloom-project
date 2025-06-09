@@ -1,7 +1,7 @@
   import React, { useState } from "react";
   import "./shopScreen.css";
   import NavBar from "../../components/navBar/navBar";
-  import { doc, updateDoc, arrayUnion, increment, getDoc } from "firebase/firestore";
+  import { doc, updateDoc, increment, getDoc } from "firebase/firestore";
   import coinImg from "/src/assets/images/Coin.webp";
   import { useShopItems } from "../../data/useShopData";
   import { db } from "../../services/firebase/firebaseConfig";
@@ -35,11 +35,21 @@ const ShopScreen = () => {
       try {
         const docSnap = await getDoc(userRef);
         if (docSnap.exists()) {
-          setUserDataFromFirebase(docSnap.data());
+          const data = docSnap.data();
+          // Asegúrate de inicializar purchasedPlants si no existe
+          if (!data.purchasedPlants) {
+            data.purchasedPlants = [];
+          }
+          setUserDataFromFirebase(data);
         } else {
           await createUserProfile(auth.currentUser);
           const newDocSnap = await getDoc(userRef);
-          setUserDataFromFirebase(newDocSnap.data());
+          const newData = newDocSnap.data();
+          // Inicializa purchasedPlants para nuevos perfiles
+          if (!newData.purchasedPlants) {
+            newData.purchasedPlants = [];
+          }
+          setUserDataFromFirebase(newData);
           console.log("ShopScreen: Perfil de usuario creado o inicializado.");
         }
       } catch (err) {
@@ -76,6 +86,7 @@ const ShopScreen = () => {
 
     const isResource = item.id === "watering_can" || item.id === "fertilizer";
 
+    // Solo para items no recursos (plantas, ecosistemas, accesorios)
     if (!isResource && userDataFromFirebase.purchasedItems?.includes(item.id)) {
       showAlertMessage("¡Ya posees este artículo!");
       return;
@@ -89,46 +100,67 @@ const ShopScreen = () => {
     try {
       const userRef = doc(db, "users", userId);
       let updates = { coins: increment(-item.price) }; 
+      
+      // Obtener los datos actuales del usuario para asegurar arrays actualizados
+      const docSnap = await getDoc(userRef);
+      if (!docSnap.exists()) {
+        showAlertMessage("Error: Documento de usuario no encontrado al intentar comprar.");
+        return;
+      }
+      const currentData = docSnap.data();
+
+      // Inicializar `purchasedPlants` y `purchasedItems` si no existen en los datos actuales
+      let currentPlantsInPots = Array.isArray(currentData.plants) ? [...currentData.plants] : [null, null, null];
+      let currentPurchasedItems = Array.isArray(currentData.purchasedItems) ? [...currentData.purchasedItems] : [];
+      // Nuevo array para objetos de plantas compradas
+      let currentPurchasedPlants = Array.isArray(currentData.purchasedPlants) ? [...currentData.purchasedPlants] : [];
+
 
       if (isResource) {
         const resourceName = item.id === "watering_can" ? "water" : "fertilizer";
-        // REMOVIDO: 'currentResourceAmount' ya no es necesario aquí.
         updates[`resources.${resourceName}`] = increment(1); 
-
       } else { 
         if (category === "plants") {
-          let currentPlants = Array.isArray(userDataFromFirebase.plants) ? [...userDataFromFirebase.plants] : [null, null, null];
           
-          while (currentPlants.length < 3) {
-            currentPlants.push(null);
+          while (currentPlantsInPots.length < 3) {
+            currentPlantsInPots.push(null);
           }
 
-          const emptyPotIndex = currentPlants.indexOf(null);
+          const emptyPotIndex = currentPlantsInPots.indexOf(null);
 
           if (emptyPotIndex !== -1) {
             const plantData = {
-              id: item.id,
+              id: item.id, // ID del item de la tienda
               name: item.name,
               image: item.image,
               sproutImage: item.sproutImage || "/assets/brote.png", 
               mediumImage: item.mediumImage || item.image,
               matureImage: item.matureImage || item.image,
               isMature: false,
-              purchasedAt: new Date(),
+              purchasedAt: new Date(), // Fecha de compra
               plantGrowth: 0,
               ...(item.description && { description: item.description }),
               ...(item.genus && { genus: item.genus }),
               ...(item.habitat && { habitat: item.habitat })
             };
 
-            currentPlants[emptyPotIndex] = plantData; 
-            updates.plants = currentPlants; 
+            currentPlantsInPots[emptyPotIndex] = plantData; // Asigna al jardín
+            updates.plants = currentPlantsInPots; 
+            
+            // AÑADIDO: Agrega el objeto completo de la planta a purchasedPlants
+            currentPurchasedPlants.push(plantData); 
+            updates.purchasedPlants = currentPurchasedPlants; // Actualiza el objeto de actualizaciones
+            
+            // Esto ya lo tenías, asegura que el ID también se registra en purchasedItems
+            currentPurchasedItems.push(item.id); 
+            updates.purchasedItems = currentPurchasedItems;
 
-            updates.purchasedItems = arrayUnion(item.id);
 
+            // Actualizar el estado local `userDataFromFirebase` inmediatamente
             setUserDataFromFirebase(prevData => ({
                 ...prevData,
-                plants: currentPlants,
+                plants: currentPlantsInPots,
+                purchasedPlants: currentPurchasedPlants, // <-- Nuevo
                 purchasedItems: [...(prevData.purchasedItems || []), item.id] 
             }));
 
@@ -137,8 +169,10 @@ const ShopScreen = () => {
             return; 
           }
 
-        } else {
-          updates.purchasedItems = arrayUnion(item.id);
+        } else { // Para ecosistemas y accesorios (solo se agregan a purchasedItems)
+          currentPurchasedItems.push(item.id);
+          updates.purchasedItems = currentPurchasedItems;
+
           setUserDataFromFirebase(prevData => ({
               ...prevData,
               purchasedItems: [...(prevData.purchasedItems || []), item.id]
