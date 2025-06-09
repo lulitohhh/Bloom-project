@@ -22,73 +22,50 @@ import { db } from '../../services/firebase/firebaseConfig';
 const Dashboard = () => {
   const auth = useSelector((state) => state.auth);
   const [plants, setPlants] = useState([null, null, null]);
+  const [centralPlantId, setCentralPlantId] = useState(null);
   const [currentGroupStart, setCurrentGroupStart] = useState(0);
 
   useEffect(() => {
-    let unsubscribe = () => {};
+    if (!auth.user?.uid) return;
 
-    const setupRealtimeListener = () => {
-      if (!auth.user?.uid) {
-        console.log("Dashboard: No hay usuario loggeado. Inicializando plantas a null.");
-        setPlants([null, null, null]);
-        return;
-      }
+    const userRef = doc(db, 'users', auth.user.uid);
 
-      const userRef = doc(db, 'users', auth.user.uid);
+    const unsubscribe = onSnapshot(
+      userRef,
+      (docSnap) => {
+        if (docSnap.exists()) {
+          const userData = docSnap.data();
+          let loadedPlants = Array.isArray(userData.plants) ? [...userData.plants] : [];
+          const totalPots = Math.min(userData.pots || 3, 9);
 
-      unsubscribe = onSnapshot(
-        userRef,
-        (docSnap) => {
-          if (docSnap.exists()) {
-            const userData = docSnap.data();
-            let loadedPlants = Array.isArray(userData.plants) ? [...userData.plants] : [];
-
-            const totalPots = Math.min(userData.pots || 3, 9); // Máximo 9 macetas permitidas
-
-            while (loadedPlants.length < totalPots) {
-              loadedPlants.push(null);
-            }
-
-            setPlants(loadedPlants);
-            console.log("Dashboard (onSnapshot): Plantas cargadas:", loadedPlants);
-          } else {
-            console.log("Dashboard (onSnapshot): Documento de usuario NO encontrado. Inicializando plantas a null.");
-            setPlants([null, null, null]);
+          while (loadedPlants.length < totalPots) {
+            loadedPlants.push(null);
           }
-        },
-        (error) => {
-          console.error("Dashboard (onSnapshot): Error al escuchar datos del jardín en tiempo real:", error);
+
+          setPlants(loadedPlants);
+          setCentralPlantId(userData.centralPlantId || null);
+        } else {
           setPlants([null, null, null]);
+          setCentralPlantId(null);
         }
-      );
-    };
+      },
+      (error) => {
+        console.error("Error al escuchar datos en tiempo real:", error);
+        setPlants([null, null, null]);
+        setCentralPlantId(null);
+      }
+    );
 
-    setupRealtimeListener();
-
-    return () => {
-      console.log("Dashboard: Desuscribiendo del listener de Firestore.");
-      unsubscribe();
-    };
+    return () => unsubscribe();
   }, [auth.user]);
 
   const handleSelectCentralPot = async (selectedIndex) => {
-    if (selectedIndex === currentGroupStart + 1 || !plants[selectedIndex]) {
-      return;
-    }
-
-    const updatedPlants = plants.map(p => p ? { ...p } : null);
-
-    const plantToMoveToCenter = updatedPlants[selectedIndex];
-    const plantCurrentlyInCenter = updatedPlants[currentGroupStart + 1];
-
-    updatedPlants[currentGroupStart + 1] = { ...plantToMoveToCenter };
-    updatedPlants[selectedIndex] = plantCurrentlyInCenter ? { ...plantCurrentlyInCenter } : null;
-
-    setPlants(updatedPlants);
+    const selectedPlant = plants[selectedIndex];
+    if (!selectedPlant || selectedPlant.id === centralPlantId) return;
 
     const userRef = doc(db, 'users', auth.user.uid);
     await updateDoc(userRef, {
-      centralPlantId: plantToMoveToCenter.id
+      centralPlantId: selectedPlant.id
     });
   };
 
@@ -122,15 +99,16 @@ const Dashboard = () => {
         {visiblePlants.map((plantData, index) => {
           const realIndex = currentGroupStart + index;
           const positionClass = ['pot-position-left', 'pot-position-center', 'pot-position-right'][index] || '';
+          const isCentral = plantData?.id === centralPlantId;
 
           return (
             <Pot
               key={`pot-${realIndex}-${plantData?.id || 'empty'}`}
               plantData={plantData ? { ...plantData } : null}
-              isCentral={index === 1}
               potIndex={realIndex}
               onSelectCentralPot={handleSelectCentralPot}
               className={positionClass}
+              isCentral={isCentral}
             />
           );
         })}
