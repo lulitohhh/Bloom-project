@@ -2,7 +2,7 @@
 const cloudinaryImages = {
   wateringcan2: 'https://res.cloudinary.com/dbjgvudha/image/upload/v1749475055/wateringcan2_vipgrz.webp',
   profile: 'https://res.cloudinary.com/dbjgvudha/image/upload/v1749475054/profile_bacbyx.webp',
-  recycleBin: 'https://res.cloudinary.com/dbjgvudha/image/upload/v1749475054/recycle-bin_vjgp8h.webp',
+'recycle-bin': 'https://res.cloudinary.com/dbjgvudha/image/upload/v1749475054/recycle-bin_vjgp8h.webp',
   shopicon: 'https://res.cloudinary.com/dbjgvudha/image/upload/v1749475054/shopicon_gkxijh.webp',
   tree: 'https://res.cloudinary.com/dbjgvudha/image/upload/v1749475054/tree_idbczj.webp',
   Plant: 'https://res.cloudinary.com/dbjgvudha/image/upload/v1749475053/Plant_x6rdng.webp',
