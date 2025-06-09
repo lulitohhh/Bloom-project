@@ -1,53 +1,53 @@
-/* ESTILOS DE LA MACETA EN SÍ (LA IMAGEN DE FONDO) */
+/* MACETA (FONDO) */
 .pot-bg {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center bottom;
-  position: relative; /* Para posicionar la planta y la barra de progreso dentro */
+  position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end; /* Alinea el contenido más hacia abajo */
+  justify-content: flex-end;
   align-items: center;
-  padding-top: 15%; /* Espacio para que la planta sobresalga */
-  overflow: visible; /* Permite que la planta sobresalga */
+  padding-top: 5%; /* menos separación */
+  overflow: visible;
 }
 
-/* Estilo para la imagen de la maceta pequeña */
+/* MACETA PEQUEÑA */
 .small-pot-bg {
-  background-image: url('https://res.cloudinary.com/dbjgvudha/image/upload/v1749475053/pot_amyvfa.webp'); /* Tu imagen de maceta pequeña */
-  width: 160px; /* Tamaño fijo para macetas pequeñas */
-  height: 160px;
+  background-image: url('https://res.cloudinary.com/dbjgvudha/image/upload/v1749475053/pot_amyvfa.webp');
+  width: 140px; /* tamaño reducido */
+  height: 140px;
 }
 
-/* Estilo para la imagen de la maceta grande (cuando está en el centro) */
+/* MACETA GRANDE (central) */
 .big-pot-bg {
-  background-image: url('https://res.cloudinary.com/dbjgvudha/image/upload/v1749475048/bigpot_wpjank.webp'); /* Tu imagen de maceta grande */
-  width: 25vw; /* Usa tus valores originales de BigPot.css */
-  height: 25vh;
+  background-image: url('https://res.cloudinary.com/dbjgvudha/image/upload/v1749475048/bigpot_wpjank.webp');
+  width: 22vw;  /* menos ancha */
+  height: 22vh;
 }
 
-/* ESTILOS DE LA PLANTA DENTRO DE LA MACETA */
+/* PLANTA */
 .pot-plant-img {
   position: absolute;
   width: auto;
   height: auto;
-  max-height: 65%; /* Ajusta si la planta es demasiado grande */
+  max-height: 45%;  /* tamaño reducido */
   left: 50%;
-  top: -30%; /* Posiciona la planta relativamente dentro de su contenedor de maceta */
+  top: -10%; /* más cerca de la maceta */
   transform: translateX(-50%);
-  z-index: 1; /* Asegura que la planta esté encima de la maceta */
+  z-index: 1;
 }
 
-/* ESTILOS DE LA BARRA DE PROGRESO (solo para maceta central) */
+/* BARRA DE PROGRESO */
 .progress-bar {
   position: absolute;
-  top: -60%; /* Relativo a la maceta */
+  top: -45%;
   left: 50%;
   transform: translateX(-50%);
   background-color: #e0e0e0;
   border-radius: 10px;
   width: 70%;
-  height: 20px;
+  height: 18px;
   overflow: hidden;
   z-index: 0;
   border: 3px solid white;
@@ -61,95 +61,110 @@
   transition: width 0.3s ease-in-out;
 }
 
-/* ESTILOS DE LOS BOTONES DE RECURSOS (solo para maceta central) */
+/* CONTENEDOR DE BOTONES */
 .pot-bton-container {
-  height: auto;
+  margin-top: 8px;
   display: flex;
-  justify-content: space-evenly;
-  margin-top: 10px;
+  justify-content: center;
+  gap: 16px;
   width: 100%;
 }
 
+/* BOTONES */
 .pot-bton {
   border: none;
   border-radius: 20px;
-  width: 8vw;
-  min-width: 80px;
+  width: 60px;
   height: 60px;
+  display: flex;
   justify-content: center;
   align-items: center;
-  display: flex;
-  justify-content: space-evenly;
-  position: relative;
-  transition: all 0.08s cubic-bezier(0.3, 0, 0.5, 1);
   cursor: pointer;
+  transition: all 0.1s ease-in-out;
 }
 
-/* Mantén tus estilos específicos para #feed y #spray */
+/* FERTILIZANTE */
 #feed {
   background-color: #EC9444;
   box-shadow: 0 4px 0 #D06400, 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 #feed:active {
   transform: translateY(4px);
-  box-shadow: 0 1px 0 #D06400, 0 2px 5px rgba(0, 0, 0, 0.1);
   background-color: #E68A38;
 }
 
+/* AGUA */
 #spray {
   background-color: #2AB0CC;
   box-shadow: 0 4px 0 #16768A, 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 #spray:active {
   transform: translateY(4px);
-  box-shadow: 0 1px 0 #16768A, 0 2px 5px rgba(0, 0, 0, 0.1);
   background-color: #25A5C0;
 }
 
-/* Efectos para las imágenes de los botones */
-#feed:active #fertilizer {
-  transform: scale(0.95) rotate(-5deg);
-  transition: transform 0.08s;
-}
-#spray:active #watering {
-  transform: scale(0.95) translateY(2px);
-  transition: transform 0.08s;
+/* ÍCONOS DENTRO DE LOS BOTONES */
+#fertilizer, #watering {
+  max-width: 85%;
+  max-height: 85%;
 }
 
-#fertilizer {
-  max-width: 90%;
-  max-height: 90%;
-  transition: transform 0.08s;
-}
 #watering {
-  max-width: 90%;
-  max-height: 90%;
-  margin-top: 15%;
-  margin-right: 10%;
-  transition: transform 0.08s;
+  margin-top: 10%;
 }
 
-/* Estilo para el texto "Vacío" */
-.empty-pot {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  font-family: 'Fredoka One', sans-serif;
-  color: #777;
-  font-size: 1.5rem;
+/* Ajustes generales para pantallas pequeñas */
+@media (max-width: 600px) {
+  /* Maceta pequeña */
+  .small-pot-bg {
+    width: 100px; /* más pequeña */
+    height: 100px;
+  }
+
+  /* Maceta grande (central) */
+  .big-pot-bg {
+    width: 40vw; /* ajusta según prefieras */
+    height: 40vh;
+  }
+
+  /* Planta dentro de la maceta */
+  .pot-plant-img {
+    max-height: 60%; /* aumenta para que ocupe más espacio */
+    top: 0;          /* menos espacio arriba para que no se separe */
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    z-index: 1;
+  }
+
+  /* Barra de progreso más pequeña y ajustada */
+  .progress-bar {
+    top: -35%;
+    width: 80%;
+    height: 14px;
+  }
 }
 
-
-.alert-overlay2{
-  position: fixed; 
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+/* Opcional: para pantallas muy pequeñas */
+@media (max-width: 360px) {
+  .small-pot-bg {
+    width: 80px;
+    height: 80px;
+  }
   
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+  .big-pot-bg {
+    width: 50vw;
+    height: 45vh;
+  }
+  
+  .pot-plant-img {
+    max-height: 55%;
+    top: 5%;
+  }
+  
+  .progress-bar {
+    top: -30%;
+    width: 75%;
+    height: 12px;
+  }
 }
