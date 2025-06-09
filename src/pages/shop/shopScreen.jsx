@@ -36,17 +36,15 @@ const ShopScreen = () => {
         const docSnap = await getDoc(userRef);
         if (docSnap.exists()) {
           const data = docSnap.data();
-          if (!data.purchasedPlants) {
-            data.purchasedPlants = [];
-          }
+          data.purchasedPlants ??= [];
+          data.purchasedEcosystems ??= [];
           setUserDataFromFirebase(data);
         } else {
           await createUserProfile(auth.currentUser);
           const newDocSnap = await getDoc(userRef);
           const newData = newDocSnap.data();
-          if (!newData.purchasedPlants) {
-            newData.purchasedPlants = [];
-          }
+          newData.purchasedPlants ??= [];
+          newData.purchasedEcosystems ??= [];
           setUserDataFromFirebase(newData);
         }
       } catch (err) {
@@ -83,7 +81,6 @@ const ShopScreen = () => {
 
     const isResource = item.id === "watering_can" || item.id === "fertilizer";
     const isExtraPot = item.id === "flower_pots";
-
     const alreadyPurchased = userDataFromFirebase.purchasedItems?.includes(item.id);
     const currentPotCount = userDataFromFirebase.pots || 3;
 
@@ -112,10 +109,10 @@ const ShopScreen = () => {
       }
 
       const currentData = docSnap.data();
-
-      let currentPlantsInPots = Array.isArray(currentData.plants) ? [...currentData.plants] : [];
-      let currentPurchasedItems = Array.isArray(currentData.purchasedItems) ? [...currentData.purchasedItems] : [];
-      let currentPurchasedPlants = Array.isArray(currentData.purchasedPlants) ? [...currentData.purchasedPlants] : [];
+      const currentPlantsInPots = Array.isArray(currentData.plants) ? [...currentData.plants] : [];
+      const currentPurchasedItems = Array.isArray(currentData.purchasedItems) ? [...currentData.purchasedItems] : [];
+      const currentPurchasedPlants = Array.isArray(currentData.purchasedPlants) ? [...currentData.purchasedPlants] : [];
+      const currentPurchasedEcosystems = Array.isArray(currentData.purchasedEcosystems) ? [...currentData.purchasedEcosystems] : [];
 
       const totalPots = currentData.pots || 3;
       while (currentPlantsInPots.length < totalPots) {
@@ -171,6 +168,25 @@ const ShopScreen = () => {
           showAlertMessage("¡No tienes macetas vacías disponibles para nuevas plantas!");
           return;
         }
+      } else if (category === "ecosystems") {
+        const ecoData = {
+          id: item.id,
+          name: item.name,
+          image: item.image,
+          ...(item.description && { description: item.description }),
+        };
+
+        currentPurchasedEcosystems.push(ecoData);
+        currentPurchasedItems.push(item.id);
+
+        updates.purchasedEcosystems = currentPurchasedEcosystems;
+        updates.purchasedItems = currentPurchasedItems;
+
+        setUserDataFromFirebase((prev) => ({
+          ...prev,
+          purchasedEcosystems: currentPurchasedEcosystems,
+          purchasedItems: [...(prev.purchasedItems || []), item.id],
+        }));
       } else {
         currentPurchasedItems.push(item.id);
         updates.purchasedItems = currentPurchasedItems;
@@ -279,7 +295,9 @@ const ShopScreen = () => {
                 onClick={() => handleBuy(item)}
                 disabled={item.purchased && item.id !== "watering_can" && item.id !== "fertilizer"}
               >
-                {item.purchased && item.id !== "watering_can" && item.id !== "fertilizer" ? "Adquirido" : "Comprar"}
+                {item.purchased && item.id !== "watering_can" && item.id !== "fertilizer"
+                  ? "Adquirido"
+                  : "Comprar"}
               </button>
 
               {item.purchased && item.id !== "watering_can" && item.id !== "fertilizer" && (

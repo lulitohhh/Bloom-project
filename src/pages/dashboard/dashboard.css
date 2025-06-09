@@ -10,23 +10,21 @@
 }
 
 .pots-container {
-  position: absolute; /* Permite posicionar las macetas libremente */
+  position: absolute;
   width: 100%;
-  height: 100%; /* Ocupa todo el espacio para posicionar */
-   /* Anclar al fondo */
+  height: 100%;
   left: 0;
-  display: flex; /* Para controlar la disposición inicial, aunque luego se sobrepongan con absolute */
+  display: flex;
   justify-content: center;
-  align-items: flex-end; /* Alinear al fondo */
-  pointer-events: none; /* Permite hacer clic a través del contenedor si las macetas están posicionadas */
+  align-items: flex-end;
+  pointer-events: none;
   margin-bottom: 8%;
 }
 
 .pot-container {
-  /* Estilos comunes para todos los contenedores de maceta */
-  position: absolute; /* Crucial para las animaciones de movimiento */
-  transition: all 0.5s ease-in-out; /* Transición suave para todos los cambios */
-  pointer-events: auto; /* Permite interactuar con las macetas individuales */
+  position: absolute;
+  transition: all 0.5s ease-in-out;
+  pointer-events: auto;
   display: flex;
   height: 40%;
   flex-direction: column;
@@ -34,31 +32,28 @@
   align-items: center;
 }
 
-/* Posiciones para las macetas de fondo */
-/* Estas clases se aplican a los `pot-container` cuando `isCentral` es `false` */
-/* La posición de cada maceta del fondo se define por su orden (`nth-child`) */
-
+/* Posiciones dinámicas */
 .pot-position-left {
   bottom: 10%;
-  left: 15%; /* Ajusta según tu diseño */
-  transform: scale(0.6); /* Más pequeñas */
-  z-index: 1; /* Fondo */
+  left: 20%;
+  transform: scale(0.7);
+  z-index: 1;
   cursor: pointer;
 }
 
 .pot-position-center {
-  bottom: 100;
-  left: 50%;
-  transform: translateX(-50%) scale(1);
-  z-index: 2; /* Encima de las macetas de fondo */
-  cursor: default; /* No clickeable si ya es la central */
+  bottom: 10%;
+  /* left: 50%; ⛔ eliminar */
+  /* transform: translateX(-50%) scale(1); ⛔ eliminar */
+  transform: scale(1); /* ✅ solo escalado */
+  z-index: 2;
+  cursor: default;
 }
-
 .pot-position-right {
   bottom: 10%;
-  right: 15%; /* Ajusta según tu diseño */
-  transform: scale(0.6);
-  z-index: 1; /* Fondo */
+  right: 20%;
+  transform: scale(0.7);
+  z-index: 1;
   cursor: pointer;
 }
 /* Nota: la clase .pot-central que se añade dinámicamente por React sobreescribirá la posición

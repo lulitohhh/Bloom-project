@@ -24,6 +24,7 @@ const Dashboard = () => {
   const [plants, setPlants] = useState([null, null, null]);
   const [centralPlantId, setCentralPlantId] = useState(null);
   const [currentGroupStart, setCurrentGroupStart] = useState(0);
+  const [groupCentralIndices, setGroupCentralIndices] = useState({});
 
   useEffect(() => {
     if (!auth.user?.uid) return;
@@ -42,8 +43,9 @@ const Dashboard = () => {
             loadedPlants.push(null);
           }
 
+          const centralId = userData.centralPlantId || null;
+          setCentralPlantId(centralId);
           setPlants(loadedPlants);
-          setCentralPlantId(userData.centralPlantId || null);
         } else {
           setPlants([null, null, null]);
           setCentralPlantId(null);
@@ -60,16 +62,42 @@ const Dashboard = () => {
   }, [auth.user]);
 
   const handleSelectCentralPot = async (selectedIndex) => {
-    const selectedPlant = plants[selectedIndex];
-    if (!selectedPlant || selectedPlant.id === centralPlantId) return;
+  const selectedPlant = plants[selectedIndex];
+  if (!selectedPlant || selectedPlant.id === centralPlantId) return;
 
-    const userRef = doc(db, 'users', auth.user.uid);
-    await updateDoc(userRef, {
-      centralPlantId: selectedPlant.id
-    });
-  };
+  const userRef = doc(db, 'users', auth.user.uid);
+  await updateDoc(userRef, {
+    centralPlantId: selectedPlant.id
+  });
+
+  const groupStart = Math.floor(selectedIndex / 3) * 3;
+  setGroupCentralIndices(prev => ({
+    ...prev,
+    [groupStart]: selectedIndex
+  }));
+};
 
   const visiblePlants = plants.slice(currentGroupStart, currentGroupStart + 3);
+
+    // ¿Hay una planta central guardada para esta página?
+    let fallbackCentralIndex = groupCentralIndices[currentGroupStart];
+    if (
+      fallbackCentralIndex === undefined ||
+      fallbackCentralIndex < currentGroupStart ||
+      fallbackCentralIndex >= currentGroupStart + 3
+    ) {
+      // Si no hay planta guardada válida, por defecto tomamos la del medio si existe
+      fallbackCentralIndex = plants.findIndex(p => p?.id === centralPlantId);
+      if (
+        fallbackCentralIndex < currentGroupStart ||
+        fallbackCentralIndex >= currentGroupStart + 3
+      ) {
+        fallbackCentralIndex = currentGroupStart + 1;
+      }
+    }
+
+    // Índice relativo (0–2) para el grupo visible
+    const centralVisibleIndex = fallbackCentralIndex - currentGroupStart;
 
   return (
     <div className='dashboard'>
@@ -98,8 +126,26 @@ const Dashboard = () => {
       <div className="pots-container">
         {visiblePlants.map((plantData, index) => {
           const realIndex = currentGroupStart + index;
-          const positionClass = ['pot-position-left', 'pot-position-center', 'pot-position-right'][index] || '';
           const isCentral = plantData?.id === centralPlantId;
+
+          let positionClass = '';
+
+          if (centralVisibleIndex === index) {
+            positionClass = 'pot-position-center';
+          } else {
+            // Las posiciones se asignan en relación a la planta central visible
+            // Se distribuyen como izquierda y derecha alrededor de ella
+            if (centralVisibleIndex === 0) {
+              // Si la central es la primera del grupo
+              positionClass = index === 1 ? 'pot-position-right' : 'pot-position-left';
+            } else if (centralVisibleIndex === 1) {
+              // Si la central está al medio
+              positionClass = index === 0 ? 'pot-position-left' : 'pot-position-right';
+            } else {
+              // Si la central es la última del grupo
+              positionClass = index === 0 ? 'pot-position-left' : 'pot-position-right';
+            }
+          }
 
           return (
             <Pot

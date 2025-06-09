@@ -18,10 +18,9 @@ const UserProfile = () => {
     const fetchProfile = async () => {
       try {
         const data = await getUserProfile(user.uid);
-        // Asegúrate de que purchasedPlants sea un array, si no existe o es null, inicialízalo
-        if (!data.purchasedPlants) {
-          data.purchasedPlants = [];
-        }
+        // Asegurar arrays por defecto
+        data.purchasedPlants = data.purchasedPlants || [];
+        data.purchasedEcosystems = data.purchasedEcosystems || [];
         setProfile(data);
         setNewUsername(data.username);
         setNewAvatar(data.avatar);
@@ -39,9 +38,8 @@ const UserProfile = () => {
         avatar: newAvatar
       });
       dispatch(setUser({ ...user, username: newUsername, avatar: newAvatar }));
-      // Actualizar el estado local del perfil para reflejar los cambios
-      setProfile(prevProfile => ({
-        ...prevProfile,
+      setProfile(prev => ({
+        ...prev,
         username: newUsername,
         avatar: newAvatar
       }));
@@ -61,7 +59,6 @@ const UserProfile = () => {
         <img src={avatarImg} alt="Avatar" className="profile-avatar" />
         <div className="profile-info">
           <h2 className="profile-title">¡Hola, {profile.username}!</h2>
-          {/* Muestra la cantidad de plantas compradas del nuevo array */}
           <p className="profile-detail">Plantas compradas: 🌱 {profile.purchasedPlants?.length || 0}</p>
         </div>
         <button className="edit-icon-button" onClick={() => setIsEditing(true)}>
@@ -95,13 +92,13 @@ const UserProfile = () => {
 
       <div className="profile-section">
         <h3>🌼 Flores compradas</h3>
-        <div className="profile-box purchased-plants-grid"> {/* Añadimos una clase para estilos si es necesario */}
-          {profile.purchasedPlants && profile.purchasedPlants.length > 0 ? (
+        <div className="profile-box purchased-plants-grid">
+          {profile.purchasedPlants.length > 0 ? (
             profile.purchasedPlants.map((plant, index) => (
-              <div key={plant.id + '-' + index} className="purchased-plant-item"> {/* Añadimos una key única */}
+              <div key={plant.id + '-' + index} className="purchased-plant-item">
                 <img 
-                  src={plant.image} // Usamos la imagen principal de la planta
-                  alt={plant.name} 
+                  src={plant.image}
+                  alt={plant.name}
                   className="purchased-plant-img" 
                 />
                 <span className="purchased-plant-name">{plant.name}</span>
@@ -115,7 +112,24 @@ const UserProfile = () => {
 
       <div className="profile-section">
         <h3>🌿 Ecosistemas conseguidos</h3>
-        <div className="profile-box">[Aquí van los ecosistemas]</div>
+        <div className="profile-box purchased-ecosystems-grid">
+          {profile.purchasedEcosystems.length > 0 ? (
+            profile.purchasedEcosystems.map((eco, index) => (
+              <div key={eco.id + '-' + index} className="ecosystem-card">
+                <img
+                  src={eco.image}
+                  alt={eco.name}
+                  className="ecosystem--profile-image"
+                  onError={(e) => (e.target.src = "/src/assets/images/default-ecosystem.png")}
+                />
+                <h4>{eco.name}</h4>
+                
+              </div>
+            ))
+          ) : (
+            <p>Aún no has adquirido ningún ecosistema.</p>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -6,18 +6,14 @@ import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../services/firebase/firebaseConfig";
 import fertilizerImg from '../../assets/images/fertilizante.webp'
 import wateringImg from '../../assets/images/wateringcan.webp'
+import { motion as Motion } from "framer-motion";
 
 
-
-const Pot = ({ plantData, potIndex, onSelectCentralPot, className }) => {
+const Pot = ({ plantData, potIndex, onSelectCentralPot, isCentral, className }) => {
   const currentUser = useSelector((state) => state.auth.user);
   const [resources, setResources] = useState({ water: 0, fertilizer: 0 });
   const [growthProgress, setGrowthProgress] = useState(plantData?.plantGrowth || 0);
-  const [centralPlantId, setCentralPlantId] = useState(null);
 
-  const isCentral = plantData?.id === centralPlantId;
-
-  // 1. Cargar recursos del usuario (agua, fertilizante)
   useEffect(() => {
     if (!currentUser?.uid) return;
 
@@ -27,20 +23,16 @@ const Pot = ({ plantData, potIndex, onSelectCentralPot, className }) => {
 
       if (docSnap.exists()) {
         const userData = docSnap.data();
-
         setResources({
           water: userData.resources?.water || 0,
           fertilizer: userData.resources?.fertilizer || 0,
         });
-
-        setCentralPlantId(userData.centralPlantId || null);
       }
     };
 
     loadData();
   }, [currentUser]);
 
-  // 2. Actualizar progreso si cambia la planta
   useEffect(() => {
     setGrowthProgress(plantData?.plantGrowth || 0);
   }, [plantData]);
@@ -97,9 +89,11 @@ const Pot = ({ plantData, potIndex, onSelectCentralPot, className }) => {
   };
 
   return (
-    <div
+    <Motion.div
       className={`pot-container ${className} ${isCentral ? "pot-central" : "pot-background"}`}
       onClick={!isCentral && plantData ? () => onSelectCentralPot(potIndex) : null}
+      layout
+      transition={{ type: "spring", stiffness: 500, damping: 30 }} // animación suave
     >
       <div className={`pot-bg ${isCentral ? "big-pot-bg" : "small-pot-bg"}`}>
         {plantData ? (
@@ -143,7 +137,7 @@ const Pot = ({ plantData, potIndex, onSelectCentralPot, className }) => {
           </button>
         </div>
       )}
-    </div>
+    </Motion.div>
   );
 };
 
