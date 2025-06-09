@@ -36,26 +36,31 @@ const Dashboard = () => {
 
       const userRef = doc(db, 'users', auth.user.uid);
 
-      unsubscribe = onSnapshot(userRef, (docSnap) => {
-        if (docSnap.exists()) {
-          const userData = docSnap.data();
-          let loadedPlants = Array.isArray(userData.plants) ? userData.plants : [];
+      unsubscribe = onSnapshot(
+        userRef,
+        (docSnap) => {
+          if (docSnap.exists()) {
+            const userData = docSnap.data();
+            let loadedPlants = Array.isArray(userData.plants) ? [...userData.plants] : [];
 
-          while (loadedPlants.length < 3) {
-            loadedPlants.push(null);
+            const totalPots = Math.min(userData.pots || 3, 9); // Máximo 9 macetas permitidas
+
+            while (loadedPlants.length < totalPots) {
+              loadedPlants.push(null);
+            }
+
+            setPlants(loadedPlants);
+            console.log("Dashboard (onSnapshot): Plantas cargadas:", loadedPlants);
+          } else {
+            console.log("Dashboard (onSnapshot): Documento de usuario NO encontrado. Inicializando plantas a null.");
+            setPlants([null, null, null]);
           }
-
-          setPlants(loadedPlants);
-          console.log("Dashboard (onSnapshot): Plantas cargadas:", loadedPlants);
-
-        } else {
-          console.log("Dashboard (onSnapshot): Documento de usuario NO encontrado. Inicializando plantas a null.");
+        },
+        (error) => {
+          console.error("Dashboard (onSnapshot): Error al escuchar datos del jardín en tiempo real:", error);
           setPlants([null, null, null]);
         }
-      }, (error) => {
-        console.error("Dashboard (onSnapshot): Error al escuchar datos del jardín en tiempo real:", error);
-        setPlants([null, null, null]);
-      });
+      );
     };
 
     setupRealtimeListener();
@@ -102,7 +107,11 @@ const Dashboard = () => {
           ←
         </button>
         <button
-          onClick={() => setCurrentGroupStart(prev => Math.min(prev + 3, plants.length - 3))}
+          onClick={() =>
+            setCurrentGroupStart(prev =>
+              Math.min(prev + 3, Math.max(plants.length - 3, 0))
+            )
+          }
           disabled={currentGroupStart + 3 >= plants.length}
         >
           →
@@ -112,7 +121,7 @@ const Dashboard = () => {
       <div className="pots-container">
         {visiblePlants.map((plantData, index) => {
           const realIndex = currentGroupStart + index;
-          let positionClass = ['pot-position-left', 'pot-position-center', 'pot-position-right'][index];
+          const positionClass = ['pot-position-left', 'pot-position-center', 'pot-position-right'][index] || '';
 
           return (
             <Pot

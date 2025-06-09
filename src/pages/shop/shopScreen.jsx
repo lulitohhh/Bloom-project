@@ -78,117 +78,121 @@ const ShopScreen = () => {
     })) || []
   };
 
-  const handleBuy = async (item) => {
-    if (!userId || !userDataFromFirebase) { 
-      showAlertMessage("Por favor inicia sesión o espera a que los datos se carguen.");
+ const handleBuy = async (item) => {
+  if (!userId || !userDataFromFirebase) { 
+    showAlertMessage("Por favor inicia sesión o espera a que los datos se carguen.");
+    return;
+  }
+
+  const isResource = item.id === "watering_can" || item.id === "fertilizer";
+  const isExtraPot = item.id === "flower_pots";
+
+  const alreadyPurchased = userDataFromFirebase.purchasedItems?.includes(item.id);
+  const currentPotCount = userDataFromFirebase.pots || 3;
+
+  
+  if (!isResource && !isExtraPot && alreadyPurchased) {
+    showAlertMessage("¡Ya posees este artículo!");
+    return;
+  }
+
+  if (isExtraPot && currentPotCount >= 9) {
+    showAlertMessage("¡Ya tienes el máximo de 9 macetas!");
+    return;
+  }
+
+  if (coins < item.price) {
+    showAlertMessage(`¡No tienes suficientes monedas! Necesitas ${item.price - coins} monedas más.`);
+    return;
+  }
+
+  try {
+    const userRef = doc(db, "users", userId);
+    const docSnap = await getDoc(userRef);
+
+    if (!docSnap.exists()) {
+      showAlertMessage("Error: Documento de usuario no encontrado al intentar comprar.");
       return;
     }
 
-    const isResource = item.id === "watering_can" || item.id === "fertilizer";
+    const currentData = docSnap.data();
 
-    // Solo para items no recursos (plantas, ecosistemas, accesorios)
-    if (!isResource && userDataFromFirebase.purchasedItems?.includes(item.id)) {
-      showAlertMessage("¡Ya posees este artículo!");
-      return;
-    }
+    let currentPlantsInPots = Array.isArray(currentData.plants) ? [...currentData.plants] : [null, null, null];
+    let currentPurchasedItems = Array.isArray(currentData.purchasedItems) ? [...currentData.purchasedItems] : [];
+    let currentPurchasedPlants = Array.isArray(currentData.purchasedPlants) ? [...currentData.purchasedPlants] : [];
 
-    if (coins < item.price) {
-      showAlertMessage(`¡No tienes suficientes monedas! Necesitas ${item.price - coins} monedas más.`);
-      return;
-    }
+    let updates = { coins: increment(-item.price) };
 
-    try {
-      const userRef = doc(db, "users", userId);
-      let updates = { coins: increment(-item.price) }; 
-      
-      // Obtener los datos actuales del usuario para asegurar arrays actualizados
-      const docSnap = await getDoc(userRef);
-      if (!docSnap.exists()) {
-        showAlertMessage("Error: Documento de usuario no encontrado al intentar comprar.");
+    if (isResource) {
+      const resourceName = item.id === "watering_can" ? "water" : "fertilizer";
+      updates[`resources.${resourceName}`] = increment(1);
+    } else if (isExtraPot) {
+      const newPotCount = Math.min(currentPotCount + 1, 9);
+      updates.pots = newPotCount;
+
+      setUserDataFromFirebase(prev => ({
+        ...prev,
+        pots: newPotCount,
+      }));
+
+    } else if (category === "plants") {
+      while (currentPlantsInPots.length < 3) {
+        currentPlantsInPots.push(null);
+      }
+
+      const emptyPotIndex = currentPlantsInPots.indexOf(null);
+      if (emptyPotIndex !== -1) {
+        const plantData = {
+          id: item.id,
+          name: item.name,
+          image: item.image,
+          sproutImage: item.sproutImage || "/assets/brote.png",
+          mediumImage: item.mediumImage || item.image,
+          matureImage: item.matureImage || item.image,
+          isMature: false,
+          purchasedAt: new Date(),
+          plantGrowth: 0,
+          ...(item.description && { description: item.description }),
+          ...(item.genus && { genus: item.genus }),
+          ...(item.habitat && { habitat: item.habitat }),
+        };
+
+        currentPlantsInPots[emptyPotIndex] = plantData;
+        currentPurchasedPlants.push(plantData);
+        currentPurchasedItems.push(item.id);
+
+        updates.plants = currentPlantsInPots;
+        updates.purchasedPlants = currentPurchasedPlants;
+        updates.purchasedItems = currentPurchasedItems;
+
+        setUserDataFromFirebase(prev => ({
+          ...prev,
+          plants: currentPlantsInPots,
+          purchasedPlants: currentPurchasedPlants,
+          purchasedItems: [...(prev.purchasedItems || []), item.id],
+        }));
+      } else {
+        showAlertMessage("¡No tienes macetas vacías disponibles para nuevas plantas!");
         return;
       }
-      const currentData = docSnap.data();
+    } else {
+      currentPurchasedItems.push(item.id);
+      updates.purchasedItems = currentPurchasedItems;
 
-      // Inicializar `purchasedPlants` y `purchasedItems` si no existen en los datos actuales
-      let currentPlantsInPots = Array.isArray(currentData.plants) ? [...currentData.plants] : [null, null, null];
-      let currentPurchasedItems = Array.isArray(currentData.purchasedItems) ? [...currentData.purchasedItems] : [];
-      // Nuevo array para objetos de plantas compradas
-      let currentPurchasedPlants = Array.isArray(currentData.purchasedPlants) ? [...currentData.purchasedPlants] : [];
-
-
-      if (isResource) {
-        const resourceName = item.id === "watering_can" ? "water" : "fertilizer";
-        updates[`resources.${resourceName}`] = increment(1); 
-      } else { 
-        if (category === "plants") {
-          
-          while (currentPlantsInPots.length < 3) {
-            currentPlantsInPots.push(null);
-          }
-
-          const emptyPotIndex = currentPlantsInPots.indexOf(null);
-
-          if (emptyPotIndex !== -1) {
-            const plantData = {
-              id: item.id, // ID del item de la tienda
-              name: item.name,
-              image: item.image,
-              sproutImage: item.sproutImage || "/assets/brote.png", 
-              mediumImage: item.mediumImage || item.image,
-              matureImage: item.matureImage || item.image,
-              isMature: false,
-              purchasedAt: new Date(), // Fecha de compra
-              plantGrowth: 0,
-              ...(item.description && { description: item.description }),
-              ...(item.genus && { genus: item.genus }),
-              ...(item.habitat && { habitat: item.habitat })
-            };
-
-            currentPlantsInPots[emptyPotIndex] = plantData; // Asigna al jardín
-            updates.plants = currentPlantsInPots; 
-            
-            // AÑADIDO: Agrega el objeto completo de la planta a purchasedPlants
-            currentPurchasedPlants.push(plantData); 
-            updates.purchasedPlants = currentPurchasedPlants; // Actualiza el objeto de actualizaciones
-            
-            // Esto ya lo tenías, asegura que el ID también se registra en purchasedItems
-            currentPurchasedItems.push(item.id); 
-            updates.purchasedItems = currentPurchasedItems;
-
-
-            // Actualizar el estado local `userDataFromFirebase` inmediatamente
-            setUserDataFromFirebase(prevData => ({
-                ...prevData,
-                plants: currentPlantsInPots,
-                purchasedPlants: currentPurchasedPlants, // <-- Nuevo
-                purchasedItems: [...(prevData.purchasedItems || []), item.id] 
-            }));
-
-          } else {
-            showAlertMessage("¡No tienes macetas vacías disponibles para nuevas plantas!");
-            return; 
-          }
-
-        } else { // Para ecosistemas y accesorios (solo se agregan a purchasedItems)
-          currentPurchasedItems.push(item.id);
-          updates.purchasedItems = currentPurchasedItems;
-
-          setUserDataFromFirebase(prevData => ({
-              ...prevData,
-              purchasedItems: [...(prevData.purchasedItems || []), item.id]
-          }));
-        }
-      }
-
-      await updateDoc(userRef, updates);
-      dispatch(subtractCoins(item.price)); 
-      showAlertMessage(`¡Compra exitosa! Has adquirido ${item.name}`);
-
-    } catch (error) {
-      console.error("Error en la compra:", error);
-      showAlertMessage("Error al completar la compra. Por favor intenta nuevamente.");
+      setUserDataFromFirebase(prev => ({
+        ...prev,
+        purchasedItems: [...(prev.purchasedItems || []), item.id],
+      }));
     }
-  };
+
+    await updateDoc(userRef, updates);
+    dispatch(subtractCoins(item.price));
+    showAlertMessage(`¡Compra exitosa! Has adquirido ${item.name}`);
+  } catch (error) {
+    console.error("Error en la compra:", error);
+    showAlertMessage("Error al completar la compra. Por favor intenta nuevamente.");
+  }
+};
 
   const showAlertMessage = (message) => {
     setAlertMessage(message);
