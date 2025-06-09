@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../services/firebase/firebaseConfig";
 import cloudinaryImages from '../../utils/cloudinaryImages';
-
+import { motion as Motion } from "framer-motion";
 const Pot = ({ plantData, potIndex, onSelectCentralPot, isCentral, className }) => {
   const currentUser = useSelector((state) => state.auth.user);
   const [resources, setResources] = useState({ water: 0, fertilizer: 0 });

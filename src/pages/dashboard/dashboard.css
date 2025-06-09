@@ -42,12 +42,11 @@
 
 .pot-position-center {
   bottom: 10%;
-  /* left: 50%; ⛔ eliminar */
-  /* transform: translateX(-50%) scale(1); ⛔ eliminar */
-  transform: scale(1); /* ✅ solo escalado */
+  transform: scale(1);
   z-index: 2;
   cursor: default;
 }
+
 .pot-position-right {
   bottom: 10%;
   right: 20%;
@@ -102,7 +101,32 @@
   right: 2%;
 }
 
+/* 📱 Responsive ajustes en pantallas medianas */
 @media (max-width: 768px) {
+  .pot-position-left {
+    left: 10%;
+    transform: scale(0.6);
+  }
+
+  .pot-position-right {
+    right: 10%;
+    transform: scale(0.6);
+  }
+
+  .pot-position-center {
+    transform: scale(0.9);
+  }
+
+  .pots-container {
+    margin-bottom: 20%;
+  }
+
+  .btn-container {
+    flex-direction: column;
+    gap: 10px;
+    bottom: 10px;
+  }
+
   .carousel-arrow {
     width: 36px;
     height: 36px;
@@ -110,64 +134,29 @@
   }
 }
 
+/* 📱 Extra pequeño (celulares muy chicos) */
 @media (max-width: 480px) {
+  .pot-position-left {
+    left: 5%;
+    transform: scale(0.5);
+  }
+
+  .pot-position-right {
+    right: 5%;
+    transform: scale(0.5);
+  }
+
+  .pot-position-center {
+    transform: scale(0.8);
+  }
+
   .carousel-arrow {
     width: 30px;
     height: 30px;
     font-size: 20px;
   }
-}
 
-.carousel-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(255, 255, 255, 0.85);
-  border: none;
-  border-radius: 50%;
-  width: 45px;
-  height: 45px;
-  font-size: 28px;
-  font-weight: bold;
-  color: #333;
-  cursor: pointer;
-  z-index: 20;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s ease;
-}
-
-.carousel-arrow:hover {
-  background-color: #e0e0e0;
-}
-
-.carousel-arrow:disabled {
-  opacity: 0.4;
-  cursor: default;
-}
-
-.carousel-arrow.left {
-  left: 2%;
-}
-
-.carousel-arrow.right {
-  right: 2%;
-}
-
-@media (max-width: 768px) {
-  .carousel-arrow {
-    width: 36px;
-    height: 36px;
-    font-size: 22px;
-  }
-}
-
-@media (max-width: 480px) {
-  .carousel-arrow {
-    width: 30px;
-    height: 30px;
-    font-size: 20px;
+  .btn-container {
+    bottom: 8px;
   }
 }
