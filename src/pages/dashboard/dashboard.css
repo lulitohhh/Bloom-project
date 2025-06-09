@@ -117,8 +117,21 @@
     transform: scale(0.9);
   }
 
+  /* Subir el carrusel más arriba */
   .pots-container {
-    margin-bottom: 20%;
+    margin-bottom: 30%;
+  }
+
+  /* Botones fertilizar y regar más grandes */
+  .pot-bton {
+    width: 80px;
+    height: 80px;
+  }
+
+  /* Iconos dentro de los botones */
+  #fertilizer, #watering {
+    max-width: 90%;
+    max-height: 90%;
   }
 
   .btn-container {
@@ -148,6 +161,22 @@
 
   .pot-position-center {
     transform: scale(0.8);
+  }
+
+  /* Subir el carrusel aún más */
+  .pots-container {
+    margin-bottom: 35%;
+  }
+
+  /* Botones fertilizar y regar aún más grandes */
+  .pot-bton {
+    width: 90px;
+    height: 90px;
+  }
+
+  #fertilizer, #watering {
+    max-width: 95%;
+    max-height: 95%;
   }
 
   .carousel-arrow {

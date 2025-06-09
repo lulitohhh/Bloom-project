@@ -1,15 +1,50 @@
-.register{
-    width: 100%;
-    height: 99vh;
-    display: flex;
+.register {
+  width: 100%;
+  height: 99vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+.register-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+/* Responsive para pantallas medianas y pequeñas */
+@media (max-width: 768px) {
+  .register {
+    flex-direction: column;
+    height: auto;
+    padding: 1rem;
+    justify-content: center; /* mantener centrado */
+    align-items: center;
+  }
 
-.register-container{
+  .register-container {
     width: 100%;
-    height: 100%;
-    display: flex;
+    height: auto;
+    padding: 1rem;
+    justify-content: center; /* mantener centrado */
+    align-items: center;
+  }
+}
+
+/* Responsive para pantallas muy pequeñas (celulares) */
+@media (max-width: 480px) {
+  .register {
+    padding: 0.5rem;
     justify-content: center;
     align-items: center;
+  }
+
+  .register-container {
+    width: 95%;
+    padding: 0.5rem;
+    justify-content: center;
+    align-items: center;
+  }
 }

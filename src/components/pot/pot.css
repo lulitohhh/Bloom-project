@@ -113,31 +113,26 @@
   margin-top: 10%;
 }
 
-/* Ajustes generales para pantallas pequeñas */
 @media (max-width: 600px) {
-  /* Maceta pequeña */
+  /* Maceta pequeña - más grande */
   .small-pot-bg {
-    width: 100px; /* más pequeña */
-    height: 100px;
+    width: 140px; /* igual que en desktop */
+    height: 140px;
   }
 
-  /* Maceta grande (central) */
+  /* Maceta grande (central) - un poco más pequeña */
   .big-pot-bg {
-    width: 40vw; /* ajusta según prefieras */
-    height: 40vh;
+    width: 35vw; /* menos ancha que antes */
+    height: 30vh;
   }
 
   /* Planta dentro de la maceta */
   .pot-plant-img {
-    max-height: 60%; /* aumenta para que ocupe más espacio */
-    top: 0;          /* menos espacio arriba para que no se separe */
-    left: 50%;
-    transform: translateX(-50%);
-    position: absolute;
-    z-index: 1;
+    max-height: 55%;
+    top: 0;
   }
 
-  /* Barra de progreso más pequeña y ajustada */
+  /* Barra de progreso */
   .progress-bar {
     top: -35%;
     width: 80%;
@@ -145,23 +140,24 @@
   }
 }
 
-/* Opcional: para pantallas muy pequeñas */
 @media (max-width: 360px) {
+  /* Maceta pequeña - sigue siendo bastante grande */
   .small-pot-bg {
-    width: 80px;
-    height: 80px;
+    width: 130px;
+    height: 130px;
   }
-  
+
+  /* Maceta grande (central) - aún más pequeña */
   .big-pot-bg {
-    width: 50vw;
-    height: 45vh;
+    width: 40vw;
+    height: 35vh;
   }
-  
+
   .pot-plant-img {
-    max-height: 55%;
+    max-height: 50%;
     top: 5%;
   }
-  
+
   .progress-bar {
     top: -30%;
     width: 75%;

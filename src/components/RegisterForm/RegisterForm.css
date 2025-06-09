@@ -1,4 +1,3 @@
-
 .reg-container {
   display: flex;
   flex-direction: column;
@@ -9,7 +8,7 @@
   padding: 2rem;
   width: 100%;
   max-width: 400px;
-  margin: 4rem auto; /* centrado horizontal y margen superior */
+  margin: 4rem auto;
   box-sizing: border-box;
 }
 
@@ -19,13 +18,22 @@
   color: #bd6706;
   margin-bottom: 1rem;
   font-size: 2rem;
+  text-align: center;
 }
 
 /* === Formulario y Entradas === */
-.reg-form,
+.reg-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+}
+
 .reg-input-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 100%;
   gap: 1rem;
 }
@@ -33,22 +41,26 @@
 .text-input-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1rem;
   width: 100%;
 }
 
 .bloom-label {
   width: 100%;
+  text-align: center;
 }
 
 .bloom-input {
   width: 100%;
+  max-width: 320px;
   padding: 0.75rem 1rem;
   background-color: #eccba6;
   border: none;
   border-radius: 10px;
   font-family: "Fredoka", sans-serif;
   color: rgb(83, 47, 22);
+  text-align: center;
 }
 
 .bloom-input::placeholder {
@@ -66,15 +78,11 @@
   border-radius: 20px;
   width: 60%;
   height: 45px;
-  box-shadow: 
-    0 4px 0 #2a722a, 
-    0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 0 #2a722a, 0 5px 10px rgba(0, 0, 0, 0.2);
   transition: transform 0.1s ease, box-shadow 0.1s ease;
   cursor: pointer;
   user-select: none;
   color: white;
-
-  /* centrado horizontal */
   margin: 2rem auto 0 auto;
   display: block;
 }
@@ -99,10 +107,11 @@
 
 .avatar-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columnas horizontales */
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
   width: 100%;
   margin-top: 1rem;
+  justify-items: center;
 }
 
 .avatar-item {
@@ -150,5 +159,9 @@
   .avatar-item {
     width: 60px;
     height: 60px;
+  }
+
+  .bloom-input {
+    max-width: 100%;
   }
 }
