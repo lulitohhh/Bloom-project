@@ -17,22 +17,22 @@
     align-items: center;
 }
 
-/* Responsive para pantallas medianas y pequeñas */
+
 @media (max-width: 768px) {
   .login-page {
     padding: 0.5rem;
-    background-size: contain; /* Para que la imagen se ajuste mejor */
+    background-size: contain; 
   }
 
   .login-container {
-    flex-direction: column; /* En móviles suele ir mejor en columna */
+    flex-direction: column; 
     padding: 1rem;
     width: 90%;
-    height: auto; /* Que no tome todo el alto */
+    height: auto; 
   }
 }
 
-/* Responsive para pantallas muy pequeñas (celulares pequeños) */
+
 @media (max-width: 480px) {
   .login-page {
     padding: 0.25rem;
@@ -42,7 +42,7 @@
   .login-container {
     width: 95%;
     padding: 0.5rem;
-    justify-content: flex-start; /* Para que quede arriba en pantalla pequeña */
+    justify-content: flex-start; 
     height: auto;
   }
 }

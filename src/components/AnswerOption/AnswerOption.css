@@ -78,7 +78,7 @@
   @media (max-width: 600px) {
   .answer {
     padding: 20px 20px;
-    font-size: 14px; /* Opcional: reduce el tamaño de texto */
+    font-size: 14px; 
     border-radius: 10px;
   }
 

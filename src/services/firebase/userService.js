@@ -4,7 +4,7 @@ import { app } from "../firebase/firebaseConfig";
 const db = getFirestore(app);
 
 
-// Crear perfil de usuario con nuevo esquema (sin potPlants ni bigPotPlant)
+
 export const createUserProfile = (userId, userData) => {
 return setDoc(doc(db, "users", userId), {
 ...userData,
@@ -13,8 +13,8 @@ water: 0,
 fertilizer: 0
 },
 purchasedItems: [],
-plants: [null, null, null], // Tres macetas
-centralIndex: 1, // Maceta central por defecto
+plants: [null, null, null], 
+centralIndex: 1, 
 createdAt: new Date()
 });
 };

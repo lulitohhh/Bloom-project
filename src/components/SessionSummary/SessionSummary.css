@@ -12,9 +12,9 @@
   justify-content: center;
   padding: 6%;
   margin: 1% auto;
-  max-width: 1000px;  /* Aumentar el tamaño máximo del contenedor */
+  max-width: 1000px;  
   text-align: center;
-  height: auto;  /* Deja que el contenedor crezca según el contenido */
+  height: auto;  
 }
 
 

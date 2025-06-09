@@ -13,18 +13,18 @@
   position: relative;
 }
 
-/* Hover: más brillante */
+
 .Next-button:hover {
   filter: brightness(1.05);
 }
 
-/* Al hacer click: se "hunde" */
+
 .Next-button:active {
   box-shadow: 0 2px 0 #22864A;
   transform: translateY(4px);
 }
 
-/* Cuando está deshabilitado */
+
 .Next-button:disabled {
   opacity: 0.6;
   cursor: not-allowed;

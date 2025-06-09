@@ -5,7 +5,7 @@
   margin-top: 50px;
 }
 
-/* Layout de álbum en pantallas grandes */
+
 .album-image {
   background-image: url('/assets/album.png');
   background-size: contain;
@@ -17,7 +17,7 @@
   position: relative;
 }
 
-/* Estilos para las dos páginas */
+
 .page-left,
 .page-right {
   flex: 1;

@@ -15,14 +15,14 @@
   border-radius: 20px;
 }
 
-/* Título */
+
 .log-title {
   margin-bottom: 1rem;
   font-family: "Fredoka", sans-serif;
   color: #bd6706;
 }
 
-/* Inputs */
+
 .input-container {
   display: flex;
   flex-direction: column;
@@ -32,12 +32,12 @@
 }
 
 .bloom-label {
-  width: 80%; /* controlar el ancho visible del input */
+  width: 80%; 
 }
 
 .bloom-input {
   width: 100%;
-  box-sizing: border-box; /* ← evita desbordes por padding interno */
+  box-sizing: border-box; 
   background-color: #eccba6;
   border: none;
   border-radius: 10px;
@@ -51,7 +51,7 @@
   padding-left: 5px;
 }
 
-/* Botón de login centrado */
+
 #logButton {
   font-family: "Fredoka", sans-serif;
   font-weight: 600;
@@ -72,7 +72,7 @@
   justify-content: center;
 }
 
-/* Efecto clic */
+
 #logButton:active {
   transform: translateY(4px);
   box-shadow: 
@@ -80,14 +80,14 @@
     0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* Error login */
+
 .error-message {
   color: red;
   font-family: "Fredoka", sans-serif;
   margin-bottom: 1rem;
 }
 
-/* Enlace de registro */
+
 .login-links {
   display: flex;
   justify-content: center;

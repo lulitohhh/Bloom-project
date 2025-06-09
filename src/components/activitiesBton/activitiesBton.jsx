@@ -7,7 +7,7 @@ const ActivitiesBton = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate('/activities'); // Navega a la ruta /activities
+    navigate('/activities'); 
   };
 
   return (

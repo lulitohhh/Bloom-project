@@ -5,7 +5,7 @@
   background-color: #B8F2FE;
 }
 
-/* Asegura que html y body ocupen toda la pantalla */
+
 html, body, #root {
   width: 100%;
   min-height: auto;

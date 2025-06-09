@@ -1,10 +1,10 @@
 .shop-button {
-    /* Estilos base */
+    
     background-color: #82C14C;
     border: none;
     border-radius: 20px;
     height: 60px;
-    width: 5vw; /* Nota: width aparece dos veces en tu código original */
+    width: 5vw; 
     justify-content: center;
     align-items: center;
     display: flex;
@@ -13,7 +13,7 @@
         0 4px 0 #427229, 
         0 5px 10px rgba(0, 0, 0, 0.2);
     
-    /* Efecto de presión */
+    
     position: relative;
     transition: all 0.08s cubic-bezier(0.3, 0, 0.5, 1);
     cursor: pointer;
@@ -25,10 +25,10 @@
     box-shadow: 
         0 1px 0 #427229,
         0 2px 5px rgba(0, 0, 0, 0.1);
-    background-color: #79B743; /* Verde ligeramente más oscuro */
+    background-color: #79B743; 
 }
 
-/* Efecto para el ícono */
+
 .shop-button:active #shopIcon {
     transform: scale(0.95) translateY(1px);
     transition: transform 0.08s;

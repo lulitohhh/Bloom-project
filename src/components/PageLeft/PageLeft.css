@@ -1,20 +1,20 @@
 .btns-wrapper {
   display: flex;
-  justify-content: center; /* Centra los elementos horizontalmente */
-  align-items: center; /* Centra los elementos verticalmente (si es necesario) */
+  justify-content: center; 
+  align-items: center; 
   gap: 3rem;
   margin-top: 2rem;
 }
 
 .btn-containerplus {
-  position: relative; /* Mantén la posición relativa para el posicionamiento interno */
+  position: relative; 
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  /* Elimina o ajusta estos valores problemáticos */
-  right: auto; /* Elimina el desplazamiento a la derecha */
-  top: auto;   /* Elimina el desplazamiento hacia abajo */
+  
+  right: auto; 
+  top: auto;   
 }
 
 .btn-label {
@@ -25,14 +25,14 @@
 }
 
 .img-btn {
-  position: relative; /* O 'static' si no necesitas un posicionamiento especial dentro de .btn-containerplus */
-  display: block; /* Cambia a 'block' para que ocupe el ancho de su contenedor */
-  width: 100%; /* O ajusta al ancho deseado del contenedor */
+  position: relative; 
+  display: block;
+  width: 100%; 
   height: auto;
   transition: transform 0.2s ease;
   z-index: 1;
-  margin: 0; /* Asegúrate de que no haya márgenes que causen desplazamiento */
-  max-width: 200px; /* Limita el ancho máximo si es necesario */
+  margin: 0; 
+  max-width: 200px; 
 }
 
   
@@ -56,7 +56,7 @@
     align-items: center;
     transition: transform 0.2s ease;
   
-    /* sombra sólida hacia abajo */
+    
     box-shadow: 0 10px 0 #FFD79F;
   }
   
@@ -122,7 +122,7 @@
 }
 
 .grid-item.locked:hover {
-  transform: none !important; /* Anula el efecto hover para items bloqueados */
+  transform: none !important; 
 }
 
 
@@ -135,12 +135,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(255, 215, 159, 0.3); /* Fondo anaranjado claro */
+  background-color: rgba(255, 215, 159, 0.3); 
   border-radius: 10px;
 }
 
 .lock-overlay i {
-  color: #0E6229; /* Verde oscuro para el candado */
+  color: #0E6229; 
   font-size: 24px;
   text-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }

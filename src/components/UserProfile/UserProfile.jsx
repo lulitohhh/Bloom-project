@@ -18,7 +18,6 @@ const UserProfile = () => {
     const fetchProfile = async () => {
       try {
         const data = await getUserProfile(user.uid);
-        // Asegurar arrays por defecto
         data.purchasedPlants = data.purchasedPlants || [];
         data.purchasedEcosystems = data.purchasedEcosystems || [];
         setProfile(data);

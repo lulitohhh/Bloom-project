@@ -14,7 +14,7 @@
   background-image: linear-gradient(
     rgba(7, 27, 83, 0.2), 
     rgba(3, 19, 49, 0.2)
-  ), url('https://res.cloudinary.com/dbjgvudha/image/upload/v1749475052/MacBook_x83a3z.webp'); /* ← o la ruta que elijas */
+  ), url('https://res.cloudinary.com/dbjgvudha/image/upload/v1749475052/MacBook_x83a3z.webp'); 
 }
 
 .notebook-bg {
@@ -50,15 +50,15 @@
     background-size: cover;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* ⬅ Centrado vertical */
-    align-items: center;     /* ⬅ Centrado horizontal */
+    justify-content: center; 
+    align-items: center;     
     min-height: 100vh;
     background-position: center;
     background-repeat: no-repeat;
     background-image: linear-gradient(
       rgba(7, 27, 83, 0.6),
       rgba(3, 19, 49, 0.6)
-    ),('https://res.cloudinary.com/dbjgvudha/image/upload/v1749475052/MacBook_x83a3z.webp'); /* Fondo que cubre toda la pantalla */
+    ),('https://res.cloudinary.com/dbjgvudha/image/upload/v1749475052/MacBook_x83a3z.webp'); 
     min-height: 100vh;
     padding-top: 20px;
   }

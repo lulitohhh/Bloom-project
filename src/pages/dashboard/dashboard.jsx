@@ -70,14 +70,14 @@ const Dashboard = () => {
 
   const visiblePlants = plants.slice(currentGroupStart, currentGroupStart + 3);
 
-    // ¿Hay una planta central guardada para esta página?
+    
     let fallbackCentralIndex = groupCentralIndices[currentGroupStart];
     if (
       fallbackCentralIndex === undefined ||
       fallbackCentralIndex < currentGroupStart ||
       fallbackCentralIndex >= currentGroupStart + 3
     ) {
-      // Si no hay planta guardada válida, por defecto tomamos la del medio si existe
+      
       fallbackCentralIndex = plants.findIndex(p => p?.id === centralPlantId);
       if (
         fallbackCentralIndex < currentGroupStart ||
@@ -87,7 +87,7 @@ const Dashboard = () => {
       }
     }
 
-    // Índice relativo (0–2) para el grupo visible
+    
     const centralVisibleIndex = fallbackCentralIndex - currentGroupStart;
 
   return (
@@ -129,16 +129,15 @@ const Dashboard = () => {
           if (centralVisibleIndex === index) {
             positionClass = 'pot-position-center';
           } else {
-            // Las posiciones se asignan en relación a la planta central visible
-            // Se distribuyen como izquierda y derecha alrededor de ella
+            
             if (centralVisibleIndex === 0) {
-              // Si la central es la primera del grupo
+              
               positionClass = index === 1 ? 'pot-position-right' : 'pot-position-left';
             } else if (centralVisibleIndex === 1) {
-              // Si la central está al medio
+              
               positionClass = index === 0 ? 'pot-position-left' : 'pot-position-right';
             } else {
-              // Si la central es la última del grupo
+              
               positionClass = index === 0 ? 'pot-position-left' : 'pot-position-right';
             }
           }

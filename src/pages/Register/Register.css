@@ -14,13 +14,13 @@
   align-items: center;
 }
 
-/* Responsive para pantallas medianas y pequeñas */
+
 @media (max-width: 768px) {
   .register {
     flex-direction: column;
     height: auto;
     padding: 1rem;
-    justify-content: center; /* mantener centrado */
+    justify-content: center; 
     align-items: center;
   }
 
@@ -28,12 +28,12 @@
     width: 100%;
     height: auto;
     padding: 1rem;
-    justify-content: center; /* mantener centrado */
+    justify-content: center; 
     align-items: center;
   }
 }
 
-/* Responsive para pantallas muy pequeñas (celulares) */
+
 @media (max-width: 480px) {
   .register {
     padding: 0.5rem;

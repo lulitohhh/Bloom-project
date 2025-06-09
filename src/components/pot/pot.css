@@ -1,4 +1,4 @@
-/* MACETA (FONDO) */
+
 .pot-bg {
   background-repeat: no-repeat;
   background-size: contain;
@@ -8,37 +8,37 @@
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  padding-top: 5%; /* menos separación */
+  padding-top: 5%; 
   overflow: visible;
 }
 
-/* MACETA PEQUEÑA */
+
 .small-pot-bg {
   background-image: url('https://res.cloudinary.com/dbjgvudha/image/upload/v1749475053/pot_amyvfa.webp');
-  width: 140px; /* tamaño reducido */
+  width: 140px; 
   height: 140px;
 }
 
-/* MACETA GRANDE (central) */
+
 .big-pot-bg {
   background-image: url('https://res.cloudinary.com/dbjgvudha/image/upload/v1749475048/bigpot_wpjank.webp');
-  width: 22vw;  /* menos ancha */
+  width: 22vw;  
   height: 22vh;
 }
 
-/* PLANTA */
+
 .pot-plant-img {
   position: absolute;
   width: auto;
   height: auto;
-  max-height: 45%;  /* tamaño reducido */
+  max-height: 45%;  
   left: 50%;
-  top: -10%; /* más cerca de la maceta */
+  top: -10%; 
   transform: translateX(-50%);
   z-index: 1;
 }
 
-/* BARRA DE PROGRESO */
+
 .progress-bar {
   position: absolute;
   top: -45%;
@@ -61,7 +61,7 @@
   transition: width 0.3s ease-in-out;
 }
 
-/* CONTENEDOR DE BOTONES */
+
 .pot-bton-container {
   margin-top: 8px;
   display: flex;
@@ -70,7 +70,7 @@
   width: 100%;
 }
 
-/* BOTONES */
+
 .pot-bton {
   border: none;
   border-radius: 20px;
@@ -83,7 +83,7 @@
   transition: all 0.1s ease-in-out;
 }
 
-/* FERTILIZANTE */
+
 #feed {
   background-color: #EC9444;
   box-shadow: 0 4px 0 #D06400, 0 5px 10px rgba(0, 0, 0, 0.2);
@@ -93,7 +93,7 @@
   background-color: #E68A38;
 }
 
-/* AGUA */
+
 #spray {
   background-color: #2AB0CC;
   box-shadow: 0 4px 0 #16768A, 0 5px 10px rgba(0, 0, 0, 0.2);
@@ -103,7 +103,7 @@
   background-color: #25A5C0;
 }
 
-/* ÍCONOS DENTRO DE LOS BOTONES */
+
 #fertilizer, #watering {
   max-width: 85%;
   max-height: 85%;
@@ -114,25 +114,25 @@
 }
 
 @media (max-width: 600px) {
-  /* Maceta pequeña - más grande */
+  
   .small-pot-bg {
-    width: 140px; /* igual que en desktop */
+    width: 140px; 
     height: 140px;
   }
 
-  /* Maceta grande (central) - un poco más pequeña */
+  
   .big-pot-bg {
-    width: 35vw; /* menos ancha que antes */
+    width: 35vw; 
     height: 30vh;
   }
 
-  /* Planta dentro de la maceta */
+  
   .pot-plant-img {
     max-height: 55%;
     top: 0;
   }
 
-  /* Barra de progreso */
+  
   .progress-bar {
     top: -35%;
     width: 80%;
@@ -141,13 +141,13 @@
 }
 
 @media (max-width: 360px) {
-  /* Maceta pequeña - sigue siendo bastante grande */
+  
   .small-pot-bg {
     width: 130px;
     height: 130px;
   }
 
-  /* Maceta grande (central) - aún más pequeña */
+  
   .big-pot-bg {
     width: 40vw;
     height: 35vh;

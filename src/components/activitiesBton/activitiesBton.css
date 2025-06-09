@@ -1,5 +1,5 @@
 .act-button {
-    /* Tus estilos actuales */
+   
     background-color: #27A258;
     border: none;
     border-radius: 20px;
@@ -27,7 +27,7 @@
         0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* Mantén tus estilos existentes para el texto */
+
 #activitext {
     font-family: "Fredoka", sans-serif;
     font-weight: 600;

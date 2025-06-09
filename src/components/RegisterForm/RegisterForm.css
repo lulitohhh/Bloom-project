@@ -12,7 +12,7 @@
   box-sizing: border-box;
 }
 
-/* === Título === */
+
 .reg-title {
   font-family: "Fredoka", sans-serif;
   color: #bd6706;
@@ -21,7 +21,7 @@
   text-align: center;
 }
 
-/* === Formulario y Entradas === */
+
 .reg-form {
   display: flex;
   flex-direction: column;
@@ -68,7 +68,7 @@
   opacity: 0.8;
 }
 
-/* === Botón de Registro === */
+
 #regButton {
   font-family: "Fredoka", sans-serif;
   font-weight: 600;
@@ -92,7 +92,7 @@
   box-shadow: 0 1px 0 #2a722a, 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* === Avatares === */
+
 .avatar-selection-container {
   width: 100%;
   margin-top: 1rem;
@@ -137,7 +137,7 @@
   border-radius: 10px;
 }
 
-/* === Responsive === */
+
 @media (max-width: 600px) {
   .reg-container {
     width: 95vw;
