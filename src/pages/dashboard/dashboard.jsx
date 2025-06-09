@@ -1,6 +1,3 @@
-
-import React from 'react';
-
 import "./dashboard.css"
 import Background from '../../components/background/background';
 import Pot from '../../components/pot/pot';
