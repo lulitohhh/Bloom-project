@@ -1,4 +1,4 @@
-// src/redux/Activities/storySlice.js
+
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
@@ -16,8 +16,11 @@ const storySlice = createSlice({
       state.currentPage = 0;
       state.correctAnswers = 0;
     },
-    nextPage: (state) => {
-      state.currentPage += 1;
+    nextPage: (state, action) => {
+      const maxPageIndex = action.payload;
+      if (state.currentPage < maxPageIndex) {
+        state.currentPage += 1;
+      }
     },
     registerCorrect: (state) => {
       state.correctAnswers += 1;
@@ -29,6 +32,7 @@ const storySlice = createSlice({
     },
   },
 });
+
 
 export const {
   startStory,

@@ -32,7 +32,7 @@ const AnswerOption = ({ text, index, selection, correct, onSelect, wasRespondedC
     <button 
       className={classes} 
       onClick={onSelect} 
-      disabled={wasRespondedCorrectly} // solo se bloquea si ya acertaste
+      disabled={wasRespondedCorrectly} 
     >
       {text}
     </button>

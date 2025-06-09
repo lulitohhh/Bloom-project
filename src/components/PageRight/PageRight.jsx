@@ -1,5 +1,5 @@
 import "./PageRight"
-import ItemCard from "../ItemCard/ItemCard"; // Asegúrate de que esta ruta sea correcta
+import ItemCard from "../ItemCard/ItemCard"; 
 
 const PageRight = ({ setSelectedCategory, selectedItem, setSelectedItem, selectedCategory }) => {
   return (

@@ -1,37 +1,71 @@
-.dashboard{
-    margin: 0;
-    padding: 0;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    justify-content: center;
-    overflow-x: hidden;
+.dashboard {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden; /* Asegura que las macetas no se salgan de la vista durante la animación */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end; /* Para anclar el contenido de abajo */
 }
 
-.pots-container{
-    display: flex;
-    flex-direction: row;
-    height: 100%;
-    gap: 20px;
-    padding-top: 200px;
-    justify-content: center; /* Centra los elementos horizontalmente */
-    align-items: center;
-    
+.pots-container {
+  position: absolute; /* Permite posicionar las macetas libremente */
+  width: 100%;
+  height: 100%; /* Ocupa todo el espacio para posicionar */
+   /* Anclar al fondo */
+  left: 0;
+  display: flex; /* Para controlar la disposición inicial, aunque luego se sobrepongan con absolute */
+  justify-content: center;
+  align-items: flex-end; /* Alinear al fondo */
+  pointer-events: none; /* Permite hacer clic a través del contenedor si las macetas están posicionadas */
+  margin-bottom: 8%;
 }
 
 .btn-container{
-    margin-top: auto; 
     display: flex;
     flex-direction: row;
-    height: 80%;
-    gap: 20px;
-    justify-content: space-around; /* Centra los elementos horizontalmente */
+    justify-content: space-around;
     align-items: center;
     cursor: pointer;
 }
 
+/* Posiciones para las macetas de fondo */
+/* Estas clases se aplican a los `pot-container` cuando `isCentral` es `false` */
+/* La posición de cada maceta del fondo se define por su orden (`nth-child`) */
 
+.pot-position-left {
+  bottom: 10%;
+  left: 15%; /* Ajusta según tu diseño */
+  transform: scale(0.6); /* Más pequeñas */
+  z-index: 1; /* Fondo */
+  cursor: pointer;
+}
+
+.pot-position-center {
+  bottom: 100;
+  left: 50%;
+  transform: translateX(-50%) scale(1);
+  z-index: 2; /* Encima de las macetas de fondo */
+  cursor: default; /* No clickeable si ya es la central */
+}
+
+.pot-position-right {
+  bottom: 10%;
+  right: 15%; /* Ajusta según tu diseño */
+  transform: scale(0.6);
+  z-index: 1; /* Fondo */
+  cursor: pointer;
+}
+/* Nota: la clase .pot-central que se añade dinámicamente por React sobreescribirá la posición
+   si una maceta de fondo se mueve al centro. Esto está implícito en la lógica de `isCentral`
+   y cómo CSS aplica las reglas. El `pot-container:nth-child(2)` es la posición donde
+   el `pot-central` o el `big-pot` se renderiza. */
+
+.btn-container {
+  position: absolute;
+  bottom: 20px; /* Ajusta la posición de los botones */
+  display: flex;
+  gap: 20px;
+  z-index: 10; /* Asegura que los botones estén por encima de las macetas */
+}

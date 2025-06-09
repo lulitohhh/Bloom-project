@@ -49,6 +49,12 @@
   text-align: left;
 }
 
+.album-plant-name{
+  position: absolute;
+  margin: 100;
+  top: 0%;
+}
+
 /* Lista */
 .item-card ul {
   padding-left: 20px;

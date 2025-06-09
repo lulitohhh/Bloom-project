@@ -7,13 +7,13 @@ const EcoButton = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate('/garden'); // Navega a la ruta /garden
+    navigate('/garden'); 
   };
 
   return (
-    <button className='eco-button' onClick={handleClick}>
-      <img id="ecoimg" src={ecobuton} alt="Ecoguide" />
-      <h1 id="ecobtontt">Ecoguide</h1>
+    <button className='eco-button' aria-label="Go back to the previous screen"onClick={handleClick}>
+      <img className="eco-icon" src={ecobuton} alt="" aria-hidden="true"/>
+      <span id="ecobutton">Ecoguide</span>
     </button>
   );
 };

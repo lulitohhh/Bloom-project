@@ -1,4 +1,4 @@
-// redux/sessionCoinsSlice.js
+
 import { createSlice } from '@reduxjs/toolkit';
 
 export const sessionCoinsSlice = createSlice({
