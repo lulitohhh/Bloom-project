@@ -104,24 +104,29 @@ const Dashboard = () => {
       <Background />
       <NavBar />
 
-      <div className="carousel-controls">
+      <>
         <button
+          className="carousel-arrow left"
           onClick={() => setCurrentGroupStart(prev => Math.max(prev - 3, 0))}
           disabled={currentGroupStart === 0}
+          aria-label="Anterior"
         >
-          ←
+          ‹
         </button>
+
         <button
+          className="carousel-arrow right"
           onClick={() =>
             setCurrentGroupStart(prev =>
               Math.min(prev + 3, Math.max(plants.length - 3, 0))
             )
           }
           disabled={currentGroupStart + 3 >= plants.length}
+          aria-label="Siguiente"
         >
-          →
+          ›
         </button>
-      </div>
+      </>
 
       <div className="pots-container">
         {visiblePlants.map((plantData, index) => {

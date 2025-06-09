@@ -13,6 +13,9 @@ const Pot = ({ plantData, potIndex, onSelectCentralPot, isCentral, className }) 
   const currentUser = useSelector((state) => state.auth.user);
   const [resources, setResources] = useState({ water: 0, fertilizer: 0 });
   const [growthProgress, setGrowthProgress] = useState(plantData?.plantGrowth || 0);
+  const [showGrowthAlert, setShowGrowthAlert] = useState(false);
+  const [hasShownAlert, setHasShownAlert] = useState(false);
+  const [alertDataLoaded, setAlertDataLoaded] = useState(false);
 
   useEffect(() => {
     if (!currentUser?.uid) return;
@@ -27,15 +30,30 @@ const Pot = ({ plantData, potIndex, onSelectCentralPot, isCentral, className }) 
           water: userData.resources?.water || 0,
           fertilizer: userData.resources?.fertilizer || 0,
         });
+
+        const currentPlants = Array.isArray(userData.plants) ? userData.plants : [];
+        const currentPlant = currentPlants.find(p => p?.id === plantData?.id);
+        setHasShownAlert(currentPlant?.hasShownAlert || false);
+        setAlertDataLoaded(true);
       }
     };
 
     loadData();
-  }, [currentUser]);
+  }, [currentUser, plantData?.id]);
 
   useEffect(() => {
+    if (!alertDataLoaded) return;
+
     setGrowthProgress(plantData?.plantGrowth || 0);
-  }, [plantData]);
+
+    if (plantData?.plantGrowth === 100 && !hasShownAlert) {
+      setShowGrowthAlert(true);
+    }
+
+    if (plantData?.plantGrowth < 100) {
+      setShowGrowthAlert(false);
+    }
+  }, [plantData, hasShownAlert, alertDataLoaded]);
 
   const updateGrowth = async (increment, resourceType) => {
     if (!plantData || !isCentral || resources[resourceType] <= 0) return;
@@ -54,11 +72,13 @@ const Pot = ({ plantData, potIndex, onSelectCentralPot, isCentral, className }) 
       const currentPlant = currentPlants[index];
       const prevProgress = currentPlant.plantGrowth || 0;
       const newProgress = Math.min(prevProgress + increment, 100);
+      const isNewlyMature = newProgress === 100 && !currentPlant.hasShownAlert;
 
       const updatedPlant = {
         ...currentPlant,
         plantGrowth: newProgress,
         isMature: newProgress >= 100,
+        ...(isNewlyMature ? { hasShownAlert: true } : {}),
       };
 
       currentPlants[index] = updatedPlant;
@@ -72,7 +92,13 @@ const Pot = ({ plantData, potIndex, onSelectCentralPot, isCentral, className }) 
         ...prev,
         [resourceType]: prev[resourceType] - 1,
       }));
+
       setGrowthProgress(newProgress);
+
+      if (isNewlyMature) {
+        setShowGrowthAlert(true);
+        setHasShownAlert(true);
+      }
     } catch (error) {
       console.error("Error actualizando progreso:", error);
     }
@@ -93,7 +119,7 @@ const Pot = ({ plantData, potIndex, onSelectCentralPot, isCentral, className }) 
       className={`pot-container ${className} ${isCentral ? "pot-central" : "pot-background"}`}
       onClick={!isCentral && plantData ? () => onSelectCentralPot(potIndex) : null}
       layout
-      transition={{ type: "spring", stiffness: 500, damping: 30 }} // animación suave
+      transition={{ type: "spring", stiffness: 500, damping: 30 }}
     >
       <div className={`pot-bg ${isCentral ? "big-pot-bg" : "small-pot-bg"}`}>
         {plantData ? (
@@ -104,7 +130,7 @@ const Pot = ({ plantData, potIndex, onSelectCentralPot, isCentral, className }) 
               alt={plantData.name}
               className="pot-plant-img"
             />
-            {isCentral && (
+            {isCentral && growthProgress < 100 && (
               <div className="progress-bar">
                 <div className="progress-fill" style={{ width: `${growthProgress}%` }}></div>
               </div>
@@ -115,7 +141,7 @@ const Pot = ({ plantData, potIndex, onSelectCentralPot, isCentral, className }) 
         )}
       </div>
 
-      {isCentral && plantData && (
+      {isCentral && plantData && growthProgress < 100 && (
         <div className="pot-bton-container">
           <button
             id="feed"
@@ -135,6 +161,17 @@ const Pot = ({ plantData, potIndex, onSelectCentralPot, isCentral, className }) 
             <img id="watering" src={wateringImg} alt="Regar" />
             <span>{resources.water}</span>
           </button>
+        </div>
+      )}
+
+      {isCentral && plantData && showGrowthAlert && !hasShownAlert && (
+        <div className="alert-overlay2">
+          <div className="alert-box">
+            <p>¡Tu {plantData.name} ha crecido!</p>
+            <button className="close-alert-btn" onClick={() => setShowGrowthAlert(false)}>
+              OK
+            </button>
+          </div>
         </div>
       )}
     </Motion.div>

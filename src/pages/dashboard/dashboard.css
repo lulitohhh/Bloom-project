@@ -68,3 +68,57 @@
   gap: 20px;
   z-index: 10; /* Asegura que los botones estén por encima de las macetas */
 }
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.85);
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.carousel-arrow:hover {
+  background-color: #e0e0e0;
+}
+
+.carousel-arrow:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.carousel-arrow.left {
+  left: 2%;
+}
+
+.carousel-arrow.right {
+  right: 2%;
+}
+
+@media (max-width: 768px) {
+  .carousel-arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-arrow {
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+  }
+}
