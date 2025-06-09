@@ -41,6 +41,11 @@ const cloudinaryImages = {
   avatar4: 'https://res.cloudinary.com/dbjgvudha/image/upload/v1749486747/avatar4_e2sbbt.png',
   avatar5: 'https://res.cloudinary.com/dbjgvudha/image/upload/v1749486747/avatar5_vgcjcb.png',
   avatar6: 'https://res.cloudinary.com/dbjgvudha/image/upload/v1749486747/avatar6_v3utja.png',
+  Desert: 'https://res.cloudinary.com/dbjgvudha/image/upload/v1749489395/Desert_rd8enn.webp',
+  Savanna: 'https://res.cloudinary.com/dbjgvudha/image/upload/v1749489395/Sabana_hd6y5d.webp',
+  Wetlands: 'https://res.cloudinary.com/dbjgvudha/image/upload/v1749489395/Wetlands_f8fbk0.webp',
+  Forest: 'https://res.cloudinary.com/dbjgvudha/image/upload/v1749489395/Bosque_ftey8q.webp',
+  Jungle: 'https://res.cloudinary.com/dbjgvudha/image/upload/v1749489402/Jungla_kecjeg.webp',
 };
 
 export default cloudinaryImages;
