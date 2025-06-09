@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import Background from "../../components/background/background";
+import LoaderPlant from "../../components/LoaderPlant/LoaderPlant"; // importar loader plantita
 import './Login.css';
 
 const LoginForm = lazy(() => import("../../components/LoginForm/LoginForm"));
@@ -10,7 +11,7 @@ const Login = () => {
       <Background />
 
       <div className="login-container">
-        <Suspense fallback={<p>Cargando formulario...</p>}>
+        <Suspense fallback={<LoaderPlant />}>
           <LoginForm />
         </Suspense>
       </div>

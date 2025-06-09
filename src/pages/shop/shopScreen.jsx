@@ -10,6 +10,7 @@
   import { useEffect } from "react";
   import { getAuth } from "firebase/auth";
   import { createUserProfile } from "../../services/firebase/userService";
+  import LoaderPlant from "../../components/LoaderPlant/LoaderPlant"; // ajusta la ruta según tu estructura
 
 const ShopScreen = () => {
   const [category, setCategory] = useState("plants");
@@ -211,14 +212,15 @@ const ShopScreen = () => {
     setShowAlert(true);
   };
 
-  if (loading || !userDataFromFirebase) {
-    return (
-      <div className="shop-container">
-        <NavBar />
-        <div className="loading-message">Cargando tienda y datos de usuario...</div>
-      </div>
-    );
-  }
+if (loading || !userDataFromFirebase) {
+  return (
+    <div className="shop-container">
+      <NavBar />
+      <LoaderPlant />
+    </div>
+  );
+}
+
 
   if (error) {
     return (
@@ -235,17 +237,6 @@ const ShopScreen = () => {
   return (
     <div className="shop-container">
       <NavBar />
-
-      {showAlert && (
-        <div className="alert-overlay">
-          <div className="alert-box">
-            <p>{alertMessage}</p>
-            <button className="close-alert-btn" onClick={() => setShowAlert(false)}>
-              Aceptar
-            </button>
-          </div>
-        </div>
-      )}
 
       <div className="shop-controls">
         <div className="category-tabs">

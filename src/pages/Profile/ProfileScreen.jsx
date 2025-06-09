@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { getUserProfile } from '../../services/firebase/userService';
 import UserProfile from '../../components/UserProfile/UserProfile';
 import NavBar from '../../components/navBar/navBar';
+import LoaderPlant from '../../components/LoaderPlant/LoaderPlant';
 import './ProfileScreen.css'; 
 
 const UserProfilePage = () => {
@@ -12,7 +13,7 @@ const UserProfilePage = () => {
   const [profileData, setProfileData] = useState(null);
   const [loading, setLoading] = useState(true);
 
-    const loadProfile = useCallback(async () => {
+  const loadProfile = useCallback(async () => {
     if (!user) return; 
 
     try {
@@ -33,11 +34,11 @@ const UserProfilePage = () => {
     }
   }, [user, navigate, loadProfile]);  
 
-  if (loading) return <p className="loading-text">Cargando perfil...</p>;
+  if (loading) return <LoaderPlant />;
 
   return (
     <>
-     <NavBar />
+      <NavBar />
       <div className="profile-page-container">
         <div className="notebook-bg">
           <div className="right-page">
@@ -51,7 +52,6 @@ const UserProfilePage = () => {
           </div>
         </div>
       </div>
-      
     </>
   );
 };

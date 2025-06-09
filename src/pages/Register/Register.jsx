@@ -1,23 +1,22 @@
+import React, { lazy, Suspense } from "react";
 import Background from "../../components/background/background";
-import RegisterForm from "../../components/RegisterForm/RegisterForm";
-import './Register.css'
+import LoaderPlant from "../../components/LoaderPlant/LoaderPlant"; // tu loader animado
+import './Register.css';
 
+const RegisterForm = lazy(() => import("../../components/RegisterForm/RegisterForm"));
 
 const Register = () => {
+  return (
+    <div className="register">
+      <Background />
 
-
-    return (
-      <div className="register">
-        <Background />
-        
-        <div className="register-container">
-            <RegisterForm></RegisterForm>
-
-        </div>
-       
-        
+      <div className="register-container">
+        <Suspense fallback={<LoaderPlant />}>
+          <RegisterForm />
+        </Suspense>
       </div>
-    );
-  };
-  
-  export default Register;
+    </div>
+  );
+};
+
+export default Register;
