@@ -5,6 +5,7 @@ import { getUserProfile } from '../../services/firebase/userService';
 import UserProfile from '../../components/UserProfile/UserProfile';
 import NavBar from '../../components/navBar/navBar';
 import './ProfileScreen.css'; 
+
 const UserProfilePage = () => {
   const user = useSelector((state) => state.auth.user);
   const navigate = useNavigate();
@@ -50,6 +51,7 @@ const UserProfilePage = () => {
           </div>
         </div>
       </div>
+      
     </>
   );
 };
