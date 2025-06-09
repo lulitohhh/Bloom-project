@@ -17,7 +17,7 @@ const Dashboard = () => {
   const [centralPlantId, setCentralPlantId] = useState(null);
   const [currentGroupStart, setCurrentGroupStart] = useState(0);
   const [groupCentralIndices, setGroupCentralIndices] = useState({});
-  const [loading, setLoading] = useState(true);
+  
 
   useEffect(() => {
     if (!auth.user?.uid) return;
@@ -95,6 +95,8 @@ const Dashboard = () => {
   const centralVisibleIndex = fallbackCentralIndex - currentGroupStart;
 
   return (
+    
+
     <div className="dashboard">
       <Background />
       <NavBar />

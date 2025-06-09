@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 import "./LoaderPlant.css";
 
 const plantVariants = {
@@ -24,7 +24,7 @@ const LoaderPlant = () => {
   return (
     <div className="loader-plant-fullscreen">
       <div className="loader-plant-container">
-        <motion.div
+        <Motion.div
           className="plant"
           variants={plantVariants}
           initial="hidden"
@@ -32,21 +32,21 @@ const LoaderPlant = () => {
           style={{ transformOrigin: "bottom center" }}
         >
           <div className="stem"></div>
-          <motion.div
+          <Motion.div
             className="leaf left"
             custom={0}
             variants={leafVariants}
             initial="hidden"
             animate="visible"
           />
-          <motion.div
+          <Motion.div
             className="leaf right"
             custom={1}
             variants={leafVariants}
             initial="hidden"
             animate="visible"
           />
-        </motion.div>
+        </Motion.div>
 
         <div className="pot"></div>
 
