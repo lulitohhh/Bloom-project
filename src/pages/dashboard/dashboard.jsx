@@ -16,48 +16,129 @@ import NavBar from '../../components/navBar/navBar';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, onSnapshot, updateDoc } from 'firebase/firestore';
 import { db } from '../../services/firebase/firebaseConfig';
 
 const Dashboard = () => {
   const auth = useSelector((state) => state.auth);
-  const [potPlantsData, setPotPlantsData] = useState([]);
+  const [plants, setPlants] = useState([null, null, null]);
+  const [currentGroupStart, setCurrentGroupStart] = useState(0);
 
   useEffect(() => {
-    const loadPotPlants = async () => {
-      if (!auth.user?.uid) return;
-      const userRef = doc(db, 'users', auth.user.uid);
-      try {
-        const docSnap = await getDoc(userRef);
-        if (docSnap.exists()) {
-          const userData = docSnap.data();
-          setPotPlantsData(userData.potPlants || []);
-        } else {
-          console.log("No se encontró el documento del usuario al cargar las plantas de los maceteros pequeños.");
-          setPotPlantsData([]);
-        }
-      } catch (error) {
-        console.error("Error al cargar las plantas de los maceteros pequeños:", error);
-        setPotPlantsData([]);
+    let unsubscribe = () => {};
+
+    const setupRealtimeListener = () => {
+      if (!auth.user?.uid) {
+        console.log("Dashboard: No hay usuario loggeado. Inicializando plantas a null.");
+        setPlants([null, null, null]);
+        return;
       }
+
+      const userRef = doc(db, 'users', auth.user.uid);
+
+      unsubscribe = onSnapshot(
+        userRef,
+        (docSnap) => {
+          if (docSnap.exists()) {
+            const userData = docSnap.data();
+            let loadedPlants = Array.isArray(userData.plants) ? [...userData.plants] : [];
+
+            const totalPots = Math.min(userData.pots || 3, 9); // Máximo 9 macetas permitidas
+
+            while (loadedPlants.length < totalPots) {
+              loadedPlants.push(null);
+            }
+
+            setPlants(loadedPlants);
+            console.log("Dashboard (onSnapshot): Plantas cargadas:", loadedPlants);
+          } else {
+            console.log("Dashboard (onSnapshot): Documento de usuario NO encontrado. Inicializando plantas a null.");
+            setPlants([null, null, null]);
+          }
+        },
+        (error) => {
+          console.error("Dashboard (onSnapshot): Error al escuchar datos del jardín en tiempo real:", error);
+          setPlants([null, null, null]);
+        }
+      );
     };
-    loadPotPlants();
+
+    setupRealtimeListener();
+
+    return () => {
+      console.log("Dashboard: Desuscribiendo del listener de Firestore.");
+      unsubscribe();
+    };
   }, [auth.user]);
+
+  const handleSelectCentralPot = async (selectedIndex) => {
+    if (selectedIndex === currentGroupStart + 1 || !plants[selectedIndex]) {
+      return;
+    }
+
+    const updatedPlants = plants.map(p => p ? { ...p } : null);
+
+    const plantToMoveToCenter = updatedPlants[selectedIndex];
+    const plantCurrentlyInCenter = updatedPlants[currentGroupStart + 1];
+
+    updatedPlants[currentGroupStart + 1] = { ...plantToMoveToCenter };
+    updatedPlants[selectedIndex] = plantCurrentlyInCenter ? { ...plantCurrentlyInCenter } : null;
+
+    setPlants(updatedPlants);
+
+    const userRef = doc(db, 'users', auth.user.uid);
+    await updateDoc(userRef, {
+      centralPlantId: plantToMoveToCenter.id
+    });
+  };
+
+  const visiblePlants = plants.slice(currentGroupStart, currentGroupStart + 3);
 
   return (
     <div className='dashboard'>
       <Background />
-      <NavBar/>
-      <div className="pots-container">
-        {[
-          <Pot key={0} index={0} plantData={potPlantsData[0]} />,
-          <BigPot key="big-pot" />,
-          <Pot key={1} index={1} plantData={potPlantsData[1]} />,
-        ]}
+      <NavBar />
+
+      <div className="carousel-controls">
+        <button
+          onClick={() => setCurrentGroupStart(prev => Math.max(prev - 3, 0))}
+          disabled={currentGroupStart === 0}
+        >
+          ←
+        </button>
+        <button
+          onClick={() =>
+            setCurrentGroupStart(prev =>
+              Math.min(prev + 3, Math.max(plants.length - 3, 0))
+            )
+          }
+          disabled={currentGroupStart + 3 >= plants.length}
+        >
+          →
+        </button>
       </div>
+
+      <div className="pots-container">
+        {visiblePlants.map((plantData, index) => {
+          const realIndex = currentGroupStart + index;
+          const positionClass = ['pot-position-left', 'pot-position-center', 'pot-position-right'][index] || '';
+
+          return (
+            <Pot
+              key={`pot-${realIndex}-${plantData?.id || 'empty'}`}
+              plantData={plantData ? { ...plantData } : null}
+              isCentral={index === 1}
+              potIndex={realIndex}
+              onSelectCentralPot={handleSelectCentralPot}
+              className={positionClass}
+            />
+          );
+        })}
+      </div>
+
       <div className="btn-container">
-        <EcoButton/>
-        <ActivitiesBton/>
+        <EcoButton />
+        <ActivitiesBton />
       </div>
     </div>
   );
