@@ -6,146 +6,117 @@ import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../services/firebase/firebaseConfig";
 import cloudinaryImages from '../../utils/cloudinaryImages';
 
-
-const Pot = ({ plantData, isCentral, potIndex, onSelectCentralPot, className }) => {
+const Pot = ({ plantData, potIndex, onSelectCentralPot, isCentral, className }) => {
   const currentUser = useSelector((state) => state.auth.user);
-
   const [resources, setResources] = useState({ water: 0, fertilizer: 0 });
   const [growthProgress, setGrowthProgress] = useState(plantData?.plantGrowth || 0);
+  const [showGrowthAlert, setShowGrowthAlert] = useState(false);
+  const [hasShownAlert, setHasShownAlert] = useState(false);
+  const [alertDataLoaded, setAlertDataLoaded] = useState(false);
 
   useEffect(() => {
-    if (isCentral && plantData?.plantGrowth !== undefined) {
-      setGrowthProgress(plantData.plantGrowth);
-    }
-  }, [plantData, isCentral]);
+    if (!currentUser?.uid) return;
 
-  useEffect(() => {
-    const loadResourceData = async () => {
-      if (!currentUser?.uid) return;
-
+    const loadData = async () => {
       const userRef = doc(db, "users", currentUser.uid);
-      try {
-        const docSnap = await getDoc(userRef);
-        if (docSnap.exists()) {
-          const userData = docSnap.data();
-          setResources({
-            water: userData.resources?.water || 0,
-            fertilizer: userData.resources?.fertilizer || 0,
-          });
-        }
-      } catch (error) {
-        console.error("Error al cargar recursos:", error);
+      const docSnap = await getDoc(userRef);
+
+      if (docSnap.exists()) {
+        const userData = docSnap.data();
+        setResources({
+          water: userData.resources?.water || 0,
+          fertilizer: userData.resources?.fertilizer || 0,
+        });
+
+        const currentPlants = Array.isArray(userData.plants) ? userData.plants : [];
+        const currentPlant = currentPlants.find(p => p?.id === plantData?.id);
+        setHasShownAlert(currentPlant?.hasShownAlert || false);
+        setAlertDataLoaded(true);
       }
     };
-    loadResourceData();
-  }, [currentUser]);
 
-  const refreshPlantProgress = async () => {
+    loadData();
+  }, [currentUser, plantData?.id]);
+
+  useEffect(() => {
+    if (!alertDataLoaded) return;
+
+    setGrowthProgress(plantData?.plantGrowth || 0);
+
+    if (plantData?.plantGrowth === 100 && !hasShownAlert) {
+      setShowGrowthAlert(true);
+    }
+
+    if (plantData?.plantGrowth < 100) {
+      setShowGrowthAlert(false);
+    }
+  }, [plantData, hasShownAlert, alertDataLoaded]);
+
+  const updateGrowth = async (increment, resourceType) => {
+    if (!plantData || !isCentral || resources[resourceType] <= 0) return;
+
     try {
       const userRef = doc(db, "users", currentUser.uid);
-      const updatedSnap = await getDoc(userRef);
-      if (updatedSnap.exists()) {
-        const updatedData = updatedSnap.data();
-        const centralPlantId = updatedData.centralPlantId;
-        const updatedPlant = updatedData.plants?.find(p => p?.id === centralPlantId);
-        if (updatedPlant) {
-          setGrowthProgress(updatedPlant.plantGrowth || 0);
-        }
+      const docSnap = await getDoc(userRef);
+      if (!docSnap.exists()) return;
+
+      const userData = docSnap.data();
+      const currentPlants = Array.isArray(userData.plants) ? [...userData.plants] : [];
+
+      const index = currentPlants.findIndex((p) => p?.id === plantData.id);
+      if (index === -1) return;
+
+      const currentPlant = currentPlants[index];
+      const prevProgress = currentPlant.plantGrowth || 0;
+      const newProgress = Math.min(prevProgress + increment, 100);
+      const isNewlyMature = newProgress === 100 && !currentPlant.hasShownAlert;
+
+      const updatedPlant = {
+        ...currentPlant,
+        plantGrowth: newProgress,
+        isMature: newProgress >= 100,
+        ...(isNewlyMature ? { hasShownAlert: true } : {}),
+      };
+
+      currentPlants[index] = updatedPlant;
+
+      await updateDoc(userRef, {
+        plants: currentPlants,
+        [`resources.${resourceType}`]: resources[resourceType] - 1,
+      });
+
+      setResources((prev) => ({
+        ...prev,
+        [resourceType]: prev[resourceType] - 1,
+      }));
+
+      setGrowthProgress(newProgress);
+
+      if (isNewlyMature) {
+        setShowGrowthAlert(true);
+        setHasShownAlert(true);
       }
     } catch (error) {
-      console.error("Error al refrescar progreso:", error);
+      console.error("Error actualizando progreso:", error);
     }
   };
 
-  const handleWaterPlant = async () => {
-    if (!isCentral || !plantData || resources.water <= 0) return;
-
-    try {
-      const userRef = doc(db, "users", currentUser.uid);
-      const docSnap = await getDoc(userRef);
-      if (!docSnap.exists()) return;
-
-      const userData = docSnap.data();
-      const currentPlants = Array.isArray(userData.plants) ? [...userData.plants] : [null, null, null];
-      const centralPlantId = userData.centralPlantId;
-
-      const foundIndex = currentPlants.findIndex((p) => p?.id === centralPlantId);
-      if (foundIndex === -1) return;
-
-      const currentPlant = currentPlants[foundIndex];
-      const prevProgress = currentPlant.plantGrowth || 0;
-      const newProgress = Math.min(prevProgress + 10, 100);
-      const newWater = resources.water - 1;
-
-      const updatedPlant = { ...currentPlant, plantGrowth: newProgress };
-      if (newProgress >= 100) updatedPlant.isMature = true;
-
-      currentPlants[foundIndex] = updatedPlant;
-
-      await updateDoc(userRef, {
-        plants: currentPlants,
-        "resources.water": newWater,
-      });
-
-      setResources((prev) => ({ ...prev, water: newWater }));
-      await refreshPlantProgress();
-    } catch (error) {
-      console.error("Error al regar planta:", error);
-    }
-  };
-
-  const handleFertilizePlant = async () => {
-    if (!isCentral || !plantData || resources.fertilizer <= 0) return;
-
-    try {
-      const userRef = doc(db, "users", currentUser.uid);
-      const docSnap = await getDoc(userRef);
-      if (!docSnap.exists()) return;
-
-      const userData = docSnap.data();
-      const currentPlants = Array.isArray(userData.plants) ? [...userData.plants] : [null, null, null];
-      const centralPlantId = userData.centralPlantId;
-
-      const foundIndex = currentPlants.findIndex((p) => p?.id === centralPlantId);
-      if (foundIndex === -1) return;
-
-      const currentPlant = currentPlants[foundIndex];
-      const prevProgress = currentPlant.plantGrowth || 0;
-      const newProgress = Math.min(prevProgress + 20, 100);
-      const newFertilizer = resources.fertilizer - 1;
-
-      const updatedPlant = { ...currentPlant, plantGrowth: newProgress };
-      if (newProgress >= 100) updatedPlant.isMature = true;
-
-      currentPlants[foundIndex] = updatedPlant;
-
-      await updateDoc(userRef, {
-        plants: currentPlants,
-        "resources.fertilizer": newFertilizer,
-      });
-
-      setResources((prev) => ({ ...prev, fertilizer: newFertilizer }));
-      await refreshPlantProgress();
-    } catch (error) {
-      console.error("Error al fertilizar planta:", error);
-    }
-  };
+  const handleWaterPlant = () => updateGrowth(10, "water");
+  const handleFertilizePlant = () => updateGrowth(20, "fertilizer");
 
   const getPlantImage = () => {
     if (!plantData) return null;
-
-    if (plantData.isMature || growthProgress >= 100) {
-      return plantData.matureImage || plantData.image;
-    } else if (growthProgress >= 50) {
-      return plantData.mediumImage || plantData.sproutImage || plantData.image;
-    }
+    if (plantData.isMature || growthProgress >= 100) return plantData.matureImage || plantData.image;
+    if (growthProgress >= 50) return plantData.mediumImage || plantData.sproutImage || plantData.image;
     return plantData.sproutImage || plantData.image;
   };
 
   return (
-    <div
+    <Motion.div
       className={`pot-container ${className} ${isCentral ? "pot-central" : "pot-background"}`}
       onClick={!isCentral && plantData ? () => onSelectCentralPot(potIndex) : null}
+      layout
+      transition={{ type: "spring", stiffness: 500, damping: 30 }}
     >
       <div className={`pot-bg ${isCentral ? "big-pot-bg" : "small-pot-bg"}`}>
         {plantData ? (
@@ -156,7 +127,7 @@ const Pot = ({ plantData, isCentral, potIndex, onSelectCentralPot, className }) 
               alt={plantData.name}
               className="pot-plant-img"
             />
-            {isCentral && (
+            {isCentral && growthProgress < 100 && (
               <div className="progress-bar">
                 <div className="progress-fill" style={{ width: `${growthProgress}%` }}></div>
               </div>
@@ -167,7 +138,7 @@ const Pot = ({ plantData, isCentral, potIndex, onSelectCentralPot, className }) 
         )}
       </div>
 
-      {isCentral && plantData && (
+      {isCentral && plantData && growthProgress < 100 && (
         <div className="pot-bton-container">
           <button
             id="feed"
@@ -189,7 +160,18 @@ const Pot = ({ plantData, isCentral, potIndex, onSelectCentralPot, className }) 
           </button>
         </div>
       )}
-    </div>
+
+      {isCentral && plantData && showGrowthAlert && !hasShownAlert && (
+        <div className="alert-overlay2">
+          <div className="alert-box">
+            <p>¡Tu {plantData.name} ha crecido!</p>
+            <button className="close-alert-btn" onClick={() => setShowGrowthAlert(false)}>
+              OK
+            </button>
+          </div>
+        </div>
+      )}
+    </Motion.div>
   );
 };
 

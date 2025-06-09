@@ -137,3 +137,23 @@
   width: 20%;
   justify-content: center;
 }
+
+.purchased-ecosystems-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.ecosystem-card {
+  background-color: #f2f2f2;
+  border-radius: 16px;
+  padding: 10px;
+  text-align: center;
+}
+
+.ecosystem--profile-image {
+  width: auto;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 12px;
+}
