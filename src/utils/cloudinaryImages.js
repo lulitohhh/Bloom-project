@@ -35,6 +35,12 @@ const cloudinaryImages = {
   'banana-peel': 'https://res.cloudinary.com/dbjgvudha/image/upload/v1749475048/banana-peel_t39fp7.webp',
   'apple-trees': 'https://res.cloudinary.com/dbjgvudha/image/upload/v1749475048/apple-trees_pqrc0v.webp',
   cactus: 'https://res.cloudinary.com/dbjgvudha/image/upload/v1749475048/cactus_t2quou.webp',
+  avatar1: 'https://res.cloudinary.com/dbjgvudha/image/upload/v1749486747/avatar1_d7hqp1.png',
+  avatar2: 'https://res.cloudinary.com/dbjgvudha/image/upload/v1749486747/avatar2_oqraq9.png',
+  avatar3: 'https://res.cloudinary.com/dbjgvudha/image/upload/v1749486747/avatar3_pkum5h.png',
+  avatar4: 'https://res.cloudinary.com/dbjgvudha/image/upload/v1749486747/avatar4_e2sbbt.png',
+  avatar5: 'https://res.cloudinary.com/dbjgvudha/image/upload/v1749486747/avatar5_vgcjcb.png',
+  avatar6: 'https://res.cloudinary.com/dbjgvudha/image/upload/v1749486747/avatar6_v3utja.png',
 };
 
 export default cloudinaryImages;
