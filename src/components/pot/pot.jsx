@@ -4,9 +4,7 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../services/firebase/firebaseConfig";
-import fertilizerImg from '../../assets/images/fertilizante.webp'
-import wateringImg from '../../assets/images/wateringcan.webp'
-
+import cloudinaryImages from '../../utils/cloudinaryImages';
 
 
 const Pot = ({ plantData, isCentral, potIndex, onSelectCentralPot, className }) => {
@@ -177,7 +175,7 @@ const Pot = ({ plantData, isCentral, potIndex, onSelectCentralPot, className }) 
             onClick={handleFertilizePlant}
             disabled={resources.fertilizer <= 0}
           >
-            <img id="fertilizer" src={fertilizerImg} alt="Fertilizar" />
+            <img id="fertilizer" src={cloudinaryImages.fertilizer} alt="Fertilizar" />
             <span>{resources.fertilizer}</span>
           </button>
           <button
@@ -186,7 +184,7 @@ const Pot = ({ plantData, isCentral, potIndex, onSelectCentralPot, className }) 
             onClick={handleWaterPlant}
             disabled={resources.water <= 0}
           >
-            <img id="watering" src={wateringImg} alt="Regar" />
+            <img id="watering" src={cloudinaryImages.wateringcan2} alt="Regar" />
             <span>{resources.water}</span>
           </button>
         </div>

@@ -1,8 +1,7 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
 import "./ecoButton.css";
-import ecobuton from '../../assets/images/ecobuton.webp';
-
+import cloudinaryImages from '../../utils/cloudinaryImages';
 const EcoButton = () => {
   const navigate = useNavigate();
 
@@ -12,7 +11,7 @@ const EcoButton = () => {
 
   return (
     <button className='eco-button' aria-label="Go back to the previous screen"onClick={handleClick}>
-      <img className="eco-icon" src={ecobuton} alt="" aria-hidden="true"/>
+      <img className="eco-icon" src={cloudinaryImages.ecobuton} alt="" aria-hidden="true"/>
       <span id="ecobutton">Ecoguide</span>
     </button>
   );

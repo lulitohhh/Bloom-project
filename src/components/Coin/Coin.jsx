@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from "react";
 import { loadCoinsFromFirestore } from "../../redux/coinSlice";
 
-import Coin from '../../assets/images/Coin.webp';
+import cloudinaryImages from '../../utils/cloudinaryImages';
 
 
 const CoinCounter = () => {
@@ -20,7 +20,7 @@ const CoinCounter = () => {
 
   return (
     <div className='Coin-Bar'>
-      <img id="CoinIndicator" src={Coin} alt="Coin" />
+      <img id="CoinIndicator" src={cloudinaryImages.Coin} alt="Coin" />
       <div className="coin-counter">
         {coins} 
       </div>

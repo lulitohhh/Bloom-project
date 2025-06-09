@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import './Activities.css';
-import bgImage from '../../assets/images/fondo.webp';
+import cloudinaryImages from '../../utils/cloudinaryImages';
 import QuizGame from '../../components/QuizGame/QuizGame';
 import AssociationGame from '../../components/AssociationGame/AssociationGame';
 import StoryGame from '../../components/StoryGame/StoryGame';
@@ -78,7 +78,7 @@ const Activities = () => {
       ) : actividades[paso] ? (
         renderActividad(actividades[paso])
       ) : null}
-      <img src={bgImage} alt="Lower-decoration" className="background-bottom" />
+      <img src={cloudinaryImages.fondo} alt="Lower-decoration" className="background-bottom" />
     </div>
   );
 };

@@ -4,7 +4,7 @@ import { resetSessionCoins } from '../../redux/sessionCoinsSlice';
 import './SessionSummary.css';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../navBar/navBar';
-import celebrationImage from '../../assets/images/Celebration.webp';
+import cloudinaryImages from '../../utils/cloudinaryImages';
 import NextButton from '../../components/NextButton/NextButton' ;
 
 
@@ -26,7 +26,7 @@ const SessionSummary = () => {
     <section className='page-container'>
     <NavBar></NavBar>
     <section className="session-summary"> 
-       <img src={celebrationImage} alt="CelebrationImage" className="HappyCoin-icon" />
+       <img src={cloudinaryImages.Celebration} alt="CelebrationImage" className="HappyCoin-icon" />
        <section className='Text-summary'>
             <h1>¡Lo lograste!</h1>
             <p>Has aprendido sobre el medio ambiente y has ganado</p>

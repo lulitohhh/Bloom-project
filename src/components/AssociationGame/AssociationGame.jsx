@@ -13,10 +13,10 @@ import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../services/firebase/firebaseConfig';
 
 
-const images = import.meta.glob('../../assets/images/*.webp', { eager: true });
+import cloudinaryImages from '../../utils/cloudinaryImages';
+
 function getImage(nombre) {
-  const path = `../../assets/images/${nombre}.webp`;
-  return images[path]?.default || '';
+  return cloudinaryImages[nombre] || '';
 }
 
 function AssociationGame({ id, onSuccess }) {

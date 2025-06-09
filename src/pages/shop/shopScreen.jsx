@@ -2,7 +2,7 @@
   import "./shopScreen.css";
   import NavBar from "../../components/navBar/navBar";
   import { doc, updateDoc, increment, getDoc } from "firebase/firestore";
-  import coinImg from "/src/assets/images/Coin.webp";
+  import cloudinaryImages from '../../utils/cloudinaryImages';
   import { useShopItems } from "../../data/useShopData";
   import { db } from "../../services/firebase/firebaseConfig";
   import { useSelector, useDispatch } from "react-redux";
@@ -274,7 +274,7 @@ const ShopScreen = () => {
 
               <h3>{item.name}</h3>
               <p>
-                {item.price} <img src={coinImg} alt="moneda" className="coin-icon" />
+                {item.price} <img src={cloudinaryImages.Coin} alt="moneda" className="coin-icon" />
               </p>
 
               <button
