@@ -14,14 +14,14 @@
 
 /* Estilo para la imagen de la maceta pequeña */
 .small-pot-bg {
-  background-image: url('../../assets/images/pot.webp'); /* Tu imagen de maceta pequeña */
+  background-image: url('https://res.cloudinary.com/dbjgvudha/image/upload/v1749475053/pot_amyvfa.webp'); /* Tu imagen de maceta pequeña */
   width: 160px; /* Tamaño fijo para macetas pequeñas */
   height: 160px;
 }
 
 /* Estilo para la imagen de la maceta grande (cuando está en el centro) */
 .big-pot-bg {
-  background-image: url('../../assets/images/bigpot.webp'); /* Tu imagen de maceta grande */
+  background-image: url('https://res.cloudinary.com/dbjgvudha/image/upload/v1749475048/bigpot_wpjank.webp'); /* Tu imagen de maceta grande */
   width: 25vw; /* Usa tus valores originales de BigPot.css */
   height: 25vh;
 }

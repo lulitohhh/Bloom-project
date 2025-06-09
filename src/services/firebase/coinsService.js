@@ -1,5 +1,5 @@
 import { db } from '../firebase/firebaseConfig';
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc, setDoc } from 'firebase/firestore';
 
 export const getCoinsFromFirestore = async (userId) => {
   try {
@@ -8,7 +8,7 @@ export const getCoinsFromFirestore = async (userId) => {
     return userSnap.exists() ? userSnap.data().coins || 0 : 0;
   } catch (error) {
     console.error("Error al obtener monedas:", error);
-    return 0; 
+    return 0;
   }
 };
 
@@ -20,12 +20,18 @@ export const syncCoinsFromFirestore = async (userId) => {
 
 export const updateCoinsInFirestore = async (userId, newCoins) => {
   try {
-    
-    const userRef = doc(db, 'users', userId); 
-    await updateDoc(userRef, { coins: newCoins });
+    const userRef = doc(db, 'users', userId);
+    const docSnap = await getDoc(userRef);
+
+    if (docSnap.exists()) {
+      await updateDoc(userRef, { coins: newCoins });
+    } else {
+      await setDoc(userRef, { coins: newCoins }, { merge: true });
+    }
+
     console.log("Monedas actualizadas en Firestore para UID:", userId);
   } catch (error) {
     console.error("Error en updateCoinsInFirestore:", error);
-    throw error; 
+    throw error;
   }
 };
