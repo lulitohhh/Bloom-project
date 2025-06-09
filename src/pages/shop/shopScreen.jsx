@@ -10,12 +10,14 @@
   import { useEffect } from "react";
   import { getAuth } from "firebase/auth";
   import { createUserProfile } from "../../services/firebase/userService";
+import LoaderPlant from "../../components/LoaderPlant/LoaderPlant";
 
 const ShopScreen = () => {
   const [category, setCategory] = useState("plants");
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [userDataFromFirebase, setUserDataFromFirebase] = useState(null);
+  
 
   const dispatch = useDispatch();
   const coins = useSelector((state) => state.coins.coins);
@@ -213,10 +215,7 @@ const ShopScreen = () => {
 
   if (loading || !userDataFromFirebase) {
     return (
-      <div className="shop-container">
-        <NavBar />
-        <div className="loading-message">Cargando tienda y datos de usuario...</div>
-      </div>
+      <LoaderPlant></LoaderPlant>
     );
   }
 

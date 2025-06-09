@@ -5,6 +5,7 @@ import { getUserProfile } from '../../services/firebase/userService';
 import UserProfile from '../../components/UserProfile/UserProfile';
 import NavBar from '../../components/navBar/navBar';
 import './ProfileScreen.css'; 
+import LoaderPlant from '../../components/LoaderPlant/LoaderPlant';
 
 const UserProfilePage = () => {
   const user = useSelector((state) => state.auth.user);
@@ -33,7 +34,7 @@ const UserProfilePage = () => {
     }
   }, [user, navigate, loadProfile]);  
 
-  if (loading) return <p className="loading-text">Cargando perfil...</p>;
+  if (loading) return <LoaderPlant></LoaderPlant>;
 
   return (
     <>

@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import { getDocs } from 'firebase/firestore';
 import { collection } from 'firebase/firestore';
 import { db } from '../../services/firebase/firebaseConfig';
+import LoaderPlant from '../../components/LoaderPlant/LoaderPlant';
 
 const Activities = () => {
   const [paso, setPaso] = useState(0);
@@ -68,6 +69,8 @@ const Activities = () => {
   };
 
   const isFinished = paso >= actividades.length;
+
+  if (isLoading) return <LoaderPlant />;
 
   return (
     <div>
