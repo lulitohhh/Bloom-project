@@ -7,7 +7,7 @@
     width: 100vw; /* Usa viewport width en lugar de 100% */
     height: 100vh; /* Usa viewport height */
     background-color: #B8F2FE;
-    background-image: url('../../assets/images/MacBook.webp');
+    background-image: url('https://res.cloudinary.com/dbjgvudha/image/upload/v1749475052/MacBook_x83a3z.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
