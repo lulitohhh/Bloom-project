@@ -22,12 +22,16 @@
   margin-bottom: 8%;
 }
 
-.btn-container{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    cursor: pointer;
+.pot-container {
+  /* Estilos comunes para todos los contenedores de maceta */
+  position: absolute; /* Crucial para las animaciones de movimiento */
+  transition: all 0.5s ease-in-out; /* Transición suave para todos los cambios */
+  pointer-events: auto; /* Permite interactuar con las macetas individuales */
+  display: flex;
+  height: 40%;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 /* Posiciones para las macetas de fondo */
