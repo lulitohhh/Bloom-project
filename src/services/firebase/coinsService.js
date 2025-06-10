@@ -12,7 +12,8 @@ export const getCoinsFromFirestore = async (userId) => {
   }
 };
 
-export const syncCoinsFromFirestore = async (userId) => {
+export const 
+syncCoinsFromFirestore = async (userId) => {
   const docRef = doc(db, 'users', userId);
   const docSnap = await getDoc(docRef);
   return docSnap.exists() ? docSnap.data().coins || 0 : 0;
